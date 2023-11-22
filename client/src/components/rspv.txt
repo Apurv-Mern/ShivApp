@@ -1,0 +1,853 @@
+import React, { useEffect, useState } from "react";
+import "../scss/Dashboard.css";
+import DatePicker from "react-datepicker";
+import { DateRangePicker } from "react-date-range";
+import "react-date-range/dist/styles.css"; // Main style file
+import "react-date-range/dist/theme/default.css"; // Theme CSS file
+import "react-datepicker/dist/react-datepicker.css";
+import { getUserRspvForm, postUserRspvForm } from "../redux/rspvSlice";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getCeremoniesByEventId } from "../redux/ceremony";
+import { getDrinks, getFoods } from "../redux/foodSlice";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
+import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const Rsvp4 = () => {
+  const dispatch = useDispatch();
+  const { group_name, id, user_id } = useParams();
+  const [ceremonyData, setCeremonyData] = useState([]);
+  const [drinksData, setDrinksData] = useState([]);
+  const [foodsData, setFoodsData] = useState([]);
+  const [hasAllergies, setHasAllergies] = useState(false);
+  const [requiresAssistance, setRequiresAssistance] = useState(false);
+  const [assistanceDetails, setAssistanceDetails] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [Checked, setChecked] = useState(false);
+  const [songRequest, setSongRequest] = useState(false);
+  const [stayAtVenue, setStayAtVenue] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  const [checkboxValues, setCheckboxValues] = useState({
+    hasAllergies: "",
+    hasAllergiesNo: false,
+    requiresAssistance: false,
+    songRequest: false,
+    mehndiFunction: false,
+    MUA: false,
+    sareeAssistance: false,
+    personalAssistance: false,
+    requireMUA: false,
+    turbanAssistance: false,
+    dhotiAssistance: false,
+    stayAtVenue: false,
+    transfer: false,
+    coupleDance: false,
+    coupleEventVenue: false,
+  });
+  const handleCheckboxChange = (event) => {
+    setCheckboxValues({
+      ...checkboxValues,
+      hasAllergies: event,
+    });
+    // console.log(event, "1");
+    // const { name, checked } = event.target;
+    // console.log(checked, "2");
+    // setCheckboxValues({
+    //   ...checkboxValues,
+    //   [name]: checked,
+    // });
+  };
+  const [formData, setFormData] = useState({
+    firstName: { id: 1, value: "" },
+    lastName: { id: 2, value: "" },
+    email: { id: 3, value: "" },
+    mobile: { id: 4, value: "" },
+    guestOf: { id: 5, value: "" },
+    ceremonies: { id: 6, value: [] },
+    dietaryRequirements: { id: 7, value: [] },
+    hasAllergies: {
+      id: 8,
+      value: checkboxValues.hasAllergies == "allergyTrue" ? "yes" : "nooo",
+    },
+    personalAssistance: { id: 9, value: "" },
+    drinks: { id: 10, value: "" },
+    drinks2: { id: 11, value: "" },
+    mehndiFunction: { id: 12, value: "" },
+    MUA: { id: 13, value: "" },
+    ceremonyMUA: { id: 14, value: "" },
+    sareeAssistance: { id: 15, value: "" },
+    turbanAssistance: { id: 16, value: "" },
+    dhotiAssistance: { id: 17, value: "" },
+    songRequest: { id: 18, value: checkboxValues.songRequest },
+    flightArrival: { id: 19, value: "" },
+    flightDeparture: { id: 20, value: "" },
+    transfer: { id: 21, value: "" },
+    stayAtVenue: { id: 22, value: "" },
+    roomCount: { id: 23, value: "0" },
+    extraBeds: { id: 24, value: "0" },
+    whatHotel: { id: 25, value: "0" },
+    coupleEventVenue: { id: 26, value: "" },
+    dateRange: { id: 27, value: "" },
+    danceEntertainment: { id: 28, value: "" },
+  });
+  const [personName, setPersonName] = React.useState([]);
+  const [foodList, setFoodList] = React.useState([]);
+  const [selectedCeremonies, setSelectedCeremonies] = useState([]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const handleCeremonie = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleFood = (event) => {
+    const {
+      target: { value },
+    } = event;
+
+    setFoodList(typeof value === "string" ? value.split(",") : value);
+  };
+
+  const handleDateChange = (ranges) => {
+    setDateRange([ranges.selection]);
+  };
+
+  const handleInputChange = (event, fieldName) => {
+    const { name, value } = event.target;
+
+    if (fieldName === "ceremonies") {
+      setFormData({
+        ...formData,
+        ceremonies: { id: 6, value },
+      });
+    } else if (fieldName === "drinks") {
+      setFormData({
+        ...formData,
+        drinks: { id: 10, value },
+      });
+    } else if (fieldName === "drinks2") {
+      setFormData({
+        ...formData,
+        drinks2: { id: 11, value },
+      });
+    } else if (fieldName === "dietaryRequirements") {
+      setFormData({
+        ...formData,
+        dietaryRequirements: { id: 7, value },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: { ...formData[name], value },
+      });
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const questionIdsWithValues = Object.keys(formData)
+      .filter(
+        (key) => formData[key].value !== "" && formData[key].value !== null
+      )
+      .map((key) => formData[key].id);
+    const response = Object.keys(formData)
+      .filter(
+        (key) => formData[key].value !== "" && formData[key].value !== null
+      )
+      .map((key) => formData[key].value);
+
+    // Add selectedCeremonies to the response
+    // const responseData = [...response, ...selectedCeremonies];
+
+    const data = {
+      user_id,
+      guest_id: id,
+      question_id: questionIdsWithValues,
+      response,
+    };
+
+    // dispatch(postUserRspvForm(data));
+    console.log(selectedCeremonies);
+    console.log("data", data, checkboxValues.hasAllergies);
+  };
+
+  // Use useEffect to update selectedCeremonies whenever personName changes
+  // useEffect(() => {
+  //   const selectedCeremoniess = ceremonyData
+  //     .filter((ceremony) => personName.includes(ceremony.ceremony_name))
+  //     .map((ceremony) => ceremony.id);
+  //   // Update the 'ceremonies' value in formData with the selectedCeremonies array
+  //   setSelectedCeremonies(selectedCeremoniess);
+  //   setFormData({
+  //     ...formData,
+  //     ceremonies: { id: 6, value: selectedCeremonies },
+  //   });
+  // }, [personName, ceremonyData, selectedCeremonies]);
+
+  // useEffect(() => {
+  //   const selectedFoods = foodsData
+  //     .filter((food) => foodList.includes(food.food_name))
+  //     .map((food) => food.id);
+  //   // Update the 'dietaryRequirements' value in formData with the selectedFoods array
+  //   setFormData({
+  //     ...formData,
+  //     dietaryRequirements: { id: 9, value: selectedFoods },
+  //   });
+  // }, [foodList, foodsData]);
+
+  useEffect(() => {
+    const handleData = async () => {
+      const res = await dispatch(getCeremoniesByEventId());
+      const drinks = await dispatch(getDrinks());
+      const foods = await dispatch(getFoods());
+      setCeremonyData(res?.payload?.map((item) => item));
+      setDrinksData(drinks?.payload?.map((item) => item));
+      setFoodsData(foods?.payload?.map((item) => item));
+    };
+    handleData();
+  }, [dispatch]);
+  // console.log("drinksData", drinksData);
+
+  // console.log("foodsData", foodsData);
+  return (
+    <div className="rsvp-pack">
+      <form className="row" onSubmit={handleSubmit}>
+        <div className="col-md-12 rsvp-title">
+          {" "}
+          <h2>Event Registration Form RSVP4</h2>{" "}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName.value}
+            onChange={handleInputChange}
+            pattern="[A-Za-z]+"
+            required
+            className="form-control"
+            placeholder="First name "
+            aria-label="First name"
+          />
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName.value}
+            onChange={(e) => handleInputChange(e)}
+            pattern="[A-Za-z]+"
+            required
+            className="form-control"
+            placeholder="Last name"
+            aria-label="Last name"
+          />
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <input
+            type="email"
+            name="email"
+            value={formData.email.value}
+            onChange={(e) => handleInputChange(e)}
+            required
+            className="form-control"
+            placeholder="Email"
+            aria-label="Email"
+          />
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <input
+            type="tel"
+            name="mobile"
+            value={formData.mobile.value}
+            onChange={(e) => handleInputChange(e)}
+            pattern="[0-9]{10}"
+            required
+            className="form-control"
+            placeholder="Mobile No."
+            aria-label="Mobile No."
+          />
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Guest Of:
+          </label>
+          <input
+            type="text"
+            name="guestOf"
+            value={formData.guestOf.value}
+            onChange={(e) => handleInputChange(e)}
+            required
+            className="form-control"
+            placeholder="Guest"
+            aria-label="Guest"
+          />
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="demo-multiple-checkbox-label">
+              What events will you be attending?
+            </InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={personName}
+              onChange={handleCeremonie}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={MenuProps}>
+              {ceremonyData?.map((item) => {
+                return (
+                  <MenuItem key={item.id} value={item?.ceremony_name}>
+                    <Checkbox
+                      checked={personName.indexOf(item?.ceremony_name) > -1}
+                    />
+                    <ListItemText primary={item?.ceremony_name} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
+
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <FormControl sx={{ m: 1, width: 300 }}>
+            <InputLabel id="demo-multiple-checkbox-label">
+              Dietary Requirements:
+            </InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={foodList}
+              onChange={handleFood} // Use the same handleChange function
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={MenuProps}>
+              {foodsData?.map((item) => {
+                return (
+                  <MenuItem key={item.id} value={item?.food_name}>
+                    <Checkbox
+                      checked={foodList.indexOf(item?.food_name) > -1}
+                    />
+                    <ListItemText primary={item?.food_name} />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Allergies:
+          </label>
+
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              checked={
+                checkboxValues.hasAllergies === "allergyTrue" ? true : false
+              }
+              className="m-2"
+              name="hasAllergies"
+              onChange={(e) =>
+                handleCheckboxChange(
+                  e.target.checked ? "allergyTrue" : "allergyFalse"
+                )
+              }
+            />
+            Yes
+          </label>
+
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={
+                checkboxValues.hasAllergies === "allergyFalse" ? true : false
+              }
+              name="hasAllergies"
+              onChange={(e) =>
+                handleCheckboxChange(
+                  e.target.checked ? "allergyFalse" : "allergyTrue"
+                )
+              }
+            />
+            No
+          </label>
+          <button onClick={() => console.log(checkboxValues.hasAllergies)}>
+            Check kr
+          </button>
+
+          {checkboxValues.hasAllergiesYes && (
+            <textarea
+              name="allergies"
+              value={formData.hasAllergies.value}
+              onChange={(e) => handleInputChange(e)}
+            />
+          )}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <div className="mb-2">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
+              Will you require any personal assistance (disability) :{" "}
+            </label>
+            <label className="ml-2">
+              <input
+                type="checkbox"
+                className="m-2"
+                name="personal Assistance"
+                // value={formData.personalAssistance.value}
+                checked={checkboxValues.personalAssistance}
+                onChange={handleCheckboxChange}
+              />
+              Yes
+            </label>
+
+            {/* {requiresAssistance && (
+              <textarea
+                name="assistanceDetails"
+                // value={formData.assistanceDetails.value}
+                onChange={(e) => handleInputChange(e)}
+                placeholder="personal assistance"
+              />
+            )} */}
+          </div>
+
+          {/* {songRequest && (
+            <input
+              type="text"
+              name="songRequestText"
+              value={formData.songRequestText.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+              className="form-control"
+              aria-label="Guest"
+            />
+          )} */}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Alcoholic Drinks First Preference:
+          </label>
+
+          <select
+            id="exampleFormControlInput1"
+            className="form-select"
+            value={formData.drinks.value}
+            onChange={(e) => handleInputChange(e, "drinks")}>
+            <option value="">Select First Preference</option>
+            {drinksData?.map((item) => (
+              <option value={item?.id} key={item.id}>
+                {item?.drink_name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Alcoholic Drinks Second Preference:
+          </label>
+          <select
+            id="exampleFormControlInput1"
+            className="form-select"
+            value={formData.drinks2.value}
+            onChange={(e) => handleInputChange(e, "drinks2")}>
+            <option value="">Select Second Preference</option>
+            {drinksData?.map((item) => (
+              <option value={item?.id} key={item.id}>
+                {item?.drink_name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Will you participate in mehndi application ?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              // value={formData.mehndiFunction.value}
+              checked={checkboxValues.mehndiFunction}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+
+          {/* <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={!Checked}
+              onChange={() => setChecked(!Checked)}
+            />
+            No
+          </label>
+          {requiresAssistance && (
+            <textarea
+              name="assistanceDetails"
+              value={formData.assistanceDetails.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+            />
+          )} */}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Will you require a MUA?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              // value={formData.MUA.value}
+              checked={checkboxValues.MUA}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            For What ceremony would you require a MUA?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.requireMUA}
+              onChange={handleCheckboxChange}
+            />
+          </label>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Will you require saree dressing assistance?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.sareeAssistance}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.sareeAssistance}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+          {requiresAssistance && (
+            <textarea
+              name="assistanceDetails"
+              // value={formData.assistanceDetails.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+            />
+          )}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Will you require turban dressing assistance?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.turbanAssistance}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.turbanAssistance}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+          {requiresAssistance && (
+            <textarea
+              name="assistanceDetails"
+              value={formData.assistanceDetails.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+            />
+          )}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Will you require dhoti dressing assistance?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.dhotiAssistance}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.dhotiAssistance}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+          {requiresAssistance && (
+            <textarea
+              name="assistanceDetails"
+              value={formData.assistanceDetails.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+            />
+          )}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <div className="mb-2">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
+              Request a song (Please state artist and song name) :{" "}
+            </label>
+            <label className="ml-2">
+              <input
+                type="checkbox"
+                className="m-2"
+                name="songRequest"
+                checked={checkboxValues.songRequest}
+                onChange={handleCheckboxChange}
+              />
+              Yes
+            </label>
+
+            <label className="ml-2">
+              <input
+                type="checkbox"
+                className="m-2"
+                checked={checkboxValues.songRequest}
+                onChange={handleCheckboxChange}
+              />
+              No
+            </label>
+            {requiresAssistance && (
+              <textarea
+                name="assistanceDetails"
+                value={assistanceDetails}
+                onChange={(e) => setAssistanceDetails(e.target.value)}
+                placeholder="Please state artist and song name"
+              />
+            )}
+          </div>
+
+          {songRequest && (
+            <input
+              type="text"
+              name="songRequestText"
+              value={formData.songRequestText.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+              className="form-control"
+              aria-label="Guest"
+            />
+          )}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label>Flight Arrival Date and Time Picker</label>
+          <DatePicker
+            selected={startDate}
+            className="form-control"
+            onChange={(date) => setStartDate(date)}
+          />
+        </div>
+        <div className="col-md-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Will you require transfers ?{" "}
+          </label>
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.transfer}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+
+          <label className="ml-2">
+            <input
+              type="checkbox"
+              className="m-2"
+              checked={checkboxValues.transfer}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+          {requiresAssistance && (
+            <textarea
+              name="assistanceDetails"
+              value={formData.assistanceDetails.value}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="personal assistance"
+            />
+          )}
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <p>Will you be staying at the couple's event venue/hotel?</p>
+          <label className="label-1">
+            <input
+              type="radio"
+              name="stayAtVenue"
+              checked={checkboxValues.coupleEventVenue}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+          <label className="label-2">
+            <input
+              type="radio"
+              name="stayAtVenue"
+              checked={checkboxValues.coupleEventVenue}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+        </div>
+
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <p>Will you required transfer ?</p>
+          <label className="label-1">
+            <input
+              type="radio"
+              name="stayAtVenue"
+              checked={checkboxValues.transfer}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+          <label className="label-2">
+            <input
+              type="radio"
+              name="stayAtVenue"
+              checked={checkboxValues.transfer}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label>
+            <label>How many rooms will you and your family require?</label>
+            <br />
+            <select
+              name="roomCount"
+              className="form-control mt-2 mb-3"
+              aria-label="Guest"
+              value={formData.roomCount.value}
+              onChange={(e) => handleInputChange(e)}>
+              <option value="0">Select</option>
+              <option value="1">1 Room</option>
+              <option value="2">2 Rooms</option>
+              <option value="3">3 Rooms</option>
+            </select>
+          </label>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+          <label>
+            <label>
+              How many extra beds will you require for any children staying with
+              you?
+            </label>
+            <br />
+            <select
+              name="extraBeds"
+              value={formData.extraBeds.value}
+              className="form-control mt-2 mb-3"
+              aria-label="Guest"
+              onChange={(e) => handleInputChange(e)}>
+              <option value="0">Select</option>
+              <option value="1">1 Bed</option>
+              <option value="2">2 Beds</option>
+              <option value="3">3 Beds</option>
+            </select>
+          </label>
+        </div>
+
+        <div className="col-sm-12 ">
+          <h2>Date Range Selector</h2>
+          <DateRangePicker ranges={dateRange} onChange={handleDateChange} />
+        </div>
+        <div className="col-md-12">
+          <p>
+            Would you like to take part in the couple's dance entertainment?
+          </p>
+          <label className="label-1">
+            <input
+              type="radio"
+              name="stayAtVenue"
+              checked={checkboxValues.coupleDance}
+              onChange={handleCheckboxChange}
+            />
+            Yes
+          </label>
+
+          <label className="label-2">
+            <input
+              type="radio"
+              name="stayAtVenue"
+              checked={checkboxValues.coupleDance}
+              onChange={handleCheckboxChange}
+            />
+            No
+          </label>
+        </div>
+        <div className="col-md-12 submit-btn-center">
+          {" "}
+          <button type="submit" className="btn rsvp-btn">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Rsvp4;

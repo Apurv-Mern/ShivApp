@@ -1,0 +1,67 @@
+.admin-box {
+    text-align: center;
+    border: 2px solid #5ce1e6;
+    padding: 30px 0px;
+    border-radius: 15px;
+    margin: 15px 0px;
+    border-bottom: 8px solid #5ce1e6;
+}
+
+.admin-box a {
+    color: #000;
+    text-decoration: none;
+}
+
+.admin-inner {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.admin-box-title {
+    font-weight: 700;
+}
+
+.admin-box-title a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.user-details,
+.package-details,
+.invoice-details,
+.questions-details,
+.report-details {
+    padding-top: 40px;
+}
+
+.invoice-details a {
+    color: #000;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    .admin-inner {
+        padding-top: 0px;
+    }
+    .admin-img-1 {
+        width: 45px;
+    }
+    .admin-box {
+        padding: 10px 0px;
+        border-radius: 15px;
+        margin: 15px 0px 0px;
+        border-bottom: 8px solid #5ce1e6;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+    }
+    .user-details,
+    .package-details,
+    .invoice-details,
+    .questions-details,
+    .report-details {
+        padding-top: 0px;
+    }
+}

@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.login-section {
+  font-family: "Lato", sans-serif;
+  background: #fff !important;
+}
+
+.login-section a {
+  color: #000 !important;
+}
+
+.login-section .page-footer a {
+  color: #898989 !important;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.login-section p {
+  color: #000;
+  font-size: 15px;
+}
+
+.forgot-btn {
+  background: inherit;
+}
+
+.shivLogo {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+.login-img {
+  height: calc(100vh - 48px);
+  min-height: 720px;
+}
+
+.login-img img {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 24px;
+}
+
+.login-box {
+  padding: 20px 50px 50px;
+}
+
+.login-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.login-box::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 12px;
+}
+
+.login-box h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.login-with-ss ul li {
+  list-style: none;
+}
+
+.facebook {
+  color: #1877f2 !important;
+}
+
+.gmail {
+  color: #ef0800 !important;
+}
+
+.twitter {
+  color: #1da1f2 !important;
+}
+
+.login-with-ss ul li a img {
+  width: 40px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.or {
+  position: relative;
+}
+
+.shivLogo img {
+  width: 230px;
+}
+
+.or:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #eee;
+  margin: auto;
+  display: block;
+  content: "";
+  right: 0;
+  z-index: -1;
+}
+
+.or p {
+  padding: 4px 8px;
+  display: inline-block;
+  margin: 0;
+  background: #ffff;
+}
+
+.main-form label {
+  display: block;
+  margin-bottom: 4px;
+  text-align: left;
+  font-weight: 500;
+  float: left;
+}
+
+.main-form input:hover,
+.main-form input:focus,
+.main-form input {
+  width: 100%;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+}
+
+.login-section button.btn:active,
+.login-section button.btn:focus,
+.login-section button.btn:hover,
+.login-section button.btn {
+  background: #000 !important;
+  width: 100%;
+  color: #fff !important;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.login-section button.btn-sec:active,
+.login-section button.btn-sec:focus,
+.login-section button.btn-sec:hover,
+.login-section button.btn-sec {
+  background: #ecf2f7 !important;
+  color: #000 !important;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.page-footer {
+  margin-top: 10%;
+  padding: 0 50px;
+}
+
+.login-section .facebook,
+.login-section .gmail {
+  color: #0080ff !important;
+  background: #5ce1e6;
+  padding: 5px;
+  border-radius: 7px;
+}
+.login-box .forgot-btn {
+  border: 0px;
+}
+
+.react-datepicker-wrapper {
+  width: 50%;
+  float: right;
+}
+
+.dateofbirth label {
+  line-height: 50px;
+}
+.permission-form {
+  padding: 15px 0px !important;
+}
+.login-with-ss {
+  width: 100%;
+  float: left;
+  padding-bottom: 0px;
+  padding-top: 10px;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .login-box {
+    max-height: inherit !important;
+  }
+  .login-box {
+    padding: 00px;
+  }
+  .shivLogo img {
+    width: 160px;
+    float: none;
+    margin: 0px 0px 15px;
+  }
+  .login-m-1 {
+    background: #5ce1e6;
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    margin: 0px auto;
+  }
+  .btn.btn-login-2 {
+    width: 90%;
+    margin-bottom: 50px !important;
+  }
+  .login-box .row {
+    margin: 0px;
+    padding: 0px;
+  }
+  .main-form input:hover,
+  .main-form input:focus,
+  .main-form input {
+    width: 100%;
+    background: #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+}
+
+.login-section input::-webkit-outer-spin-button,
+.login-section input::-webkit-inner-spin-button {
+  display: none;
+}

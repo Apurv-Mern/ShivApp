@@ -1,0 +1,31 @@
+.styled-textarea {
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-width: 300px;
+}
+
+.editable {
+  min-height: 100px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+  outline: none;
+}
+
+.controls {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-right: 5px;
+}
+
+button.active {
+  font-weight: bold;
+}
+
+label {
+  margin-left: 10px;
+}

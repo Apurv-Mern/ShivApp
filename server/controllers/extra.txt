@@ -1,0 +1,171 @@
+//ATBBzCDfcTECzJNB3QKDXEPQPav5EAE2209B;
+
+// router.post('/signup', async (req, res) => {
+//     const { name, password, email } = req.body
+
+//     if (!validator.isEmail(email)) {
+//         return res.status(400).json({ error: 'Invalid email format.' });
+//     }
+
+//     const valid_email = await pool.query('SELECT email,username FROM users WHERE email = $1', [email]);
+
+//     if (valid_email.rows[0]) {
+//         res.status(400).end('Email already exists.');
+//     }
+//     // if (valid_user.rows[0]) {
+//     //     res.status(400).end('User already exists.');
+//     // }
+//     else {
+//         try {
+
+//             const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 60 });
+//             const refreshToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 60 * 60 });
+//             const hashedPassword = await bcrypt.hash(password, 10);
+
+//             pool.query('INSERT INTO users (username,password, email) VALUES ($1, $2,$3) RETURNING *', [name, hashedPassword, email], (error, results) => {
+//                 if (error) {
+//                     throw error
+//                 }
+
+//                 res.status(201).json({ 'User added with ID': `${results.rows[0].id}`, "accessToken:": accessToken, "refreshToken": refreshToken });
+//             })
+
+//         } catch (error) {
+//             res.status(401).json({ error: error.message });
+//         }
+//     }
+// })
+
+// router.post('/signup', async (req, res) => {
+//     const { name, password, email } = req.body
+//     //console.log("n",name,"p",password,"e",email);
+
+//     const valid_email = await pool.query('SELECT email FROM users WHERE email = $1', [email],);
+//     //console.log(valid_email.rows[0]);
+//     if (valid_email.rows[0]) {
+//         res.status(400).end('email already exists.');
+//     }
+//     else {
+//         try {
+
+//             const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 60 });
+//             const refreshToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 60 * 60 });
+//             const hashedPassword = await bcrypt.hash(password, 10);
+
+//             pool.query('INSERT INTO users (username,password, email) VALUES ($1, $2,$3) RETURNING *', [name, hashedPassword, email], (error, results) => {
+//                 if (error) {
+//                     throw error
+//                 }
+
+//                 res.status(201).json({ 'User added with ID': `${results.rows[0].id}`, "accessToken:": accessToken, "refreshToken": refreshToken });
+//             })
+
+//         } catch (error) {
+//             res.status(401).json({ error: error.message });
+//         }
+//     }
+
+// })
+
+
+
+
+pdf controller 
+
+
+  //   console.log("data", req.body.images);
+  //   console.log("data2", req.body.images[1127115]);
+
+  // const words1 = str.split(',');
+  // console.log( "word1",words1[0] +","+ words1[1]);
+
+  // const words2 = str.split(',');
+  // console.log("word2",words2[2] +","+ words2[3]);
+
+  // const words3 = str.split(',');
+  // console.log("word3",words3[4] +","+ words3[5]);
+
+  // fs.appendFile("imagedataa1.txt", template1, (err) => {
+  //   if (err) {
+  //     throw err;
+  //   }
+  //   console.log("saved");
+  // });
+  // fs.appendFile("imagedataa2.txt", template2, (err) => {
+  //   if (err) {
+  //     throw err;
+  //   }
+  //   console.log("saved");
+  // });
+  // fs.appendFile("imagedataa3.txt", template3, (err) => {
+  //   if (err) {
+  //     throw err;
+  //   }
+  //   console.log("saved");
+  // });
+
+
+
+
+
+  
+
+/////////********************       final                 /
+
+// const {jsPDF} = require('jspdf');
+// const fs = require('fs');
+// const doc = new jsPDF();
+// const url = 'https://example.com';
+// const imgPaths = ['./lib/unnamed.png','./lib/s1.png','./lib/s2.png','./lib/s3.png'];
+
+//  const imgData = fs.readFileSync(imgPaths[1]);
+//  const imgData1 = fs.readFileSync(imgPaths[2]);
+//  const imgData2 = fs.readFileSync(imgPaths[3]);
+//  console.log(imgData);
+
+//  doc.addImage( imgData, 'PNG', 0, 0, 600,401, );
+//  doc.addPage();
+//  doc.addImage( imgData1, 'PNG', 0, 0, 600,401, );
+//  doc.addPage();
+//  doc.addImage( imgData2, 'PNG', 0, 0, 600,401, );
+
+//   //     // Add newpage
+
+// const pageSize = doc.internal.pageSize;
+//  console.log("width", pageSize.width);
+//  console.log("height",pageSize.height);
+
+// // Crop the page
+
+
+
+
+
+('First name – Text box – alpha only'),
+('Last name – Text box – alpha only'),
+('Email - text box with format validation'),
+('Mobile number - text box with format validation also country code'),
+('Guest of - Text box'),
+('What events will you be attending? – multiple selection based on events available to them'),
+('Dietary requirements – All offered options'),
+('Allergies – Yes/No with text area if yes'),
+('Will you require any personal assistance (disability) – Yes/No with text area if yes'),
+('1st alcoholic drinks preference - All offered options'),
+('2nd alcoholic drinks preference - All offered options'),
+('Will you participate in mehndi application'),
+('Will you require a MUA? – Yes/No'),
+('For what ceremony would you require a MUA? – Text box'),
+('Will you require saree dressing assistance? – Yes/No'),
+('Will you require turban dressing assistance? – Yes/No'),
+('Will you require dhoti dressing assistance? – Yes/No'),
+('Request a song (Please state artist and song name) – Yes/No with text box'),
+('Flight arrival – date and time picket with text box'),
+('Flight departure - date and time picket with text box '),
+('Will you require transfers? – Yes/No'),
+('Will you be staying at the couple's event venue/ hotel? – Yes/No'),
+('If yes, how many rooms will you and your family require? – No. picker'),
+('How many extra beds will you require for any children staying -  No. pickerwith you?'),
+('If no, what hotel will you be staying at? – text area'),
+('Would you like to extend your stay at the couple's eventvenue / hotel? – Yes/ No'),
+('If yes, please enter dates of full stay here – date range selector'),
+('Would you like to take part in the couple's danceentertainment? – Yes/ no'),

@@ -1,0 +1,59 @@
+{
+  "name": "shivappbe",
+  "version": "1.0.0",
+  "description": "shiv app backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "mocha user.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiv108dev/shivappdevBE.git"
+  },
+  "keywords": [
+    "shiv"
+  ],
+  "author": "dotsquare",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiv108dev/shivappdevBE/issues"
+  },
+  "homepage": "https://github.com/shiv108dev/shivappdevBE#readme",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.425.0",
+    "@pm2/io": "^5.0.0",
+    "aws-sdk": "^2.1459.0",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "jspdf": "^2.5.1",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.3",
+    "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.13.0",
+    "pg": "^8.11.1",
+    "prisma": "^5.1.1",
+    "request": "^2.88.2",
+    "sharp": "^0.32.5",
+    "stripe": "^12.17.0",
+    "twilio": "^4.16.0",
+    "validator": "^13.9.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3"
+  }
+}
