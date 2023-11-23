@@ -79,37 +79,35 @@ const InvitationType = () => {
     <div>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Invitation </h4>
             Here you can select what type of invite your groups are sent. If you
             are only inviting a guest and their partner, select You and Your
             partner. We will then generate an invite specifically inviting your
             guest and their partner only.
-          </h6>
-          <h6 className="mb-3">
+            <br></br> <br></br>
             The same will apply if you select you. Only the individual guest
             will be invited to your event. You and your family, will allow you
             to invite an entire family to your events.
-          </h6>
-          <h6 className="mb-3">
+            <br></br> <br></br>
             Please ensure you group your contacts accordingly for your
             invitations, review our tips in contacts for help with this or
-            WhatsApp us.{" "}
-          </h6>
-          <h6 className="mb-3">
+            WhatsApp us. <br></br> <br></br>
             Now that you have selected your invitation types you may review the
             invite before sending out to your guests ensuring you are happy with
             it. Please ensure you check all details.
+            <br></br> <br></br>
           </h6>
         </div>
-        <div className="mid-title-left">Invitation </div>
+
         <div className="crl"></div>
       </div>
       <div className="crl"></div>
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn" to={"/shiv_app/add/group/ceremonies"}>
+          <Link className="flot-left-btn" to={"/shiv_app/guest/questions"}>
             <svg
               width={20}
               xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +126,7 @@ const InvitationType = () => {
             Back
           </Link>
 
-          <Link className="flot-tight-btn" to={"/shiv_app/guest/questions"}>
+          <Link className="flot-tight-btn" to={"/shiv_app/guests/template"}>
             Next{" "}
             <svg
               width={20}

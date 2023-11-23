@@ -1,0 +1,11 @@
+# Use the official PostgreSQL base image
+FROM postgres:latest
+
+# Set environment variables
+ENV POSTGRES_USER shiv
+ENV POSTGRES_PASSWORD shiv
+ENV POSTGRES_DB shiv
+
+
+# Expose the default PostgreSQL port
+EXPOSE 5432

@@ -97,19 +97,23 @@ const FoodAndDrinkList = () => {
     <div>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
-            Tick all the options you want your guests to select from. If your
-            events require no food options simply select Not Applicable.
-          </h6>
-          <h6 className="mb-3">
-            Once selected your guests will view only the options, you have
-            selected for them to RSVP on helping you to budget and plan all your
-            events.{" "}
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Food and Drinks </h4>
+            Select the food and drink options you wish to share with your guests
+            in your RSVP to help you plan and budget for all your events. Please
+            note only the options selected will be available to view in your
+            RSVP page.
+            <br></br> <br></br>
+            <div className="refer">
+              {" "}
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard for more assistance.
+            </div>
+            <br></br>
           </h6>
         </div>
-        <div className="mid-title-left">Food and Drinks </div>
         <div className="crl"></div>
       </div>
       <div className="crl"></div>

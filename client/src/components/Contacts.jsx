@@ -293,23 +293,24 @@ const Contacts = () => {
     <div>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
-            {" "}
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Contacts</h4>
             All your guests and their contact details will appear here.
-          </h6>
-          <h6 className="mb-3">
+            <br></br> <br></br>
             Guests should be placed into groups to determine what invitation
-            they should receive. Click on our tips guide to help you with this.
-          </h6>
-          <h6 className="mb-3">
+            they should receive.
+            <br></br> <br></br>
             Download our excel file and fill in your guest’s name, email, phone
             number and group you wish to set them in or simply add them straight
             into your contacts from the Add Guest button.
+            <br></br> <br></br>
+            Ensure you set up your groups first to make it easier when adding
+            your contacts.
+            <br></br> <br></br>
           </h6>
         </div>
-        <div className="mid-title-left">Contacts</div>
 
         <div className="add-eventapp-btn ">
           <ExportToExcelForTemplate fileName={fileName} apiData={apiData} />
@@ -400,17 +401,19 @@ const Contacts = () => {
                 Back
               </Link>
             </div>
-            <div className="totle-guest">
+            <div className="totle-guest  col-md-12">
               Total guest : {rows.length}/
               {additionalGuest?.data?.additional_guests
                 ? additionalGuest?.data?.additional_guests
                 : 0}
             </div>
-            <div>
-              <button className="btn" onClick={handleAllGuestData}>
+
+            <div className="col-md-1">
+              <button className="btn all-btn" onClick={handleAllGuestData}>
                 All
               </button>
             </div>
+
             {groups &&
               groups?.map((item) => (
                 <div className="col-md-3" style={{ cursor: "pointer" }}>

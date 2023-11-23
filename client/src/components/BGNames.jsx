@@ -72,89 +72,95 @@ const BGNames = () => {
   return (
     <>
       <Navbar />
- <div className="container card-b-1">
-      <div className="groom-block card-home">
-        <div className="row groom-rsvp">
-          <div className="col-md-12">
-            <Link
-              className="flot-left-btn"
-              to={
-                eventName === "Wedding"
-                  ? "/shiv_app/sendInvitation"
-                  : "/shiv_app/contacts"
-              }
-            >
-              <svg
-                width={20}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-                />
-              </svg>{" "}
-              Back
-            </Link>
-
-            <button className="flot-tight-btn" onClick={handleNext}>
-              Next{" "}
-              <svg
-                width={20}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-            </button>
-          </div>
+      <div className="container card-b-1">
+        <div className="gap-4">
+          <h6 className="mb-3">
+            Please enter your name and your partner’s name to ensure your guests
+            can view these details in the email e-invitation they receive.
+          </h6>
         </div>
-        <div className="row groom-rsvp">
-          <div className="col-md-6">
-            <label htmlFor={`Groom`}>Your Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="Groom Name"
-              name={"Groom_Name"}
-              onChange={handleInputChange}
-              value={marriage.Groom_Name}
-              required
-            />
+        <div className="groom-block card-home">
+          <div className="row groom-rsvp">
+            <div className="col-md-12">
+              <Link
+                className="flot-left-btn"
+                to={
+                  eventName === "Wedding"
+                    ? "/shiv_app/sendInvitation"
+                    : "/shiv_app/contacts"
+                }
+              >
+                <svg
+                  width={20}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+                  />
+                </svg>{" "}
+                Back
+              </Link>
+
+              <button className="flot-tight-btn" onClick={handleNext}>
+                Next{" "}
+                <svg
+                  width={20}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div className="col-md-6">
-            <label htmlFor={`Bride`}>Your Partner's Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="Bride Name"
-              name={"Bride_Name"}
-              onChange={handleInputChange}
-              value={marriage.Bride_Name}
-              required
-            />
-          </div>
-          {/* <div className="col-md-12 s ave-btn-2">
+          <div className="row groom-rsvp">
+            <div className="col-md-6">
+              <label htmlFor={`Groom`}>Your Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="Groom Name"
+                name={"Groom_Name"}
+                onChange={handleInputChange}
+                value={marriage.Groom_Name}
+                required
+              />
+            </div>
+            <div className="col-md-6">
+              <label htmlFor={`Bride`}>Your Partner's Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="Bride Name"
+                name={"Bride_Name"}
+                onChange={handleInputChange}
+                value={marriage.Bride_Name}
+                required
+              />
+            </div>
+            {/* <div className="col-md-12 s ave-btn-2">
             <button className="view-r-btn" onClick={handleMarriageSubmit}>
               Save
             </button>
           </div> */}
+          </div>
         </div>
       </div>
-        </div>
     </>
   );
 };

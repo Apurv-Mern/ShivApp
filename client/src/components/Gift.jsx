@@ -165,11 +165,30 @@ const Gift = () => {
     <div>
       <Navbar />
 
-      <div className="container gift-received">
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Gift Received</h4>
+            Log all the gifts received from your family and friends in this
+            section
+            <br></br> <br></br>
+            Click on the Ceremony you would like to view the guest attendance
+            for and add in the gifts received from your guests.
+            <br></br> <br></br>
+            Please note that you can add details in the following columns: Gift
+            received, Gift type, Gift Value and Notes. Once you have made your
+            entries you may export the details for your personal use.
+            <br></br> <br></br>
+            <div class="refer">
+              {" "}
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard for further details.{" "}
+            </div>
+            <br></br>
+          </h6>
+        </div>
+
         <div className="row ">
-          <div className="col-md-12 ">
-            <h4>Event</h4>
-          </div>
           <div className="col-md-12">
             <div className=" gift-block gift-category">
               <Tabs>

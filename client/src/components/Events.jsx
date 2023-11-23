@@ -91,28 +91,33 @@ const Events = () => {
       <div>
         <Navbar />
         <div className="crl"></div>
-        <div className="container mid-title">
-          <div className="gap-4">
-            <h6 className="mb-3">
+        <div className="container card-b-1">
+          <div className="row">
+            <h6 className="col-md-12 welcome-text">
+              <h4 className="mid-title-left">Event </h4>
               Your wedding events are broken down into Events and Ceremonies.
+              <br></br> <br></br>
+              We have broken down each element of your wedding invitations and
+              cards into Events. Each event will allow you to send out e-cards
+              to your guests. Once you click on manage for We’re Engaged, Save
+              The Date and Thank You, you will be able to send out E-cards to
+              all your guests.
+              <br></br> <br></br>
+              When you click on manage for Wedding, you will see the Ceremonies
+              associated with your wedding events. In this section you will be
+              able to set up your own Ceremonies such as Mehndi nights, Haldi
+              Ceremonies, Civil Ceremony, Wedding Ceremony, and your Reception.
+              Once you select Wedding you will be able to see all your
+              ceremonies.
             </h6>
-            <h6 className="mb-3">
-              Events are those occasions that you may send out an e-card for,
-              the exception to this is your engagement. You may send out an
-              invitation for an engagement party should you choose to have one.
-            </h6>
-            <h6 className="mb-3">
-              Ceremonies are associated with all your wedding events. This
-              includes, Mehndi nights, Haldi ceremonies, Civil Ceremony, Wedding
-              Ceremony, and your Reception. Once you select Wedding you will be
-              able to see all your ceremonies.
-            </h6>
-            <h6 className="mb-3">
-              Click manage to be taken through to the packages to purchase now
-              or later
-            </h6>
+            <br></br> <br></br>
+            <div className="refer">
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
+            <br></br> <br></br>
           </div>
-          <div className="mid-title-left">My Event </div>
 
           <div className="crl"></div>
         </div>

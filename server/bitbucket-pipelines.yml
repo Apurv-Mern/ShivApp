@@ -1,0 +1,19 @@
+image: node:14
+
+pipelines:
+  default:
+    - step:
+        name: Build and Test
+        script:
+          - npm install
+          - npm run start
+    - step:
+        name: Deploy
+        script:
+          - pipe: atlassian/ssh-run:0.2.9
+            variables:
+              SSH_USER: 'shivappdev'
+              SERVER: '192.168.0.69'
+              COMMAND: 'cd /home/shivappdev/public_html/ShivappBE && git pull'
+              MODE: 'script'
+              PASSWORD: skwNjXLo9NxbqX

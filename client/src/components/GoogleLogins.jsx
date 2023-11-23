@@ -39,8 +39,7 @@ const GoogleLogins = () => {
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
-      client_id:
-        "160836342396-61uc0da4nl61epv9n4gfp34r2d8f3cmt.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleResponse,
     });
 

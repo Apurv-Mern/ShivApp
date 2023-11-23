@@ -2,7 +2,7 @@
 
 const aws = require('aws-sdk');
 const pool = require("../database/connection").pool;
-
+require("dotenv").config();
 
 // Initialize AWS S3 SDK with your credentials
 // aws.config.update({
@@ -11,20 +11,13 @@ const pool = require("../database/connection").pool;
 //   region: process.env.AWS_S3_REGION,
 // });
 aws.config.update({
-    accessKeyId: 'AKIAV6RD45SCZLBFFXKV',
-    secretAccessKey: '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',
-    region: 'ap-south-1',
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+    region: process.env.AWS_S3_REGION,
   });
 
   //import { S3Client } from '@aws-sdk/client-s3';
 
-// const s3 = new S3Client({
-//   credentials: {
-//     accessKeyId: AKIAV6RD45SCZLBFFXKV,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//   },
-//   region: process.env.AWS_REGION,
-// });
 
 // // Define a route to upload an image to S3 and store its URL in the database
 // const uploadMedia = async (req, res) => {
@@ -33,7 +26,7 @@ aws.config.update({
 
 //   // Upload the image to S3
 //   const params = {
-//     Bucket: 'shivapp',
+//     Bucket: 'shivappww',
 //     Key: `user_${user_id}/event_${event_id}/${file.originalname}`,
 //     Body: file.buffer,
 //   };
@@ -71,7 +64,7 @@ const uploadMedia= async (req, res) => {
 
   // Upload the image to S3
   const params = {
-    Bucket: 'shivapp',
+    Bucket: 'shivappww',
     Key: `user_${user_id}/event_${event_id}/${file.originalname}`,
     Body: file.buffer,
   };
@@ -80,7 +73,7 @@ const uploadMedia= async (req, res) => {
     await s3.upload(params).promise();
 
     // Store the image URL in the database
-    const imageUrl = `https://shivapp.s3.ap-south-1.amazonaws.com/${params.Key}`;
+    const imageUrl = `https://shivappww.s3.eu-west-2.amazonaws.com/${params.Key}`;
     console.log(imageUrl);
     // Save imageUrl to your event_images table
     const imageExists=await  pool.query('SELECT image_url FROM event_images WHERE user_id=$1 AND event_id=$2;',[user_id,event_id]);
@@ -125,7 +118,7 @@ const uploadMutipleTemplates= async (req, res) => {
     
       console.log(req.files);
 
-      const bucketName = 'shivapp';
+      const bucketName = 'shivappww';
   
       const uploadedImageUrls = [];
   
@@ -158,6 +151,21 @@ const uploadMutipleTemplates= async (req, res) => {
     }
   };
 
+
+const getCeremonyIcons = async (req, res) => {
+
+  //get all icons stored in s3 in ceremony_icons folder
+  
+  const bucketName = 'shivappww';
+
+  const params = {  
+    Bucket: bucketName,
+    Prefix: 'images/CeremonyIcons/',
+    Delimiter: '/'
+    
+  };
+
+}
 
 
 module.exports = {uploadMedia,retriveMedia,uploadMutipleTemplates};

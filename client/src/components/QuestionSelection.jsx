@@ -146,7 +146,7 @@ const QuestionSelection = () => {
       dispatch(putMarriageDetailss(data))
         .then(() => toast.success("Data Saved Successfully"))
         .catch(() => toast.error("Failed to save data"));
-      navigate("/shiv_app/guests/template");
+      navigate("/shiv_app/sendInvitation");
     }
   };
 
@@ -155,12 +155,36 @@ const QuestionSelection = () => {
       <Navbar />
 
       <div className="container card-b-1">
-        <h4>Choose the questions for RSVP</h4>
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Choose the questions for RSVP</h4>
+            Please enter your name and your partner’s name to ensure your guests
+            can view these details in the email e-invitation and RSVP submission
+            page they receive.
+            <br></br> <br></br>
+            As a part of your package, you have access to all the questions
+            below. If you wish to remove a question, simply press the X button
+            next to the question.
+            <br></br> <br></br>
+            You do have the option to undo, however, please note once you save
+            the RSVP questions you will be unable to edit them again.
+            <br></br> <br></br>
+            <div className="refer">
+              {" "}
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard for further details.{" "}
+            </div>
+            <br></br>
+          </h6>
+        </div>
 
         <div className="groom-block card-home">
           <div className="row groom-rsvp">
             <div className="col-md-12">
-              <Link className="flot-left-btn" to={"/shiv_app/sendInvitation"}>
+              <Link
+                className="flot-left-btn"
+                to={"/shiv_app/add/group/ceremonies"}
+              >
                 <svg
                   width={20}
                   xmlns="http://www.w3.org/2000/svg"

@@ -1,9 +1,12 @@
 import React from "react";
 
 import img1 from "../../assets/images/shiv-logo-footer.png";
-import img2 from "../../assets/images/facebook.png";
-import img3 from "../../assets/images/insta.png";
-import img4 from "../../assets/images/pint.png";
+
+import img2 from "../../assets/facebook_1.png";
+import img3 from "../../assets/insta_1.png";
+import img4 from "../../assets/printest_1.png";
+import tiktok from "../../assets/tiktok_1.png";
+
 import img5 from "../../assets/images/shiv-logo-footer.png";
 import { Link } from "react-router-dom";
 
@@ -48,7 +51,6 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link to={"/shiv_app/privacy policy"}>
-                        {" "}
                         PRIVACY POLICY
                       </Link>
                     </li>
@@ -95,11 +97,22 @@ const Footer = () => {
                         />
                       </Link>
                     </li>
+                    <li>
+                      <Link target="_blank" to="https://tiktok.com/@shiv.ww">
+                        <img
+                          src={tiktok}
+                          className="footer-follow"
+                          alt="footer-logo"
+                        />
+                      </Link>
+                    </li>
                   </ul>
                 </div>
                 <div className="add-new1">
-                  <span> SHIV WORLDWIDE LIMITED</span> <br /> 3rd Floor, 46
-                  Albemarle Street, Mayfair, W1S 4JL
+                  <span> SHIV WORLDWIDE LIMITED</span> <br /> 3rd Floor,
+                  <br /> 46 Albemarle Street, <br />
+                  Mayfair,
+                  <br /> W1S 4JL
                 </div>
               </div>
               <div className="col-md-3 footer-logo-block">

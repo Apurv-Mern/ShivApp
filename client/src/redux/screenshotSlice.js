@@ -3,10 +3,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
+  ThankYou,
   saveTheDateTestMail,
   sendSaveTheDate,
-  sendScreenShots,
+  sendScreenShotsWedding,
   singleTemplate,
+  thankYouTestMail,
+  weAreEngaged,
   weEngagedTestMail,
   weddingTestMail,
 } from "./Api";
@@ -17,8 +20,8 @@ const initialState = {
   error: null,
 };
 
-export const sendScreenshotsToApi = createAsyncThunk(
-  "screenshot/sendToApi",
+export const weddingScreenshotsToApi = createAsyncThunk(
+  "screenshot/weddingScreenshotsToApi",
   async ({
     screenshotsArray,
     newSelectedGroupNames,
@@ -39,7 +42,7 @@ export const sendScreenshotsToApi = createAsyncThunk(
 
       // console.log("screen shot slice", screenshotsArray[0].length);
 
-      const response = await sendScreenShots(formData);
+      const response = await sendScreenShotsWedding(formData);
       // console.log(response);
       return response.data;
     } catch (error) {
@@ -48,8 +51,8 @@ export const sendScreenshotsToApi = createAsyncThunk(
     }
   }
 );
-export const sendSingleScreenshotsToApi = createAsyncThunk(
-  "singleScreenshot/sendToApi",
+export const weAreEngagedScreenshotsToApi = createAsyncThunk(
+  "singleScreenshot/weAreEngagedScreenshotsToApi",
   async ({ singleScreenshotsArray, filteredGroupNames }) => {
     try {
       const formData = new FormData();
@@ -59,7 +62,7 @@ export const sendSingleScreenshotsToApi = createAsyncThunk(
         formData.append("groupname[]", groupName);
       });
 
-      const response = await singleTemplate(formData);
+      const response = await weAreEngaged(formData);
       // console.log(response);
       return response.data;
     } catch (error) {
@@ -68,8 +71,8 @@ export const sendSingleScreenshotsToApi = createAsyncThunk(
     }
   }
 );
-export const sendSaveTheDateScreenshot = createAsyncThunk(
-  "singleScreenshot/sendToApi",
+export const saveTheDateScreenshotsToApi = createAsyncThunk(
+  "singleScreenshot/saveTheDateScreenshotsToApi",
   async ({ singleScreenshotsArray, filteredGroupNames }) => {
     try {
       const formData = new FormData();
@@ -87,13 +90,35 @@ export const sendSaveTheDateScreenshot = createAsyncThunk(
     }
   }
 );
+
+export const thankYouScreenshotsToApi = createAsyncThunk(
+  "singleScreenshot/saveTheDateScreenshotsToApi",
+  async ({ singleScreenshotsArray, filteredGroupNames }) => {
+    try {
+      const formData = new FormData();
+      formData.append(`images`, singleScreenshotsArray);
+      filteredGroupNames.forEach((groupName) => {
+        formData.append("groupname[]", groupName);
+      });
+
+      const response = await ThankYou(formData);
+      // console.log(response);
+      return response.data;
+    } catch (error) {
+      // console.log({ error });
+      return error.message;
+    }
+  }
+);
 export const testMailForSaveTheDate = createAsyncThunk(
   "singleScreenshot/testMailForSaveTheDate",
-  async ({ singleScreenshotsArray, email }) => {
+  async ({ singleScreenshotsArray, email, bride_name, groom_name }) => {
     try {
       const formData = new FormData();
       formData.append(`images`, singleScreenshotsArray);
       formData.append("email", email);
+      formData.append("bride_name", bride_name);
+      formData.append("groom_name", groom_name);
 
       const response = await saveTheDateTestMail(formData);
       // console.log(response);
@@ -106,13 +131,35 @@ export const testMailForSaveTheDate = createAsyncThunk(
 );
 export const testMailForWeEngaged = createAsyncThunk(
   "singleScreenshot/testMailForWeEngaged",
-  async ({ singleScreenshotsArray, email }) => {
+  async ({ singleScreenshotsArray, email, bride_name, groom_name }) => {
     try {
       const formData = new FormData();
       formData.append(`images`, singleScreenshotsArray);
       formData.append("email", email);
+      formData.append("bride_name", bride_name);
+      formData.append("groom_name", groom_name);
 
       const response = await weEngagedTestMail(formData);
+      // console.log(response);
+      return response.data;
+    } catch (error) {
+      // console.log({ error });
+      return error.message;
+    }
+  }
+);
+
+export const testMailForThankYou = createAsyncThunk(
+  "singleScreenshot/testMailForThankYou",
+  async ({ singleScreenshotsArray, email, bride_name, groom_name }) => {
+    try {
+      const formData = new FormData();
+      formData.append(`images`, singleScreenshotsArray);
+      formData.append("email", email);
+      formData.append("bride_name", bride_name);
+      formData.append("groom_name", groom_name);
+
+      const response = await thankYouTestMail(formData);
       // console.log(response);
       return response.data;
     } catch (error) {
@@ -130,6 +177,8 @@ export const testMailForWedding = createAsyncThunk(
     newGroupName,
     event_id,
     guest_id,
+    bride_name,
+    groom_name,
   }) => {
     try {
       const formData = new FormData();
@@ -139,6 +188,8 @@ export const testMailForWedding = createAsyncThunk(
       formData.append("newGroupName", newGroupName);
       formData.append("event_id", event_id);
       formData.append("guest_id", guest_id);
+      formData.append("bride_name", bride_name);
+      formData.append("groom_name", groom_name);
 
       const response = await weddingTestMail(formData);
       // console.log(response);
@@ -154,21 +205,7 @@ const screenshotSlice = createSlice({
   name: "screenshot",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(sendScreenshotsToApi.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(sendScreenshotsToApi.fulfilled, (state) => {
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(sendScreenshotsToApi.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
-  },
+  extraReducers: (builder) => {},
 });
 
 export default screenshotSlice.reducer;

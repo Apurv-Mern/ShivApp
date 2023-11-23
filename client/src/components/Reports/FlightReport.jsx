@@ -46,7 +46,7 @@ const FlightReport = () => {
         <div class="container bg-w">
           <div class="row">
             <div class="col-sm-12 r-text">
-              Welcome to your flight reporting page. Here you will find a
+              Welcome to your travel reporting page. Here you will find a
               selection of reports that you can view and download into excel to
               help you work with your suppliers as well as plan and budget for
               every one of your events.

@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const pool = require('../database/connection.js').pool;
+require("dotenv").config();
 
 const User = require('../controllers/user.js');
 
@@ -21,16 +21,16 @@ module.exports.forgotPassword = async (req, res) => {
             await User.updateResetPasswordToken(email, hash, formattedDate);
 
             // Create a transporter object with Outlook SMTP settings
-            const transporter = nodemailer.createTransport({
-              host: "us2.24livehost.com",
-              port: 587,
+            let transporter = nodemailer.createTransport({
+              host: process.env.SERVER_EMAIL_HOST,
+              port:process.env.SERVER_PORT,
               secure: false,
               auth: {
-                // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-                user: "ds20@24livehost.com",
-                pass: "Dsmtp@909#",
+                user: process.env.SERVER_EMAIL,
+                pass: process.env.SERVER_EMAIL_PASS,
               },
             });
+            
 
             const mailOptions = {
                 from: process.env.EMAIL,

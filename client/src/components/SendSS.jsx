@@ -1,7 +1,4 @@
 import React, { useEffect, useRef, useState, img } from "react";
-import Sidebar from "./Header";
-import temp1 from "../assets/template1.png";
-import temp2 from "../assets/template2.png";
 import tool from "../assets/tool.png";
 
 import Button from "@mui/material/Button";
@@ -10,36 +7,26 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
-import jsPDF from "jspdf";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectImage,
-  setinvitationType,
-  temp3Ceremony,
-  thankYouText,
-  updateTempText1WithInvitationType,
-} from "../redux/templateSlice";
+import { setinvitationType, temp3Ceremony } from "../redux/templateSlice";
 import "../scss/Dashboard.css";
 import Navbar from "./Navbar";
-import user from "../assets/user.jpg";
-import ImageTextEditor from "./Editor";
-import Editor from "./Editor";
 import Draggable from "react-draggable";
 import Editor1 from "./Editor1";
 import Editor2 from "./Editor2";
 import Editor3 from "./Editor3";
 import FooterEditor from "./FooterEditor";
-import { PDFDocument, rgb } from "pdf-lib";
 import html2canvas from "html2canvas";
 import {
-  sendSaveTheDateScreenshot,
-  sendScreenshotsToApi,
-  sendSingleScreenshotsToApi,
+  saveTheDateScreenshotsToApi,
   testMailForSaveTheDate,
+  testMailForThankYou,
   testMailForWeEngaged,
   testMailForWedding,
+  thankYouScreenshotsToApi,
+  weAreEngagedScreenshotsToApi,
+  weddingScreenshotsToApi,
 } from "../redux/screenshotSlice";
 import { getAllCeremoniesByEventId } from "../redux/ceremony";
 import { getPaymentStatus } from "../redux/paymentSlice";
@@ -48,10 +35,11 @@ import Editor4 from "./Editor4";
 import { TextField } from "@mui/material";
 import ThankuEditor from "./ThankuEditor";
 import SaveTheDateEditor from "./SaveTheDateEditor";
-import PopupContent from "./PopupContent";
 import { toast } from "react-toastify";
-import PackagesPopup from "./PackagesPopup";
 import PackagesPopupTemplate from "./PackagePopupTemplate";
+import { getUserGroupsByUserId } from "../redux/templateCreationSlice";
+import { getGroupsByUserId } from "../redux/GroupSlice";
+import { getMarriageDetailss } from "../redux/marriageSlice";
 
 const SendSS = () => {
   const navigate = useNavigate();
@@ -62,7 +50,9 @@ const SendSS = () => {
   const [hide3, setHide3] = useState(false);
   const [toggle1, setToggle1] = useState(false);
   const [toggle2, setToggle2] = useState(false);
-
+  const marriageDetails = useSelector(
+    (state) => state.marriage.marriageDetails
+  );
   const [text1Coordinates, setText1Coordinates] = useState({ x: 0, y: 0 });
   const allGroupNames = useSelector((state) => state.groups.groups);
   const eventName = JSON.parse(localStorage.getItem("eventName"));
@@ -249,11 +239,19 @@ const SendSS = () => {
     handleCeremonies();
   }, []);
 
+  useEffect(() => {
+    dispatch(getUserGroupsByUserId());
+    dispatch(getMarriageDetailss());
+  }, [dispatch]);
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value); // Update email state when the input value changes
   };
+
   const newGroupName = "demo";
   const guest_id = "000";
+  const bride_name = marriageDetails[0]?.bride_name;
+  const groom_name = marriageDetails[0]?.groom_name;
 
   const takeScreenshotAndSend = () => {
     const template1 = document.querySelector(".temp1");
@@ -275,7 +273,6 @@ const SendSS = () => {
           const data = canvas.toDataURL("image/png");
           screenshotsArray.push(data);
         });
-
         testMail
           ? dispatch(
               testMailForWedding({
@@ -285,6 +282,8 @@ const SendSS = () => {
                 newGroupName,
                 event_id,
                 guest_id,
+                bride_name,
+                groom_name,
               })
             )
               .then(() => {
@@ -295,7 +294,7 @@ const SendSS = () => {
                 // console.log(error.message);
               })
           : dispatch(
-              sendScreenshotsToApi({
+              weddingScreenshotsToApi({
                 screenshotsArray,
                 newSelectedGroupNames,
                 allSelectedCeremonies,
@@ -313,7 +312,7 @@ const SendSS = () => {
       setTestMail(false);
       setModel(false);
     }
-    if (eventName === "We're Engaged" || eventName === "Thank You") {
+    if (eventName === "We're Engaged") {
       html2canvas(template1).then((canvas) => {
         const data = canvas.toDataURL("image/png");
         singleScreenshotsArray.push(data);
@@ -324,6 +323,8 @@ const SendSS = () => {
               testMailForWeEngaged({
                 singleScreenshotsArray,
                 email,
+                bride_name,
+                groom_name,
               })
             )
               .then(() => {
@@ -334,9 +335,11 @@ const SendSS = () => {
                 // console.log(error.message);
               })
           : dispatch(
-              sendSingleScreenshotsToApi({
+              weAreEngagedScreenshotsToApi({
                 singleScreenshotsArray,
                 filteredGroupNames,
+                bride_name,
+                groom_name,
               })
             )
               .then(() => {
@@ -363,6 +366,8 @@ const SendSS = () => {
               testMailForSaveTheDate({
                 singleScreenshotsArray,
                 email,
+                bride_name,
+                groom_name,
               })
             )
               .then(() => {
@@ -373,7 +378,49 @@ const SendSS = () => {
                 // console.log(error.message);
               })
           : dispatch(
-              sendSaveTheDateScreenshot({
+              saveTheDateScreenshotsToApi({
+                singleScreenshotsArray,
+                filteredGroupNames,
+              })
+            )
+              .then(() => {
+                toast.success("Email sent successfully");
+                navigate("/shiv_app/myEvents");
+              })
+              .catch((error) => {
+                toast.error("Email Failed to Sent");
+                // console.log(error.message);
+              });
+      });
+
+      setTestMail(false);
+      setModel(false);
+    }
+    if (eventName === "Thank You") {
+      // console.log("lien 271", eventName);
+      html2canvas(template1).then((canvas) => {
+        const data = canvas.toDataURL("image/png");
+        singleScreenshotsArray.push(data);
+
+        // console.log("screen shot data", screenshotsArray);
+        testMail
+          ? dispatch(
+              testMailForThankYou({
+                singleScreenshotsArray,
+                email,
+                bride_name,
+                groom_name,
+              })
+            )
+              .then(() => {
+                toast.success("Email sent successfully");
+              })
+              .catch((error) => {
+                toast.error("Email Failed to Sent");
+                // console.log(error.message);
+              })
+          : dispatch(
+              thankYouScreenshotsToApi({
                 singleScreenshotsArray,
                 filteredGroupNames,
               })
@@ -392,19 +439,32 @@ const SendSS = () => {
       setModel(false);
     }
   };
+
   // console.log(email);
   return (
     <>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div>
-          <h6>
-            Review the invitation for your pre-selected group to make sure you
-            are sending the right invitation to the right group.
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Template Preview </h4>
+            Click on the Edit button to fill in your details and add any text
+            you wish. You can also make amendments such as font size, colour,
+            bold, italic, etc. Once amended click Preview to also have the
+            choice to move the text on the invitation before sending the e-card
+            to your guests.
+            <br></br> <br></br>
+            <div className="refer">
+              {" "}
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
+            <br></br>
           </h6>
         </div>
-        <div className="mid-title-left">Template Preview </div>
+
         <div className="crl"></div>
       </div>
       <div className="crl"></div>
@@ -436,7 +496,7 @@ const SendSS = () => {
               </svg>{" "}
               Back
             </Link>
-            <span data-tooltip="If Edit Information is selected, you will be taken back to select a new invitation template ">
+            <span data-tooltip="If Edit Invitation is selected, you will be taken back to select a new invitation template ">
               <img className="tool-tip" src={tool} alt="tool" />
             </span>
             <div className="crl"></div>
@@ -785,6 +845,13 @@ const SendSS = () => {
             <div className="crl"></div>
 
             <div className="two-btn-box w-full">
+              <span
+                className="test-m1 test-m2"
+                data-tooltip="Please note editing the invitation will take you back to select a new design template."
+              >
+                <img className="tool-tip" src={tool} alt="tool" />
+              </span>
+
               <Link to={"/shiv_app/template"} className="btn btn-2">
                 Edit Invitation
               </Link>

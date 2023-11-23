@@ -372,19 +372,41 @@ export const Dashboard = ({ children }) => {
       <Navbar />
       <div className="crl"></div>
       <div className="container card-b-1">
-        <div className="gap-4">
-          <h6 className="mb-3 welcome-text">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4> Dashboard</h4>
+            <br></br>
             Welcome to your personal dashboard.
             <br></br> <br></br>
-            Here you will see a quick snapshot of attendance to your events,
-            with the option to click into each event to view food, drink
+            In order to ensure you make the most out of our features and set up
+            your groups and invitations correctly please download your Welcome
+            Pack and your step-by-step guide to SHIV.
+            <br></br> <br></br>
+            Please{" "}
+            <a href="_SHIV WELCOME PACK.pdf" download>
+              download
+            </a>{" "}
+            your Welcome pack to view all the y details of how to use our
+            features.
+            <br></br> <br></br>
+            Please{" "}
+            <a href="SHIV STEP-BY-STEP GUIDE.pdf" download>
+              download
+            </a>{" "}
+            a step-by-step guide on how to use your dashboard.
+            <br></br> <br></br>
+            Your Dashboard will show you a quick snapshot of attendance to your
+            events, with the option to click into each event to view food, drink
             requirements as well as allergy and other key components to help you
             plan and budget for your events.
             <br></br> <br></br>
             Click on your list view or graph view to see the data in a way that
-            suits you
+            suits you. To get started with your invitations click into the
+            Events section.
+            <br></br> <br></br>
           </h6>
         </div>
+
         <div className="card-home">
           <div className="row">
             <div className="col-lg-7 mb-lg-0 mb-3">

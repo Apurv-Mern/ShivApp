@@ -374,7 +374,7 @@ function App() {
               </ProtectedRoute>
             }
           />{" "}
-          <Route
+          {/* <Route
             exact
             path="/shiv_app/guest/mua report"
             name="Guest Reports"
@@ -383,10 +383,10 @@ function App() {
                 <MuaReport />
               </ProtectedRoute>
             }
-          />{" "}
+          />{" "} */}
           <Route
             exact
-            path="/shiv_app/guest/flight report"
+            path="/shiv_app/guest/travel report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -406,7 +406,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/ethinic wear report"
+            path="/shiv_app/guest/guests styling report"
             name="Guest Reports"
             element={
               <ProtectedRoute>

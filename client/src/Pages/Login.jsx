@@ -103,7 +103,7 @@ const Login = () => {
                     </div>
                   </div>
                   {/* <FacebookLogin /> */}
-                  <GoogleLogins />
+                  {/* <GoogleLogins /> */}
                   <div className="or my-3">
                     <p>Please enter your details to sign in.</p>
                   </div>

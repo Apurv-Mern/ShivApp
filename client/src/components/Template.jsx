@@ -148,19 +148,20 @@ const Template = () => {
     <>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Design</h4>
             Select the design you like or simple upload your own in size 1920 x
             1200. Ensure if you are uploading your own design, you leave enough
             readable space in the middle for your invitation copy.
-          </h6>
-          <h6 className="mb-3">
-            Once you have selected your design click next for the option to
-            bold, highlight, change font size or colour of your invitation copy.{" "}
+            <br></br> <br></br>
+            Once you have selected your design you will be taken to your contact
+            set up page and RSVP set up page, after which you will be able to
+            edit your design.
+            <br></br> <br></br>
           </h6>
         </div>
-        <div className="mid-title-left">Design</div>
         <div className="crl"></div>
       </div>
       <div className="crl"></div>

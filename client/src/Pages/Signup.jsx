@@ -97,7 +97,7 @@ const Signup = () => {
                       </a>
                     </div>
                   </div>
-                  <GoogleLogins />
+                  {/* <GoogleLogins /> */}
                   <div className="crl"></div>
                   <div className="or my-3">
                     <p>Please enter your details to sign up.</p>

@@ -100,12 +100,12 @@ export const updateGuest = (data) => {
 };
 
 // ? SCREENSHOT UPLOAD
-export const sendScreenShots = (images) => {
+export const sendScreenShotsWedding = (images) => {
   const id = JSON.parse(localStorage.getItem("user"));
   const eventId = JSON.parse(localStorage.getItem("eventId"));
 
   return axios.post(
-    `${serverURl}/pdf/upload-images/users/${id}/event/${eventId}`,
+    `${serverURl}/pdf/WeddingTestMail/users/${id}/event/${eventId}`,
     images,
     {
       headers: {
@@ -115,12 +115,26 @@ export const sendScreenShots = (images) => {
   );
 };
 
-export const singleTemplate = (images) => {
+export const weAreEngaged = (images) => {
   const id = JSON.parse(localStorage.getItem("user"));
   const eventId = JSON.parse(localStorage.getItem("eventId"));
 
   return axios.post(
-    `${serverURl}/pdf/upload-image/users/${id}/event/${eventId}`,
+    `${serverURl}/pdf/WeAreEngaged/users/${id}/event/${eventId}`,
+    images,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+};
+export const ThankYou = (images) => {
+  const id = JSON.parse(localStorage.getItem("user"));
+  const eventId = JSON.parse(localStorage.getItem("eventId"));
+
+  return axios.post(
+    `${serverURl}/pdf/thankyou/users/${id}/event/${eventId}`,
     images,
     {
       headers: {
@@ -132,24 +146,28 @@ export const singleTemplate = (images) => {
 // '/savethedate/users/:user_id/',
 export const sendSaveTheDate = (images) => {
   const id = JSON.parse(localStorage.getItem("user"));
-  const eventid = JSON.parse(localStorage.getItem("eventId"));
+  const eventId = JSON.parse(localStorage.getItem("eventId"));
 
-  return axios.post(`${serverURl}/pdf/savethedate/users/${id}`, images, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  return axios.post(
+    `${serverURl}/pdf/savethedate/users/${id}/event/${eventId}`,
+    images,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
 };
 
 export const weddingTestMail = (images) => {
-  return axios.post(`${serverURl}/pdf/uploadImagesTestMail`, images, {
+  return axios.post(`${serverURl}/pdf/WeddingTestMail`, images, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 };
 export const weEngagedTestMail = (images) => {
-  return axios.post(`${serverURl}/pdf/uploadImageTestMail`, images, {
+  return axios.post(`${serverURl}/pdf/WeAreEngagedTestMail`, images, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -157,6 +175,13 @@ export const weEngagedTestMail = (images) => {
 };
 export const saveTheDateTestMail = (images) => {
   return axios.post(`${serverURl}/pdf/saveTheDateTestMail`, images, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const thankYouTestMail = (images) => {
+  return axios.post(`${serverURl}/pdf/thankyouTestMail`, images, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

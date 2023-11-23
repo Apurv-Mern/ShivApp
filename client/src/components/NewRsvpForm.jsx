@@ -108,6 +108,7 @@ const NewRsvpForm = () => {
         questionValues.push(questionValue);
       }
 
+      console.log("questionValue", questionValue);
       if (
         question.question_type === "Radio text" &&
         selectedRadioValues[questionId] === "yes"
@@ -147,7 +148,7 @@ const NewRsvpForm = () => {
     };
 
     console.log("data", data);
-    const res = dispatch(postUserRspvForm(data));
+    dispatch(postUserRspvForm(data));
   };
 
   console.log(userQuestions);

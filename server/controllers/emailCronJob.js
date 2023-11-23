@@ -1,18 +1,7 @@
-const cron = require("node-cron");
 const nodemailer = require("nodemailer");
-
+require("dotenv").config();
 const pool = require('../database/connection.js').pool;
 
-// Create a nodemailer transporter (configure this based on your email provider)
-let transporter = nodemailer.createTransport({
-  host: "us2.24livehost.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: "ds20@24livehost.com",
-    pass: "Dsmtp@909#",
-  },
-});
 
 
 const setcronjob = async (req, res) => {
@@ -39,9 +28,18 @@ const setcronjob = async (req, res) => {
         );
         console.log("6");
         console.log(link.rows[0]);
-
-        // https://shivappdev.24livehost.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${element.id}
-        const mailOptions = {
+        let transporter = nodemailer.createTransport({
+            host: process.env.SERVER_EMAIL_HOST,
+            port:process.env.SERVER_PORT,
+            secure: false,
+            auth: {
+              user: process.env.SERVER_EMAIL,
+              pass: process.env.SERVER_EMAIL_PASS,
+            },
+          });
+          
+          
+        let mailOptions = {
           from: "info@shiv-worldwide.com",
           to: element.email,
           subject: "Reminder To Submit Your RSVP",

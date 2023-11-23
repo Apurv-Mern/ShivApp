@@ -174,19 +174,33 @@ const EventsList = () => {
     <div>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
-            Tick the ceremony you wish to host, either keep the name as per
-            below or click on the box to re-name your ceremony to your culture
-            and traditions.
-          </h6>
-          <h6 className="mb-3">
+
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Ceremonies List </h4>
+            Click the Edit button and then tick the ceremony you wish to host,
+            either keep the name as per below or click on the box to re-name
+            your ceremony to your culture and traditions.
+            <br></br> <br></br>
             Fill in the dates, times along with the venue details to move onto
-            selection of food and drinks options for your guests.
+            selection of food and drinks options for your guests. Please ensure
+            you select the Ceremonies you require and click the Save button
+            before moving on to the next section.
+            <br></br> <br></br>
+            Please note you have four pre-wedding ceremonies. You may choose to
+            have two for yourself and two for your partner. Please ensure you
+            set up your groups accordingly, so the correct partners guests
+            receive the correct pre-wedding ceremony invitations.
+            <br></br> <br></br>
+            <div className="refer ">
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
+            <br></br>
           </h6>
         </div>
-        <div className="mid-title-left">Ceremonies List </div>
         <div className="crl"></div>
       </div>
       <div className="crl"></div>

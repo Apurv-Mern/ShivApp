@@ -5,7 +5,7 @@ import { FacebookLoginButton } from "react-social-login-buttons";
 const FacebookLogin = () => {
   return (
     <LoginSocialFacebook
-      appId="755670056388707"
+      appId={process.env.REACT_APP_FACEBOOK_APP_ID}
       onResolve={(response) => console.log(response)}
       onReject={(error) => console.log(error)}
     >

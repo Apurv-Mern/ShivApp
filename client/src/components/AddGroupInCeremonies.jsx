@@ -179,21 +179,20 @@ const AddGroupInCeremonies = () => {
     <div>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
-            Select the groups you wish to invite to each Ceremony and in the
-            next step select whether you are inviting an individual, a guest
-            plus a partner or a guest and their entire family.
-          </h6>
-          <h6 className="mb-3">
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4>Add Groups In A Ceremonies</h4>
+            Select the contact groups you wish to invite to each Ceremony.
             Please ensure you select the correct groups for each Ceremony.
+            <br></br> <br></br>
+            <div className="refer">
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
+            <br></br>
           </h6>
-        </div>
-        <div className="row ">
-          <div className="col-md-12">
-            <div className="mid-title">Add Groups In A Ceremonies</div>
-          </div>
         </div>
       </div>
       <div className="crl"></div>

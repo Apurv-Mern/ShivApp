@@ -51,8 +51,11 @@ router.post("/signup", async (req, res) => {
     "SELECT number FROM users WHERE number = $1",
     [number]
   );
+  const ndata= valid_number.rows[0]
 
-
+  if (valid_number.rowCount>0) {
+    return res.status(400).end({Msg:"Mobile number already exists.",data:ndata});
+  }
   try {
     const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: 60,
@@ -200,158 +203,6 @@ router.post("/signin", async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 });
-
-router.post("/dynamic-social-login",async (req,res)=>{
-  const data= req.body;
-  console.log(req.body);
-  console.log("line 207",data);
-  const  email  = data.email;
-  try {
-    const users = await pool.query("SELECT * FROM users WHERE email = $1", [
-      email,
-    ]);
-    if (users.rowCount >0) {
-      //signin
-      const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: 60,
-      });
-      const refreshToken = jwt.sign(
-        { email },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "10h" }
-      );
-    console.log(users.rows[0]);
-      res.status(200).json({
-        success: true,
-        userId: `${users.rows[0].id}`,
-        profilePhoto: data.photo,
-        isAdmin: users.rows[0].isAdmin,
-        userName: users.rows[0].username,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-      });
-    }
-    else{
-      //signup
-       try {
-         const accessToken = jwt.sign(
-           { email },
-           process.env.ACCESS_TOKEN_SECRET,
-           {
-             expiresIn: 60,
-           }
-         );
-         const refreshToken = jwt.sign(
-           { email },
-           process.env.ACCESS_TOKEN_SECRET,
-           {
-             expiresIn: 60 * 60,
-           }
-         );
-         
-
-         pool.query(
-           "INSERT INTO users (username, email,  profile_photo) VALUES ($1,$2,$3) RETURNING *",
-           [data.name, data.email,  data.photo],
-           async (error, results) => {
-             if (error) {
-               res.status(401).json({ error: error });
-               throw error;
-             }
-
-             const allEvents = [
-               "We're Engaged",
-               "Save The Date",
-               "Wedding",
-               "Thank You",
-             ];
-
-             const ceremonies = [
-               "Pre Wedding Ceremony 1",
-               "Pre Wedding Ceremony 2",
-               "Pre Wedding Ceremony 3",
-               "Pre Wedding Ceremony 4",
-               "Civil Ceremony",
-               "Wedding Ceremony",
-               "Reception",
-             ];
-             for (let index = 0; index < allEvents.length; index++) {
-               const element = allEvents[index];
-               const eventQuery =
-                 "INSERT INTO events (event_name,  user_id, event_icon ) VALUES ($1, $2, $3) RETURNING *";
-               const values = [
-                 element,
-                 results.rows[0].id,
-                 // events.rows[1].id,
-                 index + 1,
-               ];
-               const result = await pool.query(eventQuery, values);
-             }
-
-             console.log(results.rows[0].id);
-             const events = await pool.query(
-               "SELECT id FROM events WHERE user_id =$1",
-               [results.rows[0].id]
-             );
-             console.log(events.rows);
-
-             await pool.query(
-               `
-  INSERT INTO rsvp_attendance (total_invitation_sent, total_response_received, user_id, event_id)
-  SELECT $1, $2, u.id, e.id
-  FROM users u, events e
-  WHERE u.id = $3 AND e.id IN ($4, $5,$6,$7);
-`,
-               [
-                 0,
-                 0,
-                 results.rows[0].id,
-                 events.rows[0].id,
-                 events.rows[1].id,
-                 events.rows[2].id,
-                 events.rows[3].id,
-               ]
-             );
-
-             for (let index = 0; index < ceremonies.length; index++) {
-               const element = ceremonies[index];
-
-               const query =
-                 "INSERT INTO ceremony (ceremony_name,  user_id, event_id, icon ) VALUES ($1, $2, $3, $4) RETURNING *";
-               const values = [
-                 element,
-                 results.rows[0].id,
-                 events.rows[1].id,
-                 index + 1,
-               ];
-               //  console.log("line 101",values);
-               const result = await pool.query(query, values);
-             }
-
-             await pool.query(
-               "INSERT INTO groups (user_id, groupname) VALUES ($1, $2)",
-               [results.rows[0].id, "Unassigned"]
-             );
-             res.status(201).json({
-               success: true,
-               userId: `${results.rows[0].id}`,
-               profilePhoto: data.photo,
-               userName: results.rows[0].username,
-               accessToken: accessToken,
-               refreshToken: refreshToken,
-             });
-             // if new user is created successfully then create two default events on behalf of user one is "We're Engaged" another is "Wedding"
-           }
-         );
-       } catch (error) {
-         res.status(400).json({ error: error.message });
-       }
-    }
-    
-  } catch (error) {
-      res.status(400).json({ error: error.message });
-  }
-})
 
 // console.log(forgotPassword);
 router.post("/forgotPassword", forgotPassword);

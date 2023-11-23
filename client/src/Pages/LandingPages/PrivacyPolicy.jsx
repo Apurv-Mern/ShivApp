@@ -1,4 +1,5 @@
 import React from "react";
+
 import Footer from "../../components/Landing Page Components/Footer";
 import Navbar from "../../components/Landing Page Components/Navbar";
 import { Helmet } from "react-helmet-async";
@@ -35,188 +36,848 @@ const PrivacyPolicy = () => {
                 <h3 className="new-title">PRIVACY POLICY</h3>
               </div>
               <div className="col-md-12 pack-line">
+                <span className="bottom-line">Introduction</span>
                 <p>
-                  <span className="bottom-line">
-                    PRIVACY POLICY UP-DATED SEPTEMBER 2023
-                  </span>{" "}
-                  <br />
-                  <strong>SHIV Worldwide Limited</strong> also referred to as
-                  SHIV (“us”, “we” or “our”) delivers an online event
-                  invitation, planning, and budgeting management platform for
-                  consumers to manage their event attendance and budgeting via
-                  the attendance data within their account for their events.
-                  <br /> This Privacy Policy (or “policy”) describes how SHIV
-                  Worldwide Limited uses the personal information you provide
-                  and the rights you have. We have created this Privacy Policy
-                  page to help you exercise your rights.
-                  <br />
-                  <br />
-                  <span className="bottom-line">
-                    1. Privacy Policy Overview
-                  </span>
-                  <br />
-                  This Policy explains how we may process your information. This
-                  policy may be amended or updated from time to time, and you
-                  are, therefore, advised to review this Privacy Policy
-                  regularly. In part, the purpose of this policy is to notify
-                  our users of SHIV Worldwide Limited’s policies and practices
-                  with regards to their data. By using our products and services
-                  you have agreed to our Terms and Conditions.
-                  <br />
-                  <br />
-                  {/* ... Continue with the rest of your content */}
-                  <span class="bottom-line">1. Privacy Policy Overview</span>
-                  <br /> This Policy explains how we may process your
-                  information. This policy may be amended or updated from time
-                  to time, and you are therefore advised to review this Privacy
-                  Policy regularly. In part the purpose of this policy is to
-                  notify our users of SHIV Worldwide Limited’s policies and
-                  practices with regards to their data. By using our products
-                  and services you have agreed to our Terms and Conditions.
-                  <br />
-                  <br />
+                  Welcome to the SHIV privacy policy.
+                  <br></br>
+                  SHIV respects your privacy and is committed to protecting your
+                  personal data. This privacy policy will inform you as to how
+                  we look after your personal data when you visit our website
+                  (regardless of where you visit it from) and tell you about
+                  your privacy rights and how the law protects you.
+                  <br></br>
+                  This privacy policy is provided in a layered format so you can
+                  click through to the specific areas set out below.
+                  Alternatively, you can download a PDF version of the policy
+                  <br></br>
+                  Please use the Glossary to understand the meaning of some of
+                  the terms used in this privacy policy.
                 </p>
-                <span class="bottom-line">
-                  2 Information collection and Use
+                <span className="bottom-line">
+                  1.Important Information and Who We Are
                 </span>
-                <br /> When using our services and products we may collect or
-                obtain information about you when you sign up, when you create a
-                profile with us or when you use and interact with our pages,
-                products, and services. SHIV Worldwide Limited is registered
-                with an office at 3rd Floor, 45 Albemarle Street, Mayfair,
-                London W1S 4JL and the controller of your personal data is on
-                email{" "}
-                <a href="mailto:gdpr@shiv-worldwide.com">
-                  gdpr@shiv-worldwide.com
-                </a>{" "}
-                <br />
-                <br />
-                <strong>Data you provide:</strong> This for example, may be your
-                username, subscription information if applicable and basic
-                information about any other accounts you choose to associate
-                with your registration, such as Facebook or Google account.
-                <br />
-                <strong>Data contribution:</strong> This will be data that you
-                provide such as your username, contact details including mobile
-                / cell numbers and date of birth.
-                <br />
-                <strong>Data of minors:</strong> Any personal data or images of
-                minors used on our website, products and services by a user
-                expressly implies that without reservation they hold the
-                necessary permission and rights to do so. The user must ensure
-                that any data provided for minors does not harm them or their
-                rights in any way and explicitly liberate SHIV Worldwide Limited
-                from any potential claims or liabilities arising from any such
-                claims.
-                <br />
-                <br />
-                SHIV Worldwide Limited does not offer its products and services
-                to anyone under the age of 18. Data we collect when using our
-                products and services:
-                <br />
+                <p>
+                  Purpose of this privacy policy
+                  <br></br>
+                  This privacy policy aims to give you information on how SHIV
+                  collects and processes your personal data through your use of
+                  this website, including any data you may provide through this
+                  website when you sign up to our newsletter, purchase a product
+                  or service, or take part in a competition.
+                  <br></br>
+                  This website is not intended for children and we do not
+                  knowingly collect data relating to children.
+                  <br></br>
+                  It is important that you read this privacy policy together
+                  with any other privacy policy or fair processing policy we may
+                  provide on specific occasions when we are collecting or
+                  processing personal data about you so that you are fully aware
+                  of how and why we are using your data. This privacy policy
+                  supplements other notices and privacy policies and is not
+                  intended to override them.
+                </p>
+                <span className="bottom-line">Controller</span>
+                <p>
+                  Shiv International Limited t/a “SHIV” is the controller
+                  (collectively referred to as SHIV, “we”, “us” or “our” in this
+                  privacy policy).
+                  <br></br>
+                  We have appointed data privacy manager who is responsible for
+                  overseeing questions in relation to this privacy policy. If
+                  you have any questions about this privacy policy, including
+                  any requests to exercise Your Legal Rights, please contact the
+                  data privacy manager using the details set out below.
+                  <br></br>
+                </p>
+                <span className="bottom-line">Contact details</span>
+                <p>
+                  If you have any questions about this privacy policy or our
+                  privacy practices, please contact our privacy manager in the
+                  following ways:
+                  <br></br>
+                  Full name of legal entity: Shiv International Limited t/a
+                  “SHIV”
+                  <br></br>
+                  Email address: gdpr@shiv-worldwide.com
+                  <br></br>
+                  Postal address: 3rd Floor, 46 Albemarle Street, Mayfair, W1S
+                  4JL
+                  <br></br>
+                  Telephone numbers: (+44) 07387 959 487
+                  <br></br>
+                  You have the right to make a complaint at any time to the
+                  Information Commissioner’s Office ( “ICO” ), the UK
+                  supervisory authority for data protection issues (
+                  www.ico.org.uk ). However, we request that you allow us to
+                  resolve your concerns before you approach the ICO, so please
+                  contact us first.
+                  <br></br>
+                  We are registered with the Information Commissioner’s Office (
+                  “ICO” ) as a Data Controller under ICO registration number:
+                  ZB604668.
+                </p>
+                <span className="bottom-line">
+                  Changes to the privacy policy and your duty to inform us of
+                  changes
+                </span>
+                <p>
+                  We will keep our privacy policy under regular review. The
+                  privacy policy will be reviewed annually commencing in
+                  November 2023.
+                  <br></br>
+                  It is important that the personal data we hold about you is
+                  accurate and current. Please keep us informed if your personal
+                  data changes during your relationship with us.
+                </p>
+                <span className="bottom-line">Third-party links </span>
+                <p>
+                  This website may include links to third-party websites,
+                  plug-ins and applications. Clicking on those links or enabling
+                  those connections may allow third parties to collect or share
+                  data about you. We do not control these third-party websites
+                  and are not responsible for their privacy statements. When you
+                  leave our website, we encourage you to read the privacy policy
+                  of every website you visit.
+                </p>
+                <span className="bottom-line">
+                  2.The Data We Collect About You
+                </span>
+                <p>
+                  Personal data, or personal information, means any information
+                  about an individual from which that person can be identified.
+                  It does not include data where the identity has been removed
+                  (anonymous data).
+                  <br></br>
+                  We may collect, use, store and transfer different kinds of
+                  personal data about you which we have grouped together as
+                  follows:
+                </p>
                 <ul class="about-part-2">
                   <li>
-                    We make and keep records of when you have been in touch with
-                    us for any support with our products and services to ensure
-                    we can provide you with the best service possible.
+                    {" "}
+                    <strong> Identity Data </strong> includes first name, maiden
+                    name, last name, username or similar identifier, marital
+                    status, title, date of birth and gender.
                   </li>
 
                   <li>
-                    We collect data on how you may have interacted with our
-                    various products (pages and products on our website) to help
-                    us make improvements to our offerings.
+                    {" "}
+                    <strong> Contact Data </strong> includes billing address,
+                    delivery address, email address and telephone numbers and
+                    social media profile links.
                   </li>
 
                   <li>
-                    We will collect information associated with your account,
-                    your full name, your partner’s full name, your date of birth
-                    (to ensure you are over 18), both your email address, both
-                    your mobile / cell details, and all your event dates, time,
-                    and venue details.
+                    {" "}
+                    <strong> Financial Data </strong> includes bank account and
+                    payment card details.
                   </li>
 
                   <li>
-                    We use “cookies” to collect information. You can instruct
-                    your browser to refuse all cookies or to indicate when a
-                    cookie is being sent. However, if you do not accept cookies,
-                    you may not be able to use some portions of our services and
-                    products.
+                    {" "}
+                    <strong> Transaction Data </strong>includes details about
+                    payments to and from you and other details of products and
+                    services you have purchased from us.
                   </li>
 
                   <li>
-                    Any photos or images you use implies without reservation,
-                    the user holds the necessary rights to use such images,
-                    which may also be collected.
+                    {" "}
+                    <strong> Technical Data </strong> includes Internet Protocol
+                    (“IP”) address, your login data, browser type and version,
+                    time zone setting and location, browser plug-in types and
+                    versions, operating system and platform, and other
+                    technology on the devices you use to access this website.
                   </li>
 
                   <li>
-                    Details on when you may choose to send reminders to your
-                    guests for RSVP will also be collected for analytical and
-                    product improvement purposes only
+                    <strong>Profile Data </strong> includes your username and
+                    password, purchases or orders made by you, your interests,
+                    preferences, feedback, and survey responses.
+                  </li>
+
+                  <li>
+                    <strong>Usage Data</strong> includes information about how
+                    you use our website, products, and services.
+                  </li>
+
+                  <li>
+                    <strong>Marketing and Communications Data </strong>includes
+                    your preferences in receiving marketing from us and our
+                    third parties and your communication preferences.
+                  </li>
+
+                  <li>
+                    <strong> Special Categories of Personal Data</strong>{" "}
+                    includes details of any disability or food allergy for the
+                    purposes of organising weddings and associated events so
+                    that the event organisers know to amendments to the menus
+                    and provide adjustments to the venues, such as wheelchair
+                    access.
                   </li>
                 </ul>
-                <br />
-                <br />
-                SHIV Worldwide Limited will act as a data processor for the
-                following services. Guest information, this includes all your
-                guests full name, email address, mobile / cell details, and all
-                information requested in all your RSVP details.
-                <br />
-                All and any information provided by guests will be solely the
-                user and their guest responsibilities and by doing so each user
-                and guest explicitly exonerates SHIV Worldwide Limited from any
-                potential claims or liabilities arising from any such data.
-                <br />
-                Data use: We will not share or sell your personal data with any
-                third parties and will only contact you for assistance and
-                occasional marketing of our product and service updates.
-                <br />
-                As a data controller we will not share or sell any of your
-                guest’s information to any third parties. Information may only
-                be shared if it is required by law, regulation, or legal
-                processes.
-                <br />
-                <br />
-                <span class="bottom-line">
-                  3. Data retention period and right to erase.
-                </span>
-                <br />
-                We will retain your account and the data within it until you
-                close or delete your account with us. You will have access to
-                all your account details for future events until you choose to
-                deactivate your account with us.
-                <br />
-                You are in your full rights to request that all your personal
-                data be removed from our systems permanently. If you would like
-                to make such a request, please email us at{" "}
-                <a href="mailto:gdpr@shiv-worldwide.com">
-                  gdpr@shiv-worldwide.com
-                </a>{" "}
-                We endeavor to have all your personal information removed ASAP
-                within one calendar month of receiving your request. Once
-                deleted you will no longer have access to our services and
-                products and all data will be removed.
-                <br />
-                <br />
-                <span class="bottom-line">4. Security</span>
-                <br />
-                SHIV Worldwide Limited continuously takes all reasonable steps,
-                actions and measures to protect you and your information from
-                any misuse, unathorised access, destruction and or disclosure.
-                We encourage all our users to create secure passwords and keep
-                details safe and advise not to share with anyone.
-                <br />
-                <br />
-                <span class="bottom-line">
-                  5. <a href="contact.html">Contact Us</a>
-                </span>{" "}
-                <br />
-                Should you have any questions or concerns about our Privacy
-                Policy then please contact us at
-                <a href="mailto:gdpr@shiv-worldwide.com">
+                <p>
+                  We also collect, use, and share Aggregated Data such as
+                  statistical or demographic data for any purpose. Aggregated
+                  Data could be derived from your personal data but is not
+                  considered personal data in law as this data will not directly
+                  or indirectly reveal your identity. For example, we may
+                  aggregate your Usage Data to calculate the percentage of users
+                  accessing a specific website feature. However, if we combine
+                  or connect Aggregated Data with your personal data so that it
+                  can directly or indirectly identify you, we treat the combined
+                  data as personal data which will be used in accordance with
+                  this privacy policy.
+                  <br></br>
+                  Aside from health data in relation to allergies and
+                  disabilities, we do not collect any Special Categories of
+                  Personal Data about you (this includes details about your race
+                  or ethnicity, religious or philosophical beliefs, sex life,
+                  sexual orientation, political opinions, trade union
+                  membership, and genetic and biometric data), nor do we collect
+                  any information about criminal offences and convictions.
+                </p>
+                <span className="bottom-line">
                   {" "}
-                  gdpr@shiv-worldwide.com
-                </a>
+                  If you fail to provide personal data{" "}
+                </span>
+                <p>
+                  Where we need to collect personal data by law, or under the
+                  terms of a contract we have with you, and you fail to provide
+                  that data when requested, we may not be able to perform the
+                  contract we have or are trying to enter into with you (for
+                  example, to provide you with goods or services). In this case,
+                  we may have to cancel a product or service you have with us
+                  but we will notify you if this is the case at the time.
+                </p>
+                <span className="bottom-line">
+                  {" "}
+                  3.How Is Your Personal Data Collected?{" "}
+                </span>
+                <p>
+                  We use different methods to collect data from and about you
+                  including through:
+                </p>
+                <ul class="about-part-2">
+                  <li>
+                    Direct interactions. You may give us your Identity, Contact
+                    and Financial Data by filling in forms or by corresponding
+                    with us by post, phone, email or otherwise. This includes
+                    personal data you provide when you:
+                  </li>
+
+                  <li>apply for our products or services;</li>
+
+                  <li>create an account on our website;</li>
+
+                  <li>subscribe to our service or publications;</li>
+
+                  <li>request marketing to be sent to you;</li>
+
+                  <li>enter a competition, promotion, or survey; or</li>
+
+                  <li>give us feedback or contact us.</li>
+
+                  <li>
+                    Automated technologies or interactions. As you interact with
+                    our website, we will automatically collect Technical Data
+                    about your equipment, browsing actions and patterns. We
+                    collect this personal data by using cookies, server logs and
+                    other similar technologies. We may also receive Technical
+                    Data about you if you visit other websites employing our
+                    cookies. Please see our Cookie Policy for further details.
+                    <br></br>
+                    Third parties or publicly available sources. We will receive
+                    personal data about you from various third parties including
+                    social media sites provided for the purpose of creating your
+                    CV website.
+                  </li>
+                </ul>
+                <span className="bottom-line">
+                  Technical Data from the following parties:
+                </span>
+                <p>
+                  (a)analytics providers such as Google based outside the EU;
+                  <br></br>
+                  (b)advertising networks such as Facebook and its subsidiaries
+                  (Instagram, WhatsApp, Messenger, Pinterest, TikTok) based
+                  inside and outside the EU; and
+                  <br></br>
+                  (c)search information providers such as Google and Bing based
+                  inside and outside the EU.
+                  <br></br>
+                  <ul class="about-part-2">
+                    <li>
+                      Contact, Financial and Transaction Data from providers of
+                      technical, payment and delivery services such as Stripe,
+                      Go-Cardless based outside the EU.
+                    </li>
+                    <li>
+                      Identity and Contact Data from data brokers or aggregators
+                      based inside and outside the EU.
+                    </li>
+                    <li>
+                      Identity and Contact Data from publicly available sources
+                      such as Companies House and the Electoral Register based
+                      inside the EU.
+                    </li>
+                    <li>Live chat widgets (all providers).</li>
+                  </ul>
+                </p>
+                <span className="bottom-line">
+                  4.How We Use Your Personal Data
+                </span>
+                <p>
+                  We will only use your personal data when the law permits. Most
+                  commonly, we will use your personal data in the following
+                  circumstances:
+                </p>
+                <ul class="about-part-2">
+                  <li>
+                    Where we need to perform the contract we are about to enter
+                    into or have entered into with you.
+                  </li>
+                  <li>
+                    Where it is necessary for our legitimate interests (or those
+                    of a third party) and your interests and fundamental rights
+                    do not override those interests.
+                  </li>
+                  <li>Where we need to comply with a legal obligation.</li>
+                </ul>
+                <p>
+                  Generally, we do not rely on consent as a legal basis for
+                  processing your personal data although we will get your
+                  consent before sending third party direct marketing
+                  communications to you via email or text message. You have the
+                  right to withdraw consent to marketing at any time by
+                  contacting us.
+                </p>
+                <span className="bottom-line">
+                  Purposes for which we will use your personal data
+                </span>
+                <p>
+                  We have set out below, in a table format, a description of all
+                  the ways we plan to use your personal data, and which of the
+                  legal bases we rely on to do so. We have also identified what
+                  our legitimate interests are where appropriate.
+                </p>
+                <p>
+                  Note that we may process your personal data for more than one
+                  lawful ground depending on the specific purpose for which we
+                  are using your data. Please contact us if you need details
+                  about the specific legal ground we are relying on to process
+                  your personal data where more than one ground has been set out
+                  in the table below.
+                </p>
+                <p>
+                  <table className="table-line table-striped">
+                    <tr>
+                      <th width="33%">Purpose/Activity</th>
+                      <th width="33%">Type of data</th>
+                      <th width="33%">
+                        Lawful basis for processing including basis of
+                        legitimate interest
+                      </th>
+                    </tr>
+                    <tr>
+                      <td width="33%">
+                        To process and deliver your order including:
+                        <br></br>
+                        (a) Manage payments, fees and charges
+                        <br></br>
+                        (b) Collect and recover money owed to us
+                      </td>
+                      <td width="33%">
+                        (a) Identity <br></br>
+                        (b) Contact <br></br>
+                        (c) Financial <br></br>
+                        (d) Transaction <br></br>
+                        (e) Marketing and Communications
+                      </td>
+                      <td width="33%">
+                        (a) Performance of a contract with you
+                        <br></br>
+                        (b) Necessary for our legitimate interests (to recover
+                        debts due to us)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        To manage our relationship with you which will include:
+                        <br></br>
+                        (a) Notifying you about changes to our terms or privacy
+                        policy
+                        <br></br>
+                        (b) Asking you to leave a review or take a survey
+                      </td>
+                      <td>
+                        (a) Identity
+                        <br></br>
+                        (b) Contact
+                        <br></br>
+                        (c) Profile
+                        <br></br>
+                        (d) Marketing and Communications
+                      </td>
+                      <td>
+                        (a) Performance of a contract with you
+                        <br></br>
+                        (b) Necessary to comply with a legal obligation
+                        <br></br>
+                        (c) Necessary for our legitimate interests (to keep our
+                        records updated and to study how customers use our
+                        products/services)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        To enable you to partake in a prize draw, competition or
+                        complete a survey
+                      </td>
+                      <td>
+                        (a) Identity
+                        <br></br>
+                        (b) Contact
+                        <br></br>
+                        (c) Profile
+                        <br></br>
+                        (d) Usage
+                        <br></br>
+                        (e) Marketing and Communications
+                      </td>
+                      <td>
+                        (a) Performance of a contract with you
+                        <br></br>
+                        (b) Necessary for our legitimate interests (to study how
+                        customers use our products/services, to develop them and
+                        grow our business)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        To administer and protect our business and this website
+                        (including troubleshooting, data analysis, testing,
+                        system maintenance, support, reporting and hosting of
+                        data)
+                      </td>
+                      <td>
+                        (a) Identity <br></br>
+                        (b) Contact <br></br>
+                        (c) Technical
+                      </td>
+                      <td>
+                        (a) Necessary for our legitimate interests (for running
+                        our business, provision of administration and IT
+                        services, network security, to prevent fraud and in the
+                        context of a business reorganisation or group
+                        restructuring exercise)
+                        <br></br>
+                        (b) Necessary to comply with a legal obligation
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        To deliver relevant website content and advertisements
+                        to you and measure or understand the effectiveness of
+                        the advertising we serve to you
+                      </td>
+                      <td>
+                        (a) Identity
+                        <br></br>
+                        (b) Contact
+                        <br></br>
+                        (c) Profile
+                        <br></br>
+                        (d) Usage
+                        <br></br>
+                        (e) Marketing and Communications
+                        <br></br>
+                        (f) Technical{" "}
+                      </td>
+                      <td>
+                        Necessary for our legitimate interests (to study how
+                        customers use our products/services, to develop them, to
+                        grow our business and to inform our marketing strategy)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        To use data analytics to improve our website,
+                        products/services, marketing, customer relationships and
+                        experiences
+                      </td>
+                      <td>
+                        (a) Technical
+                        <br></br>
+                        (b) Usage{" "}
+                      </td>
+                      <td>
+                        Necessary for our legitimate interests (to define types
+                        of customers for our products and services, to keep our
+                        website updated and relevant, to develop our business
+                        and to inform our marketing strategy)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        To make suggestions and recommendations to you about
+                        goods or services that may be of interest to you
+                      </td>
+                      <td>
+                        (a) Identity <br></br>
+                        (b) Contact <br></br>
+                        (c) Technical <br></br>
+                        (d) Usage <br></br>
+                        (e) Profile <br></br>
+                        (f) Marketing and Communications
+                      </td>
+                      <td>
+                        Necessary for our legitimate interests (to develop our
+                        products/services and grow our business)
+                      </td>
+                    </tr>
+                  </table>
+                </p>
+                <span className="bottom-line">Marketing</span>
+                <p>
+                  We provide you with choices regarding certain personal data
+                  uses, particularly around marketing and advertising.
+                </p>
+                <span className="bottom-line">Promotional offers from us </span>
+                <p>
+                  We may use your Identity, Contact, Technical, Usage and
+                  Profile Data to form a view on what we think you may want or
+                  need, or what may be of interest to you. This is how we decide
+                  which products, services and offers may be relevant for you (
+                  we call this marketing ).
+                  <br></br>
+                  You will receive marketing communications from us if you have
+                  requested information from us or purchased services from us
+                  and you have opted-in to receiving that marketing.
+                </p>
+                <span className="bottom-line">Third-party marketing </span>
+                <p>
+                  We will obtain your express opt-in consent before we share
+                  your personal data with any third party for marketing
+                  purposes.
+                </p>
+                <span className="bottom-line">Opting out</span>
+                <p>
+                  You can ask us or third parties to stop sending you marketing
+                  messages at any time by logging into the website and checking
+                  or unchecking relevant boxes to adjust your marketing
+                  preferences or by following the opt-out links on any marketing
+                  message sent to you or by contacting us at any time.
+                  <br></br>
+                  Where you opt out of receiving these marketing messages, this
+                  will not apply to personal data provided to us for the purpose
+                  of the service purchase, warranty registration, service
+                  experience or other transactions.
+                  <br></br>
+                </p>
+                <span className="bottom-line">Cookies</span>
+                <p>
+                  You can set your browser to refuse all or some browser
+                  cookies, or to alert you when websites set or access cookies.
+                  If you disable or refuse cookies, please note that some parts
+                  of this website may become inaccessible or not function
+                  properly. For more information about the cookies we use,
+                  please see our Cookie Policy.
+                </p>
+                <span className="bottom-line">Change of purpose </span>
+                <p>
+                  We will only use your personal data for the purposes for which
+                  we collected it, unless we reasonably consider that we need to
+                  use it for another reason and that reason is compatible with
+                  the original purpose. If you wish to obtain an explanation as
+                  to how the processing for the new purpose is compatible with
+                  the original purpose, please contact us.
+                  <br></br>
+                  If we need to use your personal data for an unrelated purpose,
+                  we will notify you and we will explain the legal basis which
+                  allows us to do so.
+                  <br></br>
+                  Please note that we may process your personal data without
+                  your knowledge or consent, in compliance with the above rules,
+                  where this is required or permitted by law.
+                </p>
+                <span className="bottom-line">
+                  5.Disclosures of Your Personal Data
+                </span>
+                <p>
+                  We may share your personal data with the parties set out below
+                  for the purposes set out in the table Purposes for which we
+                  will use your personal data above.
+                </p>
+                <ul class="about-part-2">
+                  <li>External Third Parties as set out above.</li>
+
+                  <li>
+                    Specific third parties listed in the table Purposes for
+                    which we will use your personal data above.
+                  </li>
+
+                  <li>
+                    Third parties to whom we may choose to sell, transfer or
+                    merge parts of our business or our assets. Alternatively, we
+                    may seek to acquire other businesses or merge with them. If
+                    a change happens to our business, then the new owners may
+                    use your personal data in the same way as set out in this
+                    privacy policy.
+                  </li>
+                </ul>
+                <p>
+                  We require all third parties to respect the security of your
+                  personal data and to treat it in accordance with the law. We
+                  do not allow our third-party service providers to use your
+                  personal data for their own purposes and only permit them to
+                  process your personal data for specified purposes and in
+                  accordance with our instructions.
+                </p>
+                <span className="bottom-line">6.International Transfers</span>
+                <p>
+                  Many of our external third parties are based outside the
+                  European Economic Area (“EEA”) so their processing of your
+                  personal data will involve a transfer of data outside the EEA.
+                  <br></br>
+                  Whenever we transfer your personal data out of the EEA, we
+                  ensure a similar degree of protection is afforded to it by
+                  ensuring at least one of the following safeguards is
+                  implemented:
+                  <br></br>
+                </p>
+                <ul class="about-part-2">
+                  <li>
+                    We will only transfer your personal data to countries that
+                    have been deemed to provide an adequate level of protection
+                    for personal data by the European Commission. For further
+                    details, see European Commission: Adequacy of the protection
+                    of personal data in non-EU countries.
+                  </li>
+
+                  <li>
+                    Where we use certain service providers, we may use specific
+                    contracts approved by the European Commission which give
+                    personal data the same protection it has in Europe. For
+                    further details, see European Commission: Model contracts
+                    for the transfer of personal data to third countries.{" "}
+                  </li>
+                  <li>
+                    Where we use providers based in the US, we may transfer data
+                    to them if they are part of the Privacy Shield which
+                    requires them to provide similar protection to personal data
+                    shared between Europe and the US. For further details, see
+                    European Commission: EU-US Privacy Shield.{" "}
+                  </li>
+                </ul>
+                <p>
+                  Please contact us if you want further information on the
+                  specific mechanism used by us when transferring your personal
+                  data out of the EEA.
+                </p>
+                <span className="bottom-line">7.Data Security</span>
+                <p>
+                  We have put in place appropriate security measures to prevent
+                  your personal data from being accidentally lost, used, or
+                  accessed in an unauthorised way, altered, or disclosed. In
+                  addition, we limit access to your personal data to those
+                  employees, agents, contractors and other third parties who
+                  have a business need to know. They will only process your
+                  personal data on our instructions and they are subject to a
+                  duty of confidentiality.
+                  <br></br>
+                  We have put in place procedures to deal with any suspected
+                  personal data breach and will notify you and any applicable
+                  regulator of a breach where we are legally required to do so.
+                </p>
+                <span className="bottom-line">8.Data Retention</span>
+                <p>
+                  How long will you use my personal data for?
+                  <br></br>
+                  We will only retain your personal data for as long as
+                  reasonably necessary to fulfil the purposes we collected it
+                  for, including for the purposes of satisfying any legal,
+                  regulatory, tax, accounting or reporting requirements. We may
+                  retain your personal data for a longer period in the event of
+                  a complaint or if we reasonably believe there is a prospect of
+                  litigation in respect to our relationship with you.
+                  <br></br>
+                  To determine the appropriate retention period for personal
+                  data, we consider the amount, nature and sensitivity of the
+                  personal data, the potential risk of harm from unauthorised
+                  use or disclosure of your personal data, the purposes for
+                  which we process your personal data and whether we can achieve
+                  those purposes through other means, and the applicable legal,
+                  regulatory, tax, accounting or other requirements.
+                  <br></br>
+                  By law we must keep basic information about our customers (
+                  including Contact, Identity, Financial and Transaction Data )
+                  for six years after they cease being customers for tax
+                  purposes.
+                  <br></br>
+                  In some circumstances you can ask us to delete your data: see
+                  below for further information.
+                  <br></br>
+                  In some circumstances we will anonymise your personal data (
+                  so that it can no longer be associated with you ) for research
+                  or statistical purposes, in which case we may use this
+                  information indefinitely without further notice to you.
+                </p>
+                <span className="bottom-line">9.Your Legal Rights</span>
+                <p>
+                  Under certain circumstances, you have rights under data
+                  protection laws in relation to your personal data. You have
+                  the right to:
+                  <br></br>
+                  Request access to your personal data ( commonly known as a
+                  “data subject access request” ). This enables you to receive a
+                  copy of the personal data we hold about you and to check that
+                  we are lawfully processing it.
+                  <br></br>
+                  Request correction of the personal data that we hold about
+                  you. This enables you to have any incomplete or inaccurate
+                  data we hold about you corrected, though we may need to verify
+                  the accuracy of the new data you provide to us.
+                  <br></br>
+                  Request erasure of your personal data. This enables you to ask
+                  us to delete or remove personal data where there is no good
+                  reason for us continuing to process it. You also have the
+                  right to ask us to delete or remove your personal data where
+                  you have successfully exercised your right to object to
+                  processing ( see below ), where we may have processed your
+                  information unlawfully or where we are required to erase your
+                  personal data to comply with local law. Note, however, that we
+                  may not always be able to comply with your request of erasure
+                  for specific legal reasons which will be notified to you, if
+                  applicable, at the time of your request.
+                  <br></br>
+                  Object to processing of your personal data where we are
+                  relying on a legitimate interest ( or those of a third party )
+                  and there is something about your particular situation which
+                  makes you want to object to processing on this ground as you
+                  feel it impacts on your fundamental rights and freedoms. You
+                  also have the right to object where we are processing your
+                  personal data for direct marketing purposes. In some cases, we
+                  may demonstrate that we have compelling legitimate grounds to
+                  process your information which override your rights and
+                  freedoms.
+                  <br></br>
+                  Request restriction of processing of your personal data. This
+                  enables you to ask us to suspend the processing of your
+                  personal data in the following scenarios:
+                </p>
+                <ul class="about-part-2">
+                  <li>If you want us to establish the data’s accuracy.</li>
+
+                  <li>
+                    Where our use of the data is unlawful but you do not want us
+                    to erase it.
+                  </li>
+
+                  <li>
+                    Where you need us to hold the data even if we no longer
+                    require it as you need it to establish, exercise or defend
+                    legal claims.
+                  </li>
+
+                  <li>
+                    You have objected to our use of your data but we need to
+                    verify whether we have overriding legitimate grounds to use
+                    it.
+                  </li>
+                </ul>
+                <p>
+                  Request the transfer of your personal data to you or to a
+                  third party. We will provide to you, or a third party you have
+                  chosen, your personal data in a structured, commonly used,
+                  machine-readable format. Note that this right only applies to
+                  automated information which you initially provided consent for
+                  us to use or where we used the information to perform a
+                  contract with you.
+                  <br></br>
+                  <strong>Withdraw consent at any time</strong> where we are
+                  relying on consent to process your personal data. However,
+                  this will not affect the lawfulness of any processing carried
+                  out before you withdraw your consent. If you withdraw your
+                  consent, we may not be able to provide certain products or
+                  services to you. We will advise you if this is the case at the
+                  time you withdraw your consent.
+                  <br></br>
+                  If you wish to exercise any of the rights set out above,
+                  please email us at gdpr@shiv-worldwide.com
+                </p>
+                <span className="bottom-line">No fee usually required</span>
+                <p>
+                  You will not have to pay a fee to access your personal data
+                  (or to exercise any of the other rights). However, we may
+                  charge a reasonable fee if your request is clearly unfounded,
+                  repetitive, or excessive. Alternatively, we could refuse to
+                  comply with your request in these circumstances.
+                </p>
+                <span className="bottom-line">What we may need from you</span>
+                <p>
+                  We may need to request specific information from you to help
+                  us confirm your identity and ensure your right to access your
+                  personal data ( or to exercise any of your other rights ).
+                  This is a security measure to ensure that personal data is not
+                  disclosed to any person who has no right to receive it. We may
+                  also contact you to ask you for further information in
+                  relation to your request to speed up our response.
+                </p>
+                <span className="bottom-line">Time limit to respond</span>
+                <p>
+                  We aim to respond to all legitimate requests within one month.
+                  Occasionally, it may take us longer than a month if your
+                  request is particularly complex or you have made several
+                  requests. In this case, we will notify you and keep you
+                  updated.
+                </p>
+                <span className="bottom-line">10.Glossary</span>
+                <p>
+                  <strong>LAWFUL BASIS </strong>
+                  Legitimate Interest means the interest of our business in
+                  conducting and managing our business to enable us to give you
+                  the best service/product and the best and most secure
+                  experience. We make sure we consider and balance any potential
+                  impact on you ( both positive and negative ) and your rights
+                  before we process your personal data for our legitimate
+                  interests. We do not use your personal data for activities
+                  where our interests are overridden by the impact on you (
+                  unless we have your consent or are otherwise required or
+                  permitted to by law ). You can obtain further information
+                  about how we assess our legitimate interests against any
+                  potential impact on you in respect of specific activities by
+                  contacting us.
+                  <br></br>
+                  Performance of Contract means processing your data where it is
+                  necessary for the performance of a contract to which you are a
+                  party or to take steps at your request before entering into
+                  such a contract.
+                  <br></br>
+                  Comply with a legal obligation means processing your personal
+                  data where it is necessary for compliance with a legal
+                  obligation that we are subject to.
+                </p>
+                <span className="bottom-line">THIRD PARTIES</span> <br></br>
+                <strong>External Third Parties</strong>
+                <ul class="about-part-2">
+                  <li>
+                    Service providers acting as processors based in the US and
+                    India who provide IT and system administration services.
+                  </li>
+
+                  <li>
+                    Professional advisers acting as processors or joint
+                    controllers including lawyers, bankers, auditors, and
+                    insurers based in US and India who provide consultancy,
+                    banking, legal, insurance and accounting services.
+                  </li>
+                  <li>
+                    HM Revenue & Customs, regulators and other authorities
+                    acting as processors or joint controllers based in the
+                    United Kingdom who require reporting of processing
+                    activities in certain circumstances.
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
