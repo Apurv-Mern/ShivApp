@@ -46,18 +46,17 @@ const Packages = () => {
     <div>
       <Navbar />
 
-      <div className="container mid-title">
-        <div className="gap-4">
-          <h6 className="mb-3">
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4 className="heading">Packages</h4>
             Simply select the package that best suits your needs and move to the
             next section to plan your events.
-          </h6>
-          <h6 className="mb-3">
+            <br></br> <br></br>
             If you are undecided at this stage, simply click buy later to move
             on to the next step in setting up your invitations and dashboard.
           </h6>
         </div>
-        <div className="mid-title-left">Packages</div>
 
         <div className="crl"></div>
       </div>

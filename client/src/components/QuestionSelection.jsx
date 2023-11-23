@@ -157,7 +157,7 @@ const QuestionSelection = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Choose the questions for RSVP</h4>
+            <h4 className="heading">Choose the questions for RSVP</h4>
             Please enter your name and your partner’s name to ensure your guests
             can view these details in the email e-invitation and RSVP submission
             page they receive.
@@ -168,6 +168,12 @@ const QuestionSelection = () => {
             <br></br> <br></br>
             You do have the option to undo, however, please note once you save
             the RSVP questions you will be unable to edit them again.
+            <br></br> <br></br>
+            Simply select the package that best suits your needs and move to the
+            next section to plan your events.
+            <br></br> <br></br>
+            If you are undecided at this stage, simply click buy later to move
+            on to the next step in setting up your invitations and dashboard.
             <br></br> <br></br>
             <div className="refer">
               {" "}

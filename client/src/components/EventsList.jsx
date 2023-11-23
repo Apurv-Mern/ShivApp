@@ -178,7 +178,7 @@ const EventsList = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Ceremonies List </h4>
+            <h4 className="heading">Ceremonies List </h4>
             Click the Edit button and then tick the ceremony you wish to host,
             either keep the name as per below or click on the box to re-name
             your ceremony to your culture and traditions.

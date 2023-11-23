@@ -82,7 +82,7 @@ const InvitationType = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Invitation </h4>
+            <h4 className="heading">Invitation Type </h4>
             Here you can select what type of invite your groups are sent. If you
             are only inviting a guest and their partner, select You and Your
             partner. We will then generate an invite specifically inviting your

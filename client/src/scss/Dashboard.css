@@ -584,6 +584,9 @@ body {
   z-index: 999;
   top: 0;
 }
+.heading {
+  color: #5ce1e6 !important;
+}
 
 .checkmark {
   position: absolute;
@@ -2833,6 +2836,10 @@ body #signInDiv iframe {
 .refer {
   font-weight: 700;
   font-style: italic;
+}
+.contact-refer {
+  text-decoration: underline;
+  font-weight: 700;
 }
 .totle-guest {
   padding-bottom: 15px;

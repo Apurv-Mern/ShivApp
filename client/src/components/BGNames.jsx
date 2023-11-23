@@ -73,8 +73,9 @@ const BGNames = () => {
     <>
       <Navbar />
       <div className="container card-b-1">
-        <div className="gap-4">
-          <h6 className="mb-3">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4 className="heading">Couples name</h4>
             Please enter your name and your partner’s name to ensure your guests
             can view these details in the email e-invitation they receive.
           </h6>

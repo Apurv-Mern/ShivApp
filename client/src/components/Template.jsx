@@ -151,7 +151,7 @@ const Template = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Design</h4>
+            <h4 className="heading"> Design</h4>
             Select the design you like or simple upload your own in size 1920 x
             1200. Ensure if you are uploading your own design, you leave enough
             readable space in the middle for your invitation copy.

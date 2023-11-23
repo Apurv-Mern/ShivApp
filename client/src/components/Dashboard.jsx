@@ -374,7 +374,7 @@ export const Dashboard = ({ children }) => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4> Dashboard</h4>
+            <h4 className="heading"> Dashboard</h4>
             <br></br>
             Welcome to your personal dashboard.
             <br></br> <br></br>

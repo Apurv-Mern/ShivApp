@@ -9,7 +9,7 @@ const Reports = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Report</h4>
+            <h4 className="heading">Report</h4>
             Welcome to your reporting page. Here you will find a selection of
             reports that you can view and download into excel to help you work
             with your suppliers as well as plan and budget for every one of your

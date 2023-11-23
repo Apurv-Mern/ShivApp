@@ -168,7 +168,7 @@ const Gift = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Gift Received</h4>
+            <h4 className="heading">Gift Received</h4>
             Log all the gifts received from your family and friends in this
             section
             <br></br> <br></br>

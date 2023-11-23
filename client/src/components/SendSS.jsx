@@ -448,12 +448,18 @@ const SendSS = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Template Preview </h4>
+            <h4 className="heading"> Template Preview </h4>
             Click on the Edit button to fill in your details and add any text
             you wish. You can also make amendments such as font size, colour,
             bold, italic, etc. Once amended click Preview to also have the
             choice to move the text on the invitation before sending the e-card
             to your guests.
+            <br></br> <br></br>
+            Simply select the package that best suits your needs and move to the
+            next section to plan your events.
+            <br></br> <br></br>
+            If you are undecided at this stage, simply click buy later to move
+            on to the next step in setting up your invitations and dashboard.
             <br></br> <br></br>
             <div className="refer">
               {" "}
@@ -496,7 +502,7 @@ const SendSS = () => {
               </svg>{" "}
               Back
             </Link>
-            <span data-tooltip="If Edit Invitation is selected, you will be taken back to select a new invitation template ">
+            <span data-tooltip="Please note you must send ALL your guest invitations at the same time.">
               <img className="tool-tip" src={tool} alt="tool" />
             </span>
             <div className="crl"></div>

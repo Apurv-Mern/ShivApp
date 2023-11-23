@@ -296,7 +296,7 @@ const Contacts = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Contacts</h4>
+            <h4 className="heading">Contacts</h4>
             All your guests and their contact details will appear here.
             <br></br> <br></br>
             Guests should be placed into groups to determine what invitation
@@ -309,9 +309,18 @@ const Contacts = () => {
             Ensure you set up your groups first to make it easier when adding
             your contacts.
             <br></br> <br></br>
+            <div className="contact-refer">
+              Please note you must send ALL your guest invitations at the same
+              time.
+            </div>
+            <br></br>
+            <div className="refer">
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
           </h6>
         </div>
-
         <div className="add-eventapp-btn ">
           <ExportToExcelForTemplate fileName={fileName} apiData={apiData} />
 

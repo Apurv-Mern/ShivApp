@@ -143,8 +143,27 @@ const MyInv2 = () => {
     <div>
       <Navbar />
       <div className="crl"></div>
-      <div className="container mid-title">
-        <div className="mid-title-left">My Invitations </div>
+      <div className="container card-b-1">
+        <div className="row">
+          <h6 className="col-md-12 welcome-text">
+            <h4 className="heading">Reminder</h4>
+            All your guests and their contact details will appear here.
+            <br></br> <br></br>
+            Now that you have sent out all your guest invitations you will be
+            able to see if they have submitted their RSVP here and send any
+            reminders from here.
+            <br></br> <br></br>
+            Please note currently you may only send out one reminder which will
+            go out to all your guests. We are currently improving our reminders
+            feature which will be available early next year.
+            <br></br> <br></br>
+            <div className="refer">
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
+          </h6>
+        </div>
         <div className="crl"></div>
       </div>
       <div className="crl"></div>

@@ -100,7 +100,7 @@ const FoodAndDrinkList = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4>Food and Drinks </h4>
+            <h4 className="heading">Food and Drinks </h4>
             Select the food and drink options you wish to share with your guests
             in your RSVP to help you plan and budget for all your events. Please
             note only the options selected will be available to view in your

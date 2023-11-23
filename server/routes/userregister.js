@@ -51,10 +51,12 @@ router.post("/signup", async (req, res) => {
     "SELECT number FROM users WHERE number = $1",
     [number]
   );
-  const ndata= valid_number.rows[0]
+  const ndata = valid_number.rows[0];
 
-  if (valid_number.rowCount>0) {
-    return res.status(400).end({Msg:"Mobile number already exists.",data:ndata});
+  if (valid_number.rowCount > 0) {
+    return res
+      .status(400)
+      .end({ Msg: "Mobile number already exists.", data: ndata });
   }
   try {
     const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {

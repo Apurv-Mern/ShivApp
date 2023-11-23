@@ -94,7 +94,7 @@ const Events = () => {
         <div className="container card-b-1">
           <div className="row">
             <h6 className="col-md-12 welcome-text">
-              <h4 className="mid-title-left">Event </h4>
+              <h4 className="mid-title-left heading">Event </h4>
               Your wedding events are broken down into Events and Ceremonies.
               <br></br> <br></br>
               We have broken down each element of your wedding invitations and

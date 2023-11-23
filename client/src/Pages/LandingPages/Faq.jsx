@@ -174,7 +174,7 @@ const Faq = () => {
                   through your account and how to use all our features.
                 </p>
                 <div class="faq-title">
-                  Can I keep a copy of my digital invitations as a keepsake?
+                  CAN I KEEP A COPY OF MY DIGITAL INVITATIONS AS A KEEPSAKE?
                 </div>
                 <p>
                   Yes, SHIV let’s you send a preview test to your account in
@@ -215,7 +215,7 @@ const Faq = () => {
                   <br></br>
                   SHIV will be adding new event features soon.
                 </p>
-                <div class="faq-title"> How much will a new event cost me?</div>
+                <div class="faq-title">HOW MUCH WILL A NEW EVENT COST ME?</div>
                 <p>
                   SHIV is in the process of putting new packages together for
                   our customers. If you require an urgent response, please email
