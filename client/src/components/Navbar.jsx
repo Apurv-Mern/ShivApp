@@ -14,10 +14,11 @@ import { toast } from "react-toastify";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [photo, setPhoto] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [photo, setPhoto] = useState("");
   const [isPopupOpen, setPopupOpen] = useState(false);
   const userName = localStorage.getItem("userName");
+  const profile = useSelector((state) => state.auth.profile);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -50,6 +51,10 @@ const Navbar = () => {
     setPopupOpen(false);
   };
 
+  useEffect(() => {
+    dispatch(getUploadProfiles());
+  }, []);
+
   return (
     <header className="header">
       <div className="container">
@@ -67,7 +72,7 @@ const Navbar = () => {
             <div className="right-user">
               <div className="right-user-3" onClick={togglePopup}>
                 <img
-                  src={photo}
+                  src={profile.photoURL || photo}
                   className="rounded-circle profile-img"
                   height="30px"
                   alt="Black and White Portrait of a Man"
