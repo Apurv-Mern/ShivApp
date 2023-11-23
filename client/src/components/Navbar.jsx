@@ -14,10 +14,10 @@ import { toast } from "react-toastify";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [photo, setPhoto] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const userName = localStorage.getItem("userName");
-  const profile = useSelector((state) => state.auth.profile);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -39,12 +39,9 @@ const Navbar = () => {
       const formData = new FormData();
       formData.append("profilePhoto", new Blob([selectedFile]));
       try {
-        await dispatch(uploadProfilePicture(formData));
+        const res = await dispatch(uploadProfilePicture(formData));
+        setPhoto(res?.payload?.photoURL);
         toast.success("Image Upload successfully");
-        // Reload the image after a delay of 500 milliseconds
-        setTimeout(() => {
-          dispatch(getUploadProfiles());
-        }, 1000);
       } catch (error) {
         toast.error("Failed to upload image");
         console.error("Error uploading image:", error);
@@ -52,10 +49,6 @@ const Navbar = () => {
     }
     setPopupOpen(false);
   };
-
-  useEffect(() => {
-    dispatch(getUploadProfiles());
-  }, []);
 
   return (
     <header className="header">
@@ -74,7 +67,7 @@ const Navbar = () => {
             <div className="right-user">
               <div className="right-user-3" onClick={togglePopup}>
                 <img
-                  src={profile.photoURL}
+                  src={photo}
                   className="rounded-circle profile-img"
                   height="30px"
                   alt="Black and White Portrait of a Man"
