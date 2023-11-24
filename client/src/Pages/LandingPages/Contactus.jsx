@@ -43,14 +43,14 @@ const Contactus = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="Contact Us for booking in demos or any customer queries via email, phone, call or WhatsApp. We are available Monday to Sunday."
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/contactus"
         ></link>
 
-        <title>Contact us</title>
+        <title>Contact Us and book a Demo | SHIV</title>
       </Helmet>
       <div className="front-page-container">
         <Navbar />

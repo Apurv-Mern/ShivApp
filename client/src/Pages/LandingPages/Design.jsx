@@ -60,13 +60,13 @@ const Design = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="Use our wedding designs or up-load your own for all your wedding ceremonies and collect your guest RSVP in your personal dashboard."
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/invitations%20templates"
         ></link>
-        <title>INVITATION DESIGNS 1</title>
+        <title>Digital Asian wedding e-invite designs | SHIV</title>
       </Helmet>
 
       <div className="front-page-container">

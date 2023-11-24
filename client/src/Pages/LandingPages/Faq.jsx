@@ -10,13 +10,13 @@ const Faq = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="Frequently Asked Questions for your Asian Wedding specialist SHIV dashboard, e-invitations, and RSVP."
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/faq"
         ></link>
-        <title> FAQ’S</title>
+        <title>Frequently Asked Questions SHIV dashboard | SHIV</title>
       </Helmet>
       <div className="front-page-container">
         <Navbar />

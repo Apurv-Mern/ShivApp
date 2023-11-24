@@ -11,13 +11,13 @@ const PrivacyPolicy = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="We are so pleased you are visiting our website and platform for your wedding planning. Please review this page for our Privacy Policy"
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/privacy%20policy"
         ></link>
-        <title>PRIVACY POLICY</title>
+        <title>Privacy Policy | SHIV</title>
       </Helmet>
 
       <div className="front-page-container">

@@ -25,13 +25,15 @@ const Home = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="SHIV - your personal dashboard for Guest RSVP’s, planning and budgeting for all wedding ceremonies. Asian wedding specialists in all ceremony invitations and RSVP. "
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app"
         ></link>
-        <title>Indian, Muslim, Punjabi Wedding Events & Planning</title>
+        <title>
+          Asian Wedding Specialists for Digital Wedding Planning | SHIV
+        </title>
       </Helmet>
 
       <div className="front-page-container">

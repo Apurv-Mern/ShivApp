@@ -11,6 +11,7 @@ import GoogleLogins from "../components/GoogleLogins";
 
 import "../scss/Login.css";
 import FacebookLogin from "../components/FacebookLogin";
+import { Helmet } from "react-helmet-async";
 
 const initialValues = {
   email: "",
@@ -84,159 +85,175 @@ const Login = () => {
   };
 
   return (
-    <div className="App login-bg">
-      <section className="login-section overflow-hidden">
-        <div className="row g-0 align-items-center justify-content-center">
-          <div className="col-lg-7 position-relative">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-8 col-sm-10">
-                <div className="login-box text-center">
-                  <div className="login-content mb-3">
-                    <div className="shivLogo">
-                      <a className="home-head" href="/shiv_app">
-                        {" "}
-                        <img
-                          className="nav-con-1"
-                          src={logoShiv}
-                          alt="Dashboard"
-                        />
-                      </a>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="Login to your SHIV dashboard account and send e-invitations for all your wedding events. View your RSVP details in your dashboard to start planning your wedding ceremonies."
+        />
+        <link
+          rel="canonical"
+          href="https://shivappdev.24livehost.com/shiv_app/login"
+        ></link>
+        <title>
+          SHIV Platform Login Page – Asian Wedding Specialist | SHIV
+        </title>
+      </Helmet>
+      <div className="App login-bg">
+        <section className="login-section overflow-hidden">
+          <div className="row g-0 align-items-center justify-content-center">
+            <div className="col-lg-7 position-relative">
+              <div className="row justify-content-center align-items-center">
+                <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-8 col-sm-10">
+                  <div className="login-box text-center">
+                    <div className="login-content mb-3">
+                      <div className="shivLogo">
+                        <a className="home-head" href="/shiv_app">
+                          {" "}
+                          <img
+                            className="nav-con-1"
+                            src={logoShiv}
+                            alt="Dashboard"
+                          />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  {/* <FacebookLogin /> */}
-                  <GoogleLogins />
+                    {/* <FacebookLogin /> */}
+                    <GoogleLogins />
 
-                  <div className="or my-3">
-                    <p>Please enter your details to sign in.</p>
-                  </div>
+                    <div className="or my-3">
+                      <p>Please enter your details to sign in.</p>
+                    </div>
 
-                  <div className="main-form login-m-1">
-                    <form onSubmit={handleSubmit}>
-                      {activeOtp ? (
-                        <div className="row">
-                          <div className="col-12 mb-3">
-                            <label>Phone No</label>
-                            <input
-                              type="number"
-                              placeholder="Enter Your Number"
-                              value={number}
-                              onChange={(e) => setNumber(e.target.value)}
-                            />
-                          </div>
-                          <div className="col-12 mb-3">
-                            <label>OTP</label>
-                            <input
-                              type="number"
-                              placeholder="Enter your Otp"
-                              value={otp}
-                              onChange={(e) => setotp(e.target.value)}
-                            />
-                          </div>
+                    <div className="main-form login-m-1">
+                      <form onSubmit={handleSubmit}>
+                        {activeOtp ? (
+                          <div className="row">
+                            <div className="col-12 mb-3">
+                              <label>Phone No</label>
+                              <input
+                                type="number"
+                                placeholder="Enter Your Number"
+                                value={number}
+                                onChange={(e) => setNumber(e.target.value)}
+                              />
+                            </div>
+                            <div className="col-12 mb-3">
+                              <label>OTP</label>
+                              <input
+                                type="number"
+                                placeholder="Enter your Otp"
+                                value={otp}
+                                onChange={(e) => setotp(e.target.value)}
+                              />
+                            </div>
 
-                          <div className="col-12 mb-3">
-                            <button
-                              className="btn text-uppercase"
-                              onClick={handleOtp}
-                            >
-                              Submit
-                            </button>
-                          </div>
-                          <div className="col-12">
-                            <p className="m-0">
-                              Do not have an account?
-                              <Link to="/shiv_app/signup"> Sign Up</Link>
-                            </p>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="row">
-                          <div className="col-12 mb-3">
-                            <label htmlFor="email">Email</label>
-                            <input
-                              id="email"
-                              name="email"
-                              type="text"
-                              placeholder="@gmail.com"
-                              value={values.email}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                            />
-                            {errors.email && touched.email ? (
-                              <p>{errors.email}</p>
-                            ) : null}
-                          </div>
-                          <div className="col-12 mb-3">
-                            <label htmlFor="password">Password</label>
-                            <input
-                              id="password"
-                              name="password"
-                              type="password"
-                              placeholder="Password"
-                              // value={values.password}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              autoComplete="off"
-                            />
-                            {errors.password && touched.password ? (
-                              <p>{errors.password}</p>
-                            ) : null}
-                          </div>
-                          <div className="col-12 error-1"> {error} </div>
-                          <div className="col-12 mb-3">
-                            <button
-                              type="submit"
-                              className="btn text-uppercase"
-                            >
-                              Sign in
-                            </button>
-                          </div>
-                          <div className="col-12">
-                            <p className="m-0">
-                              Do not have an account?
-                              <Link to="/shiv_app/signup"> Sign Up</Link>
-                            </p>
-                            <Link to={"/shiv_app/forgotPassword"}>
-                              <button className="forgot-btn">
-                                Forgot password
+                            <div className="col-12 mb-3">
+                              <button
+                                className="btn text-uppercase"
+                                onClick={handleOtp}
+                              >
+                                Submit
                               </button>
-                            </Link>
+                            </div>
+                            <div className="col-12">
+                              <p className="m-0">
+                                Do not have an account?
+                                <Link to="/shiv_app/signup"> Sign Up</Link>
+                              </p>
+                            </div>
                           </div>
+                        ) : (
+                          <div className="row">
+                            <div className="col-12 mb-3">
+                              <label htmlFor="email">Email</label>
+                              <input
+                                id="email"
+                                name="email"
+                                type="text"
+                                placeholder="@gmail.com"
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                              />
+                              {errors.email && touched.email ? (
+                                <p>{errors.email}</p>
+                              ) : null}
+                            </div>
+                            <div className="col-12 mb-3">
+                              <label htmlFor="password">Password</label>
+                              <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                // value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                autoComplete="off"
+                              />
+                              {errors.password && touched.password ? (
+                                <p>{errors.password}</p>
+                              ) : null}
+                            </div>
+                            <div className="col-12 error-1"> {error} </div>
+                            <div className="col-12 mb-3">
+                              <button
+                                type="submit"
+                                className="btn text-uppercase"
+                              >
+                                Sign in
+                              </button>
+                            </div>
+                            <div className="col-12">
+                              <p className="m-0">
+                                Do not have an account?
+                                <Link to="/shiv_app/signup"> Sign Up</Link>
+                              </p>
+                              <Link to={"/shiv_app/forgotPassword"}>
+                                <button className="forgot-btn">
+                                  Forgot password
+                                </button>
+                              </Link>
+                            </div>
+                          </div>
+                        )}
+                      </form>
+                    </div>
+                    {activeOtp ? (
+                      <>
+                        <div className="or my-4">
+                          <p>or do it via Email</p>
                         </div>
-                      )}
-                    </form>
+                        <button
+                          className="btn text-uppercase btn-sec"
+                          onClick={handleActiveOtp}
+                        >
+                          Login with Email
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="or my-2">
+                          <p>or do it via OTP</p>
+                        </div>
+                        <button
+                          className="btn text-uppercase btn-sec btn-login-2"
+                          onClick={handleActiveOtp}
+                        >
+                          Login with OTP
+                        </button>
+                      </>
+                    )}
                   </div>
-                  {activeOtp ? (
-                    <>
-                      <div className="or my-4">
-                        <p>or do it via Email</p>
-                      </div>
-                      <button
-                        className="btn text-uppercase btn-sec"
-                        onClick={handleActiveOtp}
-                      >
-                        Login with Email
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <div className="or my-2">
-                        <p>or do it via OTP</p>
-                      </div>
-                      <button
-                        className="btn text-uppercase btn-sec btn-login-2"
-                        onClick={handleActiveOtp}
-                      >
-                        Login with OTP
-                      </button>
-                    </>
-                  )}
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

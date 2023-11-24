@@ -20,13 +20,15 @@ const Packages = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="Local or destination weddings ask guests up to 30 questions and view all details in your personal dashboard to help plan and budget for all your wedding events."
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/packages"
         ></link>
-        <title>PACKAGES</title>
+        <title>
+          SHIV Packages specialise in Asian Wedding e-invites and RSVPs
+        </title>
       </Helmet>
       <div className="front-page-container">
         <Navbar />

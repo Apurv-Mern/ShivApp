@@ -22,13 +22,13 @@ const About = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="SHIV’s platform offers wedding events and ceremony e-invitations with a personal RSVP dashboard. Asian wedding specialists in all ceremony invitations and RSVP."
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/aboutus"
         ></link>
-        <title>About us</title>
+        <title>Digital Wedding Platform for Invitations and RSVP | SHIV</title>
       </Helmet>
       <div className="front-page-container">
         <Navbar />

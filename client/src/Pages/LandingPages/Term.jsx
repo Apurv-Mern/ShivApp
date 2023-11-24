@@ -10,13 +10,13 @@ const Term = () => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="wedding cards, wedding dresses, photography, wedding invitations, engagement, bridesmaids, wedding cakes, bride, grooming, wedding planner, wedding anniversary, wedding songs, wedding shoes, bridal dresses, wedding venues, wedding photography, reception, wedding hairstyles, wedding gowns, cheap wedding dresses, beach wedding dresses, wedding cards, wedding vows, wedding gifts"
+          content="We are so please you are using our website. Please ensure you read our Terms of Use. Here is an outline of all our terms for using our website and platform."
         />
         <link
           rel="canonical"
           href="https://shivappdev.24livehost.com/shiv_app/term&condition"
         ></link>
-        <title>TERMS AND CONDITIONS</title>
+        <title>Terms of use | SHIV</title>
       </Helmet>
       <div className="front-page-container">
         <Navbar />
