@@ -254,7 +254,7 @@ const MyInv2 = () => {
                 <button className="reminder btn" onClick={handelModel}>
                   Reminder
                 </button>
-                <button className="reminder btn send-btn-2">Send More</button>
+                {/* <button className="reminder btn send-btn-2">Send More</button> */}
               </div>
             </div>
 
