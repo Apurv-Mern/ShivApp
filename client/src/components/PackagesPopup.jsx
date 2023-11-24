@@ -33,7 +33,7 @@ const PackagesPopup = ({ popupOpen }) => {
 
   const handlePayment = (id) => {
     // Open the child window with your payment URL
-    window.location.href = `https://shivappdev.24livehost.com:3004/payment/createpaymentlink/user/${userId}/${id}/event/questions`;
+    window.location.href = `https://shivappdev.24livehost.com:3004/api/payment/createpaymentlink/user/${userId}/${id}/event/questions`;
   };
 
   return (
