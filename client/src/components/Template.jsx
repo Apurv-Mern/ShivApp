@@ -72,12 +72,10 @@ const Template = () => {
     { title: "Golden Sky", image: img11 },
     { title: "Green Garland OM", image: GreenGarlandOM },
     { title: "Green Sunset", image: img12 },
-    { title: "Green Garland OM", image: GreenGarlandOM },
     { title: "Horizon", image: img13 },
     { title: "Indo Italian", image: Indo },
 
     { title: "Lemon Trees", image: Lemon },
-    { title: "Lilac", image: img14 },
     { title: "Love", image: img15 },
     { title: "Lilac", image: img29 },
     { title: "Mr & Mrs", image: img16 },
@@ -155,10 +153,6 @@ const Template = () => {
             Select the design you like or simple upload your own in size 1920 x
             1200. Ensure if you are uploading your own design, you leave enough
             readable space in the middle for your invitation copy.
-            <br></br> <br></br>
-            Once you have selected your design you will be taken to your contact
-            set up page and RSVP set up page, after which you will be able to
-            edit your design.
             <br></br> <br></br>
           </h6>
         </div>

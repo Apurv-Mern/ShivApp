@@ -319,6 +319,7 @@ const Contacts = () => {
               Dashboard to ensure that you set up your Ceremonies and guest
               contacts correctly to send out your invitations.
             </div>
+            <br></br>
           </h6>
         </div>
         <div className="add-eventapp-btn ">

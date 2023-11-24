@@ -606,6 +606,10 @@ body {
 .checkbox-main input:checked ~ .checkmark {
   background-color: #fff;
 }
+.buy-now-4 {
+  width: 100%;
+  float: left;
+}
 
 .checkmark:after {
   content: "";
@@ -2739,6 +2743,10 @@ header .top-menu-row .col-sm-12 {
 .e-cart-block2 {
   text-align: center;
   font-size: 18px;
+}
+
+.test-m1.test-m3 {
+  float: left !important;
 }
 
 body #signInDiv iframe {

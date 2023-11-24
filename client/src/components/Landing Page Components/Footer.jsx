@@ -2,10 +2,10 @@ import React from "react";
 
 import img1 from "../../assets/images/shiv-logo-footer.png";
 
-import img2 from "../../assets/facebook_1.png";
-import img3 from "../../assets/insta_1.png";
-import img4 from "../../assets/printest_1.png";
-import tiktok from "../../assets/tiktok_1.png";
+import img2 from "../../assets/facebook_w.png";
+import img3 from "../../assets/insta_w.png";
+import img4 from "../../assets/printest_w.png";
+import tiktok from "../../assets/tiktok_w.png";
 
 import img5 from "../../assets/images/shiv-logo-footer.png";
 import { Link } from "react-router-dom";

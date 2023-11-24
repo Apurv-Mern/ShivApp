@@ -182,7 +182,7 @@ const AddGroupInCeremonies = () => {
       <div className="container card-b-1">
         <div className="row">
           <h6 className="col-md-12 welcome-text">
-            <h4 className="heading">Add Groups In A Ceremonies</h4>
+            <h4 className="heading">CONTACT GROUPS AND CEREMONIES </h4>
             Select the contact groups you wish to invite to each Ceremony.
             Please ensure you select the correct groups for each Ceremony.
             <br></br> <br></br>

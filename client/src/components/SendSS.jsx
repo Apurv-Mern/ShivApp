@@ -451,21 +451,14 @@ const SendSS = () => {
             <h4 className="heading"> Template Preview </h4>
             Click on the Edit button to fill in your details and add any text
             you wish. You can also make amendments such as font size, colour,
-            bold, italic, etc. Once amended click Preview to also have the
-            choice to move the text on the invitation before sending the e-card
-            to your guests.
+            bold, italic, etc.
             <br></br> <br></br>
-            Simply select the package that best suits your needs and move to the
-            next section to plan your events.
-            <br></br> <br></br>
-            If you are undecided at this stage, simply click buy later to move
-            on to the next step in setting up your invitations and dashboard.
+            Once amended click Preview to also have the choice to move the text
+            on the invitation before sending the e-card to your guests.
             <br></br> <br></br>
             <div className="refer">
-              {" "}
               Please refer to our downloadable Welcome Pack and Guide in the
-              Dashboard to ensure that you set up your Ceremonies and guest
-              contacts correctly to send out your invitations.
+              Dashboard for more assistance.
             </div>
             <br></br>
           </h6>
@@ -515,6 +508,13 @@ const SendSS = () => {
             {/* Render tabs for each group name */}
             {eventName === "Wedding" && (
               <div className="tabs tabsprv">
+                <span
+                  className="test-m1 test-m3"
+                  data-tooltip="To preview the Invitation Type for your group simply click on the Contact Group name and you will see the Invitation Type they will receive. "
+                >
+                  <img className="tool-tip" src={tool} alt="tool" />
+                </span>
+
                 {newSelectedGroupNames.map((groupName) => (
                   <>
                     <button

@@ -86,18 +86,21 @@ const InvitationType = () => {
             Here you can select what type of invite your groups are sent. If you
             are only inviting a guest and their partner, select You and Your
             partner. We will then generate an invite specifically inviting your
-            guest and their partner only.
+            guest and their partner.
             <br></br> <br></br>
             The same will apply if you select you. Only the individual guest
-            will be invited to your event. You and your family, will allow you
-            to invite an entire family to your events.
+            will be invited to your Ceremony. Invitation type You and your
+            family, will allow you to invite an entire family to your Ceremony.
             <br></br> <br></br>
-            Please ensure you group your contacts accordingly for your
-            invitations, review our tips in contacts for help with this or
-            WhatsApp us. <br></br> <br></br>
-            Now that you have selected your invitation types you may review the
+            Once you have selected your Invitation Types you may review the
             invite before sending out to your guests ensuring you are happy with
             it. Please ensure you check all details.
+            <br></br> <br></br>
+            <div className="refer">
+              Please refer to our downloadable Welcome Pack and Guide in the
+              Dashboard to ensure that you set up your Ceremonies and guest
+              contacts correctly to send out your invitations.
+            </div>
             <br></br> <br></br>
           </h6>
         </div>
