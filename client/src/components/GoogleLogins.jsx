@@ -42,7 +42,6 @@ const GoogleLogins = () => {
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleResponse,
     });
-
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
       theme: "outline",
       size: "large",

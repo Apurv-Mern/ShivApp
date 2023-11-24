@@ -82,6 +82,7 @@ const Login = () => {
   const handleActiveOtp = () => {
     setActiveOtp(!activeOtp);
   };
+
   return (
     <div className="App login-bg">
       <section className="login-section overflow-hidden">
@@ -104,6 +105,7 @@ const Login = () => {
                   </div>
                   {/* <FacebookLogin /> */}
                   <GoogleLogins />
+
                   <div className="or my-3">
                     <p>Please enter your details to sign in.</p>
                   </div>
