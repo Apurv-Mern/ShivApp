@@ -70,7 +70,7 @@ const Packages = () => {
                           <li>Personal RSVP dashboard</li>
                           <li>Send RSVP reminders</li>
                           <li>Standard RSVP questions</li>
-                          <li>Free wedding website coming soon</li>
+                          {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
                         <span class="bottom-f-text">
@@ -153,7 +153,7 @@ const Packages = () => {
                           <li>Personal RSVP dashboard</li>
                           <li>Send RSVP reminders</li>
                           <li>Ask guests their drinks preference </li>
-                          <li>Free wedding website coming soon</li>
+                          {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
                         <span class="bottom-f-text">
@@ -250,7 +250,7 @@ const Packages = () => {
                             application
                           </li>
                           <li>Total of 15 RSVP questions</li>
-                          <li>Free wedding website coming soon</li>
+                          {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
                         <span class="bottom-f-text">
@@ -363,7 +363,7 @@ const Packages = () => {
                           <li> Delete any questions</li>
                           <li> Total of 20 RSVP questions</li>
                           <li>Log your gifts received from all your events</li>
-                          <li> Free wedding website coming soon</li>
+                          {/* <li> Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
                         <span class="bottom-f-text">
@@ -509,7 +509,7 @@ const Packages = () => {
                           <li>Total of 30 questions</li>
                           <li>Log your gifts received from all events</li>
                           <li>Suitable for destination weddings </li>
-                          <li>Free wedding website coming soon</li>
+                          {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
                         <span class="bottom-f-text">

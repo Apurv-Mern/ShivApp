@@ -71,34 +71,35 @@ app.get("/", authenticateToken, (req, res) => {
 app.get("/post", authenticateToken, (req, res, next) => {
   res.send("Hello world!");
 });
+
 //------------post route end -------------
 
-app.use("/user", userRouter);
-app.use("/guest", guestRouter);
-app.use("/groups", groupRouter);
-app.use("/functions", userFunctionRoutes);
-app.use("/events", eventRoutes);
-app.use("/foods", foodsRoutes);
-app.use("/drinks", drinksRoutes);
-app.use("/userevents", userEventsRouter);
-app.use("/userfoods", userFoodsRouter);
-app.use("/contact", contactUsRouter);
-app.use("/ceremony", ceremonyRouter);
-app.use("/marriagedetails", marriageDetailsRoutes);
-app.use("/coordinates", coordinateRoutes);
-app.use("/pdf", pdfRoutes);
-app.use("/payment", stripeRouter);
-app.use("/dashboard", dashboardRouter);
-app.use("/rsvp", rsvpRoutes);
-app.use("/", authRouter);
-app.use("/cronjob", cornJobRouter);
-app.use("/fb", facebook);
-app.use("/media", mediaRouter);
-app.use("/admin", adminRoutes);
-app.use("/usergift", usergiftRouter);
-app.use("/weddinglist", weddinglistRouter);
-app.use("/auth", authRoute);
-app.use("/profile", profileRouter);
+app.use("/api/user", userRouter);
+app.use("/api/guest", guestRouter);
+app.use("/api/groups", groupRouter);
+app.use("/api/functions", userFunctionRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/foods", foodsRoutes);
+app.use("/api/drinks", drinksRoutes);
+app.use("/api/userevents", userEventsRouter);
+app.use("/api/userfoods", userFoodsRouter);
+app.use("/api/contact", contactUsRouter);
+app.use("/api/ceremony", ceremonyRouter);
+app.use("/api/marriagedetails", marriageDetailsRoutes);
+app.use("/api/coordinates", coordinateRoutes);
+app.use("/api/pdf", pdfRoutes);
+app.use("/api/payment", stripeRouter);
+app.use("/api/dashboard", dashboardRouter);
+app.use("/api/rsvp", rsvpRoutes);
+app.use("/api/", authRouter);
+app.use("/api/cronjob", cornJobRouter);
+app.use("/api/fb", facebook);
+app.use("/api/media", mediaRouter);
+app.use("/api/admin", adminRoutes);
+app.use("/api/usergift", usergiftRouter);
+app.use("/api/weddinglist", weddinglistRouter);
+app.use("/api/auth", authRoute);
+app.use("/api/profile", profileRouter);
 
 const httpsOptions = {
   key: fs.readFileSync("./key.pem"),

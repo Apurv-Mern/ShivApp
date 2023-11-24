@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const serverURl = "https://shivappdev.24livehost.com:3004";
+const serverURl = "https://shivappdev.24livehost.com:3004/api";
 // const serverURl = "http://localhost:3001";
 
 // const userId = JSON.parse(localStorage.getItem("user"));

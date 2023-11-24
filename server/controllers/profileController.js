@@ -10,10 +10,10 @@ const pool = require("../database/connection").pool;
 const router = express.Router();
 
 const s3Client = new S3Client({
-  region: "ap-south-1",
+  region: process.env.AWS_S3_REGION,
   credentials: {
-    accessKeyId: "AKIAV6RD45SCZLBFFXKV",
-    secretAccessKey: "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",
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
   },
 });
 
@@ -39,8 +39,8 @@ router.post(
       if (result.rows[0]?.profile_photo) {
         await s3Client.send(
           new DeleteObjectCommand({
-            Bucket: "shivapp",
-            Key: "user_profile/"+result.rows[0].profile_photo,
+            Bucket: "shivappww",
+            Key: "user_profile/" + result.rows[0].profile_photo,
           })
         );
       }
@@ -48,7 +48,7 @@ router.post(
       // Upload the new profile photo to S3
       const photoKey = `${userId}-${req.file.originalname}`;
       const uploadParams = {
-        Bucket: "shivapp",
+        Bucket: "shivappww",
         Key: "user_profile/" + photoKey,
         Body: req.file.buffer,
       };
@@ -56,13 +56,13 @@ router.post(
       await s3Client.send(new PutObjectCommand(uploadParams));
 
       // Update the database with the S3 link
-      await pool.query(
-        "UPDATE users SET profile_photo = $1 WHERE id = $2",
-        [photoKey, userId]
-      );
+      await pool.query("UPDATE users SET profile_photo = $1 WHERE id = $2", [
+        photoKey,
+        userId,
+      ]);
 
       // Respond with the S3 link for the uploaded photo
-      const photoURL = `https://shivapp.s3.amazonaws.com/user_profile/${photoKey}`;
+      const photoURL = `https://shivappww.s3.amazonaws.com/user_profile/${photoKey}`;
       res.status(200).json({ photoURL });
     } catch (error) {
       console.error("Error uploading profile photo:", error);
@@ -83,7 +83,7 @@ router.get("/profile-link/:userId", async (req, res) => {
 
     // If a profile photo link exists, respond with it
     if (result.rows[0]?.profile_photo) {
-      const photoURL = `https://shivapp.s3.amazonaws.com/user_profile/${result.rows[0].profile_photo}`;
+      const photoURL = `https://shivappww.s3.amazonaws.com/user_profile/${result.rows[0].profile_photo}`;
       res.status(200).json({ photoURL });
     } else {
       res.status(404).json({ error: "Profile photo not found" });
