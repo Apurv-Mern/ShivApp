@@ -46,7 +46,7 @@ const ForgotPass = () => {
           email: values.email,
         };
         handleForgotPassword(data);
-        // navigate("/shiv_app/user/resetPassword");
+        // navigate("/user/resetPassword");
       },
     });
 
@@ -59,7 +59,13 @@ const ForgotPass = () => {
               <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-8 col-sm-10">
                 <div className="login-box text-center">
                   <div className="login-content mb-4">
-                  <div className="shivLogo"><img className="nav-con-1" src={logoShiv} alt="Dashboard" /></div> 
+                    <div className="shivLogo">
+                      <img
+                        className="nav-con-1"
+                        src={logoShiv}
+                        alt="Dashboard"
+                      />
+                    </div>
                     <p>Please enter your details to sign in.</p>
                   </div>
 

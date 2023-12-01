@@ -47,7 +47,7 @@ const Contactus = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/contactus"
+          href="https://shivappdev.24livehost.com/contactus"
         ></link>
 
         <title>Contact Us and book a Demo | SHIV</title>
@@ -72,7 +72,7 @@ const Contactus = () => {
                 <h3 className="new-title">CONTACT US</h3>
               </div>
 
-              <div className="col-md-12 mb-md-0 mb-5 contact-content">
+              <div className="col-md-6 mb-md-0 mb-5 contact-content">
                 <form
                   id="contact-form"
                   name="contact-form"

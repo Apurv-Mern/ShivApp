@@ -63,7 +63,7 @@ const Packages = () => {
 
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn" to={"/shiv_app/myEvents"}>
+          <Link className="flot-left-btn" to={"/myEvents"}>
             <svg
               width={20}
               xmlns="http://www.w3.org/2000/svg"
@@ -100,11 +100,7 @@ const Packages = () => {
                       Buy Now
                     </button>
                     <Link
-                      to={
-                        eventName === "Wedding"
-                          ? "/shiv_app/eventList"
-                          : "/shiv_app/template"
-                      }
+                      to={eventName === "Wedding" ? "/eventList" : "/template"}
                       className="btn btn-2 bg-dark text-white fs-6 "
                     >
                       Buy Later

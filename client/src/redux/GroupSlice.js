@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addGroup, getGroupByUserId } from "./Api";
+import { addGroup, deleteGroupByUserId, getGroupByUserId } from "./Api";
 
 // ? Initial State
 export const initialState = {
@@ -24,6 +24,13 @@ export const addAGroups = createAsyncThunk(
     return response.data;
   }
 );
+export const deleteAGroups = createAsyncThunk(
+  "user/deleteAGroups",
+  async (groupId) => {
+    const response = await deleteGroupByUserId(groupId);
+    return response.data;
+  }
+);
 
 const groupSlice = createSlice({
   name: "groups",
@@ -38,9 +45,6 @@ const groupSlice = createSlice({
         state.error = null;
       })
       .addCase(getGroupsByUserId.fulfilled, (state, action) => {
-        const data = action.payload.map((item) => item.groupname);
-        state.groups = data;
-
         state.groupWithId = action?.payload?.map((item) => ({
           id: item.id,
           groupname: item.groupname,

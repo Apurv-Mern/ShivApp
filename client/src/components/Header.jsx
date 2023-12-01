@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/authSlice";
@@ -17,21 +17,27 @@ import gift from "../assets/gift-menu.png";
 import des9 from "../assets/purchase.png";
 import des10 from "../assets/rsvp.png";
 import Coming from "../assets/coming.png";
+import { getMarriageDetailss } from "../redux/marriageSlice";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const marriageDetails = useSelector(
+    (state) => state.marriage.marriageDetails
+  );
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/shiv_app");
+    navigate("/");
     window.location.reload();
   };
 
-  const handleRedirect = () => {
-    // * FOR OPEN IN NEW TAB
-    window.open("https://shivappdev.24livehost.com/shiv_app/wedding_website");
-  };
+  const weds = "weds";
+  const site = "site";
+
+  useEffect(() => {
+    dispatch(getMarriageDetailss());
+  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg top-menu top-menu-admin">
@@ -57,22 +63,11 @@ const Sidebar = () => {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav ml-auto text-center icon-nav">
-            {/* <li className="nav-item">
-              <NavLink
-                activeClassName="nav-link active"
-                className="nav-link"
-                to={"/shiv_app/admin"}
-              >
-                <img className="nav-con-1" src={admin} alt="Dashboard" />
-                <div className="link-text">Admin</div>
-              </NavLink>
-            </li> */}
-
             <li className="nav-item">
               <NavLink
                 activeClassName="nav-link active"
                 className="nav-link"
-                to={"/shiv_app/dashboard"}
+                to={"/dashboard"}
               >
                 <img className="nav-con-1" src={des1} alt="Dashboard" />
                 <div className="link-text">Dashboard</div>
@@ -82,7 +77,7 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="nav-link active"
                 className="nav-link"
-                to={"/shiv_app/myEvents"}
+                to={"/myEvents"}
               >
                 <img className="nav-con-1" src={des5} alt="Dashboard" />
                 <div className="link-text">Events</div>
@@ -92,7 +87,7 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="nav-link active"
                 className="nav-link"
-                to={"/shiv_app/contacts"}
+                to={"/contacts"}
               >
                 <img className="nav-con-1" src={des2} alt="Dashboard" />
                 <div className="link-text">Contacts</div>
@@ -102,7 +97,7 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="nav-link active"
                 className="nav-link"
-                to={"/shiv_app/add/group/ceremonies"}
+                to={"/add/group/ceremonies"}
               >
                 <img className="nav-con-1" src={des4} alt="Dashboard" />
                 <div className="link-text">Invitations</div>
@@ -113,43 +108,43 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="nav-link active"
                 className="nav-link"
-                to={"/shiv_app/guest/template"}
+                to={"/guests/template"}
               >
                 <img className="nav-con-1" src={des3} alt="Dashboard" />
                 <div className="link-text">Design</div>
               </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" onClick={handleRedirect}>
+              <Link
+                className="nav-link"
+                to={`/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`}
+                target="_blank"
+              >
                 <img className="nav-con-1" src={Coming} alt="Dashboard" />
                 <div className="link-text">Wedding Website</div>
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={"/shiv_app/guest/reports"}>
+              <Link className="nav-link" to={"/guest/reports"}>
                 <img className="nav-con-1" src={des7} alt="Dashboard" />
                 <div className="link-text"> Reports</div>
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={"/shiv_app/package/purchase"}>
+              <Link className="nav-link" to={"/package/purchase"}>
                 <img className="nav-con-1" src={des9} alt="Dashboard" />
                 <div className="link-text">Purchases</div>
               </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link"
-                target="__blank"
-                href={"https://shivappdev.24livehost.com/shiv_app/new"}
-              >
+              <a className="nav-link" target="__blank" href={"/rsvp/questions"}>
                 <img className="nav-con-1" src={des10} alt="Dashboard" />
                 <div className="link-text">RSVP</div>
               </a>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to={"/shiv_app/guest/gifts"}>
+              <Link className="nav-link" to={"/guest/gifts"}>
                 <img className="nav-con-1" src={gift} alt="Dashboard" />
                 <div className="link-text">Gift Received</div>
               </Link>

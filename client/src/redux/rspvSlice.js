@@ -7,6 +7,7 @@ import {
   rspvAdditionalGuestApi,
   getDynamicRsvpQuestions,
   postDynamicRsvpQuestions,
+  getDynamicRsvpQuestions2,
 } from "./Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -72,6 +73,19 @@ export const getUserDynamicRsvpQuestions = createAsyncThunk(
   async () => {
     try {
       const response = await getDynamicRsvpQuestions();
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
+export const getUserDynamicRsvpQuestions2 = createAsyncThunk(
+  "rspv/getDynamicRsvpQuestions",
+  async (user_id) => {
+    try {
+      console.log(user_id);
+
+      const response = await getDynamicRsvpQuestions2(user_id);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);

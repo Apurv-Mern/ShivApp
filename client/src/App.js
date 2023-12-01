@@ -23,6 +23,9 @@ import NewRsvpForm from "./components/NewRsvpForm";
 import Gift from "./components/Gift";
 import BGNames from "./components/BGNames";
 import EventsDetails from "./components/EventsDetails.jsx";
+import TermsOfSale from "./Pages/LandingPages/TermsOfSale.jsx";
+import RSVP4 from "./components/RSVP4";
+import WeddingWebsite from "./components/Wedding Website/components/Main.jsx";
 
 //PAGES
 const Home = React.lazy(() => import("./Pages/Home"));
@@ -79,7 +82,7 @@ const loading = (
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.user);
   const ProtectedRoute = ({ children }) => {
-    return isAuthenticated ? children : <Navigate to="/shiv_app/login" />;
+    return isAuthenticated ? children : <Navigate to="/login" />;
   };
   // {isAuthenticated.isAdmin ? <AdminNavbar /> : <Navbar />}
   // console.log(isAuthenticated?.isAdmin);
@@ -88,95 +91,87 @@ function App() {
     <>
       <Suspense fallback={loading}>
         <Routes>
+          <Route exact path="/login" name="Login Page" element={<Login />} />{" "}
+          <Route exact path="/signup" name="Signup Page" element={<Signup />} />{" "}
+          <Route exact path="/" name="Website Page" element={<LandingPage />} />{" "}
           <Route
             exact
-            path="/shiv_app/login"
-            name="Login Page"
-            element={<Login />}
-          />{" "}
-          <Route
-            exact
-            path="/shiv_app/signup"
-            name="Signup Page"
-            element={<Signup />}
-          />{" "}
-          <Route
-            exact
-            path="/shiv_app"
-            name="Website Page"
-            element={<LandingPage />}
-          />{" "}
-          <Route
-            exact
-            path="/shiv_app/aboutus"
+            path="/about-us"
             name="Website Page"
             element={<AboutUs />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/invitations templates"
+            path="/invitations-templates"
             name="Website Page"
             element={<InvitationDesign />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/contactus"
+            path="/contact-us"
             name="Website Page"
             element={<ContactUs />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/packages"
+            path="/packages"
             name="Website Page"
             element={<LandingPackages />}
           />{" "}
+          <Route exact path="/faq" name="Website Page" element={<Faq />} />{" "}
           <Route
             exact
-            path="/shiv_app/faq"
-            name="Website Page"
-            element={<Faq />}
-          />{" "}
-          <Route
-            exact
-            path="/shiv_app/term&condition"
+            path="/term-condition"
             name="Website Page"
             element={<Term />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/privacy policy"
+            path="/terms-of-sale"
+            name="Website Page"
+            element={<TermsOfSale />}
+          />{" "}
+          <Route
+            exact
+            path="/privacy-policy"
             name="Website Page"
             element={<PrivacyPolicy />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/forgotPassword"
+            path="/forgotPassword"
             name="Forgot Password Page"
             element={<ForgotPass />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/user/resetPassword/:token"
+            path="/user/resetPassword/:token"
             name="Forgot Password Page"
             element={<ResetPassword />}
           />{" "}
           <Route
             exact
-            path="/shiv_app/new"
+            path="/rsvp/questions"
             name="RSVPPages4"
-            element={<NewRsvpForm />}
+            element={<RSVP4 />}
           />{" "}
-          {/* https://shivappdev.24livehost.com/shiv_app/248/wwe/390/527 */}
+          {/* https://shivappdev.24livehost.com/248/wwe/390/527 */}
           <Route
             exact
-            path="/shiv_app/:user_id/:group_name/:event_id/:id"
+            path="/:user_id/:group_name/:event_id/:id"
             name="MyInvPage2"
             element={<NewRsvpForm />}
+          />{" "}
+          <Route
+            exact
+            path="/wedding_website/site/:bride/weds/:groom"
+            name="Wedding website "
+            element={<WeddingWebsite />}
           />{" "}
           {/* PROTECTED ROUTES STARTS FROM HERE */}
           <Route
             exact
-            path="/shiv_app"
+            path="/"
             name="Home Page"
             element={
               <ProtectedRoute>
@@ -186,7 +181,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/dashboard"
+            path="/dashboard"
             name="Admin Page"
             element={
               <ProtectedRoute>
@@ -196,7 +191,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/myEvents"
+            path="/myEvents"
             name="Website Page"
             element={
               <ProtectedRoute>
@@ -206,7 +201,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/packages/:eventName"
+            path="/packages/:eventName"
             name="RSPV packages Page"
             element={
               <ProtectedRoute>
@@ -216,7 +211,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/eventList"
+            path="/eventList"
             name="Event List Page"
             element={
               <ProtectedRoute>
@@ -226,7 +221,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/foodDrink"
+            path="/foodDrink"
             name="Food Drink Page"
             element={
               <ProtectedRoute>
@@ -236,7 +231,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/template"
+            path="/template"
             name="Template Page"
             element={
               <ProtectedRoute>
@@ -246,7 +241,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/preview"
+            path="/preview"
             name="Template Preview Page"
             element={
               <ProtectedRoute>
@@ -256,7 +251,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/contacts"
+            path="/contacts"
             name="Contacts Page"
             element={
               <ProtectedRoute>
@@ -266,7 +261,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/sendInvitation"
+            path="/sendInvitation"
             name="MyInvPage"
             element={
               <ProtectedRoute>
@@ -276,7 +271,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/invitation/schedulers"
+            path="/invitation/schedulers"
             name="MyInvPage2"
             element={
               <ProtectedRoute>
@@ -286,7 +281,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/add/group/ceremonies"
+            path="/add/group/ceremonies"
             name="Add Group In Ceremonies"
             element={
               <ProtectedRoute>
@@ -296,7 +291,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/payment/success"
+            path="/payment/success"
             name="Payment Success"
             element={
               <ProtectedRoute>
@@ -306,7 +301,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/payment/cancel"
+            path="/payment/cancel"
             name="Payment Cancel"
             element={
               <ProtectedRoute>
@@ -316,7 +311,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/:questions"
+            path="/guest/:questions"
             name="Rsvp questions"
             element={
               <ProtectedRoute>
@@ -326,7 +321,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guests/:template"
+            path="/guests/:template"
             name="Guest Template"
             element={
               <ProtectedRoute>
@@ -336,7 +331,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/reports"
+            path="/guest/reports"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -346,7 +341,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/all events attendance report"
+            path="/guest/all-events-attendance-report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -356,7 +351,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/all food and drink attendance report"
+            path="/guest/all-food-and-drink-attendance-report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -366,7 +361,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/personal assistance report"
+            path="/guest/personal-assistance-report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -376,7 +371,7 @@ function App() {
           />{" "}
           {/* <Route
             exact
-            path="/shiv_app/guest/mua report"
+            path="/guest/mua report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -386,7 +381,7 @@ function App() {
           />{" "} */}
           <Route
             exact
-            path="/shiv_app/guest/travel report"
+            path="/guest/travel-report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -396,7 +391,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/mehndi report"
+            path="/guest/mehndi-report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -406,7 +401,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/guest/guests styling report"
+            path="/guest/guests-styling-report"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -416,7 +411,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/shiv_app/package/purchase"
+            path="/package/purchase"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -426,7 +421,7 @@ function App() {
           />
           <Route
             exact
-            path="/shiv_app/guest/gifts"
+            path="/guest/gifts"
             name="Guest Reports"
             element={
               <ProtectedRoute>
@@ -436,7 +431,7 @@ function App() {
           />
           <Route
             exact
-            path="/shiv_app/couples"
+            path="/couples"
             name="Bride and Groom Names"
             element={
               <ProtectedRoute>
@@ -446,7 +441,7 @@ function App() {
           />
           <Route
             exact
-            path="/shiv_app/event/details"
+            path="/event/details"
             name="Event Details"
             element={
               <ProtectedRoute>
@@ -457,7 +452,7 @@ function App() {
           {/* NESTED ROUTE FOR ADMIN */}
           <Route
             exact
-            path="/shiv_app/admin"
+            path="/admin"
             name="Admin Panel Page"
             element={
               <ProtectedRoute>
@@ -477,7 +472,7 @@ function App() {
             />
             <Route
               exact
-              path="package_details"
+              path="package-details"
               name="Admin panel Reports"
               element={
                 <ProtectedRoute>

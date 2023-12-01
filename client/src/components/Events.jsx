@@ -50,24 +50,24 @@ const Events = () => {
   const determineRoute = (name, emailSent) => {
     if (paymentId === "Success") {
       if (emailSent && name === "Wedding") {
-        navigate("/shiv_app/invitation/schedulers");
+        navigate("/invitation/schedulers");
       } else if (name === "Wedding") {
-        navigate("/shiv_app/eventList");
+        navigate("/eventList");
       } else if (
         (emailSent && name === "We're Engaged") ||
         (emailSent && name === "Save The Date") ||
         (emailSent && name === "Thank You")
       ) {
-        navigate("/shiv_app/event/details");
+        navigate("/event/details");
       } else if (
         name === "We're Engaged" ||
         name === "Save The Date" ||
         name === "Thank You"
       ) {
-        navigate("/shiv_app/template");
+        navigate("/template");
       }
     } else {
-      navigate(`/shiv_app/packages/${name}`);
+      navigate(`/packages/${name}`);
     }
   };
 

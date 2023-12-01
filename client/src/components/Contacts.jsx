@@ -4,11 +4,16 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import { addAGroups, getGroupsByUserId } from "../redux/GroupSlice";
+import {
+  addAGroups,
+  deleteAGroups,
+  getGroupsByUserId,
+} from "../redux/GroupSlice";
 import EditRowDialog from "./EditRowData";
 import AddGroupDialog from "./AddGroupData";
 import AddContactForm from "./AddGuestData";
 import {
+  deleteGuestByGuesrId,
   getAdditionalGuest,
   getAllGuestForAUser,
   getGuestForAGroup,
@@ -27,12 +32,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { MdDelete } from "react-icons/md";
 
 const Contacts = () => {
   const dispatch = useDispatch();
   const userId = JSON.parse(localStorage.getItem("user"));
-
-  const groups = useSelector((state) => state.groups.groups);
+  const guestId = useSelector((state) => state.guest.guestId);
+  const groups = useSelector((state) => state.groups.groupWithId);
   const [addContactOpen, setAddContactOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [addGroupOpen, setAddGroupOpen] = useState(false);
@@ -111,8 +117,16 @@ const Contacts = () => {
     setEditOpen(true);
     // console.log(rowData);
   };
-
-  // console.log(selectedGuestId);
+  console.log("", guestId);
+  const handleDelete = (guestId) => {
+    console.log(guestId);
+    dispatch(deleteGuestByGuesrId(guestId))
+      .then(() => {
+        toast.success("Contact delete successfully");
+        handleAllGuestData();
+      })
+      .catch(() => toast.error("Try Again"));
+  };
 
   const handleSaveEdit = (editedData) => {
     const editedRowIndex = rows.findIndex((row) => row.id === editedData.id);
@@ -145,12 +159,26 @@ const Contacts = () => {
     { field: "group", headerName: "Group", width: 250 },
 
     {
+      field: "edit",
+      headerName: "Edit",
+      width: 250,
+      renderCell: (params) => {
+        dispatch(setGuestId(params.row?.guest_id));
+        return <button onClick={() => handleEdit(params.row)}>Edit</button>;
+      },
+    },
+    {
       field: "action",
       headerName: "Action",
       width: 250,
       renderCell: (params) => {
         dispatch(setGuestId(params.row?.guest_id));
-        return <button onClick={() => handleEdit(params.row)}>Edit</button>;
+        console.log(params.row?.guest_id);
+        return (
+          <button onClick={() => handleDelete(params.row?.guest_id)}>
+            Delete
+          </button>
+        );
       },
     },
   ];
@@ -191,7 +219,7 @@ const Contacts = () => {
         try {
           // Send the file to the server using an HTTP request (e.g., POST)
           await axios.post(
-            `https://shivappdev.24livehost.com:3004/guest/import/${id}`,
+            `https://shivappdev.24livehost.com:3004/api/guest/import/${id}`,
             formData
           );
 
@@ -279,14 +307,22 @@ const Contacts = () => {
 
   const handlePayment = (id) => {
     // Open the child window with your payment URL
-    const paymentUrl = `https://shivappdev.24livehost.com:3004/payment/additionalGuests/user/${userId}/${packageId}`;
+    const paymentUrl = `https://shivappdev.24livehost.com:3004/api/payment/additionalGuests/user/${userId}/${packageId}`;
     window.open(paymentUrl, "_blank");
   };
-  // console.log("selected", { guest: selectedValue, setPackageId: packageId });
 
   const handleClose = () => {
     setOpen(false);
     setCanUpdateList(true);
+  };
+
+  const handleGroupDelete = (groupId) => {
+    dispatch(deleteAGroups(groupId))
+      .then(() => {
+        toast.success("Group Delete successfully");
+        dispatch(getGroupsByUserId());
+      })
+      .catch(() => toast.error("Try Again"));
   };
 
   return (
@@ -365,11 +401,9 @@ const Contacts = () => {
             <div className="col-md-3 ">
               <Link
                 className="flot-tight-btn contact-right"
-                // to={"/shiv_app/add/group/ceremonies"}
+                // to={"/add/group/ceremonies"}
                 to={
-                  eventName === "Wedding"
-                    ? "/shiv_app/add/group/ceremonies"
-                    : "/shiv_app/couples"
+                  eventName === "Wedding" ? "/add/group/ceremonies" : "/couples"
                 }
               >
                 Next
@@ -390,10 +424,7 @@ const Contacts = () => {
                 </svg>
               </Link>
 
-              <Link
-                className="flot-left-btn contact-left"
-                to={"/shiv_app/template"}
-              >
+              <Link className="flot-left-btn contact-left" to={"//template"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -428,10 +459,14 @@ const Contacts = () => {
               groups?.map((item) => (
                 <div className="col-md-3" style={{ cursor: "pointer" }}>
                   <div
-                    onClick={() => handleGroupData(item)}
+                    onClick={() => handleGroupData(item.groupname)}
                     className="group-box"
                   >
-                    {item}
+                    {item.groupname}
+                    <MdDelete
+                      size={20}
+                      onClick={() => handleGroupDelete(item.id)}
+                    />{" "}
                   </div>
                 </div>
               ))}

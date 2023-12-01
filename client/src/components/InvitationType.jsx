@@ -110,7 +110,7 @@ const InvitationType = () => {
       <div className="crl"></div>
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn" to={"/shiv_app/guest/questions"}>
+          <Link className="flot-left-btn" to={"/guest/questions"}>
             <svg
               width={20}
               xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ const InvitationType = () => {
             Back
           </Link>
 
-          <Link className="flot-tight-btn" to={"/shiv_app/guests/template"}>
+          <Link className="flot-tight-btn" to={"/guests/template"}>
             Next{" "}
             <svg
               width={20}

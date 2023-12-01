@@ -32,7 +32,7 @@ export const handleData = async (dataToSend, dispatch, navigate) => {
   if (dataToSend?.ceremonies?.length > 0) {
     // Dispatch the action to send data to the API
     await dispatch(addGroupsInACeremony(dataToSend));
-    navigate("/shiv_app/guest/questions");
+    navigate("/guest/questions");
   } else {
     // Handle the case where no groups are selected
     alert("Please select at least one group for a ceremony.");

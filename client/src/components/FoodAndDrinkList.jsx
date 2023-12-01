@@ -42,7 +42,7 @@ const FoodAndDrinkList = () => {
     } else {
       handleDrinks();
       handleFoods();
-      navigate("/shiv_app/template");
+      navigate("/template");
     }
   };
 
@@ -120,7 +120,7 @@ const FoodAndDrinkList = () => {
 
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn" to={"/shiv_app/eventList"}>
+          <Link className="flot-left-btn" to={"/eventList"}>
             <svg
               width={20}
               xmlns="http://www.w3.org/2000/svg"

@@ -94,7 +94,7 @@ const TemplateText = () => {
 
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn mt-4 mb-4" to={"/shiv_app/template"}>
+          <Link className="flot-left-btn mt-4 mb-4" to={"/template"}>
             <svg
               width={20}
               xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +170,7 @@ const TemplateText = () => {
           <div className="crl"></div>
           <div className="font-box5 mr-10 h-fit position-relative ">
             <Link
-              to={"/shiv_app/preview"}
+              to={"/preview"}
               className="cursor-pointer bg-[#00565f] rounded-md px-4 py-2 text-white w-52 font-semibold no-underline"
             >
               Preview Invitation

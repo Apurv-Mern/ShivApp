@@ -14,7 +14,7 @@ const AdminNavbar = () => {
       <div className="col-sm-4 col-md-4 col-lg-2"></div>
       <div className="col-sm-4 col-md-4 col-lg-2">
         <div className="admin-box">
-          <Link to={"/shiv_app/admin"}>
+          <Link to={"/admin"}>
             <div className="admin-box-img">
               {" "}
               <img className="admin-img-1" src={User} alt="admin" />
@@ -25,7 +25,7 @@ const AdminNavbar = () => {
       </div>
       <div className="col-sm-12 col-md-4 col-lg-2">
         <div className="admin-box">
-          <Link to={"/shiv_app/admin/package_details"}>
+          <Link to={"/admin/package-details"}>
             <div className="admin-box-img">
               {" "}
               <img className="admin-img-1" src={Package} alt="admin" />
@@ -36,7 +36,7 @@ const AdminNavbar = () => {
       </div>
       <div className="col-sm-12 col-md-4 col-lg-2">
         <div className="admin-box">
-          <Link to={"/shiv_app/admin/invoice"}>
+          <Link to={"/admin/invoice"}>
             <div className="admin-box-img">
               {" "}
               <img className="admin-img-1" src={Invoice} alt="admin" />

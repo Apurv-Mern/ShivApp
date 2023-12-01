@@ -14,7 +14,7 @@ const Faq = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/faq"
+          href="https://shivappdev.24livehost.com/faq"
         ></link>
         <title>Frequently Asked Questions SHIV dashboard | SHIV</title>
       </Helmet>

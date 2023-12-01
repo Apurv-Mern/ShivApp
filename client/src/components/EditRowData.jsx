@@ -87,8 +87,8 @@ const EditRowDialog = ({ open, rowData, handleClose, handleSave }) => {
             onChange={handleInputChange}
           >
             {groups.map((item) => (
-              <MenuItem key={item} value={item}>
-                {item}
+              <MenuItem key={item.groupname} value={item.groupname}>
+                {item.groupname}
               </MenuItem>
             ))}
           </Select>

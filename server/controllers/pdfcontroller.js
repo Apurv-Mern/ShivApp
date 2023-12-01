@@ -111,7 +111,7 @@ module.exports.Wedding = async (req, res) => {
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        const urllink = `https://shivappdev.24livehost.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${element.id}`;
+        const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
         console.log(urllink);
         await pool.query(
           "UPDATE guests SET rsvp_link=$1 WHERE user_id=$2 AND id=$3",
@@ -121,7 +121,7 @@ module.exports.Wedding = async (req, res) => {
           url: urllink,
         });
         //  doc.textWithLink("Check our wedding website", 200, 395, {
-        //    url: "https://shivappdev.24livehost.com/shiv_app/wedding_website/",
+        //    url: "https://shivappdev.24livehost.com/wedding_website/",
         //  });
         doc.save(
           `controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Wedding Invite & RSVP ${counter}.pdf`
@@ -315,7 +315,7 @@ module.exports.WeAreEngaged = async (req, res) => {
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        // const urllink = `https://shivappdev.24livehost.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${element.id}`;
+        // const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
         // console.log(urllink);
         // doc.textWithLink("Click Here to Submit your RSVP!", 200, 280, {
         //   url: urllink,
@@ -471,7 +471,7 @@ module.exports.thankyou = async (req, res) => {
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        // const urllink = `https://shivappdev.24livehost.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${element.id}`;
+        // const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
         // console.log(urllink);
         // doc.textWithLink("Click Here to Submit your RSVP!", 200, 280, {
         //   url: urllink,
@@ -598,7 +598,7 @@ module.exports.savethedate = async (req, res) => {
 
     const couplename = await pool.query(query, [user_id]);
 
-    //  const urllink = `https://shivappdev.24livehost.com/shiv_app/guest/contact/form`;
+    //  const urllink = `https://shivappdev.24livehost.com/guest/contact/form`;
     //     console.log(urllink);
     //     doc.textWithLink("Click Here!", 200, 280, {
     //       url: urllink,
@@ -1027,13 +1027,13 @@ module.exports.WeddingTestMail = async (req, res) => {
     console.log("groupname.length");
     let counter = 0;
 
-    const urllink = `https://shivappdev.24livehost.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${guest_id}`;
+    const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${guest_id}`;
     console.log(urllink);
     doc.textWithLink("Click Here to Submit your RSVP!", 200, 380, {
       url: urllink,
     });
     //  doc.textWithLink("Check our wedding website", 200, 395, {
-    //    url: "https://shivappdev.24livehost.com/shiv_app/wedding_website/",
+    //    url: "https://shivappdev.24livehost.com/wedding_website/",
     //  });
     doc.save(
       `controllers/newpdf/${bride_name} And  ${groom_name} Wedding Invite & RSVP test.pdf`

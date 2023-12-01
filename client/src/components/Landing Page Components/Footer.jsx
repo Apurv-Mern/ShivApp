@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="new-footer">
             <div className="row">
               <div className="col-md-3 footer-logo-block">
-                <Link className="footer-logo3" to={"/shiv_app"}>
+                <Link className="footer-logo3" to={"/"}>
                   <img src={img1} className="footer-img" alt="footer-logo" />
                 </Link>
               </div>
@@ -27,32 +27,33 @@ const Footer = () => {
                 <div className="footer-nav">
                   <ul>
                     <li>
-                      <Link to={"/shiv_app"}>HOME</Link>
+                      <Link to={"/"}>HOME</Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/aboutus"}>ABOUT US</Link>
+                      <Link to={"/about-us"}>ABOUT US</Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/packages"}>PACKAGES</Link>
+                      <Link to={"/packages"}>PACKAGES</Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/invitations templates"}>
+                      <Link to={"/invitations-templates"}>
                         INVITATION DESIGNS
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/contactus"}> CONTACT US</Link>
+                      <Link to={"/contact-us"}> CONTACT US</Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/faq"}>FAQ'S</Link>
+                      <Link to={"/faq"}>FAQ'S</Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/term&condition"}>TERMS OF USE</Link>
+                      <Link to={"/term-condition"}>TERMS OF USE</Link>
                     </li>
                     <li>
-                      <Link to={"/shiv_app/privacy policy"}>
-                        PRIVACY POLICY
-                      </Link>
+                      <Link to={"/terms-of-sale"}>TERMS OF SALE</Link>
+                    </li>
+                    <li>
+                      <Link to={"/privacy-policy"}>PRIVACY POLICY</Link>
                     </li>
                   </ul>
                 </div>
@@ -116,7 +117,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="col-md-3 footer-logo-block">
-                <Link className="footer-logo3" to="index.html">
+                <Link className="footer-logo3" to="/">
                   <img
                     src={img5}
                     className="footer-img footer-im2"

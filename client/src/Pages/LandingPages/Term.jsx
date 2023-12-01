@@ -14,7 +14,7 @@ const Term = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/term&condition"
+          href="https://shivappdev.24livehost.com/term&condition"
         ></link>
         <title>Terms of use | SHIV</title>
       </Helmet>

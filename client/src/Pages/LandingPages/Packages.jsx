@@ -11,7 +11,7 @@ const Packages = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/shiv_app/signup");
+    navigate("/signup");
   };
 
   return (
@@ -24,7 +24,7 @@ const Packages = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/packages"
+          href="https://shivappdev.24livehost.com/packages"
         ></link>
         <title>
           SHIV Packages specialise in Asian Wedding e-invites and RSVPs
@@ -32,12 +32,12 @@ const Packages = () => {
       </Helmet>
       <div className="front-page-container">
         <Navbar />
-        <section class="middle-part web-banner inner-page-banner1">
+        <section className="middle-part web-banner inner-page-banner1">
           <div className="container">
             <div className="row">
-              <div class="col-md-12">
-                <h2 class="inner-page-title">
-                  WE HAVE PACKAGES TO SUIT ALL
+              <div className="col-md-12">
+                <h2 className="inner-page-title">
+                  WE HAVE PACKAGES TO SUIT
                   <br /> ALL YOUR WEDDING EVENT
                   <br /> REQUIREMENTS{" "}
                 </h2>
@@ -48,8 +48,8 @@ const Packages = () => {
         <section className="middle-part gift-pack">
           <div className="container">
             <div className="row">
-              <div class="col-md-12">
-                <h3 class="new-title">PACKAGES</h3>
+              <div className="col-md-12">
+                <h3 className="new-title">PACKAGES</h3>
               </div>
             </div>
             <div className="row d-flex justify-content-center pakage-row">
@@ -57,8 +57,8 @@ const Packages = () => {
                 <div className="product">
                   <div className="wrapper1">
                     <div className="card equal">
-                      <div class="face front pack-in-1">
-                        <div class="pack-title">BRONZE PACKAGE - £300</div>
+                      <div className="face front pack-in-1">
+                        <div className="pack-title">BRONZE PACKAGE - £300</div>
                         <ul>
                           <li>Invite 100 guests</li>
                           <li>Send Save the Date</li>
@@ -75,7 +75,7 @@ const Packages = () => {
                           {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
-                        <span class="bottom-f-text">
+                        <span className="bottom-f-text">
                           THAT’S ONLY £3.00 PER INVITE PER GUEST
                         </span>
                       </div>
@@ -85,35 +85,35 @@ const Packages = () => {
                           <h3 className="back-title">
                             RSVP DETAILS INCLUDED IN OUR BRONZE PACKAGE{" "}
                           </h3>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">First name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Last name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Email</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Mobile number</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Guest of</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               What events will you be attending?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Dietary requirements
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Allergies</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require any special assistance
                               (disability)?
@@ -137,8 +137,8 @@ const Packages = () => {
                 <div className="product">
                   <div className="wrapper1">
                     <div className="card equal">
-                      <div class="face front pack-in-1">
-                        <div class="pack-title">
+                      <div className="face front pack-in-1">
+                        <div className="pack-title">
                           {" "}
                           SILVER PACKAGE <br></br> £450
                         </div>
@@ -158,7 +158,7 @@ const Packages = () => {
                           {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
-                        <span class="bottom-f-text">
+                        <span className="bottom-f-text">
                           THAT’S ONLY £3.00 PER INVITE PER GUEST
                         </span>
                       </div>
@@ -169,44 +169,44 @@ const Packages = () => {
                             RSVP DETAILS INCLUDED IN OUR SILVER PACKAGE
                           </h3>
 
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">First name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Last name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Email</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Mobile number</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Guest of</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               What events will you be attending?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Dietary requirements
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Allergies</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require any special assistance
                               (disability)?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Drinks preference</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Second drinks preference
                             </div>
@@ -230,8 +230,8 @@ const Packages = () => {
                 <div className="product">
                   <div className="wrapper1">
                     <div className="card">
-                      <div class="face front pack-in-1">
-                        <div class="pack-title">
+                      <div className="face front pack-in-1">
+                        <div className="pack-title">
                           GOLD PACKAGE <br></br> £575
                         </div>
                         <ul>
@@ -255,7 +255,7 @@ const Packages = () => {
                           {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
-                        <span class="bottom-f-text">
+                        <span className="bottom-f-text">
                           THAT’S ONLY £2.88 PER INVITE PER GUEST
                         </span>
                       </div>
@@ -264,64 +264,64 @@ const Packages = () => {
                           <h3 className="back-title">
                             RSVP DETAILS INCLUDED IN OUR GOLD PACKAGE
                           </h3>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">First name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Last name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Email</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Mobile number</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Guest of</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               What events will you be attending (disability)?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Dietary requirements
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Allergies</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require any special assistance?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Drinks preference</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Second drinks preference
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you participate in mehndi application
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               How many hands would you like mehndi on?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Where would you like your mehndi?
                             </div>
                           </div>
 
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Request a song (Please state artist and song name)
                             </div>
@@ -345,8 +345,8 @@ const Packages = () => {
                 <div className="product ">
                   <div className="wrapper1">
                     <div className="card ">
-                      <div class="face front pack-in-1">
-                        <div class="pack-title">
+                      <div className="face front pack-in-1">
+                        <div className="pack-title">
                           PLATINUM PACKAGE <br></br>£675
                         </div>
                         <ul>
@@ -368,7 +368,7 @@ const Packages = () => {
                           {/* <li> Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
-                        <span class="bottom-f-text">
+                        <span className="bottom-f-text">
                           THAT’S ONLY £2.70 PER INVITE PER GUEST
                         </span>
                       </div>
@@ -379,90 +379,90 @@ const Packages = () => {
                             RSVP DETAILS INCLUDED IN OUR PLATINUM PACKAGE
                           </h3>
 
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">First name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Last name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Email</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Mobile number</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Guest of</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               What events will you be attending?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Dietary requirements
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Allergies</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require any special assistance
                               (disability)?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Drinks preference</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Second drinks preference
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you participate in mehndi application
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               How many hands would you like mehndi on?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Where would you like your mehndi?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require Hijab styling?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require saree styling?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require turban styling?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require dhoti styling?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Flight arrival</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Flight departure</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Request a song (Please state artist and song name)
                             </div>
@@ -486,8 +486,8 @@ const Packages = () => {
                 <div className="product ">
                   <div className="wrapper1">
                     <div className="card">
-                      <div class="face front pack-in-1">
-                        <div class="pack-title">
+                      <div className="face front pack-in-1">
+                        <div className="pack-title">
                           DIAMOND PACKAGE <br></br> £775
                         </div>
                         <ul>
@@ -514,7 +514,7 @@ const Packages = () => {
                           {/* <li>Free wedding website coming soon</li> */}
                         </ul>
                         <br></br>
-                        <span class="bottom-f-text">
+                        <span className="bottom-f-text">
                           THAT’S ONLY £2.58 PER INVITE PER GUEST
                         </span>
                       </div>
@@ -524,141 +524,141 @@ const Packages = () => {
                           <h3 className="back-title">
                             RSVP DETAILS INCLUDED IN OUR DIAMOND PACKAGE
                           </h3>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">First name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Last name</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Email</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Mobile number</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Guest of</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               What events will you be attending?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Dietary requirements
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent"> Allergies</div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require any special assistance
                               (disability)?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Drinks preference{" "}
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Second drinks preference
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you participate in mehndi application
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               How many hands would you like mehndi on?
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Where would you like your mehndi?
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require Hijab styling?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require saree styling?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require turban styling?
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require dhoti styling?
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Flight arrival</div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">Flight departure</div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you require transfers?
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Will you be staying at the couples’ event venue/
                               hotel?
                             </div>
                           </div>{" "}
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               If yes, how many rooms will you and your family
                               require?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               How many extra beds will you require for any
                               children staying with you?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               How old are your children?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               If not, what hotel will you be staying at?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Would you like to extend your stay at the couples’
                               event venue / hotel?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               If yes, please enter dates of full stay
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Would you like to take part in any excursions?
                             </div>
                           </div>
-                          <div class="questions-right-block">
+                          <div className="questions-right-block">
                             <div className="giftcontent">
                               Request a song (Please state artist and song name)
                             </div>
@@ -679,7 +679,7 @@ const Packages = () => {
               </div>
               <div className="crl"></div>
               <div className="col-lg-12">
-                <div className="pak-msg-1">
+                <div className="inner-page-title">
                   Want to invite more guests?
                   <br />
                   Up-Grade your package with additional guests when <br /> you

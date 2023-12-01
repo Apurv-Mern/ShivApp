@@ -32,8 +32,8 @@ const GoogleLogins = () => {
     localStorage.setItem("user", userId);
     // console.log(data);
 
-    window.location.href = "/shiv_app/dashboard";
-    // navigate("/shiv_app/dashboard");
+    window.location.href = "/dashboard";
+    // navigate("/dashboard");
   };
 
   useEffect(() => {

@@ -40,9 +40,7 @@ const Login = () => {
         );
         toast.success("Login Successfully");
         {
-          res?.payload?.isAdmin
-            ? navigate("/shiv_app/admin")
-            : navigate("/shiv_app/dashboard");
+          res?.payload?.isAdmin ? navigate("/admin") : navigate("/dashboard");
         }
       } else {
         toast.error("Login Unsuccessfully");
@@ -73,7 +71,7 @@ const Login = () => {
     e.preventDefault();
     // dispatch(otpUserLogin({ number, otp }));
     if (otp == 123456) {
-      navigate("/shiv_app");
+      navigate("/");
       console.log(otp);
     } else {
       alert("Invalid OTP");
@@ -94,7 +92,7 @@ const Login = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/login"
+          href="https://shivappdev.24livehost.com/login"
         ></link>
         <title>
           SHIV Platform Login Page – Asian Wedding Specialist | SHIV
@@ -109,7 +107,7 @@ const Login = () => {
                   <div className="login-box text-center">
                     <div className="login-content mb-3">
                       <div className="shivLogo">
-                        <a className="home-head" href="/shiv_app">
+                        <a className="home-head" href="/">
                           {" "}
                           <img
                             className="nav-con-1"
@@ -160,7 +158,7 @@ const Login = () => {
                             <div className="col-12">
                               <p className="m-0">
                                 Do not have an account?
-                                <Link to="/shiv_app/signup"> Sign Up</Link>
+                                <Link to="/signup"> Sign Up</Link>
                               </p>
                             </div>
                           </div>
@@ -209,9 +207,9 @@ const Login = () => {
                             <div className="col-12">
                               <p className="m-0">
                                 Do not have an account?
-                                <Link to="/shiv_app/signup"> Sign Up</Link>
+                                <Link to="/signup"> Sign Up</Link>
                               </p>
-                              <Link to={"/shiv_app/forgotPassword"}>
+                              <Link to={"/forgotPassword"}>
                                 <button className="forgot-btn">
                                   Forgot password
                                 </button>

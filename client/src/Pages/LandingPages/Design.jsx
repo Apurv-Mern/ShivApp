@@ -64,7 +64,7 @@ const Design = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/invitations%20templates"
+          href="https://shivappdev.24livehost.com/invitations%20templates"
         ></link>
         <title>Digital Asian wedding e-invite designs | SHIV</title>
       </Helmet>
@@ -169,18 +169,7 @@ const Design = () => {
                 </div>
                 <div className="inv-design-title">Green Sunset</div>
               </div>
-              <div className="col-xl-3 col-lg-3 col-md-6 col-lg-12 design-pack">
-                <div className="inv-design">
-                  <img src={GreenGarlandOM} className="card-show" alt="card" />
-                </div>
-                <div className="inv-design-title">Green Garland OM</div>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-6 col-lg-12 design-pack">
-                <div className="inv-design">
-                  <img src={img27} className="card-show" alt="card" />
-                </div>
-                <div className="inv-design-title">Green Sunset</div>
-              </div>
+
               <div className="col-xl-3 col-lg-3 col-md-6 col-lg-12 design-pack">
                 <div className="inv-design">
                   <img src={img13} className="card-show" alt="card" />
@@ -199,12 +188,6 @@ const Design = () => {
                   <img src={Lemon} className="card-show" alt="card" />
                 </div>
                 <div className="inv-design-title">Lemon Trees</div>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-6 col-lg-12 design-pack">
-                <div className="inv-design">
-                  <img src={img14} className="card-show" alt="card" />
-                </div>
-                <div className="inv-design-title">Lilac</div>
               </div>
 
               <div className="col-xl-3 col-lg-3 col-md-6 col-lg-12 design-pack">

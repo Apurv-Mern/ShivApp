@@ -46,7 +46,7 @@ const BGNames = () => {
 
       await dispatch(putMarriageDetailss(data));
       toast.success("Data Saved Successfully");
-      navigate("/shiv_app/guests/template");
+      navigate("/guests/template");
     } catch (error) {
       toast.error("Failed to save data");
     }
@@ -85,11 +85,7 @@ const BGNames = () => {
             <div className="col-md-12">
               <Link
                 className="flot-left-btn"
-                to={
-                  eventName === "Wedding"
-                    ? "/shiv_app/sendInvitation"
-                    : "/shiv_app/contacts"
-                }
+                to={eventName === "Wedding" ? "/sendInvitation" : "/contacts"}
               >
                 <svg
                   width={20}

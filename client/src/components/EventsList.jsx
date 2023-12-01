@@ -123,7 +123,7 @@ const EventsList = () => {
     };
     // console.log("requestBody", requestBody);
     dispatch(createUserCeremony(requestBody));
-    navigate("/shiv_app/foodDrink");
+    navigate("/foodDrink");
   };
 
   useEffect(() => {
@@ -212,11 +212,11 @@ const EventsList = () => {
               <div className="top-btn-link">
                 <Link
                   className="flot-left-btn"
-                  // to={`/shiv_app/packages/${eventName}`}
+                  // to={`/packages/${eventName}`}
                   to={
                     paymentId === "Success"
-                      ? "/shiv_app/myEvents"
-                      : `/shiv_app/packages/${eventName}`
+                      ? "/myEvents"
+                      : `/packages/${eventName}`
                   }
                 >
                   <svg

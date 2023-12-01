@@ -82,7 +82,7 @@ module.exports = {
 
   //           if (error) return res.status(401).json({ error: error.message });
   //           if (!user) return res.status(401).json({ error: 'Authentication failed' });
-  //           res.redirect('https://shivappdev.24livehost.com/shiv_app/dashboard');
+  //           res.redirect('https://shivappdev.24livehost.com/dashboard');
   //           res.status(201).json(user);
   //       })(req, res, next);
   //   },
@@ -96,7 +96,7 @@ module.exports = {
           "/login?error=" + encodeURIComponent("Authentication failed")
         );
       } else {
-        res.redirect("https://shivappdev.24livehost.com/shiv_app/dashboard");
+        res.redirect("https://shivappdev.24livehost.com/dashboard");
       }
     })(req, res, next);
   },

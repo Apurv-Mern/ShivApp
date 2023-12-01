@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { deleteUserDetailsAdmin, getAdminUserDetails } from "./Api";
+import {
+  deleteUserDetailsAdmin,
+  getAdminUserDetails,
+  updateUserDetails,
+} from "./Api";
 
 // ? Initial State
 export const initialState = {
@@ -13,8 +17,8 @@ export const initialState = {
 // Async thunk action for user login
 export const getAdminUsersDetails = createAsyncThunk(
   "admin/userDetails",
-  async (credentials) => {
-    const response = await getAdminUserDetails(credentials);
+  async () => {
+    const response = await getAdminUserDetails();
     return response.data;
   }
 );
@@ -22,6 +26,14 @@ export const adminDeleteUser = createAsyncThunk(
   "admin/userDetails",
   async (id) => {
     const response = await deleteUserDetailsAdmin(id);
+    return response.data;
+  }
+);
+export const adminEditUser = createAsyncThunk(
+  "admin/userDetails",
+  async (data) => {
+    console.log(data);
+    const response = await updateUserDetails(data);
     return response.data;
   }
 );

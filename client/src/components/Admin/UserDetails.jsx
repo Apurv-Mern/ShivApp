@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminNavbar from "./AdminNavbar";
 import Navbar from "../Navbar";
 import { useEffect } from "react";
-import { adminDeleteUser, getAdminUsersDetails } from "../../redux/adminSlice";
+import {
+  adminDeleteUser,
+  adminEditUser,
+  getAdminUsersDetails,
+} from "../../redux/adminSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import EditUserDialog from "./EditUserDialog";
 
 const UserDetails = () => {
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state.admin.userDetails);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [editedUser, setEditedUser] = useState(null);
+  const [id, setId] = useState("");
 
   useEffect(() => {
     dispatch(getAdminUsersDetails());
   }, []);
 
   // console.log("userDetails", userDetails);
-
-  console.log(userDetails);
 
   const handleDelete = (id) => {
     dispatch(adminDeleteUser(id))
@@ -30,6 +36,46 @@ const UserDetails = () => {
         // Handle the error, e.g., show a notification
       });
   };
+
+  const handleEdit = (id) => {
+    dispatch(getAdminUsersDetails())
+      .then((response) => {
+        const users = response.payload;
+        const user = users.find((data) => data.id === id);
+        setId(user);
+        if (user) {
+          console.log(user);
+
+          setEditedUser({
+            username: user.username,
+            email: user.email,
+            number: user.number,
+          });
+          setOpenEditDialog(true);
+        } else {
+          console.error("User not found with id:", id);
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting user details:", error);
+      });
+  };
+
+  const handleSave = (editedData) => {
+    // Call your API to update the user details
+    dispatch(adminEditUser({ editedData, id }))
+      .then(() => {
+        dispatch(getAdminUsersDetails());
+        toast.success("User details updated successfully!");
+        setOpenEditDialog(false);
+      })
+      .catch((error) => {
+        console.error("Error updating user details:", error);
+        // Handle the error, e.g., show a notification
+      });
+  };
+
+  console.log("editedUser", editedUser);
 
   return (
     <div className="col-md-12 user-details">
@@ -60,7 +106,11 @@ const UserDetails = () => {
                 <td>{user.package}</td>
                 <td>{user.amount}</td>
                 <td>{user.date}</td>
-
+                <td>
+                  <button className="btn" onClick={() => handleEdit(user.id)}>
+                    Edit
+                  </button>
+                </td>
                 <td>
                   <button className="btn" onClick={() => handleDelete(user.id)}>
                     Delete
@@ -71,6 +121,14 @@ const UserDetails = () => {
             ))
           ) : (
             <h4>No Data To Show</h4>
+          )}
+          {openEditDialog && editedUser && (
+            <EditUserDialog
+              open={openEditDialog}
+              onClose={() => setOpenEditDialog(false)}
+              onSave={handleSave}
+              user={editedUser}
+            />
           )}
         </tbody>
       </table>

@@ -27,10 +27,7 @@ const Home = () => {
           name="description"
           content="SHIV - your personal dashboard for Guest RSVP’s, planning and budgeting for all wedding ceremonies. Asian wedding specialists in all ceremony invitations and RSVP. "
         />
-        <link
-          rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app"
-        ></link>
+        <link rel="canonical" href="https://shivappdev.24livehost.com"></link>
         <title>
           Asian Wedding Specialists for Digital Wedding Planning | SHIV
         </title>
@@ -41,7 +38,7 @@ const Home = () => {
         <Banner />
       </div>
 
-      {!cookies.cookieConsent && (
+      {/* {!cookies.cookieConsent && (
         <div id="alertCookiePolicy" className="alert-cookie-policy">
           <div className="alert alert-secondary" role="alert">
             <span className="mr-auto">
@@ -73,7 +70,7 @@ const Home = () => {
             <div className="crl"></div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

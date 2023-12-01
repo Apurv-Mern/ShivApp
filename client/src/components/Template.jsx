@@ -138,7 +138,7 @@ const Template = () => {
     if (!selectedImage) {
       toast.error("Please select one template");
     } else {
-      navigate("/shiv_app/contacts");
+      navigate("/contacts");
     }
   };
 
@@ -166,10 +166,10 @@ const Template = () => {
               className="flot-left-btn"
               to={
                 eventName === "Wedding"
-                  ? "/shiv_app/foodDrink"
+                  ? "/foodDrink"
                   : paymentId === "Success"
-                  ? "/shiv_app/myEvents"
-                  : `/shiv_app/packages/${eventName}`
+                  ? "/myEvents"
+                  : `/packages/${eventName}`
               }
             >
               <svg

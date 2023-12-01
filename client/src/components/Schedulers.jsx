@@ -29,10 +29,10 @@ const MyInv2 = () => {
   const eventName = useSelector((state) => state.event.eventState);
   const [model, setModel] = useState(false);
 
-  console.log(weddingLists);
+  // console.log(weddingLists);
   const schedularEventTime = JSON.parse(localStorage.getItem("templateTime"));
   const time = useSelector((state) => state.event.schedularEventTime);
-  console.log(time);
+  // console.log(time);
 
   // Format the input date
   const formattedScheduledTime = scheduledTimes
@@ -41,42 +41,20 @@ const MyInv2 = () => {
 
   console.log(formattedScheduledTime);
 
-  // const convertToCronFormat = (inputString) => {
-  //   // Split the input string by space
-  //   const parts = inputString.split(" ");
-
-  //   if (parts.length !== 2) {
-  //     // Handle invalid input
-  //     return null;
-  //   }
-
-  //   const timePart = parts[0];
-  //   const datePart = parts[1];
-
-  //   // Split the time part into hours and minutes
-  //   const [hours, minutes] = timePart.split(":");
-  //   console.log(minutes, hours);
-
-  //   // Split the date part into day and month
-  //   const [day, monthAndDayOfWeek] = datePart.split("-");
-  //   console.log(day, monthAndDayOfWeek);
-
-  //   // Split the month and day of the week
-  //   const [month, dayOfWeek] = monthAndDayOfWeek.split("-");
-  //   console.log(month, dayOfWeek);
-  //   // Create a Cron expression
-  //   // const cronExpression = `${hours} ${minutes} ${day} ${month} *`;
-  //   const cronExpression = "1 * * * * *";
-  //   return cronExpression;
-  // };
-
-  // const cronExpression = convertToCronFormat(formattedScheduledTime);
-
-  // if (cronExpression) {
-  //   console.log(cronExpression); // Output: "12 72 5 11 0"
-  // } else {
-  //   console.log("Invalid input format.");
-  // }
+  const handleCheckboxChange = (user) => {
+    if (sendData.some((data) => data.id === user.guest_id)) {
+      // ?If the user is already in the list, remove them
+      setSendData((prevData) =>
+        prevData.filter((data) => data.id !== user.guest_id)
+      );
+    } else {
+      // ?If the user is not in the list, add them
+      setSendData((prevData) => [
+        ...prevData,
+        { email: user.guest_email, id: user.guest_id },
+      ]);
+    }
+  };
 
   const getAllEmails = (data) => {
     const emailsOfNoResponseReceive = data
@@ -86,29 +64,21 @@ const MyInv2 = () => {
     setSendData(emailsOfNoResponseReceive);
   };
 
-  // console.log(sendData);
-  // const cronExpression = "1 * * * * *";
-
   const handleSubmit = () => {
     const dataToSend = {
       data: sendData,
-      // scheduledTime: cronExpression,
     };
+
     // console.log(dataToSend);
 
     dispatch(startCronJob(dataToSend))
       .then(() => {
         toast.success("Email send successfully");
         setModel(false);
-        navigate("/shiv_app/myEvents");
+        navigate("/myEvents");
       })
       .catch(() => toast.error("Failed to send email"));
   };
-
-  // const handleScheduledTimeChange = (event) => {
-  //   const selectedTime = event.target.value;
-  //   setScheduledTimes(selectedTime); // Update the scheduledTime state when the input changes
-  // };
 
   const date = new Date(schedularEventTime);
   const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -121,7 +91,7 @@ const MyInv2 = () => {
     hour12: true,
   }).format(date);
 
-  console.log(formattedDate);
+  // console.log(formattedDate);
 
   useEffect(() => {
     const handleData = async () => {
@@ -137,6 +107,10 @@ const MyInv2 = () => {
 
   const handelModel = () => {
     setModel(!model);
+  };
+
+  const handleNavigate = () => {
+    navigate("/contacts");
   };
 
   return (
@@ -170,7 +144,7 @@ const MyInv2 = () => {
 
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn " to={"/shiv_app/myEvents"}>
+          <Link className="flot-left-btn " to={"/myEvents"}>
             <svg
               width={20}
               xmlns="http://www.w3.org/2000/svg"
@@ -219,28 +193,43 @@ const MyInv2 = () => {
                   </thead>
                   <tbody>
                     {weddingLists &&
-                      weddingLists?.Data?.map((user, index) => (
-                        <tr>
-                          <td scope="row">{index + 1}</td>
-                          <td>{user.guest_name}</td>
-                          <td>{user.guest_email}</td>
-                          <td>
-                            {user.guest_submitted_response === true
-                              ? "Yes"
-                              : "No"}
-                          </td>
-                          <td>
-                            {user.guest_submitted_response === true ? (
-                              <button className="reminder">Submitted</button>
-                            ) : (
-                              <button className="reminder">
-                                Not Submitted
-                              </button>
-                            )}
-                          </td>
-                          {/* <td>Add</td> */}
-                        </tr>
-                      ))}
+                      weddingLists?.Data?.map((user, index) => {
+                        return (
+                          <tr>
+                            <td scope="row" width="7%">
+                              {index + 1}
+                            </td>
+                            <td width="33%">{user.guest_name}</td>
+                            <td width="30%">{user.guest_email}</td>
+                            <td width="10%">
+                              {user.guest_submitted_response === true
+                                ? "Yes"
+                                : "No"}
+                            </td>
+                            <td width="20%">
+                              {user.guest_submitted_response === true ? (
+                                <button className="reminder">Submitted</button>
+                              ) : (
+                                <div>
+                                  <label className="reminder">
+                                    Not Submitted
+                                  </label>
+                                  <input
+                                    className="checkbox-a2"
+                                    type="checkbox"
+                                    checked={sendData.some(
+                                      (data) => data.id === user.guest_id
+                                    )}
+                                    onChange={() => handleCheckboxChange(user)}
+                                    id={`checkbox-${index}`}
+                                  />
+                                </div>
+                              )}
+                            </td>
+                            {/* <td>Add</td> */}
+                          </tr>
+                        );
+                      })}
                   </tbody>
                 </table>
 
@@ -254,7 +243,12 @@ const MyInv2 = () => {
                 <button className="reminder btn" onClick={handelModel}>
                   Reminder
                 </button>
-                {/* <button className="reminder btn send-btn-2">Send More</button> */}
+                <button
+                  className="reminder btn send-btn-2"
+                  onClick={handleNavigate}
+                >
+                  Send More
+                </button>
               </div>
             </div>
 

@@ -74,6 +74,9 @@ export const getGroupByUserId = () => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.get(`${serverURl}/groups/${id}`);
 };
+export const deleteGroupByUserId = (groupId) => {
+  return axios.delete(`${serverURl}/groups/${groupId}`);
+};
 
 export const addGroup = (data) => {
   return axios.post(`${serverURl}/groups`, data);
@@ -91,6 +94,9 @@ export const getAllGuestForUser = (data) => {
 export const addGuestInAGroup = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.post(`${serverURl}/guest/${id}`, data);
+};
+export const deleteGuestInAGroup = (guestId) => {
+  return axios.delete(`${serverURl}/guest/${guestId}`);
 };
 
 // * UPDATE GUEST
@@ -433,11 +439,6 @@ export const getAdminUserDetails = () => {
 
 // ?RSVP dynamic question
 
-export const getDynamicRsvpQuestions = () => {
-  const id = JSON.parse(localStorage.getItem("user"));
-  return axios.get(`${serverURl}/user/getUserQuestions/${id}`);
-};
-
 export const postDynamicRsvpQuestions = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.put(`${serverURl}/user/updateAndGetUserQuestions/${id}`, data);
@@ -458,7 +459,24 @@ export const getMarriageDetails = () => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.get(`${serverURl}/marriagedetails/${id}`);
 };
+export const getMarriageDetails2 = (user_id) => {
+  const id = JSON.parse(localStorage.getItem("user"));
+  return axios.get(`${serverURl}/marriagedetails/${user_id}`);
+};
 
+export const getDynamicRsvpQuestions = (user_id) => {
+  const id = JSON.parse(localStorage.getItem("user"));
+  console.log(user_id);
+
+  return axios.get(`${serverURl}/user/getUserQuestions/${id}`);
+};
+
+export const getDynamicRsvpQuestions2 = (user_id) => {
+  const id = JSON.parse(localStorage.getItem("user"));
+  console.log(user_id);
+
+  return axios.get(`${serverURl}/user/getUserQuestions/${user_id}`);
+};
 export const putMarriageDetails = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.put(`${serverURl}/marriagedetails/${id}`, data);
@@ -508,4 +526,11 @@ export const deleteUserDetailsAdmin = (id) => {
 export const sendSocialLoginData = (data) => {
   // console.log(data);
   return axios.post(`${serverURl}/user/dynamic-social-login`, data);
+};
+// put("update-user/:user_id.
+export const updateUserDetails = (data) => {
+  return axios.put(
+    `${serverURl}/user/update-user/${data.id.id}`,
+    data.editedData
+  );
 };

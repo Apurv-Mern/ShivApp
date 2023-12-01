@@ -188,24 +188,24 @@ const success = async (req, res) => {
       );
 
       if (eve === "template") {
-        res.redirect(`${fEurl}/shiv_app/guest/template`);
+        res.redirect(`${fEurl}/guest/template`);
       }
       if (eve === "questions") {
-        res.redirect(`${fEurl}/shiv_app/guest/questions`);
+        res.redirect(`${fEurl}/guest/questions`);
       }
       if (eve === "Wedding") {
-        res.redirect(`${fEurl}/shiv_app/eventList`);
+        res.redirect(`${fEurl}/eventList`);
       }
       if (
         eve === "We'reEngaged" ||
         eve === "SaveTheDate" ||
         eve === "ThankYou"
       ) {
-        res.redirect(`${fEurl}/shiv_app/template`);
+        res.redirect(`${fEurl}/template`);
       }
 
       // Redirect to a thank you page or show a success message
-      // res.redirect("https://shivappdev.24livehost.com/shiv_app/eventList");
+      // res.redirect("https://shivappdev.24livehost.com/eventList");
       //const user_id = req.params.user_id;
 
       const user_validation = await pool.query(
@@ -269,7 +269,7 @@ const cancel = async (req, res) => {
       );
 
       // Redirect to a thank you page or show a success message
-      res.redirect(`${fEurl}/shiv_app/payment/cancel`);
+      res.redirect(`${fEurl}/payment/cancel`);
     } else {
       throw new Error("No line items found in the Stripe session.");
     }
@@ -409,14 +409,10 @@ const successadditional = async (req, res) => {
     "UPDATE user_additional_guests SET additional_guests = additional_guests+ $1 WHERE user_id =$2",
     [addguests, user_id]
   );
-  res.redirect(
-    "https://shivappdev.24livehost.com/shiv_app/add/group/ceremonies"
-  );
+  res.redirect("https://shivappdev.24livehost.com/add/group/ceremonies");
 };
 const canceladditional = async (req, res) => {
-  res.redirect(
-    "https://shivappdev.24livehost.com/shiv_app/add/group/ceremonies"
-  );
+  res.redirect("https://shivappdev.24livehost.com/add/group/ceremonies");
 };
 
 const getAdditionalGuestInfo = async (req, res) => {

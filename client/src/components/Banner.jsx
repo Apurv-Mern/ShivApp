@@ -39,8 +39,8 @@ const Banner = () => {
               <img src={logo} className="header-logo" alt="banner" />
             </div>
             <div className="right-penal">
-              <Link to="/shiv_app/login"> Login</Link>
-              <Link to="/shiv_app/signup">Register</Link>
+              <Link to="/login"> Login</Link>
+              <Link to="/signup">Register</Link>
             </div>
             <div className="crl"></div>
           </div>

@@ -386,7 +386,7 @@ export const Dashboard = ({ children }) => {
             <a href="_SHIV WELCOME PACK.pdf" download>
               download
             </a>{" "}
-            your Welcome pack to view all the y details of how to use our
+            your Welcome pack to view all the details of how to use our
             features.
             <br></br> <br></br>
             Please{" "}
@@ -421,7 +421,7 @@ export const Dashboard = ({ children }) => {
                   </button>
                   <Link
                     className="view-r-btn view-r-btn2"
-                    to={"/shiv_app/guest/all food and drink attendance report"}
+                    to={"/guest/all food and drink attendance report"}
                   >
                     View Report
                   </Link>
@@ -461,7 +461,7 @@ export const Dashboard = ({ children }) => {
                 </a>
                 <Link
                   className="view-r-btn btn-ar"
-                  to={"/shiv_app/guest/all events attendance report"}
+                  to={"/guest/all events attendance report"}
                 >
                   View Report
                 </Link>
@@ -521,7 +521,7 @@ export const Dashboard = ({ children }) => {
                 </a>
                 <Link
                   className="view-r-btn"
-                  to={"/shiv_app/guest/all food and drink attendance report"}
+                  to={"/guest/all food and drink attendance report"}
                 >
                   View Report
                 </Link>

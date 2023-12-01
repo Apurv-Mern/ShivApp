@@ -33,7 +33,7 @@ const ResetPassword = () => {
           password: values.password,
         };
         dispatch(userResetPassword(data));
-        navigate("/shiv_app/login");
+        navigate("/login");
       },
     });
 
@@ -49,7 +49,13 @@ const ResetPassword = () => {
               <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-8 col-sm-10">
                 <div className="login-box text-center">
                   <div className="login-content mb-4">
-                  <div className="shivLogo"><img className="nav-con-1" src={logoShiv} alt="Dashboard" /></div> 
+                    <div className="shivLogo">
+                      <img
+                        className="nav-con-1"
+                        src={logoShiv}
+                        alt="Dashboard"
+                      />
+                    </div>
                     <p>Please enter your details to sign in.</p>
                   </div>
 

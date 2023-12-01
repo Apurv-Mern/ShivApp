@@ -87,12 +87,12 @@ module.exports.uploadImages = async (req, res) => {
       for (let index = 0; index < result.rows.length; index++) {
         ++counter;
         const element = result.rows[index];
-        const newGroupName=element.group_name.replace(" ","%20");
+        const newGroupName = element.group_name.replace(" ", "%20");
         console.log(element.id);
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        const urllink = `https://shivappdev.24livehost.com/shiv_app/${user_id}/${newGroupName}/${element.id}`;
+        const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${element.id}`;
         console.log(urllink);
         doc.textWithLink("Click Here to Submit your RSVP!", 200, 280, {
           url: urllink,
@@ -100,17 +100,14 @@ module.exports.uploadImages = async (req, res) => {
         doc.save(`controllers/newpdf/output${counter}.pdf`);
 
         let mailOptions = {
-          from:"test@shiv.com",
+          from: "test@shiv.com",
           to: element.email, // list of receivers
           subject: "Shiv App RSVP",
           text: `Please Submit your RSVP for ${element.guest_name} by clicking on the link below \n\n ${urllink} \n\n Thank You`,
           attachments: [
             {
               filename: `newpdf/output${counter}.pdf`,
-              path: path.join(
-                __dirname,
-                `newpdf/output${counter}.pdf`
-              ), // <= Here
+              path: path.join(__dirname, `newpdf/output${counter}.pdf`), // <= Here
               contentType: "application/pdf",
             },
           ],
@@ -119,21 +116,25 @@ module.exports.uploadImages = async (req, res) => {
         transporter.sendMail(mailOptions, function (err, data) {
           if (err) {
             console.log("Error Occurs", err);
-            res.json({
-              status: "fail",
-            }).end();
+            res
+              .json({
+                status: "fail",
+              })
+              .end();
           } else {
             console.log("Email sent successfully");
-            res.json({
-              status: "success",
-            }).end();
+            res
+              .json({
+                status: "success",
+              })
+              .end();
           }
         });
       }
       //insert into rsvp_attendances table inside column "total_invitation_sent" with counter as a value
       await pool.query(
         `INSERT INTO rsvp_attendance (total_invitation_sent,user_id) VALUES ($1,$2)`,
-        [counter,user_id]
+        [counter, user_id]
       );
       //update total_invitation_sent column inside rsvp_attendance table with counter as a value
       // await pool.query(
@@ -141,9 +142,8 @@ module.exports.uploadImages = async (req, res) => {
       //   [counter, user_id]
       // );
 
-    //  res.status(201).json({ msg: "files uploaded successfully" });
-      }
-  
+      //  res.status(201).json({ msg: "files uploaded successfully" });
+    }
   } catch (error) {
     res.send(error);
   }

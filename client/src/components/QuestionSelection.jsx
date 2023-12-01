@@ -18,8 +18,6 @@ import PackagesPopup from "./PackagesPopup";
 const QuestionSelection = () => {
   const navigate = useNavigate();
   const [popupOpen, setPopupOpen] = useState(true);
-
-  const [formData, setFormData] = useState({});
   const user_id = localStorage.getItem("user");
   const eventName = localStorage.getItem("eventName");
   const decodedName = decodeURIComponent(eventName);
@@ -56,16 +54,16 @@ const QuestionSelection = () => {
     toast.success("Questions Saved");
   };
 
-  const handleMarriageSubmit = () => {
-    const data = {
-      bride_name: marriage.Bride_Name,
-      groom_name: marriage.Groom_Name,
-    };
-    // console.log("Data to be sent to API: ", data);
-    dispatch(putMarriageDetailss(data))
-      .then(() => toast.success("Data Saved Successfully"))
-      .catch(() => toast.error("Failed to save data"));
-  };
+  // const handleMarriageSubmit = () => {
+  //   const data = {
+  //     bride_name: marriage.Bride_Name,
+  //     groom_name: marriage.Groom_Name,
+  //   };
+  //   // console.log("Data to be sent to API: ", data);
+  //   dispatch(putMarriageDetailss(data))
+  //     .then(() => toast.success("Data Saved Successfully"))
+  //     .catch(() => toast.error("Failed to save data"));
+  // };
 
   const handleRemoveQuestion = (questionId, questionText) => {
     // Create a new array that excludes the clicked question_id
@@ -146,7 +144,7 @@ const QuestionSelection = () => {
       dispatch(putMarriageDetailss(data))
         .then(() => toast.success("Data Saved Successfully"))
         .catch(() => toast.error("Failed to save data"));
-      navigate("/shiv_app/sendInvitation");
+      navigate("/sendInvitation");
     }
   };
 
@@ -182,10 +180,7 @@ const QuestionSelection = () => {
         <div className="groom-block card-home">
           <div className="row groom-rsvp">
             <div className="col-md-12">
-              <Link
-                className="flot-left-btn"
-                to={"/shiv_app/add/group/ceremonies"}
-              >
+              <Link className="flot-left-btn" to={"/add/group/ceremonies"}>
                 <svg
                   width={20}
                   xmlns="http://www.w3.org/2000/svg"

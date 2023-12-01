@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 
 const AddContactForm = ({ open, handleClose, handleAddContact }) => {
   const dispatch = useDispatch();
-  const groups = useSelector((state) => state.groups.groups);
+  const groups = useSelector((state) => state.groups.groupWithId);
 
   const [contactData, setContactData] = useState({
     id: 1, // Start the counter at 1
@@ -112,8 +112,8 @@ const AddContactForm = ({ open, handleClose, handleAddContact }) => {
           >
             {groups &&
               groups?.map((item) => (
-                <MenuItem key={item} value={item}>
-                  {item}
+                <MenuItem key={item.groupname} value={item.groupname}>
+                  {item.groupname}
                 </MenuItem>
               ))}
           </Select>

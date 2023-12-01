@@ -25,7 +25,7 @@ const Reports = () => {
             <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/all events attendance report">
+                  <a href="/guest/all-events-attendance-report">
                     {" "}
                     All Events Attendance Report{" "}
                   </a>{" "}
@@ -41,7 +41,7 @@ const Reports = () => {
             <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/all food and drink attendance report">
+                  <a href="/guest/all-food-and-drink-attendance-report">
                     {" "}
                     All Guest Food and Drink Report{" "}
                   </a>{" "}
@@ -57,7 +57,7 @@ const Reports = () => {
             <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/personal assistance report">
+                  <a href="/guest/personal-assistance-report">
                     {" "}
                     All Special Assistance Report{" "}
                   </a>{" "}
@@ -73,7 +73,7 @@ const Reports = () => {
             {/* <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/mua report"> All MUA Report </a>{" "}
+                  <a href="/guest/mua report"> All MUA Report </a>{" "}
                 </div>
                 <div className="report-icon">
                   <a href="#">
@@ -86,7 +86,7 @@ const Reports = () => {
             <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/guests styling report">
+                  <a href="/guest/guests-styling-report">
                     {" "}
                     Guests Styling request Report{" "}
                   </a>{" "}
@@ -102,10 +102,7 @@ const Reports = () => {
             <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/travel report">
-                    {" "}
-                    All Travel Report{" "}
-                  </a>{" "}
+                  <a href="/guest/travel-report"> All Travel Report </a>{" "}
                 </div>
                 <div className="report-icon">
                   <a href="#">
@@ -118,10 +115,7 @@ const Reports = () => {
             <div className="col-sm-12 col-md-4 col-lg-3 ">
               <div className="report-box-in">
                 <div className="report-text">
-                  <a href="/shiv_app/guest/mehndi report">
-                    {" "}
-                    All Mehndi report{" "}
-                  </a>{" "}
+                  <a href="/guest/mehndi-report"> All Mehndi report </a>{" "}
                 </div>
                 <div className="report-icon">
                   <a href="#">

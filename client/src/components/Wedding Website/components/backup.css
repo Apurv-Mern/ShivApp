@@ -1,0 +1,328 @@
+@import url("https://fonts.googleapis.com/css2?family=The+Nautigal:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gabriela&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=The+Nautigal:wght@400;700&display=swap');
+
+@font-face {
+  font-family: "Montserrat Hairline";
+  src: url("../fonts/Montserrat-Hairline.woff2") format("woff2"),
+    url("../fonts/Montserrat-Hairline.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Dual";
+  src: url("../fonts/Dual-300.woff2") format("woff2"),
+    url("../fonts/Dual-300.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  color: #000;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+}
+
+.web-logo {
+  font-family: "The Nautigal", cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #5CE1E6 ;
+}
+
+.web-header {
+  background: #fff;
+  border-top: 10px solid #5CE1E6;
+}
+
+.d-love {
+  width: 35px;
+  margin: 0px 25px;
+  margin-top: -20px;
+}
+
+.nav-panel {
+  background: #5CE1E6;
+  margin: 0px -12px;
+}
+
+.web-date {
+  background: #2881af;
+}
+
+.web-date {
+  background: #2881af;
+  width: 250px;
+  text-align: center;
+  padding: 5px;
+  margin: 0px auto 15px;
+  color: #fff;
+  background:#5CE1E6  ;
+  border-radius:30px;
+
+}
+
+.wedding-card-nav .navbar-nav {
+  margin: 0px auto;
+}
+
+.wedding-card-nav .navbar-nav .nav-link.active,
+.wedding-card-nav .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.web-icon-top {
+  text-align: center;
+  width: 100%;
+  padding-top: 70px;
+}
+
+.web-icon-top .d-love {
+  margin-top: 0px;
+}
+
+.web-top-title {
+  font-family: "The Nautigal", cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #5CE1E6;
+  margin-bottom: 50px;
+  text-transform: capitalize;
+}
+
+.web-inner-page.our-story .web-top-title {
+  color: #fff;
+}
+
+
+.web-img img {
+  width: 100%;
+}
+.top-wedding-panel {
+  border: 1px solid #5CE1E6;
+  padding: 0px;
+  margin: 0px;
+}
+
+.web-icon-1 {
+  width: 20%;
+  text-align: center;
+  float: left;
+}
+.web-icon-1 img {
+  width: 37px;
+}
+.web-icon-2 {
+  width: 60%;
+  float: left;
+}
+.web-icon-3 {
+  width: 20%;
+  text-align: center;
+  float: left;
+}
+.web-icon-3 img {
+  width: 37px;
+}
+.web-img {
+  padding: 0px;
+}
+
+.web-title-n1 {
+  font-size: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  color:#5CE1E6;
+  width: 100%;
+  border: none;
+ outline: none;
+}
+
+.web-ad-box {
+  width: 100%;
+  padding: 15px 0px;
+}
+
+.wedding-p2 .web-img {
+  float: right;
+}
+.wedding-p2 .web-content-box {
+  float: left;
+}
+
+.our-story {
+  background: #5ce1e6;
+}
+
+.web-inner-page {
+  padding-bottom: 100px;
+}
+
+.meet-bt-box {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  min-height: 320px;
+  border-radius: 15px;
+}
+
+.g-img img {
+  width: 100%;
+  height: auto;
+  padding-bottom: 30px;
+}
+
+.title-bt {
+  font-size: 30px;
+  float: left;
+  color: #5CE1E6;
+}
+
+.date-bt {
+  
+  float: right;
+  border: 1px solid #5CE1E6;
+  padding: 7px 17px;
+  border-radius: 30px;
+ background-color: white;
+ margin-right: 2px;
+}
+.meet-bt {
+  width: 100%;
+  float: left;
+  padding-bottom: 20px;
+  color:#5CE1E6;
+}
+.title-text {
+  width: 100%;
+  height: 200px;
+  border: none;
+ outline: none;
+}
+
+.web-footer {
+  background: #5ce1e6;
+  border-bottom: 10px solid #5CE1E6;
+  padding: 20px 0px;
+  width: 100%;
+  text-align: center;
+}
+.web-footer img {
+  width: 200px;
+}
+
+.web-img-btn a {
+  background: #28698b;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 30px;
+}
+.web-img-btn {
+  line-height: 48px;
+  text-align: center;
+  margin-top: 55px;
+}
+.web-img-btn a {
+  background: #5CE1E6;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  border:1px solid #5CE1E6;
+  transition: 0.3s;
+}
+.web-img-btn a:hover{
+  background:#fff;
+  border:1px solid #5CE1E6;
+  color:#5CE1E6;
+}
+
+@media only screen and (max-width: 1024px) {
+
+.web-header .navbar-toggler-icon-1{
+  width: 35px; height:7px; margin-bottom: 5px; background:#fff;
+}
+.navbar-light .navbar-toggler {
+  color: rgba(0,0,0,.55);
+  border-color: #fff;
+  border: 0px;
+}
+.wedding-card-nav .navbar-nav .nav-link {
+  color: #fff;
+  text-align: center;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+}
+
+@media only screen and (max-width: 600px) {
+}
+
+.custom-modal-dialog{
+  max-width: 60%;
+}
+
+.modal-content {
+  background-color:white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* box-shadow:none;  */
+  border-radius: 10px; 
+  color: white;
+}
+
+.modal-header {
+  border-bottom: none; 
+}
+
+.modal-header button {
+  
+  color: rgb(0, 0, 0); /* Set the close button color */
+  background-color: transparent; /* Make the close button background transparent */
+  border: none; /* Remove the button border */
+  font-size: 20px; /* Adjust the font size if needed */
+  line-height: 1; /* Center the button vertically */
+  padding: 0; /* Remove padding to reduce button size */
+}
+
+/* Add styles for the close button on hover if needed */
+.modal-header button:hover {
+  color: #dfcece; /* Change color on hover */
+}
+
+.file-upload{
+  display: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.banner-container{
+  position: relative;
+  width: 100%;
+}
+
+
+.banner-container .upload-icon{ 
+  position: absolute;
+  /* background-color: white; */
+   top:15px;
+   color: #fff;
+    right:25px;    
+   font-size: 30px;
+    width: 40px;
+    cursor: pointer;
+  }

@@ -2864,6 +2864,9 @@ body #signInDiv iframe {
 .test-m1.test-m2 {
   float: right !important;
 }
+.checkbox-a2 {
+  margin-left: 15px;
+}
 
 @media screen and (max-width: 1200px) {
   .tabs-home .react-tabs__tab {

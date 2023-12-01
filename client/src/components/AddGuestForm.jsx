@@ -185,33 +185,47 @@ const AddGuestForm = ({ guestNo }) => {
                       {question.question_type === "Dropdown" && (
                         <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
                           <FormControl sx={{ m: 1, width: 300 }}>
-                            <InputLabel
-                              id={`demo-multiple-checkbox-label${index}`}
-                            >
+                            <InputLabel id={`demo-select-label${index}`}>
                               {question.questions}
                             </InputLabel>
-                            <Select
-                              labelId={`demo-multiple-checkbox-label${index}`}
-                              id={`question${question.id}${question.questions}`}
-                              name={`question${question.id}${question.questions}`}
-                              multiple
-                              value={
-                                formData[
-                                  `question${question.id}${question.questions}`
-                                ] || []
-                              }
-                              onChange={handleInputChange}
-                              input={<OutlinedInput label="Tag" />}
-                              renderValue={(selected) => selected.join(", ")}
-                              MenuProps={MenuProps}
-                              required
-                            >
-                              {question?.question_value?.map((value) => (
-                                <MenuItem key={value} value={value}>
-                                  {value}
-                                </MenuItem>
-                              ))}
-                            </Select>
+                            {((question.question_number === 6 ||
+                              question.question_number === 7) && (
+                              <Select
+                                labelId={`demo-select-label${index}`}
+                                id={`question${question.id}`}
+                                name={`question${question.id}`}
+                                multiple // Set to true for multi-select
+                                value={formData[`question${question.id}`] || []}
+                                onChange={handleInputChange}
+                                input={<OutlinedInput label="Tag" />}
+                                renderValue={(selected) => selected.join(", ")}
+                                MenuProps={MenuProps}
+                                required
+                              >
+                                {question?.question_value?.map((value) => (
+                                  <MenuItem key={value} value={value}>
+                                    {value}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            )) || (
+                              <Select
+                                labelId={`demo-simple-select-label${index}`}
+                                id={`question${question.id}`}
+                                name={`question${question.id}`}
+                                value={formData[`question${question.id}`] || ""}
+                                onChange={handleInputChange}
+                                input={<OutlinedInput label="Tag" />}
+                                MenuProps={MenuProps}
+                                required
+                              >
+                                {question?.question_value?.map((value) => (
+                                  <MenuItem key={value} value={value}>
+                                    {value}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            )}
                           </FormControl>
                         </div>
                       )}

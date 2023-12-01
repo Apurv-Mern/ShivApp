@@ -103,7 +103,7 @@ const MyInv2 = () => {
       toast.error("Please select at least one Drink");
     }
     if (selectedDrinks.length && selectedFoods.length > 0) {
-      navigate("/shiv_app/template");
+      navigate("/template");
     }
   };
 
@@ -117,7 +117,7 @@ const MyInv2 = () => {
 
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn mt-3 mb-3" to={"/shiv_app/eventList"}>
+          <Link className="flot-left-btn mt-3 mb-3" to={"/eventList"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -154,62 +154,75 @@ const MyInv2 = () => {
           </button>
           <div className="crl"></div>
 
-
           <div className="main-checkbox my-Invitations2">
-       <div className="row" >  
-        <div className="col-md-12"><h5> Event Date (1) 04/12/2013 </h5>  </div> 
-        </div>  
-        <div className="row event-block top-head">
-           <div className="col-md-6">We are engaged</div>
-           <div className="col-md-3"><a href="#">View</a> </div>
-           <div className="col-md-3"><a href="#">Sent</a> </div>
-        </div>
-        <div className="row event-block">
-           <div className="col-md-6">We are engaged</div>
-           <div className="col-md-3"><a href="#">View</a> </div>
-           <div className="col-md-3"><a href="#">Sent</a> </div>
-        </div>
-        <div className="row event-block">
-           <div className="col-md-6">We are engaged</div>
-           <div className="col-md-3"><a href="#">View</a> </div>
-           <div className="col-md-3"><a href="#">Sent</a> </div>
-        </div>
-        <div className="row event-block">
-           <div className="col-md-6">We are engaged</div>
-           <div className="col-md-3"><a href="#">View</a> </div>
-           <div className="col-md-3"><a href="#">Schedule</a> </div>
-        </div>
+            <div className="row">
+              <div className="col-md-12">
+                <h5> Event Date (1) 04/12/2013 </h5>{" "}
+              </div>
+            </div>
+            <div className="row event-block top-head">
+              <div className="col-md-6">We are engaged</div>
+              <div className="col-md-3">
+                <a href="#">View</a>{" "}
+              </div>
+              <div className="col-md-3">
+                <a href="#">Sent</a>{" "}
+              </div>
+            </div>
+            <div className="row event-block">
+              <div className="col-md-6">We are engaged</div>
+              <div className="col-md-3">
+                <a href="#">View</a>{" "}
+              </div>
+              <div className="col-md-3">
+                <a href="#">Sent</a>{" "}
+              </div>
+            </div>
+            <div className="row event-block">
+              <div className="col-md-6">We are engaged</div>
+              <div className="col-md-3">
+                <a href="#">View</a>{" "}
+              </div>
+              <div className="col-md-3">
+                <a href="#">Sent</a>{" "}
+              </div>
+            </div>
+            <div className="row event-block">
+              <div className="col-md-6">We are engaged</div>
+              <div className="col-md-3">
+                <a href="#">View</a>{" "}
+              </div>
+              <div className="col-md-3">
+                <a href="#">Schedule</a>{" "}
+              </div>
+            </div>
 
-        <div className="row event-block">
-           <div className="col-md-6">We are engaged</div>
-           <div className="col-md-3"><a href="#">View</a> </div>
-           <div className="col-md-3"><a href="#">Reschedule</a> </div>
-        </div>
+            <div className="row event-block">
+              <div className="col-md-6">We are engaged</div>
+              <div className="col-md-3">
+                <a href="#">View</a>{" "}
+              </div>
+              <div className="col-md-3">
+                <a href="#">Reschedule</a>{" "}
+              </div>
+            </div>
 
-        <div className="row event-block">
-           <div className="col-md-6">We are engaged</div>
-           <div className="col-md-3"><a href="#">View</a> </div>
-           <div className="col-md-3"><a href="#">Schedule</a> </div>
-        </div>
+            <div className="row event-block">
+              <div className="col-md-6">We are engaged</div>
+              <div className="col-md-3">
+                <a href="#">View</a>{" "}
+              </div>
+              <div className="col-md-3">
+                <a href="#">Schedule</a>{" "}
+              </div>
+            </div>
 
             <div className="crl"></div>
           </div>
-       </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default MyInv2;
-
-
-
-
-
-
-
-
-
-
-
-

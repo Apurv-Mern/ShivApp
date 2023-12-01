@@ -22,7 +22,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/shiv_app");
+    navigate("/");
     window.location.reload();
   };
 
@@ -62,7 +62,7 @@ const Navbar = () => {
           <div className="col-md-4 col-sm-12"></div>
           <div className="col-md-4 col-sm-12">
             <div className="logo admin-logo">
-              <Link to={"/shiv_app/dashboard"}>
+              <Link to={"/dashboard"}>
                 <img src={logo} alt="Sunset in the mountains" />
               </Link>
             </div>

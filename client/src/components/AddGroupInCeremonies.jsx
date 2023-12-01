@@ -198,7 +198,7 @@ const AddGroupInCeremonies = () => {
       <div className="crl"></div>
       <div className="main-container">
         <div className="container bg-w">
-          <Link className="flot-left-btn" to={"/shiv_app/contacts"}>
+          <Link className="flot-left-btn" to={"/contacts"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

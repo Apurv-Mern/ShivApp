@@ -44,7 +44,7 @@ const Signup = () => {
       if (res.meta.requestStatus === "fulfilled") {
         setLoading(false);
         toast.success("SignUp Successfully");
-        navigate("/shiv_app/dashboard");
+        navigate("/dashboard");
       } else {
         toast.error("SignUp Unsuccessfully");
       }
@@ -88,7 +88,7 @@ const Signup = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/signup"
+          href="https://shivappdev.24livehost.com/signup"
         ></link>
         <title>Registration Page | SHIV</title>
       </Helmet>
@@ -101,7 +101,7 @@ const Signup = () => {
                   <div className="col-xxl-7 col-xl-8 col-lg-9 col-md-8 col-sm-10">
                     <div className="login-content mb-3">
                       <div className="shivLogo">
-                        <a className="home-head" href="/shiv_app">
+                        <a className="home-head" href="/">
                           {" "}
                           <img
                             className="nav-con-1"
@@ -240,7 +240,7 @@ const Signup = () => {
                           <div className="col-12">
                             <p className="m-0">
                               Do have an account?{" "}
-                              <Link to="/shiv_app/login">Sign In</Link>
+                              <Link to="/login">Sign In</Link>
                             </p>
                           </div>
                         </div>
@@ -256,7 +256,15 @@ const Signup = () => {
                         onBlur={handleBlur}
                       />
                       <label htmlFor="permission">
-                        I agree to the terms of use of the SHIV platform
+                        &nbsp;I agree to the{" "}
+                        <a
+                          href="https://shiv-worldwide.com/terms-of-sale"
+                          target="_blank"
+                        >
+                          {" "}
+                          terms of sale{" "}
+                        </a>{" "}
+                        of the SHIV platform
                       </label>
                       {errors.permission && touched.permission && (
                         <p className="text-danger">{errors.permission}</p>

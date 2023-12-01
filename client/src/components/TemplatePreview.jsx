@@ -51,7 +51,7 @@ const TemplatePreview = () => {
   };
 
   const handleBuyNow = () => {
-    navigate("/shiv_app/packages");
+    navigate("/packages");
   };
 
   const handleEditor1 = () => {
@@ -76,7 +76,7 @@ const TemplatePreview = () => {
       <div className="main-container">
         <div className="container bg-w">
           <div className="btn-box ">
-            <Link className="flot-left-btn" to={"/shiv_app/template"}>
+            <Link className="flot-left-btn" to={"/template"}>
               <svg
                 width={20}
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ const TemplatePreview = () => {
               </svg>{" "}
               Back
             </Link>
-            <Link className="flot-tight-btn" to={"/shiv_app/contacts"}>
+            <Link className="flot-tight-btn" to={"/contacts"}>
               Next
               <svg
                 width={20}
@@ -395,7 +395,7 @@ const TemplatePreview = () => {
             <div className="crl"></div>
 
             <div className="two-btn-box w-full">
-              <Link to={"/shiv_app/template"} className="btn btn-2">
+              <Link to={"/template"} className="btn btn-2">
                 Edit Invitation
               </Link>
             </div>

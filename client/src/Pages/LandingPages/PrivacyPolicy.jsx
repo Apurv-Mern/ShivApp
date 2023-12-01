@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/privacy%20policy"
+          href="https://shivappdev.24livehost.com/privacy%20policy"
         ></link>
         <title>Privacy Policy | SHIV</title>
       </Helmet>

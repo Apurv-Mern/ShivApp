@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getMarriageDetails, putMarriageDetails } from "./Api";
+import {
+  getMarriageDetails,
+  getMarriageDetails2,
+  putMarriageDetails,
+} from "./Api";
 
 // ? Initial State
 export const initialState = {
@@ -12,6 +16,14 @@ export const getMarriageDetailss = createAsyncThunk(
   "marriageSlice/getMarriageDetails",
   async () => {
     const response = await getMarriageDetails();
+    return response.data;
+  }
+);
+export const getMarriageDetailss2 = createAsyncThunk(
+  "marriageSlice/getMarriageDetails",
+  async (user_id) => {
+    console.log(user_id);
+    const response = await getMarriageDetails2(user_id);
     return response.data;
   }
 );

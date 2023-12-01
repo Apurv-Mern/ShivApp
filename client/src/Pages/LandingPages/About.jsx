@@ -26,7 +26,7 @@ const About = () => {
         />
         <link
           rel="canonical"
-          href="https://shivappdev.24livehost.com/shiv_app/aboutus"
+          href="https://shivappdev.24livehost.com/aboutus"
         ></link>
         <title>Digital Wedding Platform for Invitations and RSVP | SHIV</title>
       </Helmet>

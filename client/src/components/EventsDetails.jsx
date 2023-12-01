@@ -35,7 +35,7 @@ const EventsDetails = () => {
           <div className="row">
             <div className="col-md-12 e-cart-block">
               <div className="e-cart-block2">
-                <Link className="flot-left-btn " to={"/shiv_app/myEvents"}>
+                <Link className="flot-left-btn " to={"/myEvents"}>
                   <svg
                     width={20}
                     xmlns="http://www.w3.org/2000/svg"

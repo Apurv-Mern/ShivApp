@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
   addGuestInAGroup,
+  deleteGuestInAGroup,
   getAdditionalGuestInfo,
   getAllGuestForUser,
   getAllGuestInAGroup,
@@ -85,6 +86,13 @@ export const getAdditionalGuest = createAsyncThunk(
   "user/getAdditionalGuest",
   async () => {
     const response = await getAdditionalGuestInfo();
+    return response.data;
+  }
+);
+export const deleteGuestByGuesrId = createAsyncThunk(
+  "user/deleteGuestInAGroup",
+  async (guestId) => {
+    const response = await deleteGuestInAGroup(guestId);
     return response.data;
   }
 );

@@ -208,7 +208,7 @@ const SendSS = () => {
   };
 
   const handleBuyLater = () => {
-    // navigate("/shiv_app/invitation/schedulers");
+    // navigate("/invitation/schedulers");
     setModel(!model);
   };
 
@@ -302,7 +302,7 @@ const SendSS = () => {
             )
               .then(() => {
                 toast.success("Email sent successfully");
-                navigate("/shiv_app/myEvents");
+                navigate("/myEvents");
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
@@ -344,7 +344,7 @@ const SendSS = () => {
             )
               .then(() => {
                 toast.success("Email sent successfully");
-                navigate("/shiv_app/myEvents");
+                navigate("/myEvents");
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
@@ -385,7 +385,7 @@ const SendSS = () => {
             )
               .then(() => {
                 toast.success("Email sent successfully");
-                navigate("/shiv_app/myEvents");
+                navigate("/myEvents");
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
@@ -427,7 +427,7 @@ const SendSS = () => {
             )
               .then(() => {
                 toast.success("Email sent successfully");
-                navigate("/shiv_app/myEvents");
+                navigate("/myEvents");
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
@@ -472,11 +472,7 @@ const SendSS = () => {
           <div className="btn-box ">
             <Link
               className="flot-left-btn"
-              to={
-                eventName === "Wedding"
-                  ? "/shiv_app/sendInvitation"
-                  : "/shiv_app/contacts"
-              }
+              to={eventName === "Wedding" ? "/sendInvitation" : "/contacts"}
             >
               <svg
                 width={20}
@@ -858,7 +854,7 @@ const SendSS = () => {
                 <img className="tool-tip" src={tool} alt="tool" />
               </span>
 
-              <Link to={"/shiv_app/template"} className="btn btn-2">
+              <Link to={"/template"} className="btn btn-2">
                 Edit Invitation
               </Link>
               <button

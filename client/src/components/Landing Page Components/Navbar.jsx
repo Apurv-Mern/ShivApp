@@ -26,21 +26,21 @@ const Navbar = () => {
             <div className="col-md-4 top-left-panel"></div>
 
             <div className="col-md-4 top-logo">
-              <a className="home-head" href="/shiv_app">
+              <a className="home-head" href="/">
                 {" "}
                 <img src={img1} className="logo" alt="icon" />{" "}
               </a>
             </div>
 
             <div className="col-md-4 top-right-panel">
-              <Link className="right-btn" to="/shiv_app/login">
+              <Link className="right-btn" to="/login">
                 {" "}
                 LOGIN
               </Link>
-              <Link className="right-btn" to="/shiv_app/signup">
+              <Link className="right-btn" to="/signup">
                 REGISTER
               </Link>
-              <Link className="right-btn demo-re" to="/shiv_app/contactus">
+              <Link className="right-btn demo-re" to="/contactus">
                 DEMO REQUEST
               </Link>
             </div>
@@ -78,11 +78,11 @@ const Navbar = () => {
                       <Link
                         aria-current="page"
                         className={
-                          activeLink === `/shiv_app`
+                          activeLink === `/`
                             ? "nav-link mx-2 active"
                             : "nav-link mx-2 "
                         }
-                        to={"/shiv_app"}
+                        to={"/"}
                       >
                         HOME{" "}
                       </Link>
@@ -90,11 +90,11 @@ const Navbar = () => {
                     <li className="nav-item">
                       <Link
                         className={
-                          activeLink === `/shiv_app/aboutus`
+                          activeLink === `/about-us`
                             ? "nav-link mx-2 active"
                             : "nav-link mx-2"
                         }
-                        to={"/shiv_app/aboutus"}
+                        to={"/about-us"}
                       >
                         ABOUT US{" "}
                       </Link>
@@ -102,11 +102,11 @@ const Navbar = () => {
                     <li className="nav-item">
                       <Link
                         className={
-                          activeLink === `/shiv_app/packages`
+                          activeLink === `/packages`
                             ? "nav-link mx-2 active"
                             : "nav-link mx-2"
                         }
-                        to={"/shiv_app/packages"}
+                        to={"/packages"}
                       >
                         PACKAGES
                       </Link>
@@ -114,11 +114,11 @@ const Navbar = () => {
                     <li className="nav-item">
                       <Link
                         className={
-                          activeLink === `/shiv_app/invitations%20templates`
+                          activeLink === `/invitations-templates`
                             ? "nav-link mx-2 active"
                             : "nav-link mx-2"
                         }
-                        to={"/shiv_app/invitations templates"}
+                        to={"/invitations-templates"}
                       >
                         INVITATION DESIGNS
                       </Link>
@@ -126,11 +126,11 @@ const Navbar = () => {
                     <li className="nav-item">
                       <Link
                         className={
-                          activeLink === `/shiv_app/contactus`
+                          activeLink === `/contact-us`
                             ? "nav-link mx-2 active"
                             : "nav-link mx-2"
                         }
-                        to={"/shiv_app/contactus"}
+                        to={"/contact-us"}
                       >
                         {" "}
                         CONTACT US
