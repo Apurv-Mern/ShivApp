@@ -1,4 +1,6 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
+
 import Sidebar from "./Header";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../scss/Dashboard.css";
@@ -144,6 +146,15 @@ const Template = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="SHIV Platform Design – Asian Wedding Specialist |SHIV"
+        />
+        <link rel="canonical" href="https://shiv-worldwide.com/template"></link>
+        <title>Digital Wedding Platform for Invitations and RSVP | SHIV</title>
+      </Helmet>
       <Navbar />
       <div className="crl"></div>
       <div className="container card-b-1">

@@ -25,6 +25,7 @@ import { Bar } from "react-chartjs-2";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet-async";
 import {
   getAllCeremonyAttendance,
   getAllDrinksPrefrence,
@@ -368,467 +369,492 @@ export const Dashboard = ({ children }) => {
   }, []);
 
   return (
-    <div>
-      <Navbar />
-      <div className="crl"></div>
-      <div className="container card-b-1">
-        <div className="row">
-          <h6 className="col-md-12 welcome-text">
-            <h4 className="heading"> Dashboard</h4>
-            <br></br>
-            Welcome to your personal dashboard.
-            <br></br> <br></br>
-            In order to ensure you make the most out of our features and set up
-            your groups and invitations correctly please download your Welcome
-            Pack and your step-by-step guide to SHIV.
-            <br></br> <br></br>
-            Please{" "}
-            <a href="_SHIV WELCOME PACK.pdf" download>
-              download
-            </a>{" "}
-            your Welcome pack to view all the details of how to use our
-            features.
-            <br></br> <br></br>
-            Please{" "}
-            <a href="SHIV STEP-BY-STEP GUIDE.pdf" download>
-              download
-            </a>{" "}
-            a step-by-step guide on how to use your dashboard.
-            <br></br> <br></br>
-            Your Dashboard will show you a quick snapshot of attendance to your
-            events, with the option to click into each event to view food, drink
-            requirements as well as allergy and other key components to help you
-            plan and budget for your events.
-            <br></br> <br></br>
-            Click on your list view or graph view to see the data in a way that
-            suits you. To get started with your invitations click into the
-            Events section.
-            <br></br> <br></br>
-          </h6>
-        </div>
-
-        <div className="card-home">
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="SHIV dashboard. View your RSVP details in your dashboard to start planning your wedding ceremonies with all requirement details. Download step-by-step guides to assist you."
+        />
+        <link
+          rel="canonical"
+          href="https://shiv-worldwide.com/dashboard"
+        ></link>
+        <title> SHIV Platform Dashboard – Asian Wedding Specialist |SHIV</title>
+      </Helmet>
+      <div>
+        <Navbar />
+        <div className="crl"></div>
+        <div className="container card-b-1">
           <div className="row">
-            <div className="col-lg-7 mb-lg-0 mb-3">
-              <div className="gray-box">
-                <div className="gray-box-inv">
-                  Invitation Statistics
-                  <button
-                    class="sky-circle"
-                    onClick={() => setToggleGraph(!toggleGraph)}
-                  >
-                    {toggleGraph ? "Event Graph" : "Ceremony Graph"}
-                  </button>
+            <h6 className="col-md-12 welcome-text">
+              <h4 className="heading"> Dashboard</h4>
+              <br></br>
+              Welcome to your personal dashboard.
+              <br></br> <br></br>
+              In order to ensure you make the most out of our features and set
+              up your groups and invitations correctly please download your
+              Welcome Pack and your step-by-step guide to SHIV.
+              <br></br> <br></br>
+              Please{" "}
+              <a href="_SHIV WELCOME PACK.pdf" download>
+                download
+              </a>{" "}
+              your Welcome pack to view all the details of how to use our
+              features.
+              <br></br> <br></br>
+              Please{" "}
+              <a href="SHIV STEP-BY-STEP GUIDE.pdf" download>
+                download
+              </a>{" "}
+              a step-by-step guide on how to use your dashboard.
+              <br></br> <br></br>
+              Your Dashboard will show you a quick snapshot of attendance to
+              your events, with the option to click into each event to view
+              food, drink requirements as well as allergy and other key
+              components to help you plan and budget for your events.
+              <br></br> <br></br>
+              Click on your list view or graph view to see the data in a way
+              that suits you. To get started with your invitations click into
+              the Events section.
+              <br></br> <br></br>
+            </h6>
+          </div>
+
+          <div className="card-home">
+            <div className="row">
+              <div className="col-lg-7 mb-lg-0 mb-3">
+                <div className="gray-box">
+                  <div className="gray-box-inv">
+                    Invitation Statistics
+                    <button
+                      class="sky-circle"
+                      onClick={() => setToggleGraph(!toggleGraph)}
+                    >
+                      {toggleGraph ? "Event Graph" : "Ceremony Graph"}
+                    </button>
+                    <Link
+                      className="view-r-btn view-r-btn2"
+                      to={"/guest/all food and drink attendance report"}
+                    >
+                      View Report
+                    </Link>
+                  </div>
+
+                  <div className="collapse show" id="Invitation">
+                    <div className="inside-coll-1">
+                      <div className="chart">
+                        <div className="chart-left-1">
+                          {/* <Pie data={data} /> */}
+                          {toggleGraph ? (
+                            <Bar data={ceremonyData} options={options} />
+                          ) : (
+                            <Bar data={EventData} options={options} />
+                          )}
+                        </div>
+
+                        <div className="crl"></div>
+                      </div>
+                      <div className="crl"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-5">
+                <div className="gray-box">
+                  <a aria-controls="AttendanceOverview">
+                    <span className="top-text text2">
+                      {" "}
+                      Attendance Overview{" "}
+                    </span>
+                    <span className="top-button-1">
+                      <button
+                        onClick={() =>
+                          setAttendenceListView(!attendenceListView)
+                        }
+                        className="sky-circle"
+                      >
+                        {attendenceListView ? "Graph View" : "List View"}
+                      </button>
+                    </span>
+                  </a>
                   <Link
-                    className="view-r-btn view-r-btn2"
+                    className="view-r-btn btn-ar"
+                    to={"/guest/all events attendance report"}
+                  >
+                    View Report
+                  </Link>
+
+                  <div id="AttendanceOverview">
+                    <div className="inside-coll">
+                      {attendenceListView ? (
+                        <ul className="ps-0 mb-0 item-block">
+                          {Object.entries(ceremony).map(
+                            ([ceremonyName, count]) => (
+                              <li
+                                className="item-li border-bottom"
+                                key={ceremonyName}
+                              >
+                                <div className="item-img">
+                                  <img
+                                    // src={
+                                    //   "https://shivapp.s3.ap-south-1.amazonaws.com/ceremony_icons/icon/Hindu+Wedding.png"
+                                    // }
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="item-name">{ceremonyName}</div>
+                                <div className="item-no">{count}</div>
+                                <div className="crl"></div>
+                              </li>
+                            )
+                          )}
+                          {Object.keys(ceremony).length === 0 && (
+                            <h4 className="not-found">No Data Found</h4>
+                          )}
+                        </ul>
+                      ) : (
+                        <Bar data={attendanceData} options={options} />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row gray-4">
+              <div className="col-lg-6 mb-lg-0 ">
+                <div className="gray-box gray-in">
+                  <a
+                  //
+                  // href="#Statistics "
+                  //
+                  >
+                    <span className="top-text"> Guest's Food Statistics</span>
+                    <button
+                      onClick={() => setGuestListView(!guestListView)}
+                      className="sky-circle"
+                    >
+                      {guestListView ? "Graph View" : "List View"}
+                    </button>
+                  </a>
+                  <Link
+                    className="view-r-btn"
                     to={"/guest/all food and drink attendance report"}
                   >
                     View Report
                   </Link>
-                </div>
 
-                <div className="collapse show" id="Invitation">
-                  <div className="inside-coll-1">
-                    <div className="chart">
-                      <div className="chart-left-1">
-                        {/* <Pie data={data} /> */}
-                        {toggleGraph ? (
-                          <Bar data={ceremonyData} options={options} />
-                        ) : (
-                          <Bar data={EventData} options={options} />
-                        )}
-                      </div>
-
-                      <div className="crl"></div>
+                  <div className="collapse show" id="Statistics">
+                    <div className="inside-coll v-2">
+                      {guestListView ? (
+                        <ul className="ps-0 mb-0">
+                          {Object.entries(foodCount).map(([food, count]) => (
+                            <li
+                              className="d-flex justify-content-between align-items-center"
+                              key={food}
+                            >
+                              <div className="Invitation statistics">
+                                <div className="statistics1">
+                                  <div className="statistics2">{food}</div>
+                                  <div className="statistics3">
+                                    <div className="sky-circle">{count}</div>
+                                  </div>
+                                  <div className="crl"></div>
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                          {Object.keys(foodCount).length === 0 && (
+                            <li className="d-flex justify-content-between align-items-center">
+                              <div className="Invitation statistics">
+                                <h4 className="not-found">No Data Found</h4>
+                              </div>
+                            </li>
+                          )}
+                        </ul>
+                      ) : (
+                        <Bar data={guestData} options={options} />
+                      )}
                     </div>
-                    <div className="crl"></div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-5">
-              <div className="gray-box">
-                <a aria-controls="AttendanceOverview">
-                  <span className="top-text text2"> Attendance Overview </span>
-                  <span className="top-button-1">
+              <div className="col-lg-6">
+                <div className="gray-box gray-in-1">
+                  <a>
+                    <span className="top-text"> Other Requests</span>
                     <button
-                      onClick={() => setAttendenceListView(!attendenceListView)}
+                      onClick={() => setOtherListView(!otherListView)}
                       className="sky-circle"
                     >
-                      {attendenceListView ? "Graph View" : "List View"}
+                      {otherListView ? "Graph View" : "List View"}
                     </button>
-                  </span>
-                </a>
-                <Link
-                  className="view-r-btn btn-ar"
-                  to={"/guest/all events attendance report"}
-                >
-                  View Report
-                </Link>
-
-                <div id="AttendanceOverview">
-                  <div className="inside-coll">
-                    {attendenceListView ? (
-                      <ul className="ps-0 mb-0 item-block">
-                        {Object.entries(ceremony).map(
-                          ([ceremonyName, count]) => (
-                            <li
-                              className="item-li border-bottom"
-                              key={ceremonyName}
-                            >
-                              <div className="item-img">
-                                <img
-                                  // src={
-                                  //   "https://shivapp.s3.ap-south-1.amazonaws.com/ceremony_icons/icon/Hindu+Wedding.png"
-                                  // }
-                                  alt=""
-                                />
-                              </div>
-                              <div className="item-name">{ceremonyName}</div>
-                              <div className="item-no">{count}</div>
-                              <div className="crl"></div>
-                            </li>
-                          )
-                        )}
-                        {Object.keys(ceremony).length === 0 && (
-                          <h4 className="not-found">No Data Found</h4>
-                        )}
-                      </ul>
-                    ) : (
-                      <Bar data={attendanceData} options={options} />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row gray-4">
-            <div className="col-lg-6 mb-lg-0 ">
-              <div className="gray-box gray-in">
-                <a
-                //
-                // href="#Statistics "
-                //
-                >
-                  <span className="top-text"> Guest's Food Statistics</span>
-                  <button
-                    onClick={() => setGuestListView(!guestListView)}
-                    className="sky-circle"
-                  >
-                    {guestListView ? "Graph View" : "List View"}
-                  </button>
-                </a>
-                <Link
-                  className="view-r-btn"
-                  to={"/guest/all food and drink attendance report"}
-                >
-                  View Report
-                </Link>
-
-                <div className="collapse show" id="Statistics">
-                  <div className="inside-coll v-2">
-                    {guestListView ? (
-                      <ul className="ps-0 mb-0">
-                        {Object.entries(foodCount).map(([food, count]) => (
-                          <li
-                            className="d-flex justify-content-between align-items-center"
-                            key={food}
-                          >
-                            <div className="Invitation statistics">
-                              <div className="statistics1">
-                                <div className="statistics2">{food}</div>
-                                <div className="statistics3">
-                                  <div className="sky-circle">{count}</div>
-                                </div>
-                                <div className="crl"></div>
-                              </div>
-                            </div>
-                          </li>
-                        ))}
-                        {Object.keys(foodCount).length === 0 && (
-                          <li className="d-flex justify-content-between align-items-center">
-                            <div className="Invitation statistics">
-                              <h4 className="not-found">No Data Found</h4>
-                            </div>
-                          </li>
-                        )}
-                      </ul>
-                    ) : (
-                      <Bar data={guestData} options={options} />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div className="gray-box gray-in-1">
-                <a>
-                  <span className="top-text"> Other Requests</span>
-                  <button
-                    onClick={() => setOtherListView(!otherListView)}
-                    className="sky-circle"
-                  >
-                    {otherListView ? "Graph View" : "List View"}
-                  </button>
-                </a>
-                <div className="collapse show" id="Requests">
-                  <div className="inside-coll v-2">
-                    {otherListView ? (
-                      <ul className="ps-0 mb-0 data-tab-2">
-                        <li className="d-flex justify-content-between align-items-center  border-bottom">
-                          <div className="">
-                            <span>Allergies</span>
-                          </div>
-                          <div className="">
-                            <div className="sky-circle">
-                              {allergies.Yes_Count}
-                            </div>
-                          </div>
-                        </li>
-                        <li className="d-flex justify-content-between align-items-center  border-bottom">
-                          <div className="">
-                            <span>Personal assistance</span>
-                          </div>
-                          <div className="">
-                            <div className="sky-circle">
-                              {personalAssistance.Yes_Count}
-                            </div>
-                          </div>
-                        </li>
-                        <li className="d-flex justify-content-between align-items-center  border-bottom">
-                          <div className="">
-                            <span>MUA</span>
-                          </div>
-                          <div className="">
-                            <div className="sky-circle">{mua.Yes_Count}</div>
-                          </div>
-                        </li>
-                        <li className="d-flex justify-content-between align-items-center  border-bottom">
-                          <div className="">
-                            <span>Saree dressing assistance</span>
-                          </div>
-                          <div className="">
-                            <div className="sky-circle">{saree.Yes_Count}</div>
-                          </div>
-                        </li>
-                        <li className="d-flex justify-content-between align-items-center  border-bottom">
-                          <div className="">
-                            <span>Turban dressing assistance</span>
-                          </div>
-                          <div className="">
-                            <div className="sky-circle">{turban.Yes_Count}</div>
-                          </div>
-                        </li>
-                        <li className="d-flex justify-content-between align-items-center  border-bottom">
-                          <div className="">
-                            <span>Dhoti dressing assistance</span>
-                          </div>
-                          <div className="">
-                            <div className="sky-circle">{dhoti.Yes_Count}</div>
-                          </div>
-                        </li>
-                      </ul>
-                    ) : (
-                      <Bar data={otherData} options={options} />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="clearfix"></div>
-          <div className="row tabs-mob">
-            <div className="col-12">
-              <div className="tabs-home">
-                <Tabs>
-                  <TabList>
-                    {selectedCeremonies?.map((item) => (
-                      <Tab>
-                        <div
-                          className=""
-                          onClick={() => handleTabClick(item.id)}
-                        >
-                          <img src={item.icon} alt="" />
-                          <span>{item.name}</span>
-                        </div>
-                      </Tab>
-                    ))}
-                  </TabList>
-
-                  <div className="gray-box  menu-tabing">
-                    <div className="gray-box-inv">
-                      Attendance
-                      <div className="sky-circle d-inline-block">
-                        {guestList.length}
-                      </div>
-                    </div>
-
-                    <TabList>
-                      {guestListLoading ? ( // Check if guestList is loading
-                        <h5>Loading guest list...</h5> // Display loading message
-                      ) : guestList.length > 0 ? ( // Check if guestList has data
-                        <div className="table-responsive">
-                          <table className="table table-striped">
-                            <thead>
-                              <tr>
-                                <th>S. No</th>
-                                <th>Name</th>
-                                <th>Group</th>
-                                <th>Mobile Number</th>
-                                <th>Guest of Guests</th>
-                                <th>RSVP Details</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {guestList?.map((group, index) => {
-                                console.log(group);
-                                return (
-                                  <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    {group.guests.map((item) => (
-                                      <td>{item.guest_name}</td>
-                                    ))}
-                                    <td>{group.groupname}</td>
-                                    <td>{/* Add mobile number here */}</td>
-                                    {group.guests.map((item) => (
-                                      <td>{item.guests_of_guest}</td>
-                                    ))}
-
-                                    <td className="text-center">
-                                      <img
-                                        className="action-icon"
-                                        width={20}
-                                        src={eye}
-                                        alt="ima"
-                                      />
-                                    </td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      ) : (
-                        <h4 className="not-found">
-                          {showText
-                            ? "Click On Ceremonies To Get The Guest List"
-                            : "No Data Found"}
-                        </h4>
-                      )}
-                    </TabList>
-                  </div>
-                </Tabs>
-              </div>
-            </div>
-
-            <div className="col-12">
-              <div className="tabs-home home2">
-                <Tabs>
-                  <div className="crl"></div>
-                  <div className="gray-box menu-tabing">
-                    <div className="gray-box-inv">Menu</div>
-
-                    <TabList>
-                      <>
-                        <div className="collapse show " id="Menu">
-                          {selectedFoods?.map((food) => (
-                            <Tab>
-                              <div
-                                className="position-relative"
-                                onClick={() =>
-                                  handleFoodGuestList(food.food_name)
-                                }
-                              >
-                                {/* <div className="sky-circle"></div> */}
-                                <img src={food.food_icon} alt="" />
-                                <span>{food.food_name}</span>
-                              </div>
-                            </Tab>
-                          ))}
-                          {selectedDrinks?.map((drink) => (
-                            <Tab>
-                              <div
-                                className="position-relative"
-                                onClick={() =>
-                                  handleFoodGuestList(drink.drink_name)
-                                }
-                              >
-                                {/* <div className="sky-circle">25</div> */}
-                                <img src={drink.drink_icon} alt="" />
-                                <span>{drink.drink_name}</span>
-                              </div>
-                            </Tab>
-                          ))}
-                          <div className="crl"></div>
-                        </div>
-                      </>
-                    </TabList>
-                    <div className="crl"></div>
-                  </div>
-                  <div className="crl"></div>
-
-                  <div className="gray-box gray-hight-1">
-                    <div class="gray-box-inv">
-                      Guest List{" "}
-                      <div class="sky-circle d-inline-block">
-                        {foodGuestList.length}
-                      </div>
-                    </div>
-                    <div className="crl"></div>
+                  </a>
+                  <div className="collapse show" id="Requests">
                     <div className="inside-coll v-2">
-                      <div className="table-responsive">
-                        <TabList className="w-100">
+                      {otherListView ? (
+                        <ul className="ps-0 mb-0 data-tab-2">
+                          <li className="d-flex justify-content-between align-items-center  border-bottom">
+                            <div className="">
+                              <span>Allergies</span>
+                            </div>
+                            <div className="">
+                              <div className="sky-circle">
+                                {allergies.Yes_Count}
+                              </div>
+                            </div>
+                          </li>
+                          <li className="d-flex justify-content-between align-items-center  border-bottom">
+                            <div className="">
+                              <span>Personal assistance</span>
+                            </div>
+                            <div className="">
+                              <div className="sky-circle">
+                                {personalAssistance.Yes_Count}
+                              </div>
+                            </div>
+                          </li>
+                          <li className="d-flex justify-content-between align-items-center  border-bottom">
+                            <div className="">
+                              <span>MUA</span>
+                            </div>
+                            <div className="">
+                              <div className="sky-circle">{mua.Yes_Count}</div>
+                            </div>
+                          </li>
+                          <li className="d-flex justify-content-between align-items-center  border-bottom">
+                            <div className="">
+                              <span>Saree dressing assistance</span>
+                            </div>
+                            <div className="">
+                              <div className="sky-circle">
+                                {saree.Yes_Count}
+                              </div>
+                            </div>
+                          </li>
+                          <li className="d-flex justify-content-between align-items-center  border-bottom">
+                            <div className="">
+                              <span>Turban dressing assistance</span>
+                            </div>
+                            <div className="">
+                              <div className="sky-circle">
+                                {turban.Yes_Count}
+                              </div>
+                            </div>
+                          </li>
+                          <li className="d-flex justify-content-between align-items-center  border-bottom">
+                            <div className="">
+                              <span>Dhoti dressing assistance</span>
+                            </div>
+                            <div className="">
+                              <div className="sky-circle">
+                                {dhoti.Yes_Count}
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      ) : (
+                        <Bar data={otherData} options={options} />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="clearfix"></div>
+            <div className="row tabs-mob">
+              <div className="col-12">
+                <div className="tabs-home">
+                  <Tabs>
+                    <TabList>
+                      {selectedCeremonies?.map((item) => (
+                        <Tab>
+                          <div
+                            className=""
+                            onClick={() => handleTabClick(item.id)}
+                          >
+                            <img src={item.icon} alt="" />
+                            <span>{item.name}</span>
+                          </div>
+                        </Tab>
+                      ))}
+                    </TabList>
+
+                    <div className="gray-box  menu-tabing">
+                      <div className="gray-box-inv">
+                        Attendance
+                        <div className="sky-circle d-inline-block">
+                          {guestList.length}
+                        </div>
+                      </div>
+
+                      <TabList>
+                        {guestListLoading ? ( // Check if guestList is loading
+                          <h5>Loading guest list...</h5> // Display loading message
+                        ) : guestList.length > 0 ? ( // Check if guestList has data
                           <div className="table-responsive">
                             <table className="table table-striped">
                               <thead>
                                 <tr>
                                   <th>S. No</th>
                                   <th>Name</th>
+                                  <th>Group</th>
                                   <th>Mobile Number</th>
-                                  <th>1st Drink Preference</th>
-                                  <th>2nd Drink Preference</th>
-                                  {/* <th>Food Preference</th> */}
+                                  <th>Guest of Guests</th>
+                                  <th>RSVP Details</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                {foodGuestListLoading ? (
-                                  <h5>Loading guest list...</h5>
-                                ) : foodGuestList.length > 0 ? (
-                                  foodGuestList?.map((fd, index) => (
-                                    <tr>
+                                {guestList?.map((group, index) => {
+                                  console.log(group);
+                                  return (
+                                    <tr key={index}>
                                       <td>{index + 1}</td>
-                                      <td>{fd.guest_name}</td>
-                                      <td>{fd.mobile_number}</td>
-                                      <td>{fd.first_preference}</td>
-                                      <td>{fd.second_preference}</td>
-                                      {/* <td>Jain</td>  */}
+                                      {group.guests.map((item) => (
+                                        <td>{item.guest_name}</td>
+                                      ))}
+                                      <td>{group.groupname}</td>
+                                      <td>{/* Add mobile number here */}</td>
+                                      {group.guests.map((item) => (
+                                        <td>{item.guests_of_guest}</td>
+                                      ))}
+
+                                      <td className="text-center">
+                                        <img
+                                          className="action-icon"
+                                          width={20}
+                                          src={eye}
+                                          alt="ima"
+                                        />
+                                      </td>
                                     </tr>
-                                  ))
-                                ) : (
-                                  ""
-                                )}
+                                  );
+                                })}
                               </tbody>
                             </table>
-                            <h4 className="not-found">
-                              {showFoodText
-                                ? "Click On Food And Drinks To Get the Guest List"
-                                : "No Data Found"}
-                            </h4>
                           </div>
-                        </TabList>
-                      </div>
+                        ) : (
+                          <h4 className="not-found">
+                            {showText
+                              ? "Click On Ceremonies To Get The Guest List"
+                              : "No Data Found"}
+                          </h4>
+                        )}
+                      </TabList>
+                    </div>
+                  </Tabs>
+                </div>
+              </div>
+
+              <div className="col-12">
+                <div className="tabs-home home2">
+                  <Tabs>
+                    <div className="crl"></div>
+                    <div className="gray-box menu-tabing">
+                      <div className="gray-box-inv">Menu</div>
+
+                      <TabList>
+                        <>
+                          <div className="collapse show " id="Menu">
+                            {selectedFoods?.map((food) => (
+                              <Tab>
+                                <div
+                                  className="position-relative"
+                                  onClick={() =>
+                                    handleFoodGuestList(food.food_name)
+                                  }
+                                >
+                                  {/* <div className="sky-circle"></div> */}
+                                  <img src={food.food_icon} alt="" />
+                                  <span>{food.food_name}</span>
+                                </div>
+                              </Tab>
+                            ))}
+                            {selectedDrinks?.map((drink) => (
+                              <Tab>
+                                <div
+                                  className="position-relative"
+                                  onClick={() =>
+                                    handleFoodGuestList(drink.drink_name)
+                                  }
+                                >
+                                  {/* <div className="sky-circle">25</div> */}
+                                  <img src={drink.drink_icon} alt="" />
+                                  <span>{drink.drink_name}</span>
+                                </div>
+                              </Tab>
+                            ))}
+                            <div className="crl"></div>
+                          </div>
+                        </>
+                      </TabList>
+                      <div className="crl"></div>
                     </div>
                     <div className="crl"></div>
-                  </div>
-                </Tabs>
+
+                    <div className="gray-box gray-hight-1">
+                      <div class="gray-box-inv">
+                        Guest List{" "}
+                        <div class="sky-circle d-inline-block">
+                          {foodGuestList.length}
+                        </div>
+                      </div>
+                      <div className="crl"></div>
+                      <div className="inside-coll v-2">
+                        <div className="table-responsive">
+                          <TabList className="w-100">
+                            <div className="table-responsive">
+                              <table className="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>S. No</th>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>1st Drink Preference</th>
+                                    <th>2nd Drink Preference</th>
+                                    {/* <th>Food Preference</th> */}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {foodGuestListLoading ? (
+                                    <h5>Loading guest list...</h5>
+                                  ) : foodGuestList.length > 0 ? (
+                                    foodGuestList?.map((fd, index) => (
+                                      <tr>
+                                        <td>{index + 1}</td>
+                                        <td>{fd.guest_name}</td>
+                                        <td>{fd.mobile_number}</td>
+                                        <td>{fd.first_preference}</td>
+                                        <td>{fd.second_preference}</td>
+                                        {/* <td>Jain</td>  */}
+                                      </tr>
+                                    ))
+                                  ) : (
+                                    ""
+                                  )}
+                                </tbody>
+                              </table>
+                              <h4 className="not-found">
+                                {showFoodText
+                                  ? "Click On Food And Drinks To Get the Guest List"
+                                  : "No Data Found"}
+                              </h4>
+                            </div>
+                          </TabList>
+                        </div>
+                      </div>
+                      <div className="crl"></div>
+                    </div>
+                  </Tabs>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

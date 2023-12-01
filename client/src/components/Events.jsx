@@ -15,6 +15,7 @@ import {
   setSchedularEventTime,
 } from "../redux/eventSlice";
 import { getPaymentStatus } from "../redux/paymentSlice";
+import { Helmet } from "react-helmet-async";
 
 const Events = () => {
   const [loading, setLoading] = useState(true);
@@ -88,6 +89,15 @@ const Events = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="SHIV Events. Plan all your wedding events and ceremonies and send out We’re Engaged, Save The Date and Thank you e-cards along with Wedding Ceremony e-invitations."
+        />
+        <link rel="canonical" href="https://shiv-worldwide.com/myEvents"></link>
+        <title>SHIV Platform Events – Asian Wedding Specialist |SHIV</title>
+      </Helmet>
       <div>
         <Navbar />
         <div className="crl"></div>

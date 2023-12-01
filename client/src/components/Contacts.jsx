@@ -33,6 +33,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { MdDelete } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -326,233 +327,250 @@ const Contacts = () => {
   };
 
   return (
-    <div>
-      <Navbar />
-      <div className="crl"></div>
-      <div className="container card-b-1">
-        <div className="row">
-          <h6 className="col-md-12 welcome-text">
-            <h4 className="heading">Contacts</h4>
-            All your guests and their contact details will appear here.
-            <br></br> <br></br>
-            Guests should be placed into groups to determine what invitation
-            they should receive.
-            <br></br> <br></br>
-            Download our excel file and fill in your guest’s name, email, phone
-            number and group you wish to set them in or simply add them straight
-            into your contacts from the Add Guest button.
-            <br></br> <br></br>
-            Ensure you set up your groups first to make it easier when adding
-            your contacts.
-            <br></br> <br></br>
-            <div className="contact-refer">
-              Please note you must send ALL your guest invitations at the same
-              time.
-            </div>
-            <br></br>
-            <div className="refer">
-              Please refer to our downloadable Welcome Pack and Guide in the
-              Dashboard to ensure that you set up your Ceremonies and guest
-              contacts correctly to send out your invitations.
-            </div>
-            <br></br>
-          </h6>
-        </div>
-        <div className="add-eventapp-btn ">
-          <ExportToExcelForTemplate fileName={fileName} apiData={apiData} />
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="Add all your Wedding contacts in your personal SHIV account to send out e-cards and e-invitations with digital RSVP collection in your personal dashboard."
+        />
+        <link rel="canonical" href="https://shiv-worldwide.com/contacts"></link>
+        <title>SHIV Platform Contacts – Asian Wedding Specialist |SHIV</title>
+      </Helmet>
+      <div>
+        <Navbar />
+        <div className="crl"></div>
+        <div className="container card-b-1">
+          <div className="row">
+            <h6 className="col-md-12 welcome-text">
+              <h4 className="heading">Contacts</h4>
+              All your guests and their contact details will appear here.
+              <br></br> <br></br>
+              Guests should be placed into groups to determine what invitation
+              they should receive.
+              <br></br> <br></br>
+              Download our excel file and fill in your guest’s name, email,
+              phone number and group you wish to set them in or simply add them
+              straight into your contacts from the Add Guest button.
+              <br></br> <br></br>
+              Ensure you set up your groups first to make it easier when adding
+              your contacts.
+              <br></br> <br></br>
+              <div className="contact-refer">
+                Please note you must send ALL your guest invitations at the same
+                time.
+              </div>
+              <br></br>
+              <div className="refer">
+                Please refer to our downloadable Welcome Pack and Guide in the
+                Dashboard to ensure that you set up your Ceremonies and guest
+                contacts correctly to send out your invitations.
+              </div>
+              <br></br>
+            </h6>
+          </div>
+          <div className="add-eventapp-btn ">
+            <ExportToExcelForTemplate fileName={fileName} apiData={apiData} />
 
-          <button
-            htmlFor="fileUpload"
-            className="btn me-2"
-            onClick={() => document.getElementById("fileUpload").click()}
-          >
-            Excel Upload
-          </button>
-          <input
-            key={new Date()} // Add a key attribute with a unique value (e.g., timestamp)
-            type="file"
-            id="fileUpload"
-            accept=".xlsx, .xls, .csv" // Define the accepted file types
-            style={{ display: "none" }} // Hide the input element
-            onChange={handleFileUpload} // Call the handleFileUpload function on file selection
-          />
+            <button
+              htmlFor="fileUpload"
+              className="btn me-2"
+              onClick={() => document.getElementById("fileUpload").click()}
+            >
+              Excel Upload
+            </button>
+            <input
+              key={new Date()} // Add a key attribute with a unique value (e.g., timestamp)
+              type="file"
+              id="fileUpload"
+              accept=".xlsx, .xls, .csv" // Define the accepted file types
+              style={{ display: "none" }} // Hide the input element
+              onChange={handleFileUpload} // Call the handleFileUpload function on file selection
+            />
 
-          <button className="btn " onClick={() => setAddGroupOpen(true)}>
-            Add New Group
-          </button>
-          <button
-            className="btn ms-2 new-Guest"
-            onClick={() => setAddContactOpen(true)}
-            disabled={isAddContactDisabled}
-          >
-            Add New Guest
-          </button>
+            <button className="btn " onClick={() => setAddGroupOpen(true)}>
+              Add New Group
+            </button>
+            <button
+              className="btn ms-2 new-Guest"
+              onClick={() => setAddContactOpen(true)}
+              disabled={isAddContactDisabled}
+            >
+              Add New Guest
+            </button>
+          </div>
+          <div className="crl"></div>
         </div>
         <div className="crl"></div>
-      </div>
-      <div className="crl"></div>
-      <div className="main-container">
-        <div className="container bg-w">
-          <div className="row contact-us-page">
-            <div className="col-md-9">
-              {" "}
-              <h4> Groups :</h4>{" "}
-            </div>
-            <div className="col-md-3 ">
-              <Link
-                className="flot-tight-btn contact-right"
-                // to={"/add/group/ceremonies"}
-                to={
-                  eventName === "Wedding" ? "/add/group/ceremonies" : "/couples"
-                }
-              >
-                Next
-                <svg
-                  width={20}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                  />
-                </svg>
-              </Link>
-
-              <Link className="flot-left-btn contact-left" to={"//template"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-                  />
-                </svg>{" "}
-                Back
-              </Link>
-            </div>
-            <div className="totle-guest  col-md-12">
-              Total guest : {rows.length}/
-              {additionalGuest?.data?.additional_guests
-                ? additionalGuest?.data?.additional_guests
-                : 0}
-            </div>
-
-            <div className="col-md-1">
-              <button className="btn all-btn" onClick={handleAllGuestData}>
-                All
-              </button>
-            </div>
-
-            {groups &&
-              groups?.map((item) => (
-                <div className="col-md-3" style={{ cursor: "pointer" }}>
-                  <div
-                    onClick={() => handleGroupData(item.groupname)}
-                    className="group-box"
-                  >
-                    {item.groupname}
-                    <MdDelete
-                      size={20}
-                      onClick={() => handleGroupDelete(item.id)}
-                    />{" "}
-                  </div>
-                </div>
-              ))}
-          </div>
-          <Box sx={{ height: 500, width: "100%" }}>
-            <DataGrid rows={rows} columns={columns} />
-          </Box>
-        </div>
-
-        <div>
-          <EditRowDialog
-            open={editOpen}
-            rowData={editedRowData}
-            handleClose={() => setEditOpen(false)}
-            handleSave={handleSaveEdit}
-          />
-
-          <AddGroupDialog
-            open={addGroupOpen}
-            handleClose={() => setAddGroupOpen(false)}
-            handleAdd={handleAddGroup}
-          />
-          <AddContactForm
-            open={addContactOpen}
-            handleClose={() => setAddContactOpen(false)}
-            handleAddContact={handleAddContact}
-          />
-        </div>
-
-        <div className="popup-content">
-          <Dialog
-            className="popup-content-in"
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle className="pack" id="alert-dialog-title">
-              {"Packages"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <div className="row popup-width">
-                  <div className="col-md-6 popup-pakname">
-                    {additionalGuest?.data?.package_name}
-                  </div>
-                  <div className="col-md-6 popup-option">
-                    <select
-                      name="cars"
-                      className="form-select"
-                      id="cars"
-                      value={selectedValue}
-                      onChange={(e) => setSelectedValue(Number(e.target.value))}
-                    >
-                      <option value="100">100</option>
-                      <option value="200">200</option>
-                      <option value="300">300</option>
-                      <option value="400">400</option>
-                      <option value="500">500</option>
-                      <option value="600">600</option>
-                      <option value="700">700</option>
-                      <option value="800">800</option>
-                      <option value="900">900</option>
-                      <option value="1000">1000</option>
-                    </select>
-                  </div>
-
-                  <div className="col-md-6 cost-popup">Cost</div>
-                  <div className="col-md-6 popup-eur">£ {cost.toFixed(2)}</div>
-                </div>
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <div className="cost-btn">
-                <Button className="btn" onClick={handleClose}>
-                  Cancel
-                </Button>
-                <Button className="btn" onClick={handlePayment} autoFocus>
-                  Upgrade
-                </Button>
+        <div className="main-container">
+          <div className="container bg-w">
+            <div className="row contact-us-page">
+              <div className="col-md-9">
+                {" "}
+                <h4> Groups :</h4>{" "}
               </div>
-            </DialogActions>
-          </Dialog>
+              <div className="col-md-3 ">
+                <Link
+                  className="flot-tight-btn contact-right"
+                  // to={"/add/group/ceremonies"}
+                  to={
+                    eventName === "Wedding"
+                      ? "/add/group/ceremonies"
+                      : "/couples"
+                  }
+                >
+                  Next
+                  <svg
+                    width={20}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    />
+                  </svg>
+                </Link>
+
+                <Link className="flot-left-btn contact-left" to={"//template"}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+                    />
+                  </svg>{" "}
+                  Back
+                </Link>
+              </div>
+              <div className="totle-guest  col-md-12">
+                Total guest : {rows.length}/
+                {additionalGuest?.data?.additional_guests
+                  ? additionalGuest?.data?.additional_guests
+                  : 0}
+              </div>
+
+              <div className="col-md-1">
+                <button className="btn all-btn" onClick={handleAllGuestData}>
+                  All
+                </button>
+              </div>
+
+              {groups &&
+                groups?.map((item) => (
+                  <div className="col-md-3" style={{ cursor: "pointer" }}>
+                    <div
+                      onClick={() => handleGroupData(item.groupname)}
+                      className="group-box"
+                    >
+                      {item.groupname}
+                      <MdDelete
+                        size={20}
+                        onClick={() => handleGroupDelete(item.id)}
+                      />{" "}
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <Box sx={{ height: 500, width: "100%" }}>
+              <DataGrid rows={rows} columns={columns} />
+            </Box>
+          </div>
+
+          <div>
+            <EditRowDialog
+              open={editOpen}
+              rowData={editedRowData}
+              handleClose={() => setEditOpen(false)}
+              handleSave={handleSaveEdit}
+            />
+
+            <AddGroupDialog
+              open={addGroupOpen}
+              handleClose={() => setAddGroupOpen(false)}
+              handleAdd={handleAddGroup}
+            />
+            <AddContactForm
+              open={addContactOpen}
+              handleClose={() => setAddContactOpen(false)}
+              handleAddContact={handleAddContact}
+            />
+          </div>
+
+          <div className="popup-content">
+            <Dialog
+              className="popup-content-in"
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle className="pack" id="alert-dialog-title">
+                {"Packages"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <div className="row popup-width">
+                    <div className="col-md-6 popup-pakname">
+                      {additionalGuest?.data?.package_name}
+                    </div>
+                    <div className="col-md-6 popup-option">
+                      <select
+                        name="cars"
+                        className="form-select"
+                        id="cars"
+                        value={selectedValue}
+                        onChange={(e) =>
+                          setSelectedValue(Number(e.target.value))
+                        }
+                      >
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                        <option value="600">600</option>
+                        <option value="700">700</option>
+                        <option value="800">800</option>
+                        <option value="900">900</option>
+                        <option value="1000">1000</option>
+                      </select>
+                    </div>
+
+                    <div className="col-md-6 cost-popup">Cost</div>
+                    <div className="col-md-6 popup-eur">
+                      £ {cost.toFixed(2)}
+                    </div>
+                  </div>
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <div className="cost-btn">
+                  <Button className="btn" onClick={handleClose}>
+                    Cancel
+                  </Button>
+                  <Button className="btn" onClick={handlePayment} autoFocus>
+                    Upgrade
+                  </Button>
+                </div>
+              </DialogActions>
+            </Dialog>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
