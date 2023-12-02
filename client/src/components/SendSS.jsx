@@ -472,7 +472,7 @@ const SendSS = () => {
           <div className="btn-box ">
             <Link
               className="flot-left-btn"
-              to={eventName === "Wedding" ? "/sendInvitation" : "/contacts"}
+              to={eventName === "Wedding" ? "/sendInvitation" : "/couples"}
             >
               <svg
                 width={20}

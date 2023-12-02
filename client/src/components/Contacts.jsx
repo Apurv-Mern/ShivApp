@@ -437,7 +437,7 @@ const Contacts = () => {
                   </svg>
                 </Link>
 
-                <Link className="flot-left-btn contact-left" to={"//template"}>
+                <Link className="flot-left-btn contact-left" to={"/template"}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
