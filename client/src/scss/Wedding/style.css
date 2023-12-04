@@ -466,3 +466,10 @@ body .wedding-card-nav .navbar-nav {
 .carousel-wedd .carousel-item-prev {
   border-radius: 0px !important;
 }
+
+.home-nav-2 .navbar-toggler-icon-1 {
+  background: #000 !important;
+}
+.home-nav-2 button:focus:not(:focus-visible) {
+  color: #fff !important;
+}

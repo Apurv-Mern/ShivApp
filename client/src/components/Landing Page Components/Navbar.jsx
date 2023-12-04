@@ -53,7 +53,7 @@ const Navbar = () => {
 
         <div className="crl"></div>
         <div className="row ">
-          <div className="nav-panel top-nav">
+          <div className="nav-panel top-nav home-nav-2">
             <nav className="navbar navbar-expand-lg navbar-light">
               <div className="container-fluid">
                 <button
