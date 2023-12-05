@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { eventAllDetails, updateUserFoods } from "./Api";
+import {
+  eventAllDetails,
+  getCoordinates,
+  setCoordinates,
+  updateUserFoods,
+} from "./Api";
 
 // ? Initial State
 export const initialState = {
@@ -29,6 +34,22 @@ export const getAllEventsDetails = createAsyncThunk(
   "user/eventDetails",
   async () => {
     const response = await eventAllDetails();
+    return response.data;
+  }
+);
+export const setCoordinatesForTemplates = createAsyncThunk(
+  "template/coordinates",
+  async (data) => {
+    const response = await setCoordinates(data);
+    return response.data;
+  }
+);
+
+export const getCoordinatesForTemplates = createAsyncThunk(
+  "template/getcoordinates",
+  async (data) => {
+    // console.log(data);
+    const response = await getCoordinates(data);
     return response.data;
   }
 );

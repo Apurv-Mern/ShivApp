@@ -887,6 +887,7 @@ body {
   }
   .middle-part.new-about {
     text-align: center;
+    padding: 0px 15px;
   }
   .nav-panel.top-nav {
     padding-top: 15px;
@@ -925,6 +926,7 @@ body {
     font-size: 23px;
     margin-bottom: 20px;
     font-weight: bold;
+    margin-top: 20px;
   }
   .product .card .front img {
     position: relative;
@@ -952,6 +954,20 @@ body {
   }
   .pak-msg-1 {
     font-size: 24px;
+  }
+  .new-footer {
+    margin-bottom: 15px;
+  }
+  .newse-part {
+    padding: 0px 15px 15px;
+  }
+  body .middle-part.new-about .design-pack {
+    padding: 0px;
+  }
+
+  .middle-part.web-banner .container,
+  .bottom-part .container {
+    padding: 0px;
   }
 }
 

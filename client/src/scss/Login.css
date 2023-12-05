@@ -33,6 +33,10 @@ body {
 .forgot-btn {
   background: inherit;
 }
+body .login-box #signInDiv {
+  width: 260px;
+  margin: 0px auto !important;
+}
 
 .shivLogo {
   width: 100%;
@@ -221,6 +225,13 @@ body {
     border-radius: 15px;
     width: 100%;
     margin: 0px auto;
+  }
+
+  body #signInDiv iframe {
+    height: 0px !important;
+  }
+  .login-section {
+    padding: 0px 15px;
   }
   .btn.btn-login-2 {
     width: 90%;

@@ -39,7 +39,7 @@ const MyInv2 = () => {
     ? format(new Date(scheduledTimes), "mm:HH dd-MM-eeee")
     : "";
 
-  console.log(formattedScheduledTime);
+  // console.log(formattedScheduledTime);
 
   const handleCheckboxChange = (user) => {
     if (sendData.some((data) => data.id === user.guest_id)) {

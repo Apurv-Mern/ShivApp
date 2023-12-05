@@ -27,7 +27,7 @@ const GoogleLogins = () => {
     const userName = res?.payload?.userName;
     const userId = res?.payload?.userId;
 
-    // Store name and sub (Google ID) in localStorage
+    // * Store name and sub (Google ID) in localStorage
     localStorage.setItem("userName", userName);
     localStorage.setItem("user", userId);
     // console.log(data);
@@ -35,13 +35,13 @@ const GoogleLogins = () => {
     window.location.href = "/dashboard";
     // navigate("/dashboard");
   };
-
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleResponse,
     });
+
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
       theme: "outline",
       size: "large",

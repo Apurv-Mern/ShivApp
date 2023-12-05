@@ -464,9 +464,8 @@ export const getMarriageDetails2 = (user_id) => {
   return axios.get(`${serverURl}/marriagedetails/${user_id}`);
 };
 
-export const getDynamicRsvpQuestions = (user_id) => {
+export const getDynamicRsvpQuestions = () => {
   const id = JSON.parse(localStorage.getItem("user"));
-  console.log(user_id);
 
   return axios.get(`${serverURl}/user/getUserQuestions/${id}`);
 };
@@ -532,5 +531,18 @@ export const updateUserDetails = (data) => {
   return axios.put(
     `${serverURl}/user/update-user/${data.id.id}`,
     data.editedData
+  );
+};
+
+// ? COORDINATE API
+export const setCoordinates = (data) => {
+  console.log(data);
+  return axios.post(`${serverURl}/coordinates/box-coordinates`, data);
+};
+
+export const getCoordinates = (data) => {
+  // console.log(data);
+  return axios.get(
+    `${serverURl}/coordinates/retrieveCoordinates/${data.user_id}/${data.event_id}`
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"; // You don't need useSelector here
 import {
-  getUserDynamicRsvpQuestions,
+  getUserDynamicRsvpQuestions2,
   postUserRspvForm,
 } from "../redux/rspvSlice";
 import DatePicker from "react-datepicker";
@@ -19,7 +19,7 @@ import "react-date-range/dist/styles.css"; // Main style file
 import "react-date-range/dist/theme/default.css"; // Theme CSS file
 import "react-datepicker/dist/react-datepicker.css";
 import AddGuestForm from "./AddGuestForm";
-import { getMarriageDetailss } from "../redux/marriageSlice";
+import { getMarriageDetailss2 } from "../redux/marriageSlice";
 import toast from "react-hot-toast";
 
 const ITEM_HEIGHT = 48;
@@ -68,7 +68,7 @@ const NewRsvpForm = () => {
 
   useEffect(() => {
     const handleData = async () => {
-      const res = await dispatch(getUserDynamicRsvpQuestions());
+      const res = await dispatch(getUserDynamicRsvpQuestions2(user_id));
       const selectedQuestions = res.payload?.user_questions.filter(
         (question) => question.selected
       );
@@ -76,7 +76,7 @@ const NewRsvpForm = () => {
     };
 
     const getMarriageDetails = async () => {
-      const response = await dispatch(getMarriageDetailss());
+      const response = await dispatch(getMarriageDetailss2(user_id));
       console.log("res", response.payload);
 
       const { bride_name, groom_name } = response.payload;
@@ -148,7 +148,7 @@ const NewRsvpForm = () => {
     };
 
     console.log("data", data);
-    // dispatch(postUserRspvForm(data));
+    dispatch(postUserRspvForm(data));
   };
 
   console.log(userQuestions);

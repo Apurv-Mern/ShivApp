@@ -56,6 +56,7 @@ export const weAreEngagedScreenshotsToApi = createAsyncThunk(
   async ({ singleScreenshotsArray, filteredGroupNames }) => {
     try {
       const formData = new FormData();
+      console.log("filteredGroupNames", filteredGroupNames);
       formData.append(`images`, singleScreenshotsArray);
       // console.log(filteredGroupNames);
       filteredGroupNames.forEach((groupName) => {

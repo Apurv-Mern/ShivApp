@@ -118,7 +118,6 @@ const Contacts = () => {
     setEditOpen(true);
     // console.log(rowData);
   };
-  console.log("", guestId);
   const handleDelete = (guestId) => {
     console.log(guestId);
     dispatch(deleteGuestByGuesrId(guestId))
@@ -174,7 +173,7 @@ const Contacts = () => {
       width: 250,
       renderCell: (params) => {
         dispatch(setGuestId(params.row?.guest_id));
-        console.log(params.row?.guest_id);
+        // console.log(params.row?.guest_id);
         return (
           <button onClick={() => handleDelete(params.row?.guest_id)}>
             Delete
