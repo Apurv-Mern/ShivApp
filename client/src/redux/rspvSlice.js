@@ -8,6 +8,7 @@ import {
   getDynamicRsvpQuestions,
   postDynamicRsvpQuestions,
   getDynamicRsvpQuestions2,
+  getCeremoniesForRsvp,
 } from "./Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +17,7 @@ const initialState = {
   response: [],
   successMessage: "",
   userQuestions: [],
+  selectedCeremoniesForRsvp: [],
   loading: false,
   error: null,
 };
@@ -81,11 +83,11 @@ export const getUserDynamicRsvpQuestions = createAsyncThunk(
 );
 export const getUserDynamicRsvpQuestions2 = createAsyncThunk(
   "rspv/getDynamicRsvpQuestions",
-  async (id) => {
+  async (user_id) => {
     try {
-      console.log(id);
+      console.log(user_id);
 
-      const response = await getDynamicRsvpQuestions2(id);
+      const response = await getDynamicRsvpQuestions2(user_id);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -97,6 +99,17 @@ export const postUserDynamicRsvpQuestions = createAsyncThunk(
   async (data) => {
     try {
       const response = await postDynamicRsvpQuestions(data);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
+export const getAllSelectedCeremoneisForRsvp = createAsyncThunk(
+  "rspv/getAllSelectedCeremoneisForRsvp",
+  async (id) => {
+    try {
+      const response = await getCeremoniesForRsvp(id);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -165,6 +178,11 @@ const rspvSlice = createSlice({
       .addCase(getUserDynamicRsvpQuestions.fulfilled, (state, action) => {
         state.loading = false;
         state.userQuestions = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllSelectedCeremoneisForRsvp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedCeremoniesForRsvp = action.payload;
         state.error = null;
       })
 

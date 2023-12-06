@@ -470,13 +470,20 @@ export const getDynamicRsvpQuestions = () => {
   return axios.get(`${serverURl}/user/getUserQuestions/${id}`);
 };
 
-export const getDynamicRsvpQuestions2 = (id) => {
-  return axios.get(`${serverURl}/user/getUserQuestions/${id}`);
+export const getDynamicRsvpQuestions2 = (user_id) => {
+  const id = JSON.parse(localStorage.getItem("user"));
+  console.log(user_id);
+
+  return axios.get(`${serverURl}/user/getUserQuestions/${user_id}`);
 };
 
 export const putMarriageDetails = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.put(`${serverURl}/marriagedetails/${id}`, data);
+};
+
+export const getCeremoniesForRsvp = (id) => {
+  return axios.get(`${serverURl}/user/getGuestCeremony/${id}`);
 };
 
 // https://shivappdev.24livehost.com:3004/contact

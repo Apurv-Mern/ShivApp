@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"; // You don't need useSelector here
 import {
+  getAllSelectedCeremoneisForRsvp,
   getUserDynamicRsvpQuestions2,
   postUserRspvForm,
 } from "../redux/rspvSlice";
@@ -49,6 +50,9 @@ const NewRsvpForm = () => {
   const marriageDetails = useSelector(
     (state) => state.marriage.marriageDetails
   );
+  const selectedCeremoniesForRsvp = useSelector(
+    (state) => state.rspv.selectedCeremoniesForRsvp
+  );
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -68,7 +72,7 @@ const NewRsvpForm = () => {
 
   useEffect(() => {
     const handleData = async () => {
-      const res = await dispatch(getUserDynamicRsvpQuestions2(id));
+      const res = await dispatch(getUserDynamicRsvpQuestions2(user_id));
       const selectedQuestions = res.payload?.user_questions.filter(
         (question) => question.selected
       );
@@ -151,7 +155,11 @@ const NewRsvpForm = () => {
     dispatch(postUserRspvForm(data));
   };
 
-  console.log(userQuestions);
+  useEffect(() => {
+    dispatch(getAllSelectedCeremoneisForRsvp(id));
+  }, []);
+
+  console.log(selectedCeremoniesForRsvp);
   return (
     <div>
       <div className="container card-b-1">
@@ -187,6 +195,37 @@ const NewRsvpForm = () => {
                         required
                       />
                     )}
+                    {question.question_type === "Api" && (
+                      <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
+                        <FormControl sx={{ m: 1, width: 300 }}>
+                          <InputLabel id={`demo-select-label${index}`}>
+                            {question.questions}
+                          </InputLabel>
+
+                          <Select
+                            labelId={`demo-select-label${index}`}
+                            id={`question${question.id}`}
+                            name={`question${question.id}`}
+                            multiple // Set to true for multi-select
+                            value={formData[`question${question.id}`] || []}
+                            onChange={handleInputChange}
+                            input={<OutlinedInput label="Tag" />}
+                            renderValue={(selected) => selected.join(", ")}
+                            MenuProps={MenuProps}
+                            required
+                          >
+                            {selectedCeremoniesForRsvp?.data?.map((value) => (
+                              <MenuItem
+                                key={value.ceremony_name}
+                                value={value.ceremony_name}
+                              >
+                                {value.ceremony_name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </div>
+                    )}
 
                     {question.question_type === "Dropdown" && (
                       <div className="col-sm-12 col-md-4 col-lg-3 rsvp-padding">
@@ -194,8 +233,7 @@ const NewRsvpForm = () => {
                           <InputLabel id={`demo-select-label${index}`}>
                             {question.questions}
                           </InputLabel>
-                          {((question.question_number === 6 ||
-                            question.question_number === 7) && (
+                          {(question.question_number === 7 && (
                             <Select
                               labelId={`demo-select-label${index}`}
                               id={`question${question.id}`}
