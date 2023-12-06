@@ -1,0 +1,10 @@
+import React from "react";
+import Navbar from "../Navbar";
+import AdminNavbar from "./AdminNavbar";
+import "../../scss/AdminPanel/style.css";
+
+const reporttype = () => {
+  return <div className="admin-block">rtretrety87ryt87eryt78</div>;
+};
+
+export default reporttype;

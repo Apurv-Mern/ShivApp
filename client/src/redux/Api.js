@@ -476,6 +476,7 @@ export const getDynamicRsvpQuestions2 = (user_id) => {
 
   return axios.get(`${serverURl}/user/getUserQuestions/${user_id}`);
 };
+
 export const putMarriageDetails = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.put(`${serverURl}/marriagedetails/${id}`, data);
