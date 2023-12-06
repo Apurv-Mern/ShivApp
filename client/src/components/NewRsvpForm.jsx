@@ -68,7 +68,7 @@ const NewRsvpForm = () => {
 
   useEffect(() => {
     const handleData = async () => {
-      const res = await dispatch(getUserDynamicRsvpQuestions2(user_id));
+      const res = await dispatch(getUserDynamicRsvpQuestions2(id));
       const selectedQuestions = res.payload?.user_questions.filter(
         (question) => question.selected
       );

@@ -81,11 +81,11 @@ export const getUserDynamicRsvpQuestions = createAsyncThunk(
 );
 export const getUserDynamicRsvpQuestions2 = createAsyncThunk(
   "rspv/getDynamicRsvpQuestions",
-  async (user_id) => {
+  async (id) => {
     try {
-      console.log(user_id);
+      console.log(id);
 
-      const response = await getDynamicRsvpQuestions2(user_id);
+      const response = await getDynamicRsvpQuestions2(id);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
