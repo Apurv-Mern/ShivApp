@@ -37,7 +37,9 @@ const MenuProps = {
 const NewRsvpForm = () => {
   const dispatch = useDispatch();
   const { group_name, id, user_id, event_id } = useParams();
-  console.log(id, user_id, event_id);
+  // console.log(id, user_id, event_id);
+  const { loading, error, successMessage } = useSelector((state) => state.rspv);
+  console.log(loading, error);
   const [userQuestions, setUserQuestions] = useState([]);
   const [numOfGuests, setNumOfGuests] = useState(0);
   const [formData, setFormData] = useState({});
@@ -73,21 +75,24 @@ const NewRsvpForm = () => {
   useEffect(() => {
     const handleData = async () => {
       const res = await dispatch(getUserDynamicRsvpQuestions2(user_id));
-      const selectedQuestions = res.payload?.user_questions.filter(
-        (question) => question.selected
-      );
-      setUserQuestions(selectedQuestions);
+      // console.log(res);
+      if (res.meta.requestStatus === "fulfilled") {
+        const selectedQuestions = res.payload?.user_questions.filter(
+          (question) => question.selected
+        );
+        setUserQuestions(selectedQuestions);
+      }
     };
 
     const getMarriageDetails = async () => {
       const response = await dispatch(getMarriageDetailss2(user_id));
-      console.log("res", response.payload);
+      // console.log("res", response);
 
       const { bride_name, groom_name } = response.payload;
-      if (response) {
+      if (response.meta.requestStatus === "fulfilled") {
         setMarriage({
-          Bride_Name: response.payload.bride_name || "",
-          Groom_Name: response.payload.groom_name || "",
+          Bride_Name: bride_name || "",
+          Groom_Name: groom_name || "",
         });
       }
     };
@@ -151,7 +156,7 @@ const NewRsvpForm = () => {
       attending: attendingEvents,
     };
 
-    console.log("data", data);
+    // console.log("data", data);
     dispatch(postUserRspvForm(data));
   };
 
@@ -159,7 +164,7 @@ const NewRsvpForm = () => {
     dispatch(getAllSelectedCeremoneisForRsvp(id));
   }, []);
 
-  console.log(selectedCeremoniesForRsvp);
+  // console.log(selectedCeremoniesForRsvp);
   return (
     <div>
       <div className="container card-b-1">

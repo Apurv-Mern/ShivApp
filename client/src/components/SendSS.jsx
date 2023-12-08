@@ -62,6 +62,10 @@ const SendSS = () => {
   const [text1Coordinates, setText1Coordinates] = useState({ x: 0, y: 0 });
   const [text2Coordinates, setText2Coordinates] = useState({ x: 0, y: 0 });
   const [text3Coordinates, setText3Coordinates] = useState({ x: 0, y: 0 });
+  const [invitationTypeCoordinates, setInvitationTypeCoordinates] = useState({
+    x: 0,
+    y: 0,
+  });
   const allGroupNames = useSelector((state) => state.groups.groupWithId);
   const eventName = JSON.parse(localStorage.getItem("eventName"));
   const selectedImage = useSelector((state) => state.image.selectedTemplate);
@@ -464,13 +468,15 @@ const SendSS = () => {
     const data = {
       user_id,
       event_id,
-      pages: [1, 2, 3],
+      pages: [1, 2, 3, 4],
       x_coordinates: [
+        invitationTypeCoordinates.x,
         text1Coordinates.x,
         text2Coordinates.x,
         text3Coordinates.x,
       ],
       y_coordinates: [
+        invitationTypeCoordinates.y,
         text1Coordinates.y,
         text2Coordinates.y,
         text3Coordinates.y,
@@ -501,17 +507,21 @@ const SendSS = () => {
         const coordinates = res.payload;
 
         // *Set the initial coordinates for text elements
+        setInvitationTypeCoordinates({
+          x: coordinates[0]?.x_coordinate || 0,
+          y: coordinates[0]?.y_coordinate || 0,
+        });
         setText1Coordinates({
-          x: coordinates[0]?.x_coordinate,
-          y: coordinates[0]?.y_coordinate,
+          x: coordinates[1]?.x_coordinate || 0,
+          y: coordinates[1]?.y_coordinate || 0,
         });
         setText2Coordinates({
-          x: coordinates[1]?.x_coordinate,
-          y: coordinates[1]?.y_coordinate,
+          x: coordinates[2]?.x_coordinate || 0,
+          y: coordinates[2]?.y_coordinate || 0,
         });
         setText3Coordinates({
-          x: coordinates[2]?.x_coordinate,
-          y: coordinates[2]?.y_coordinate,
+          x: coordinates[3]?.x_coordinate || 0,
+          y: coordinates[3]?.y_coordinate || 0,
         });
       }
       setLoading(false);
@@ -647,9 +657,16 @@ const SendSS = () => {
                         ) : (
                           <div>
                             <Draggable
+                              defaultPosition={{
+                                x: invitationTypeCoordinates.x,
+                                y: invitationTypeCoordinates.y,
+                              }}
                               onDrag={(e, ui) => {
                                 console.log(ui, e);
-                                setText1Coordinates({ x: ui.x, y: ui.y });
+                                setInvitationTypeCoordinates({
+                                  x: ui.x,
+                                  y: ui.y,
+                                });
                               }}
                             >
                               <div
@@ -666,7 +683,6 @@ const SendSS = () => {
                                 y: text1Coordinates.y,
                               }}
                               onDrag={(e, ui) => {
-                                // Update the coordinates in the state
                                 setText1Coordinates({ x: ui.x, y: ui.y });
                               }}
                             >
@@ -737,10 +753,10 @@ const SendSS = () => {
                                 dangerouslySetInnerHTML={{ __html: text2 }}
                               ></div>
                             </Draggable>
-                            <div
+                            {/* <div
                               className="absolute-m1 mob-font"
                               dangerouslySetInnerHTML={{ __html: footerText }}
-                            ></div>
+                            ></div> */}
                           </>
                         )}
                       </div>
@@ -801,10 +817,10 @@ const SendSS = () => {
                                 }}
                               ></div>
                             </Draggable>
-                            <div
+                            {/* <div
                               className="absolute-bottom mob-font"
                               dangerouslySetInnerHTML={{ __html: footerText }}
-                            ></div>
+                            ></div> */}
                           </>
                         )}
                       </div>

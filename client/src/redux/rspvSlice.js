@@ -82,10 +82,10 @@ export const getUserDynamicRsvpQuestions = createAsyncThunk(
   }
 );
 export const getUserDynamicRsvpQuestions2 = createAsyncThunk(
-  "rspv/getDynamicRsvpQuestions",
+  "rspv/getDynamicRsvpQuestions2",
   async (user_id) => {
     try {
-      console.log(user_id);
+      // console.log(user_id);
 
       const response = await getDynamicRsvpQuestions2(user_id);
       return response.data;
@@ -179,6 +179,20 @@ const rspvSlice = createSlice({
         state.loading = false;
         state.userQuestions = action.payload;
         state.error = null;
+      })
+
+      .addCase(getUserDynamicRsvpQuestions2.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userQuestions = action.payload;
+        state.error = null;
+      })
+      .addCase(getUserDynamicRsvpQuestions2.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getUserDynamicRsvpQuestions2.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.error;
       })
       .addCase(getAllSelectedCeremoneisForRsvp.fulfilled, (state, action) => {
         state.loading = false;

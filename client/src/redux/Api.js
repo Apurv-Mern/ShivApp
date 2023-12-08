@@ -472,7 +472,7 @@ export const getDynamicRsvpQuestions = () => {
 
 export const getDynamicRsvpQuestions2 = (user_id) => {
   const id = JSON.parse(localStorage.getItem("user"));
-  console.log(user_id);
+  // console.log(user_id);
 
   return axios.get(`${serverURl}/user/getUserQuestions/${user_id}`);
 };
@@ -550,4 +550,10 @@ export const getCoordinates = (data) => {
   return axios.get(
     `${serverURl}/coordinates/retrieveCoordinates/${data.user_id}/${data.event_id}`
   );
+
+  // GET https://shivappdev.24livehost.com:3004/api/groups/getGuestCeremonyByCode/282561
+};
+export const weddingCode = (code) => {
+  console.log(code);
+  return axios.get(`${serverURl}/groups/getGuestCeremonyByCode/${code}`);
 };
