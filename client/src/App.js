@@ -78,9 +78,7 @@ const loading = (
 );
 
 function App() {
-  const location = useLocation();
-
-  console.log(location);
+  const code = localStorage.getItem("code");
   const isAuthenticated = useSelector((state) => state.auth.user);
   const ProtectedRoute = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
@@ -174,11 +172,7 @@ function App() {
             path="/wedding_website/site/:bride/weds/:groom"
             name="Wedding website "
             element={
-              location?.state ? (
-                <WeddingWebsite />
-              ) : (
-                <Navigate to="/wedding_website/otp" />
-              )
+              code ? <WeddingWebsite /> : <Navigate to="/wedding_website/otp" />
             }
           />{" "}
           {/* PROTECTED ROUTES STARTS FROM HERE */}
