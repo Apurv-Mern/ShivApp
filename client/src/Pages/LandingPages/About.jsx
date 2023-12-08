@@ -1,17 +1,10 @@
 import React from "react";
 import img1 from "../../assets/images/pro1.png";
 import img2 from "../../assets/images/pro4.png";
-import wedingW from "../../assets/images/pro2.png";
 import img3 from "../../assets/images/pro3.png";
 
 import Website from "../../assets/website.png";
 
-import img4 from "../../assets/images/shiv-logo-footer.png";
-import img5 from "../../assets/images/facebook.png";
-import img6 from "../../assets/images/insta.png";
-import img7 from "../../assets/images/pint.png";
-import img8 from "../../assets/images/shiv-logo-footer.png";
-import img9 from "../../assets/images/insta.png";
 import Navbar from "../../components/Landing Page Components/Navbar";
 import Footer from "../../components/Landing Page Components/Footer";
 import { Helmet } from "react-helmet-async";

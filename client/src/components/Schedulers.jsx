@@ -29,17 +29,13 @@ const MyInv2 = () => {
   const eventName = useSelector((state) => state.event.eventState);
   const [model, setModel] = useState(false);
 
-  // console.log(weddingLists);
   const schedularEventTime = JSON.parse(localStorage.getItem("templateTime"));
   const time = useSelector((state) => state.event.schedularEventTime);
-  // console.log(time);
 
   // Format the input date
   const formattedScheduledTime = scheduledTimes
     ? format(new Date(scheduledTimes), "mm:HH dd-MM-eeee")
     : "";
-
-  // console.log(formattedScheduledTime);
 
   const handleCheckboxChange = (user) => {
     if (sendData.some((data) => data.id === user.guest_id)) {
@@ -69,8 +65,6 @@ const MyInv2 = () => {
       data: sendData,
     };
 
-    // console.log(dataToSend);
-
     dispatch(startCronJob(dataToSend))
       .then(() => {
         toast.success("Email send successfully");
@@ -91,13 +85,11 @@ const MyInv2 = () => {
     hour12: true,
   }).format(date);
 
-  // console.log(formattedDate);
-
   useEffect(() => {
     const handleData = async () => {
       const res = await dispatch(weddingList());
       if (res.payload) {
-        // Data has been fetched, call getAllEmails
+        // *Data has been fetched, call getAllEmails
         getAllEmails(res.payload.Data);
       }
     };
@@ -233,13 +225,6 @@ const MyInv2 = () => {
                   </tbody>
                 </table>
 
-                {/* <input
-                  type="datetime-local"
-                  className="reminder"
-                  placeholder="Select Date"
-                  value={scheduledTimes}
-                  onChange={handleScheduledTimeChange}
-                /> */}
                 <button className="reminder btn" onClick={handelModel}>
                   Reminder
                 </button>

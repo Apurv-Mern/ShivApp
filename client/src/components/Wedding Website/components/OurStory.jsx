@@ -90,7 +90,6 @@ const OurStory = () => {
                   placeholder="Share us your proposal story!"
                 ></textarea>
 
-                {/* <button onClick={()=>setProposalStory()}>Save</button> */}
                 <div className="clearfix"></div>
               </div>
             </div>

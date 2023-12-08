@@ -54,7 +54,6 @@ const Template = () => {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null); // Add this state variable
   const selectedImage = useSelector((state) => state.image.selectedTemplate);
-  // console.log(selectedImage);
   const eventName = useSelector((state) => state.event.eventState);
   const paymentStatus = useSelector((state) => state.payment.paymentStatus);
   const paymentId = paymentStatus["payment status: "]?.status;
@@ -132,7 +131,7 @@ const Template = () => {
 
       reader.readAsDataURL(file);
     } else {
-      console.log("no file selected");
+      toast.error('no file selected"');
     }
   };
 
@@ -286,10 +285,6 @@ const Template = () => {
                   />
                   <div className="px-6 py-2">
                     <div className="font-bold text-xl mb-2">{t.title}</div>
-                    {/* <p className="text-gray-700 text-base">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Voluptatibus quia, nulla!
-                    </p> */}
                   </div>
                 </div>
               ))}
@@ -297,39 +292,6 @@ const Template = () => {
             </div>
 
             <div className="crl"></div>
-
-            {/* <div className="position-absolute bottom-0 start-50 translate-middle">
-              <div aria-label="Page navigation mx-auto">
-                <ul className="pagination">
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Previous
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div> */}
-
             <div className="crl"></div>
           </div>
         </div>

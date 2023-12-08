@@ -34,7 +34,6 @@ const Contactus = () => {
       comment: formData.message,
     };
 
-    console.log(data);
     dispatch(updateContactDetails(data));
   };
   return (

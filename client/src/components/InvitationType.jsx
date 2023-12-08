@@ -29,7 +29,6 @@ const InvitationType = () => {
   const InvitationType = useSelector(
     (state) => state.invitation.invitationType
   );
-  // console.log("invitationType line 23", InvitationType);
 
   const invitationTypes = [
     "Select Invitation Type",
@@ -43,7 +42,6 @@ const InvitationType = () => {
   useEffect(() => {
     const handleData = async () => {
       const res = await dispatch(getUserGroupsByUserId());
-      // console.log(res);
       dispatch(getGroupsByUserId());
     };
 

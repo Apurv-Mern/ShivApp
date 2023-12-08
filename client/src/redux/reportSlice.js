@@ -25,7 +25,6 @@ export const getPersonalAssistanceCombined = createAsyncThunk(
   async () => {
     try {
       const response = await getTotalPersonalAssistanceCombined();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -37,7 +36,6 @@ export const getTotalMUALists = createAsyncThunk(
   async () => {
     try {
       const response = await getTotalMUAList();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -49,7 +47,6 @@ export const getTotalEthinicWearlists = createAsyncThunk(
   async () => {
     try {
       const response = await getTotalEthinicWearlist();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -61,7 +58,6 @@ export const getFlightListReports = createAsyncThunk(
   async () => {
     try {
       const response = await getFlightListReport();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -73,7 +69,6 @@ export const getFoodListReports = createAsyncThunk(
   async () => {
     try {
       const response = await getFoodListReport();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -85,7 +80,6 @@ export const getMehndiLists = createAsyncThunk(
   async () => {
     try {
       const response = await getMehndiList();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);

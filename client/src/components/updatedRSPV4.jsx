@@ -98,7 +98,7 @@ const Rsvp4 = () => {
       target: { value },
     } = event;
     setPersonName(
-      // On autofill we get a stringified value.
+      // *On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
   };
@@ -117,7 +117,6 @@ const Rsvp4 = () => {
   //TODO:
   const handleExtraData = (e, fieldName) => {
     const data = e.target.value;
-    // console.log("@data", data);
     setFormData((prevState) => ({
       ...prevState,
       [fieldName]: {
@@ -241,9 +240,6 @@ const Rsvp4 = () => {
       return extra !== undefined ? extra : null;
     });
 
-    // Add selectedCeremonies to the response
-    // const responseData = [...response, ...selectedCeremonies];
-
     const data = {
       user_id,
       guest_id: id,
@@ -253,22 +249,7 @@ const Rsvp4 = () => {
     };
 
     // dispatch(postUserRspvForm(data));
-    console.log(selectedCeremonies);
-    console.log("data", data);
   };
-
-  // Use useEffect to update selectedCeremonies whenever personName changes
-  // useEffect(() => {
-  //   const selectedCeremoniess = ceremonyData
-  //     .filter((ceremony) => personName.includes(ceremony.ceremony_name))
-  //     .map((ceremony) => ceremony.id);
-  //   // Update the 'ceremonies' value in formData with the selectedCeremonies array
-  //   setSelectedCeremonies(selectedCeremoniess);
-  //   setFormData({
-  //     ...formData,
-  //     ceremonies: { id: 6, value: selectedCeremonies },
-  //   });
-  // }, [personName, ceremonyData, selectedCeremonies]);
 
   useEffect(() => {
     const selectedFoods = foodsData
@@ -281,19 +262,6 @@ const Rsvp4 = () => {
     });
   }, [foodList, foodsData]);
 
-  // useEffect(() => {
-  //   const handleData = async () => {
-  //     const res = await dispatch(getCeremoniesByEventId());
-  //     const drinks = await dispatch(getDrinks());
-  //     const foods = await dispatch(getFoods());
-  //     setCeremonyData(res?.payload?.map((item) => item));
-  //     setDrinksData(drinks?.payload?.map((item) => item));
-  //     setFoodsData(foods?.payload?.map((item) => item));
-  //   };
-  //   handleData();
-  // }, [dispatch]);
-
-  // console.log("radio", radioValue);
   return (
     <div className="rsvp-pack">
       <form className="row" onSubmit={handleSubmit}>
@@ -380,7 +348,8 @@ const Rsvp4 = () => {
               onChange={handleCeremonie}
               input={<OutlinedInput label="Tag" />}
               renderValue={(selected) => selected.join(", ")}
-              MenuProps={MenuProps}>
+              MenuProps={MenuProps}
+            >
               {ceremonyData?.map((item) => {
                 return (
                   <MenuItem key={item.id} value={item?.ceremony_name}>
@@ -408,7 +377,8 @@ const Rsvp4 = () => {
               onChange={handleFood} // Use the same handleChange function
               input={<OutlinedInput label="Tag" />}
               renderValue={(selected) => selected.join(", ")}
-              MenuProps={MenuProps}>
+              MenuProps={MenuProps}
+            >
               {foodsData?.map((item) => {
                 return (
                   <MenuItem key={item.id} value={item?.food_name}>
@@ -517,7 +487,8 @@ const Rsvp4 = () => {
             id="exampleFormControlInput1"
             className="form-select"
             value={formData.drinks.value}
-            onChange={(e) => handleInputChange(e, "drinks")}>
+            onChange={(e) => handleInputChange(e, "drinks")}
+          >
             <option value="">Select First Preference</option>
             {drinksData?.map((item) => (
               <option value={item?.id} key={item.id}>
@@ -534,7 +505,8 @@ const Rsvp4 = () => {
             id="exampleFormControlInput1"
             className="form-select"
             value={formData.drinks2.value}
-            onChange={(e) => handleInputChange(e, "drinks2")}>
+            onChange={(e) => handleInputChange(e, "drinks2")}
+          >
             <option value="">Select Second Preference</option>
             {drinksData?.map((item) => (
               <option value={item?.id} key={item.id}>
@@ -925,7 +897,6 @@ const Rsvp4 = () => {
           <label className="ml-2">
             <input
               type="number"
-              // disabled={parseFloat(formData.guestCount.value) < 0}
               placeholder="Number of guests?"
               name="guestCount"
               onChange={handleInputChange}

@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 
 const EditUserDialog = ({ open, onClose, onSave, user }) => {
   const [editedData, setEditedData] = useState(user);
-  console.log(user);
 
   useEffect(() => {
     // *Reset the edited data when the user prop changes

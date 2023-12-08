@@ -29,12 +29,11 @@ const TemplatePreview = () => {
   const [toggle1, setToggle1] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const template = localStorage.getItem("template");
-  console.log(template);
-  // Add these state variables at the top of your component function
+
+  // ?Add these state variables at the top of your component function
   const [text1Coordinates, setText1Coordinates] = useState({ x: 0, y: 0 });
   const thankYou = useSelector((state) => state.image.thankYou);
   const eventName = JSON.parse(localStorage.getItem("eventName"));
-  // console.log(eventName, eventNames);
   const selectedImage = useSelector((state) => state.image.selectedTemplate);
   const text1 = useSelector((state) => state.image.tempText1);
   const text2 = useSelector((state) => state.image.tempText2);
@@ -134,9 +133,6 @@ const TemplatePreview = () => {
                       src={selectedImage || template}
                       alt="Please select the template"
                     />
-                    {/* <button className="edit-btn" onClick={handleEditor1}>
-                      {toggle1 ? "PREVIEW" : "EDIT"}
-                    </button> */}
 
                     {hide1 ? (
                       <div className="absolute-editor">
@@ -148,7 +144,6 @@ const TemplatePreview = () => {
                     ) : (
                       <Draggable
                         onDrag={(e, ui) => {
-                          // Update the coordinates in the state
                           setText1Coordinates({ x: ui.x, y: ui.y });
                         }}
                       >
@@ -176,9 +171,6 @@ const TemplatePreview = () => {
                       src={selectedImage || template}
                       alt="Please select the template"
                     />
-                    {/* <button className="edit-btn" onClick={handleEditor2}>
-                      {toggle2 ? "PREVIEW" : "EDIT"}
-                    </button> */}
 
                     {hide2 ? (
                       <>
@@ -225,9 +217,6 @@ const TemplatePreview = () => {
                       src={selectedImage || template}
                       alt="Please select the template"
                     />
-                    {/* <button className="edit-btn" onClick={handleEditor2}>
-                      {toggle2 ? "PREVIEW" : "EDIT"}
-                    </button> */}
 
                     {hide2 ? (
                       <>
@@ -418,9 +407,7 @@ const TemplatePreview = () => {
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handelModel}>
-                      {/* <Button onClick={generatePdf}>Download PDF</Button> */}
-                    </Button>
+                    <Button onClick={handelModel}></Button>
                     <Button onClick={handleBuyNow}>Buy Now</Button>
                   </DialogActions>
                 </Dialog>

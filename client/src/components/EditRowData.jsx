@@ -11,10 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateGuestByGuestId,
-  updateGuestDetailsByGuestId,
-} from "../redux/guestSlice";
+import { updateGuestDetailsByGuestId } from "../redux/guestSlice";
 
 const EditRowDialog = ({ open, rowData, handleClose, handleSave }) => {
   const dispatch = useDispatch();
@@ -22,7 +19,6 @@ const EditRowDialog = ({ open, rowData, handleClose, handleSave }) => {
   const guestId = useSelector((state) => state.guest.guestId);
 
   const [editedData, setEditedData] = useState({});
-  // console.log("guestId", guestId);
   useEffect(() => {
     setEditedData({ ...rowData });
   }, [rowData]);
@@ -42,7 +38,6 @@ const EditRowDialog = ({ open, rowData, handleClose, handleSave }) => {
   const fieldsToEdit = Object.entries(rowData).filter(
     ([key]) => key !== "group" && key !== "id" && key !== "guest_id"
   );
-  // console.log("editedData", editedData);
 
   const updateGuestDetails = () => {
     // const { id, ...dataWithoutId } = editedData;
@@ -52,10 +47,8 @@ const EditRowDialog = ({ open, rowData, handleClose, handleSave }) => {
       email: editedData.email,
       group_name: editedData.group,
     };
-    console.log("editedData", mappedData);
 
     dispatch(updateGuestDetailsByGuestId({ guestId, mappedData }));
-    console.log(guestId);
   };
 
   return (

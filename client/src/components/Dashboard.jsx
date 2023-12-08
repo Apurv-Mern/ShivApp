@@ -104,7 +104,6 @@ export const Dashboard = ({ children }) => {
   );
 
   const [loading, setLoading] = useState(false);
-  // console.log(filteredFoodAndDrink);
   const {
     allergies,
     personalAssistance,
@@ -232,13 +231,11 @@ export const Dashboard = ({ children }) => {
   };
 
   const categories = Object.keys(getCeremonyAttendance || {}); // Use an empty object as a fallback if getCeremonyAttendance is undefined
-  // console.log(categories);
 
   const labels =
     categories.length > 0
       ? Object.keys(getCeremonyAttendance[categories[0]] || {})
       : []; // Use an empty object as a fallback for nested property access
-  // console.log(labels);
 
   const datasets = [];
 
@@ -263,7 +260,6 @@ export const Dashboard = ({ children }) => {
     datasets: datasets,
   };
 
-  // console.log("getEventAttendance", getEventAttendance);
   const otherData = {
     labels: [
       "Allergies",
@@ -311,9 +307,7 @@ export const Dashboard = ({ children }) => {
     try {
       setGuestListLoading(true); // Set guestListLoading state to true before the API call
       const response = await dispatch(getTotalFilterCeremony(ceremonyId));
-      // console.log("line 289 response", response);
       const guestData = response?.payload?.Groups || [];
-      console.log("guestData", guestData);
       if (guestData) {
         setGuestList(guestData);
         toast.success("Data fetch successfully");
@@ -334,9 +328,7 @@ export const Dashboard = ({ children }) => {
     try {
       setFoodGuestListLoading(true); // Set guestListLoading state to true before the API call
       const response = await dispatch(getFilterFoodAndDrinkList(name));
-      console.log("line 289 response", response);
       const guestData = response?.payload || [];
-      console.log("guestData", guestData);
       if (guestData) {
         setFoodGuestList(guestData);
         toast.success("Data fetch successfully");
@@ -354,7 +346,6 @@ export const Dashboard = ({ children }) => {
   useEffect(() => {
     const handleCeremonies = async () => {
       const res = await dispatch(getAllCeremoniesByEventId());
-      // console.log(res);
       const selectedCeremonyNames = res.payload
         ?.filter((item) => item.selected === true)
         ?.map((item) => ({
@@ -708,7 +699,6 @@ export const Dashboard = ({ children }) => {
                               </thead>
                               <tbody>
                                 {guestList?.map((group, index) => {
-                                  console.log(group);
                                   return (
                                     <tr key={index}>
                                       <td>{index + 1}</td>

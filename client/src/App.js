@@ -84,7 +84,6 @@ function App() {
     return isAuthenticated ? children : <Navigate to="/login" />;
   };
   // {isAuthenticated.isAdmin ? <AdminNavbar /> : <Navbar />}
-  // console.log(isAuthenticated?.isAdmin);
 
   return (
     <>

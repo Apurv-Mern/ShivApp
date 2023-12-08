@@ -48,7 +48,6 @@ export const otpUserLogin = createAsyncThunk(
 export const uploadProfilePicture = createAsyncThunk(
   "user/uploadProfilePicture",
   async (data) => {
-    // console.log(data);
     const response = await UploadProfile(data);
     return response.data;
   }
@@ -56,7 +55,6 @@ export const uploadProfilePicture = createAsyncThunk(
 export const getUploadProfiles = createAsyncThunk(
   "user/getUploadProfile",
   async (data) => {
-    // console.log(data);
     const response = await getUploadProfile(data);
     return response.data;
   }
@@ -64,7 +62,6 @@ export const getUploadProfiles = createAsyncThunk(
 export const sendGoogleLoginData = createAsyncThunk(
   "user/sendGoogleLoginData",
   async (data) => {
-    // console.log(data);
     const response = await sendSocialLoginData(data);
     return response.data;
   }

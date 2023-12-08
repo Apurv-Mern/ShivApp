@@ -62,14 +62,11 @@ const PersonalAssistance = () => {
               <div className="tabs-home">
                 <Tabs>
                   <div className="gray-box mt-5  menu-tabing">
-                    <div className="gray-box-inv">
-                      Attendance{" "}
-                      {/* <div className="sky-circle d-inline-block">105</div> */}
-                    </div>
+                    <div className="gray-box-inv">Attendance </div>
                     <TabPanel>
-                      {guestListLoading ? ( // Check if guestList is loading
-                        <h5>Loading guest list...</h5> // Display loading message
-                      ) : getTotalPersonalAssistanceCombined.length > 0 ? ( // Check if guestList has data
+                      {guestListLoading ? (
+                        <h5>Loading guest list...</h5>
+                      ) : getTotalPersonalAssistanceCombined.length > 0 ? (
                         <div className="table-responsive">
                           <table className="table table-striped">
                             <thead>
@@ -103,7 +100,6 @@ const PersonalAssistance = () => {
                           </table>
                         </div>
                       ) : (
-                        // Display "No Data Found" message when guestList is empty
                         <h4 className="not-found">No Data Found</h4>
                       )}
                     </TabPanel>

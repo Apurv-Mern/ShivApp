@@ -9,22 +9,18 @@ const ThankuEditor = () => {
   const thankYou = useSelector((state) => state.image.thankYou);
 
   const handleTemplateText1 = (value) => {
-    console.log(value);
-
     dispatch(thankYouText(value));
   };
 
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ["bold", "italic", "underline", "strike"], // Add any other text formatting options you want
-      [{ color: [] }], // Font color option
+      ["bold", "italic", "underline", "strike"], //  *Add any other text formatting options you want
+      [{ color: [] }], // *Font color option
       ["link", "image"],
       ["clean"],
     ],
   };
-  // const textToDisplay = eventName === "Wedding" ? text1 : event2text;
-  // const textToDisplay = setinvitationTypeofgroup+text1;
 
   return (
     <div>

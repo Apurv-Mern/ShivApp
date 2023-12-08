@@ -42,7 +42,6 @@ const AddGroupInCeremonies = () => {
   const groupsWithId = useSelector((state) => state.groups.groupWithId);
   const [guestLimit, setGuestLimit] = useState(0);
   const [selectedGroups, setSelectedGroups] = useState([]);
-  // console.log("groupname", groupname);
   const selectedCeremoniesName = useSelector(
     (state) => state.ceremony.getCeremonies
   );
@@ -55,13 +54,6 @@ const AddGroupInCeremonies = () => {
   const [canUpdateList, setCanUpdateList] = useState(true);
   const totalGuest = 100;
 
-  // const handlePayment = (id) => {
-  //   // Open the child window with your payment URL
-  //   const paymentUrl = `https://shivappdev.24livehost.com:3004/payment/additionalGuests/user/${userId}/${packageId}`;
-  //   window.open(paymentUrl, "_blank");
-  // };
-
-  // console.log("selectedCeremoniesName", selectedCeremoniesName);
   const handleChange = (event, ceremonyId) => {
     const {
       target: { value },
@@ -85,11 +77,9 @@ const AddGroupInCeremonies = () => {
   };
 
   const handleGroupData = async (groupName, isSelected) => {
-    // console.log(groupName);
     try {
       if (!isSelected && canUpdateList) {
         const res = await dispatch(getGuestForAGroup(groupName));
-        // console.log(res);
         // Get the length of the groups from the response
         const groupLength = parseInt(res.payload.length, 10);
         if (!isNaN(groupLength)) {
@@ -124,58 +114,6 @@ const AddGroupInCeremonies = () => {
     dispatch(getCeremoniesByEventId());
     // handleGroupData();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (guestLimit >= additionalGuest?.data?.additional_guests && !popupShown) {
-  //     setOpen(true);
-  //     setCanUpdateList(false);
-  //     setPopupShown(true);
-  //   }
-  // }, [guestLimit, popupShown]);
-
-  // useEffect(() => {
-  //   dispatch(getAdditionalGuest());
-  //   // Define the cost calculation logic based on the selected value
-  //   let calculatedCost = 0;
-
-  //   if (selectedValue === 100) {
-  //     calculatedCost = 25;
-  //     setPackageId(1);
-  //   } else if (selectedValue === 200) {
-  //     calculatedCost = 40;
-  //     setPackageId(2);
-  //   } else if (selectedValue === 300) {
-  //     calculatedCost = 55;
-  //     setPackageId(3);
-  //   } else if (selectedValue === 400) {
-  //     calculatedCost = 70;
-  //     setPackageId(4);
-  //   } else if (selectedValue === 500) {
-  //     calculatedCost = 85;
-  //     setPackageId(5);
-  //   } else if (selectedValue === 600) {
-  //     calculatedCost = 100;
-  //     setPackageId(6);
-  //   } else if (selectedValue === 700) {
-  //     calculatedCost = 155;
-  //     setPackageId(7);
-  //   } else if (selectedValue === 800) {
-  //     calculatedCost = 130;
-  //     setPackageId(8);
-  //   } else if (selectedValue === 900) {
-  //     calculatedCost = 145;
-  //     setPackageId(9);
-  //   } else if (selectedValue === 1000) {
-  //     calculatedCost = 160;
-  //     setPackageId(10);
-  //   }
-
-  //   // Set the cost state with the calculated value
-  //   setCost(calculatedCost);
-  // }, [selectedValue]);
-
-  // // console.log("selected", { guest: selectedValue, setPackageId: packageId });
-  // console.log("additional guest info", additionalGuest);
 
   return (
     <>
@@ -282,7 +220,6 @@ const AddGroupInCeremonies = () => {
                 <div className="col-md-12">
                   <div className="row add-group-1 ps-0">
                     {selectedCeremoniesName?.map((ceremony) => {
-                      // console.log(ceremony);
                       return (
                         <div
                           className="col-md-3 add-group-box-1"
@@ -318,7 +255,6 @@ const AddGroupInCeremonies = () => {
                                         selectedGroups[ceremony.id] || []
                                       ).indexOf(group.groupname) > -1;
 
-                                    // console.log("isSelected", isSelected);
                                     return (
                                       <MenuItem
                                         key={group.id}

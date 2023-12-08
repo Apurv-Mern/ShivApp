@@ -26,7 +26,6 @@ export const initialState = {
 export const createUserCeremony = createAsyncThunk(
   "user/createCeremonies",
   async (ceremonies) => {
-    // console.log(ceremonies);
     const response = await addSelectedCeremonies(ceremonies);
     return response.data;
   }
@@ -48,7 +47,6 @@ export const getAllCeremoniesByEventId = createAsyncThunk(
 export const updateCeremonyNames = createAsyncThunk(
   "user/updateCeremonyName",
   async (data) => {
-    // console.log(data);
     const response = await updateCeremonyName(data);
     return response.data;
   }
@@ -66,7 +64,6 @@ const ceremonySlice = createSlice({
         state.error = null;
       })
       .addCase(createUserCeremony.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.createCeremonies = action.payload;
         state.loading = false;
       })
@@ -85,10 +82,8 @@ const ceremonySlice = createSlice({
       .addCase(getCeremoniesByEventId.fulfilled, (state, action) => {
         let addSelectedCeremonyNames = [];
         const { payload } = action;
-        // console.log(payload);
         payload.forEach((ceremony) => {
           if (ceremony.selected === true) {
-            // console.log(ceremony);
             addSelectedCeremonyNames.push(ceremony);
           }
         });

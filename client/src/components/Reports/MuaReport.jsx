@@ -65,9 +65,9 @@ const MuaReport = () => {
                       <div className="sky-circle d-inline-block">105</div>
                     </div>
                     <TabPanel>
-                      {guestListLoading ? ( // Check if guestList is loading
-                        <h5>Loading guest list...</h5> // Display loading message
-                      ) : getTotalMUAList.length > 0 ? ( // Check if guestList has data
+                      {guestListLoading ? (
+                        <h5>Loading guest list...</h5>
+                      ) : getTotalMUAList.length > 0 ? (
                         <div className="table-responsive">
                           <table className="table table-striped">
                             <thead>
@@ -95,7 +95,6 @@ const MuaReport = () => {
                           </table>
                         </div>
                       ) : (
-                        // Display "No Data Found" message when guestList is empty
                         <h4 className="not-found">No Data Found</h4>
                       )}
                     </TabPanel>

@@ -14,7 +14,6 @@ export const addGroupsInACeremony = createAsyncThunk(
   async (data) => {
     try {
       const response = await addGroupsInACeremonies(data);
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -34,7 +33,6 @@ const GroupsInACeremoniesSlice = createSlice({
       })
       .addCase(addGroupsInACeremony.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload);
         state.ceremonies = action.payload.ceremonies;
         state.error = null;
       })

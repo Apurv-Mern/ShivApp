@@ -24,8 +24,6 @@ const SaveTheDateEditor = () => {
       ["clean"],
     ],
   };
-  // const textToDisplay = eventName === "Wedding" ? text1 : event2text;
-  // const textToDisplay = setinvitationTypeofgroup+text1;
 
   return (
     <div>

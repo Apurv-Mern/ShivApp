@@ -123,7 +123,6 @@ const AddGuestForm = ({ guestNo }) => {
     const firstQuestionValue = formData[`question${questionIds[0]}First name`];
     const secondQuestionValue = formData[`question${questionIds[1]}Last name`];
     const thirdQuestionValue = formData[`"question${questionIds[2]}Email`];
-    console.log(formData);
     const fourthQuestionValue =
       formData[`question${questionIds[3]}Mobile number`];
 
@@ -144,8 +143,6 @@ const AddGuestForm = ({ guestNo }) => {
       response: questionValues,
       gog_details: gogDetails,
     };
-
-    console.log("Data", data);
 
     dispatch(postAdditionalGuestRspvForm(data));
   };

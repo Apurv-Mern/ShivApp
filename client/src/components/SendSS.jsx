@@ -102,8 +102,6 @@ const SendSS = () => {
   const event_id = useSelector((state) => state.event.event_id);
   const template = localStorage.getItem("template");
 
-  // console.log(template);
-
   const handleTabClick = (groupName) => {
     setActiveTab(groupName);
     setSelectedGroup(groupName);
@@ -120,8 +118,6 @@ const SendSS = () => {
 
   const filteredGroupNames = AllGroupsNamesWithId.map((item) => item.groupname);
 
-  // console.log(filteredGroupNames);
-
   let invitationTypeString = ""; // Initialize an empty string to store the invitation type
 
   const generateText1Content = () => {
@@ -129,8 +125,7 @@ const SendSS = () => {
       const content = newSelectedGroupNames.map((groupName) => {
         const groupCeremonies = groupedData[groupName];
         const groupInvitationType = invitationType[groupName];
-        // Check if the current group matches the selected group
-        // console.log("groupCeremonies", groupCeremonies);
+        // *Check if the current group matches the selected group
 
         if (groupName === selectedGroup) {
           // ?Reverse the order of ceremonies
@@ -144,7 +139,6 @@ const SendSS = () => {
             .map((ceremony) => {
               const isoTimeString = ceremony?.ceremony_time;
               const date = new Date(isoTimeString);
-              // console.log(date);
 
               // Format time according to 12-hour clock with AM/PM
               const time = date.toLocaleTimeString("en-US", {
@@ -252,7 +246,6 @@ const SendSS = () => {
           name: item.ceremony_name,
           id: item.id,
         }));
-      //   console.log(selectedCeremonyNames);
       setAllSelectedCeremonies(selectedCeremonyNames);
     };
     dispatch(getPaymentStatus());
@@ -311,7 +304,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               })
           : dispatch(
               weddingScreenshotsToApi({
@@ -326,7 +318,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               });
       });
       setTestMail(false);
@@ -338,7 +329,6 @@ const SendSS = () => {
         const data = canvas.toDataURL("image/png");
         singleScreenshotsArray.push(data);
 
-        console.log("screen shot data", filteredGroupNames);
         testMail
           ? dispatch(
               testMailForWeEngaged({
@@ -353,7 +343,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               })
           : dispatch(
               weAreEngagedScreenshotsToApi({
@@ -369,19 +358,16 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               });
       });
       setTestMail(false);
       setModel(false);
     }
     if (eventName === "Save The Date") {
-      // console.log("lien 271", eventName);
       html2canvas(template1).then((canvas) => {
         const data = canvas.toDataURL("image/png");
         singleScreenshotsArray.push(data);
 
-        // console.log("screen shot data", screenshotsArray);
         testMail
           ? dispatch(
               testMailForSaveTheDate({
@@ -396,7 +382,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               })
           : dispatch(
               saveTheDateScreenshotsToApi({
@@ -410,7 +395,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               });
       });
 
@@ -418,12 +402,10 @@ const SendSS = () => {
       setModel(false);
     }
     if (eventName === "Thank You") {
-      // console.log("lien 271", eventName);
       html2canvas(template1).then((canvas) => {
         const data = canvas.toDataURL("image/png");
         singleScreenshotsArray.push(data);
 
-        // console.log("screen shot data", screenshotsArray);
         testMail
           ? dispatch(
               testMailForThankYou({
@@ -438,7 +420,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               })
           : dispatch(
               thankYouScreenshotsToApi({
@@ -452,7 +433,6 @@ const SendSS = () => {
               })
               .catch((error) => {
                 toast.error("Email Failed to Sent");
-                // console.log(error.message);
               });
       });
 
@@ -460,8 +440,6 @@ const SendSS = () => {
       setModel(false);
     }
   };
-
-  // console.log(text1Coordinates);
 
   // *SET COORDINATE
   const handleCoordinates = () => {
@@ -483,14 +461,10 @@ const SendSS = () => {
       ],
     };
 
-    // console.log(data);
     dispatch(setCoordinatesForTemplates(data))
       .then(() => toast.success("Saved"))
       .catch(() => toast.error("Please try again"));
   };
-
-  // *GET COORDINATE
-  // ... (your existing code)
 
   // *GET COORDINATE
   useEffect(() => {
@@ -662,7 +636,6 @@ const SendSS = () => {
                                 y: invitationTypeCoordinates.y,
                               }}
                               onDrag={(e, ui) => {
-                                console.log(ui, e);
                                 setInvitationTypeCoordinates({
                                   x: ui.x,
                                   y: ui.y,
@@ -744,7 +717,6 @@ const SendSS = () => {
                                 y: text2Coordinates.y,
                               }}
                               onDrag={(e, ui) => {
-                                console.log(ui, e);
                                 setText2Coordinates({ x: ui.x, y: ui.y });
                               }}
                             >
@@ -806,7 +778,6 @@ const SendSS = () => {
                                 y: text3Coordinates.y,
                               }}
                               onDrag={(e, ui) => {
-                                console.log(ui, e);
                                 setText3Coordinates({ x: ui.x, y: ui.y });
                               }}
                             >
@@ -817,10 +788,6 @@ const SendSS = () => {
                                 }}
                               ></div>
                             </Draggable>
-                            {/* <div
-                              className="absolute-bottom mob-font"
-                              dangerouslySetInnerHTML={{ __html: footerText }}
-                            ></div> */}
                           </>
                         )}
                       </div>
@@ -1028,16 +995,7 @@ const SendSS = () => {
                   </Dialog>
                 </div>
               </div>
-              {/* Confirmation Dialog */}
-              {/* {confirmDialog && (
-            <div className="confirm-dialog">
-              <div className="confirm-dialog-content">
-                <p>Are you sure you want to send this?</p>
-                <button onClick={takeScreenshotAndSend}>Yes</button>
-                <button onClick={handleCancel}>No</button>
-              </div>
-            </div>
-          )} */}
+
               {paymentId === "Success" ? (
                 model && (
                   <>
@@ -1080,7 +1038,6 @@ const SendSS = () => {
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
-                        {/* <Button onClick={handleBuyNow}>Buy Now </Button> */}
                         <PackagesPopupTemplate />
                       </DialogActions>
                     </Dialog>

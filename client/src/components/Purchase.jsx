@@ -11,9 +11,7 @@ const Purchase = () => {
     dispatch(getPaymentStatus());
   }, []);
 
-  console.log(paymentStatus);
   const paymentHandling = paymentStatus["payment status: "];
-  console.log(paymentHandling);
   return (
     <>
       <Helmet>

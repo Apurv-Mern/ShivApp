@@ -40,7 +40,6 @@ const Signup = () => {
     setLoading(true);
     try {
       const res = await dispatch(signupUser(data));
-      console.log({ res });
       if (res.meta.requestStatus === "fulfilled") {
         setLoading(false);
         toast.success("SignUp Successfully");
@@ -73,7 +72,6 @@ const Signup = () => {
         password: values.password,
         permission: values.permission,
       };
-      // console.log(data);
       handleSignup(data);
     },
   });

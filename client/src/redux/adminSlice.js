@@ -32,7 +32,6 @@ export const adminDeleteUser = createAsyncThunk(
 export const adminEditUser = createAsyncThunk(
   "admin/userDetails",
   async (data) => {
-    console.log(data);
     const response = await updateUserDetails(data);
     return response.data;
   }

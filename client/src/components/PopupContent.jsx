@@ -35,10 +35,6 @@ const PopupContent = () => {
 
   return (
     <div>
-      {/* <a id="popupLink" onClick={handleClickOpen}>
-        Open popup
-      </a> */}
-
       <Popup visible={handleClickOpen} onClose={handleClose}>
         <form onSubmit={handleFormSubmit}>
           <TextField

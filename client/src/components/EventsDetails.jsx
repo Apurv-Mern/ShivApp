@@ -24,8 +24,6 @@ const EventsDetails = () => {
     hour12: true,
   }).format(date);
 
-  console.log(formattedDate);
-  console.log(formattedScheduledTime);
   return (
     <div>
       <Navbar />

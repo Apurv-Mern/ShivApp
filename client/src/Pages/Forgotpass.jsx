@@ -27,7 +27,6 @@ const ForgotPass = () => {
     setLoading(true);
     try {
       const res = await dispatch(userForgotPassword(data));
-      console.log(res);
       if (res.meta.requestStatus === "fulfilled") {
         toast.success("Email sent successfully");
         setLoading(false);

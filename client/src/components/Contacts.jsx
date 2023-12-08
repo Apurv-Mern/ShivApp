@@ -57,7 +57,6 @@ const Contacts = () => {
   useEffect(() => {
     const handleRowData = async () => {
       const res = await dispatch(getAllGuestForAUser());
-      // console.log("getAllGuestForAUser", res);
       const data = res?.payload?.map((guest, index) => ({
         id: index + 1,
         guest_name: guest.guest_name,
@@ -74,7 +73,6 @@ const Contacts = () => {
 
   const handleAllGuestData = async () => {
     const res = await dispatch(getAllGuestForAUser());
-    // console.log("getAllGuestForAUser", res);
     const data = res?.payload?.map((guest, index) => ({
       id: index + 1,
       guest_name: guest.guest_name,
@@ -108,10 +106,8 @@ const Contacts = () => {
     setEditedRowData({ ...rowData });
     setSelectedGuestId(rowData.guest_id);
     setEditOpen(true);
-    // console.log(rowData);
   };
   const handleDelete = (guestId) => {
-    console.log(guestId);
     dispatch(deleteGuestByGuesrId(guestId))
       .then(() => {
         toast.success("Contact delete successfully");
@@ -165,7 +161,6 @@ const Contacts = () => {
       width: 250,
       renderCell: (params) => {
         dispatch(setGuestId(params.row?.guest_id));
-        // console.log(params.row?.guest_id);
         return (
           <button onClick={() => handleDelete(params.row?.guest_id)}>
             Delete
@@ -178,7 +173,6 @@ const Contacts = () => {
   const handleGroupData = async (groupName) => {
     try {
       const res = await dispatch(getGuestForAGroup(groupName));
-      // console.log(res);
       const data = res?.payload?.map((guest, index) => ({
         id: index + 1,
         guest_name: guest.guest_name,

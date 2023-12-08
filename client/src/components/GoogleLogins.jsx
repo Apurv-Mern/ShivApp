@@ -13,9 +13,7 @@ const GoogleLogins = () => {
   const dispatch = useDispatch();
 
   const handleResponse = async (response) => {
-    console.log("token ", response.credential);
     const userObject = jwtDecode(response.credential);
-    console.log(userObject);
     const data = {
       name: userObject.name,
       email: userObject.email,
@@ -23,17 +21,14 @@ const GoogleLogins = () => {
     };
 
     const res = await dispatch(sendGoogleLoginData(data));
-    console.log("res", res);
     const userName = res?.payload?.userName;
     const userId = res?.payload?.userId;
 
     // * Store name and sub (Google ID) in localStorage
     localStorage.setItem("userName", userName);
     localStorage.setItem("user", userId);
-    // console.log(data);
 
     window.location.href = "/dashboard";
-    // navigate("/dashboard");
   };
   useEffect(() => {
     /* global google */

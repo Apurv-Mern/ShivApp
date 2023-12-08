@@ -13,7 +13,7 @@ import {
 const Editor2 = () => {
   const dispatch = useDispatch();
   const ceremonies = useSelector((state) => state.image.dynamicCeremony);
-  // console.log(ceremonies);
+
   // ? DONT NEED TO PASS THE VALUE ARGUMENT IN THE FUNCTION CALL, BECAUSE REACT QUILL SEND VALUE PARAMETER AUTOMATIC.
   const handleTemplateText3 = (value) => {
     dispatch(temp3Ceremony(value));

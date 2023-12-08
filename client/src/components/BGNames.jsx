@@ -27,16 +27,6 @@ const BGNames = () => {
     setMarriage((prevMarriage) => ({ ...prevMarriage, [name]: value }));
   };
 
-  // const handleMarriageSubmit = () => {
-  //   const data = {
-  //     bride_name: marriage.Bride_Name,
-  //     groom_name: marriage.Groom_Name,
-  //   };
-  //   // console.log("Data to be sent to API: ", data);
-  //   dispatch(putMarriageDetailss(data))
-  //     .then(() => toast.success("Data Saved Successfully"))
-  //     .catch(() => toast.error("Failed to save data"));
-  // };
   const handleNext = async () => {
     try {
       const data = {
@@ -150,11 +140,6 @@ const BGNames = () => {
                 required
               />
             </div>
-            {/* <div className="col-md-12 s ave-btn-2">
-            <button className="view-r-btn" onClick={handleMarriageSubmit}>
-              Save
-            </button>
-          </div> */}
           </div>
         </div>
       </div>

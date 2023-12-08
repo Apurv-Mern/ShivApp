@@ -37,9 +37,7 @@ const MenuProps = {
 const NewRsvpForm = () => {
   const dispatch = useDispatch();
   const { group_name, id, user_id, event_id } = useParams();
-  // console.log(id, user_id, event_id);
   const { loading, error, successMessage } = useSelector((state) => state.rspv);
-  console.log(loading, error);
   const [userQuestions, setUserQuestions] = useState([]);
   const [numOfGuests, setNumOfGuests] = useState(0);
   const [formData, setFormData] = useState({});
@@ -75,7 +73,6 @@ const NewRsvpForm = () => {
   useEffect(() => {
     const handleData = async () => {
       const res = await dispatch(getUserDynamicRsvpQuestions2(user_id));
-      // console.log(res);
       if (res.meta.requestStatus === "fulfilled") {
         const selectedQuestions = res.payload?.user_questions.filter(
           (question) => question.selected
@@ -86,7 +83,6 @@ const NewRsvpForm = () => {
 
     const getMarriageDetails = async () => {
       const response = await dispatch(getMarriageDetailss2(user_id));
-      // console.log("res", response);
 
       const { bride_name, groom_name } = response.payload;
       if (response.meta.requestStatus === "fulfilled") {
@@ -117,7 +113,6 @@ const NewRsvpForm = () => {
         questionValues.push(questionValue);
       }
 
-      console.log("questionValue", questionValue);
       if (
         question.question_type === "Radio text" &&
         selectedRadioValues[questionId] === "yes"
@@ -141,11 +136,6 @@ const NewRsvpForm = () => {
       }
     });
 
-    console.log("Question IDs with values:", questionIdsWithValues);
-    console.log("Corresponding values:", questionValues);
-    console.log("extraDetails values:", extraDetails);
-    console.log("extraDetails values:", attendingEvents);
-
     const data = {
       user_id,
       event_id,
@@ -156,7 +146,6 @@ const NewRsvpForm = () => {
       attending: attendingEvents,
     };
 
-    // console.log("data", data);
     dispatch(postUserRspvForm(data));
   };
 
@@ -164,7 +153,6 @@ const NewRsvpForm = () => {
     dispatch(getAllSelectedCeremoneisForRsvp(id));
   }, []);
 
-  // console.log(selectedCeremoniesForRsvp);
   return (
     <div>
       <div className="container card-b-1">

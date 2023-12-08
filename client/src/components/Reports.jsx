@@ -96,19 +96,6 @@ const Reports = () => {
                   </div>
                 </div>
               </div>
-              {/* <div className="col-sm-12 col-md-4 col-lg-3 ">
-              <div className="report-box-in">
-                <div className="report-text">
-                  <a href="/guest/mua report"> All MUA Report </a>{" "}
-                </div>
-                <div className="report-icon">
-                  <a href="#">
-                    {" "}
-                    <img className="report-icon-1" src={report} alt="report" />
-                  </a>{" "}
-                </div>
-              </div>
-            </div> */}
               <div className="col-sm-12 col-md-4 col-lg-3 ">
                 <div className="report-box-in">
                   <div className="report-text">

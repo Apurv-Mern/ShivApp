@@ -40,12 +40,8 @@ const modules = {
 };
 const TemplateText = () => {
   const dispatch = useDispatch();
-  const quillRef = useRef();
   const text = useSelector((state) => state.image.tempText);
   const selectedEvents = useSelector((state) => state.event.selectedEvents);
-  console.log(selectedEvents.event_name);
-
-  const [plainText, setPlainText] = useState();
   const [selectedFont, setSelectedFonts] = useState();
 
   const fonts = [
@@ -80,10 +76,6 @@ const TemplateText = () => {
     dispatch(templateText1(value));
   };
   const defaultContent = "<p>Hello, this is the default content!</p>";
-
-  // useEffect(() => {
-  //   dispatch(getUserEventById());
-  // }, []);
 
   return (
     <div>
@@ -147,10 +139,6 @@ const TemplateText = () => {
             </div>
 
             <div className="font-box4">
-              {/* <textarea
-            className="w-96 h-96 "
-            style={{ fontFamily: `${selectedFont}` }}
-          ></textarea> */}
               <ReactQuill
                 theme="snow"
                 value={text}

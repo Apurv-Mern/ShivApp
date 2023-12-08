@@ -21,8 +21,6 @@ const Packages = () => {
   const { eventName } = useParams();
   const decodedEventName = decodeURIComponent(eventName);
   const userId = JSON.parse(localStorage.getItem("user"));
-  // console.log("userId", userId);
-  console.log(decodedEventName);
   const packages = [
     { id: 1, name: "BRONZE PACKAGE", price: "£300" },
     { id: 2, name: "SILVER PACKAGE", price: "£450" },

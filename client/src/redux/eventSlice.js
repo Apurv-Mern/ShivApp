@@ -21,7 +21,6 @@ export const addSelectedEvents = createAsyncThunk(
   async (event) => {
     try {
       const response = await updateUserEvents(event);
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -98,7 +97,6 @@ const eventSlice = createSlice({
         state.error = null;
       })
       .addCase(getEventUserById.fulfilled, (state, action) => {
-        // console.log(action.payload.id);
         state.loading = true;
         state.eventData = action.payload;
         state.loading = false;

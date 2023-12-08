@@ -17,7 +17,6 @@ export const getUserGroupsByUserId = createAsyncThunk(
   async () => {
     try {
       const response = await getUserGroupsFromUserId();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -47,9 +46,7 @@ const templateCreationSlice = createSlice({
         let groupedData = {};
 
         Ceremonies.forEach((ceremony) => {
-          // console.log("1111", ceremony);
           ceremony.groups.forEach((group) => {
-            // console.log("22222", group);
             const {
               ceremony_name,
               ceremony_id,
@@ -58,7 +55,6 @@ const templateCreationSlice = createSlice({
             } = ceremony;
             // const { groupname, selected, } = group;
             const { groupname, selected, invitation_type } = group;
-            // console.log("group", group);
             // Check if the group is selected (selected === true)
             if (selected) {
               selectedGroupNames.push(groupname);

@@ -24,7 +24,6 @@ export const getMarriageDetailss = createAsyncThunk(
 export const getMarriageDetailss2 = createAsyncThunk(
   "marriageSlice/getMarriageDetails",
   async (user_id) => {
-    // console.log(user_id);
     const response = await getMarriageDetails2(user_id);
     return response.data;
   }

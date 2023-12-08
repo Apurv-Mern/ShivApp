@@ -5,7 +5,6 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.clear();
-    // window.location.reload();
     navigate("/login");
   };
   return (

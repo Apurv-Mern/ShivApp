@@ -37,7 +37,6 @@ const MenuProps = {
 const RSVP4 = () => {
   const dispatch = useDispatch();
   const { group_name, id, user_id, event_id } = useParams();
-  console.log(id, user_id, event_id);
   const [userQuestions, setUserQuestions] = useState([]);
   const [numOfGuests, setNumOfGuests] = useState(0);
   const [formData, setFormData] = useState({});
@@ -81,7 +80,6 @@ const RSVP4 = () => {
 
     const getMarriageDetails = async () => {
       const response = await dispatch(getMarriageDetailss2(user_id));
-      console.log("res", response.payload);
 
       const { bride_name, groom_name } = response.payload;
       if (response) {
@@ -112,7 +110,6 @@ const RSVP4 = () => {
         questionValues.push(questionValue);
       }
 
-      console.log("questionValue", questionValue);
       if (
         question.question_type === "Radio text" &&
         selectedRadioValues[questionId] === "yes"
@@ -136,11 +133,6 @@ const RSVP4 = () => {
       }
     });
 
-    console.log("Question IDs with values:", questionIdsWithValues);
-    console.log("Corresponding values:", questionValues);
-    console.log("extraDetails values:", extraDetails);
-    console.log("extraDetails values:", attendingEvents);
-
     const data = {
       user_id,
       event_id,
@@ -151,7 +143,6 @@ const RSVP4 = () => {
       attending: attendingEvents,
     };
 
-    console.log("data", data);
     dispatch(postUserRspvForm(data));
   };
 
@@ -159,7 +150,6 @@ const RSVP4 = () => {
     dispatch(getAllSelectedCeremoneisForRsvp());
   }, []);
 
-  console.log(selectedCeremoniesForRsvp);
   return (
     <div>
       <div className="container card-b-1">

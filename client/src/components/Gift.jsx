@@ -52,10 +52,7 @@ const Gift = () => {
         (guestData) => guestData.guest_id === guestGift.guest_id
       );
 
-      console.log(correspondingGuestData);
-
-      // console.log("correspondingGuestData", correspondingGuestData);
-      // ?Merge the data from guestGift and guestData
+      // ? Merge the data from guestGift and guestData
       if (correspondingGuestData) {
         return {
           id: guestGift.id,

@@ -53,7 +53,6 @@ export const createCeremonies = (ceremony) => {
 
 export const getCeremoniesByEventIds = () => {
   const event_id = JSON.parse(localStorage.getItem("eventId"));
-  // console.log(event_id);
   return axios.get(`${serverURl}/ceremony/${event_id}`);
 };
 
@@ -101,7 +100,6 @@ export const deleteGuestInAGroup = (guestId) => {
 
 // * UPDATE GUEST
 export const updateGuest = (data) => {
-  // console.log("daat", data);
   return axios.put(`${serverURl}/guest/${data.guestId}`, data.mappedData);
 };
 
@@ -214,7 +212,6 @@ export const getAllCeremony = () => {
 };
 
 export const addSelectedCeremonies = (data) => {
-  // console.log("api ", data);
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.put(`${serverURl}/ceremony/user/${id}`, data);
 };
@@ -299,9 +296,7 @@ export const getCeremony = () => {
 };
 
 export const getFilterCeremony = (ceremony_id) => {
-  console.log("API", ceremony_id);
   const id = JSON.parse(localStorage.getItem("user"));
-  // const ceremony_id = JSON.parse(loc alStorage.getItem("ceremony_id"));
   return axios.get(
     `${serverURl}/dashboard/getGuestListByCeremony/user/${id}/ceremony/${ceremony_id}`
   );
@@ -334,7 +329,6 @@ export const paymentStatus = () => {
 // ? Update Ceremony Name
 export const updateCeremonyName = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
-  console.log(data.event_id);
   return axios.put(`${serverURl}/ceremony/user/${id}/event/${data.event_id}`, {
     ceremonies: data.ceremonies,
   });
@@ -367,7 +361,6 @@ export const selectedDrinks = () => {
 // https://shivappdev.24livehost.com:3004/dashboard/getCeremonyAttendance/user/141/69
 export const getCeremonyAttendance = (event_id) => {
   const id = JSON.parse(localStorage.getItem("user"));
-  // console.log(event_id);
   return axios.get(
     `${serverURl}/dashboard/getCeremonyAttendance/user/${id}/${event_id}`
   );
@@ -382,7 +375,6 @@ export const getEventsAttendance = () => {
 // {{url}}/guest/import/151
 export const uploadExcel = (data) => {
   const id = JSON.parse(localStorage.getItem("user"));
-  // console.log("api 291", data);
   return axios.post(`${serverURl}/guest/import/${id}`, data);
 };
 
@@ -472,7 +464,6 @@ export const getDynamicRsvpQuestions = () => {
 
 export const getDynamicRsvpQuestions2 = (user_id) => {
   const id = JSON.parse(localStorage.getItem("user"));
-  // console.log(user_id);
 
   return axios.get(`${serverURl}/user/getUserQuestions/${user_id}`);
 };
@@ -511,24 +502,20 @@ export const cronJob = (data) => {
 };
 
 export const UploadProfile = (data) => {
-  // console.log(data);
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.post(`${serverURl}/profile/upload/${id}`, data);
 };
 export const getUploadProfile = (data) => {
-  // console.log(data);
   const id = JSON.parse(localStorage.getItem("user"));
   return axios.get(`${serverURl}/profile/profile-link/${id}`, data);
 };
 
 export const deleteUserDetailsAdmin = (id) => {
-  // console.log(data);
   return axios.delete(`${serverURl}/admin/user_details/${id}`);
 };
 
 // 'https://shivappdev.24livehost.com:3004/user/dynamic-social-login'
 export const sendSocialLoginData = (data) => {
-  // console.log(data);
   return axios.post(`${serverURl}/user/dynamic-social-login`, data);
 };
 // put("update-user/:user_id.
@@ -541,12 +528,10 @@ export const updateUserDetails = (data) => {
 
 // ? COORDINATE API
 export const setCoordinates = (data) => {
-  console.log(data);
   return axios.post(`${serverURl}/coordinates/box-coordinates`, data);
 };
 
 export const getCoordinates = (data) => {
-  // console.log(data);
   return axios.get(
     `${serverURl}/coordinates/retrieveCoordinates/${data.user_id}/${data.event_id}`
   );
@@ -554,6 +539,5 @@ export const getCoordinates = (data) => {
   // GET https://shivappdev.24livehost.com:3004/api/groups/getGuestCeremonyByCode/282561
 };
 export const weddingCode = (code) => {
-  console.log(code);
   return axios.get(`${serverURl}/groups/getGuestCeremonyByCode/${code}`);
 };

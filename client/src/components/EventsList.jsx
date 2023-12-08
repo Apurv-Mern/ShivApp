@@ -24,6 +24,7 @@ const EventsList = () => {
     (state) => state.ceremony.getAllCeremonies
   );
   const paymentStatus = useSelector((state) => state.payment.paymentStatus);
+
   // Inside the useEffect that fetches and updates ceremonyData
   const [ceremonyDates, setCeremonyDates] = useState([]);
   const [ceremonyVenues, setCeremonyVenues] = useState([]);
@@ -33,13 +34,11 @@ const EventsList = () => {
   const [editedCeremonyNames, setEditedCeremonyNames] = useState([]);
   const toggleEditMode = () => {
     setEditMode(!editMode);
-    // console.log("hello");
   };
 
   const handleEditCeremonyName = (index, newName) => {
     // Update the edited name in the state
     const updatedNames = [...editedCeremonyNames];
-    // console.log("update", updatedNames);
     updatedNames[index] = newName;
     setEditedCeremonyNames(updatedNames);
   };
@@ -61,17 +60,11 @@ const EventsList = () => {
       ceremony_name: updatedCeremonies[index].ceremony_name,
     }));
 
-    // Update the Redux state for getAllCeremonies
-    // You may need to dispatch an action to update the Redux state here
-    // dispatch(updateAllCeremonies(updatedAllCeremonies)); // Example dispatch action
-
-    // Prepare the data to send to the API
     const dataToSend = {
       ceremonies: updatedCeremonies,
       event_id,
     };
 
-    console.log(dataToSend);
     // Send the data to your API using fetch or your preferred method
     dispatch(updateCeremonyNames(dataToSend));
     // Update the state with the edited names and exit edit mode
@@ -90,7 +83,6 @@ const EventsList = () => {
     const updatedCeremonyVenues = [...ceremonyVenues];
     updatedCeremonyVenues[index] = venue;
     setCeremonyVenues(updatedCeremonyVenues);
-    // console.log("venues", ceremonyVenues);
   };
 
   const handleCheckboxChange = (index) => {
@@ -121,7 +113,6 @@ const EventsList = () => {
     const requestBody = {
       ceremonies: ceremoniesToCreate,
     };
-    // console.log("requestBody", requestBody);
     dispatch(createUserCeremony(requestBody));
     navigate("/foodDrink");
   };
@@ -291,7 +282,6 @@ const EventsList = () => {
 
                   <div className="flex flex-col event-list-block">
                     {getAllCeremonies.map((ceremony, index) => {
-                      // console.log(ceremony.icon_link);
                       return (
                         <div
                           className="row items-center event-list-box align-items-center"
@@ -325,7 +315,6 @@ const EventsList = () => {
                               ) : (
                                 <label
                                   htmlFor={`event${ceremony.ceremony_name}`}
-                                  // style={{ color: ceremony.colors }}
                                 >
                                   {editedCeremonyNames[index] ||
                                     ceremony.ceremony_name}

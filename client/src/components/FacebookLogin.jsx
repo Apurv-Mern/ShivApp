@@ -10,7 +10,6 @@ const FacebookLogins = () => {
   const [picture, setPicture] = useState("");
 
   const responseFacebook = (response) => {
-    console.log(response);
     // handle the response, e.g., send it to your server
     // and update the state in your parent component
     setUser(response);

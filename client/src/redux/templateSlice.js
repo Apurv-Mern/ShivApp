@@ -48,7 +48,6 @@ export const setCoordinatesForTemplates = createAsyncThunk(
 export const getCoordinatesForTemplates = createAsyncThunk(
   "template/getcoordinates",
   async (data) => {
-    // console.log(data);
     const response = await getCoordinates(data);
     return response.data;
   }
@@ -61,11 +60,9 @@ const templateSlice = createSlice({
     selectImage: (state, action) => {
       state.selectedTemplate = action.payload;
       localStorage.setItem("template", state.selectedTemplate);
-      // console.log(state.selectedTemplate);
     },
     templateText1: (state, action) => {
       state.tempText1 = action.payload;
-      // console.log(state.tempText1);
     },
     templateText2: (state, action) => {
       state.tempText2 = action.payload;
@@ -80,7 +77,6 @@ const templateSlice = createSlice({
       state.footer = action.payload;
     },
     temp3Ceremony: (state, action) => {
-      // console.log("slice", action.payload);
       state.dynamicCeremony = action.payload;
     },
     setinvitationType: (state, action) => {
@@ -106,7 +102,6 @@ const templateSlice = createSlice({
         state.error = null;
       })
       .addCase(getAllEventsDetails.fulfilled, (state, action) => {
-        console.log(action.payload.data.ceremony_name);
         state.ceremony_name = action.payload.data.ceremony_name;
         state.ceremony_time = action.payload.data.ceremony_time;
         state.ceremony_venue = action.payload.data.ceremony_venue;

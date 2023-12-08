@@ -61,7 +61,6 @@ export const updateGuestDetailsByGuestId = createAsyncThunk(
 export const uploadGuestDetails = createAsyncThunk(
   "user/uploadExcel",
   async (data) => {
-    // console.log("dtaaa", data);
     const response = await uploadExcel(data);
     return response.data;
   }
@@ -69,7 +68,6 @@ export const uploadGuestDetails = createAsyncThunk(
 export const getGuestForGiftsReceived = createAsyncThunk(
   "user/getGuestForGiftsReceived",
   async (ceremony_id) => {
-    // console.log("dtaaa", data);
     const response = await getGuestForGifts(ceremony_id);
     return response.data;
   }
@@ -77,7 +75,6 @@ export const getGuestForGiftsReceived = createAsyncThunk(
 export const postGiftsDataa = createAsyncThunk(
   "user/postGiftsData",
   async (data) => {
-    // console.log("dtaaa", data);
     const response = await postGiftData(data);
     return response.data;
   }

@@ -32,7 +32,6 @@ export const weddingScreenshotsToApi = createAsyncThunk(
       formData.append(`images`, screenshotsArray);
       allSelectedCeremonies.forEach((ceremonies) => {
         formData.append("ceremony_invited_for[]", ceremonies.name);
-        // console.log(ceremonies);
       });
 
       console.log("selectedCeremonies", allSelectedCeremonies);
@@ -40,13 +39,9 @@ export const weddingScreenshotsToApi = createAsyncThunk(
         formData.append("groupname[]", groupName);
       });
 
-      // console.log("screen shot slice", screenshotsArray[0].length);
-
       const response = await sendScreenShotsWedding(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -58,16 +53,13 @@ export const weAreEngagedScreenshotsToApi = createAsyncThunk(
       const formData = new FormData();
       console.log("filteredGroupNames", filteredGroupNames);
       formData.append(`images`, singleScreenshotsArray);
-      // console.log(filteredGroupNames);
       filteredGroupNames.forEach((groupName) => {
         formData.append("groupname[]", groupName);
       });
 
       const response = await weAreEngaged(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -83,10 +75,8 @@ export const saveTheDateScreenshotsToApi = createAsyncThunk(
       });
 
       const response = await sendSaveTheDate(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -103,10 +93,8 @@ export const thankYouScreenshotsToApi = createAsyncThunk(
       });
 
       const response = await ThankYou(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -122,10 +110,8 @@ export const testMailForSaveTheDate = createAsyncThunk(
       formData.append("groom_name", groom_name);
 
       const response = await saveTheDateTestMail(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -141,10 +127,8 @@ export const testMailForWeEngaged = createAsyncThunk(
       formData.append("groom_name", groom_name);
 
       const response = await weEngagedTestMail(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -161,10 +145,8 @@ export const testMailForThankYou = createAsyncThunk(
       formData.append("groom_name", groom_name);
 
       const response = await thankYouTestMail(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }
@@ -193,10 +175,8 @@ export const testMailForWedding = createAsyncThunk(
       formData.append("groom_name", groom_name);
 
       const response = await weddingTestMail(formData);
-      // console.log(response);
       return response.data;
     } catch (error) {
-      // console.log({ error });
       return error.message;
     }
   }

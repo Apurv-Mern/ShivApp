@@ -10,7 +10,6 @@ const Home = () => {
   // Set expiry to 90 days from now
   const expiryDate = new Date();
   expiryDate.setDate(expiryDate.getDate() + 90);
-  console.log(expiryDate);
 
   const giveCookieConsent = () => {
     setCookie("cookieConsent", true, { path: "/", expires: expiryDate });

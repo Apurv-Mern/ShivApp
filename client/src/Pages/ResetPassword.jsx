@@ -18,7 +18,6 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token } = useParams();
-  //   console.log(token);
   const [loading, setLoading] = useState(true);
 
   const { error, user } = useSelector((state) => state.auth);

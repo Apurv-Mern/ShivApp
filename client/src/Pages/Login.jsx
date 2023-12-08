@@ -31,7 +31,6 @@ const Login = () => {
     setLoading(true);
     try {
       const res = await dispatch(loginUser(data));
-      // console.log({ res });
       if (res.meta.requestStatus === "fulfilled") {
         setLoading(false);
         localStorage.setItem(
@@ -71,7 +70,6 @@ const Login = () => {
     // dispatch(otpUserLogin({ number, otp }));
     if (otp == 123456) {
       navigate("/");
-      console.log(otp);
     } else {
       alert("Invalid OTP");
     }

@@ -20,14 +20,6 @@ const AddGroupDialog = ({ open, handleClose, handleAdd }) => {
     setGroupName(e.target.value);
   };
 
-  // const generateRandomCode = () => {
-  //   // Generate a 6-digit random code
-
-  //   const code = Math.floor(1000 + Math.random() * 9000);
-  //   const concatenatedCode = `${user_id}${code}`;
-  //   setRandomCode(concatenatedCode.toString());
-  // };
-
   const handleAddGroup = () => {
     // Implement your logic to add the new group here
     dispatch(
@@ -61,19 +53,6 @@ const AddGroupDialog = ({ open, handleClose, handleAdd }) => {
           value={groupName}
           onChange={handleInputChange}
         />
-        {/* <Button onClick={generateRandomCode} variant="outlined" color="primary">
-          Generate Random Code
-        </Button>
-        <TextField
-          margin="dense"
-          id="code"
-          label="Random Code"
-          type="text"
-          fullWidth
-          variant="standard"
-          value={randomCode}
-          disabled
-        /> */}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>

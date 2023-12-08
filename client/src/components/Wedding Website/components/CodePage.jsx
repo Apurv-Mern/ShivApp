@@ -20,14 +20,6 @@ const CodePage = () => {
   );
   const [code, setCode] = useState("");
 
-  //   const handleOtpChange = (e) => {
-  //     const newCode = e.target.value;
-
-  //     setCode(newCode);
-  //   };
-
-  console.log(code);
-
   const handleSubmit = async () => {
     if (code) {
       localStorage.setItem("code", code);

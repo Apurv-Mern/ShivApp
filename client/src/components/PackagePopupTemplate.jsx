@@ -74,7 +74,6 @@ const PackagesPopupTemplate = ({ popupOpen }) => {
         </DialogActions>
       </Dialog>
     </div>
-    // <h1>hellow orlds</h1>
   );
 };
 

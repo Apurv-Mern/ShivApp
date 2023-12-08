@@ -63,8 +63,6 @@ const Quill = () => {
       styles.textDecoration = "underline";
     }
 
-    // Add more formatting styles as needed
-
     return styles;
   };
 

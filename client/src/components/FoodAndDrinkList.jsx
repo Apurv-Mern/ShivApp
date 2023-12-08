@@ -71,7 +71,6 @@ const FoodAndDrinkList = () => {
 
     dispatch(updateDrinkForAUser(selectedDrinkResponse));
   };
-  // console.log(selectedDrinks);
 
   const handleFoods = () => {
     const selectedFoodResponse = {

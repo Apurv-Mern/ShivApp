@@ -30,44 +30,13 @@ import img24 from "../../../assets/wedding/images/wm2.png";
 
 const Gallery = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [visibleAll, setVisibleAll] = useState(false);
   const openModal = (index) => {
     setSelectedImageIndex(index);
-
-    console.log("Select", index);
   };
 
   const closeModal = () => {
     setSelectedImageIndex(selectedImageIndex);
-    console.log("close Selected", selectedImageIndex);
   };
-
-  // const galleryImages = [
-  //   "assets/images/wm1.png",
-  //   "assets/images/wm2.png",
-  //   "assets/images/wm3.png",
-  //   "assets/images/wdeeing1.png",
-  //   "assets/images/wm3.png",
-  //   "assets/images/wm1.png",
-  //   "assets/images/wdeeing1.png",
-  //   "assets/images/wm2.png",
-  //   "assets/images/wm1.png",
-  //   "assets/images/wm2.png",
-  //   "assets/images/wm3.png",
-  //   "assets/images/wdeeing1.png",
-  //   "assets/images/wm3.png",
-  //   "assets/images/wm1.png",
-  //   "assets/images/wdeeing1.png",
-  //   "assets/images/wm2.png",
-  //   "assets/images/wm1.png",
-  //   "assets/images/wm2.png",
-  //   "assets/images/wm3.png",
-  //   "assets/images/wdeeing1.png",
-  //   "assets/images/wm3.png",
-  //   "assets/images/wm1.png",
-  //   "assets/images/wdeeing1.png",
-  //   "assets/images/wm2.png",
-  // ];
 
   const galleryImages = [
     img1,
@@ -121,14 +90,6 @@ const Gallery = () => {
                     data-bs-target="#staticBackdrop"
                     onClick={() => openModal(index)}
                   />
-                  {/* <img
-                    src={image}
-                    className="d-wdeeing-img"
-                    alt="icon"
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
-                    onClick={() => openModal(index)}
-                  /> */}
                 </div>
               ))}
               <div className="clearfix"></div>

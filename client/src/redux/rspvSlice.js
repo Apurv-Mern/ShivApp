@@ -27,7 +27,6 @@ export const getUserRspvForm = createAsyncThunk(
   async () => {
     try {
       const response = await rspvFormApi();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -40,7 +39,6 @@ export const postUserRspvForm = createAsyncThunk(
   async (data) => {
     try {
       const response = await rspvPostFormApi(data);
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       const errorMessage = error?.response?.data?.error;
@@ -58,7 +56,6 @@ export const postAdditionalGuestRspvForm = createAsyncThunk(
   async (data) => {
     try {
       const response = await rspvAdditionalGuestApi(data);
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       const errorMessage = error?.response?.data?.error;
@@ -85,8 +82,6 @@ export const getUserDynamicRsvpQuestions2 = createAsyncThunk(
   "rspv/getDynamicRsvpQuestions2",
   async (user_id) => {
     try {
-      // console.log(user_id);
-
       const response = await getDynamicRsvpQuestions2(user_id);
       return response.data;
     } catch (error) {
@@ -156,7 +151,6 @@ const rspvSlice = createSlice({
       .addCase(postUserRspvForm.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        console.log("error-payload", action.payload);
       })
       .addCase(postAdditionalGuestRspvForm.pending, (state) => {
         state.loading = true;
@@ -164,8 +158,7 @@ const rspvSlice = createSlice({
       })
       .addCase(postAdditionalGuestRspvForm.fulfilled, (state, action) => {
         const { question_id, response } = action.meta.arg;
-        // const { question_id, response } = action.payload;
-        // console.log("@payload", question_id, response);
+
         state.loading = false;
         state.question_id = question_id;
         state.response = response;

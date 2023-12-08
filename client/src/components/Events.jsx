@@ -22,8 +22,7 @@ const Events = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const eventName1 = JSON.parse(localStorage.getItem("eventName"));
-  const eventName = useSelector((state) => state.event.eventState);
+
   const paymentStatus = useSelector((state) => state.payment.paymentStatus);
   const [mail, setMail] = useState();
 
@@ -38,7 +37,6 @@ const Events = () => {
       setLoading(true);
       try {
         const res = await dispatch(getEventUserById());
-        // console.log("res", res);
         setData(res.payload?.map((item) => item));
         setLoading(false);
       } catch (error) {
@@ -78,7 +76,6 @@ const Events = () => {
     const time = isEmailSent?.email_sent_timestamp;
     dispatch(setSchedularEventTime(time));
     setMail(emailSent);
-    // console.log("data", isEmailSent?.is_email_sent);
 
     dispatch(setEventId(id));
     localStorage.setItem("eventName", JSON.stringify(name));
@@ -148,7 +145,6 @@ const Events = () => {
               </thead>
               <tbody>
                 {data?.map((item) => {
-                  // console.log(item);
                   return (
                     <tr key={item.id}>
                       <td>
@@ -161,9 +157,6 @@ const Events = () => {
                       </td>
                       <td>{item.date}</td>
                       <td>
-                        {/* <Link to="#" className="view">
-                        View
-                      </Link>{" "} */}
                         <button
                           className="view view2"
                           onClick={() => HandleData(item.id, item.event_name)}

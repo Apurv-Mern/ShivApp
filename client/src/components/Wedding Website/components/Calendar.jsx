@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ImageUpload from "./ImageUpload";
 import img1 from "../../../assets/wedding/images/love3.png";
 import imgL from "../../../assets/wedding/images/img1.png";
@@ -14,6 +14,17 @@ const Calendar = () => {
   const weddingCeremonies = useSelector(
     (state) => state.marriage.weddingCeremonies
   );
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const openModal = (index) => {
+    setSelectedImageIndex(index);
+
+    console.log("Select", index);
+  };
+
+  const closeModal = () => {
+    setSelectedImageIndex(selectedImageIndex);
+    console.log("close Selected", selectedImageIndex);
+  };
 
   console.log(weddingCeremonies);
 
@@ -50,10 +61,18 @@ const Calendar = () => {
             </div>
           </div>
 
-          {weddingCeremonies?.map((item) => (
+          {weddingCeremonies?.map((item, index) => (
             <div className="row top-wedding-panel">
               <div className="col-lg-6 col-md-12 web-img">
-                <img src={imgL} className="main-image-1" alt="img" />
+                <ImageUpload
+                  defaultImage={imgL}
+                  eventId={index}
+                  className="d-wdeeing-img"
+                  alt="icon"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                  onClick={() => openModal(index)}
+                />
                 <div className="crl"></div>
               </div>
 

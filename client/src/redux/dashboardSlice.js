@@ -47,7 +47,6 @@ export const getUserAllergies = createAsyncThunk(
   async () => {
     try {
       const response = await getAllergies();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -59,7 +58,6 @@ export const getPersonalAssistance = createAsyncThunk(
   async () => {
     try {
       const response = await getTotalPersonalAssistance();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -69,7 +67,6 @@ export const getPersonalAssistance = createAsyncThunk(
 export const getTotalMua = createAsyncThunk("dashboard/getMUA", async () => {
   try {
     const response = await getMUA();
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -80,7 +77,6 @@ export const getTotalDhotiAssistance = createAsyncThunk(
   async () => {
     try {
       const response = await getDhotiAssistance();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -92,7 +88,6 @@ export const getTotalTurbanAssistance = createAsyncThunk(
   async () => {
     try {
       const response = await getTurbanAssistance();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -104,7 +99,6 @@ export const getTotalSareeAssistance = createAsyncThunk(
   async () => {
     try {
       const response = await getSareeAssistance();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -116,7 +110,6 @@ export const getTotalGuestListWithMembers = createAsyncThunk(
   async () => {
     try {
       const response = await getGuestListWithMembers();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -128,7 +121,6 @@ export const getTotalRsvpResponses = createAsyncThunk(
   async () => {
     try {
       const response = await getRsvpResponses();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -140,7 +132,6 @@ export const getTotalFoodCount = createAsyncThunk(
   async () => {
     try {
       const response = await getFoodCount();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -152,7 +143,6 @@ export const getTotalCeremony = createAsyncThunk(
   async () => {
     try {
       const response = await getCeremony();
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -185,7 +175,6 @@ export const getAllCeremonyAttendance = createAsyncThunk(
   "dashboard/getCeremonyAttendance",
   async (event_id) => {
     try {
-      // console.log(event_id);
       const response = await getCeremonyAttendance(event_id);
       return response.data;
     } catch (error) {
@@ -207,7 +196,6 @@ export const getAllEventsAttendance = createAsyncThunk(
 export const getFilterFoodAndDrinkList = createAsyncThunk(
   "dashboard/getFilterFoodAndDrink",
   async (data) => {
-    // console.log(data);
     try {
       const response = await getFilterFoodAndDrink(data);
       return response.data;
@@ -222,12 +210,10 @@ const userDashboard = createSlice({
   initialState,
   reducers: {
     selectCeremonyId: (state, action) => {
-      // console.log(action.payload);
       state.ceremony_id = action.payload;
       localStorage.setItem("ceremony_id", action.payload);
     },
     selectFoodAndDrinkName: (state, action) => {
-      // console.log(action.payload);
       state.fdName = action.payload;
     },
   },
@@ -289,7 +275,6 @@ const userDashboard = createSlice({
       })
       .addCase(getTotalFilterCeremony.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload);
         state.filterCeremony = action.payload;
         state.error = null;
       })

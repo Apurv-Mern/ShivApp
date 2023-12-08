@@ -61,7 +61,6 @@ const AddContactForm = ({ open, handleClose, handleAddContact }) => {
       });
   };
 
-  // console.log("Guest", contactData);
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Add New Contact</DialogTitle>

@@ -22,8 +22,6 @@ const UserDetails = () => {
     dispatch(getAdminUsersDetails());
   }, []);
 
-  // console.log("userDetails", userDetails);
-
   const handleDelete = (id) => {
     dispatch(adminDeleteUser(id))
       .then(() => {
@@ -43,8 +41,6 @@ const UserDetails = () => {
         const user = users.find((data) => data.id === id);
         setId(user);
         if (user) {
-          console.log(user);
-
           setEditedUser({
             username: user.username,
             email: user.email,
@@ -72,8 +68,6 @@ const UserDetails = () => {
         console.error("Error updating user details:", error);
       });
   };
-
-  console.log("editedUser", editedUser);
 
   return (
     <div className="col-md-12 user-details">

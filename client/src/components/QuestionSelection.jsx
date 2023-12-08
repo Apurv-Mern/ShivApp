@@ -49,21 +49,9 @@ const QuestionSelection = () => {
       questions_data,
     };
 
-    console.log(payload);
     dispatch(postUserDynamicRsvpQuestions(payload));
     toast.success("Questions Saved");
   };
-
-  // const handleMarriageSubmit = () => {
-  //   const data = {
-  //     bride_name: marriage.Bride_Name,
-  //     groom_name: marriage.Groom_Name,
-  //   };
-  //   // console.log("Data to be sent to API: ", data);
-  //   dispatch(putMarriageDetailss(data))
-  //     .then(() => toast.success("Data Saved Successfully"))
-  //     .catch(() => toast.error("Failed to save data"));
-  // };
 
   const handleRemoveQuestion = (questionId, questionText) => {
     // Create a new array that excludes the clicked question_id
@@ -96,8 +84,6 @@ const QuestionSelection = () => {
     // Update the state to reflect the restored questions
     setUserQuestions(updatedUserQuestions);
   };
-
-  // console.log(marriage);
 
   const handlePopup = () => {
     setPopupOpen(!popupOpen);
@@ -140,7 +126,6 @@ const QuestionSelection = () => {
         bride_name: marriage.Bride_Name,
         groom_name: marriage.Groom_Name,
       };
-      // console.log("Data to be sent to API: ", data);
       dispatch(putMarriageDetailss(data))
         .then(() => toast.success("Data Saved Successfully"))
         .catch(() => toast.error("Failed to save data"));
