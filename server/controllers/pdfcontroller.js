@@ -8,12 +8,13 @@ const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { url } = require("inspector");
 require("dotenv").config();
 
+
 module.exports.Wedding = async (req, res) => {
   const { user_id, event_id } = req.params;
   const guest_id = req.body.guest_id;
   const ceremony_invited_for = req.body.ceremony_invited_for;
   // const ceremony_invited_for= ["Hindu Wedding","Reception","Bride's Vidhi"]
-  console.log({ "params ": user_id, event_id });
+  console.log({"params ":user_id, event_id});
   console.log(req.body);
   const groupname = req.body.groupname;
 
@@ -43,14 +44,14 @@ module.exports.Wedding = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
-
+    
     const image1 = data.split(",");
     const template1 = image1[0] + "," + image1[1];
     const base64String1 = template1.substring(template1.indexOf("base64,") + 7);
@@ -74,13 +75,13 @@ module.exports.Wedding = async (req, res) => {
     doc.addPage();
     doc.addImage(buffer3, "PNG", 0, 0, 600, 401);
 
-    const query = `
+     const query = `
       SELECT bride_name,groom_name
       FROM marriage_details
       WHERE user_id = $1;
     `;
 
-    const couplename = await pool.query(query, [user_id]);
+     const couplename = await pool.query(query, [user_id]);
     // Array to store PDF URLs
     const pdfURLs = [];
     //*********************get guests by group name for a userid  logic start **************** /
@@ -111,21 +112,19 @@ module.exports.Wedding = async (req, res) => {
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
+        const urllink = `https://shiv-worldwide.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
         console.log(urllink);
         await pool.query(
           "UPDATE guests SET rsvp_link=$1 WHERE user_id=$2 AND id=$3",
           [urllink, user_id, result.rows[0].id]
         );
-        doc.textWithLink("Click Here to Submit your RSVP!", 200, 380, {
-          url: urllink,
-        });
+        // doc.textWithLink("Click Here to Submit your RSVP!", 200, 380, {
+        //   url: urllink,
+        // });
         //  doc.textWithLink("Check our wedding website", 200, 395, {
-        //    url: "https://shivappdev.24livehost.com/wedding_website/",
+        //    url: "https://shiv-worldwide.com/shiv_app/wedding_website/",
         //  });
-        doc.save(
-          `controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Wedding Invite & RSVP ${counter}.pdf`
-        );
+        doc.save(`controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Wedding Invite & RSVP ${counter}.pdf`);
 
         const pdfKey = `newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Wedding Invite & RSVP ${counter}.pdf`;
         const pdfBuffer = await fs.readFile(
@@ -162,11 +161,15 @@ module.exports.Wedding = async (req, res) => {
           It’s finally here! We are so excited to share our wedding invitation with you!</br>
           Please find our invitation attached and click on the RSVP link to let us know if you can attend within the next 4 weeks. </br>
           <p/>
-          <a href='https://shivappww.s3.amazonaws.com/${pdfKey}' style='text-decoration:'underline';'>Click here to get RSVP</a>
+          <a href='https://shivappww.s3.amazonaws.com/${pdfKey}' style='text-decoration:'underline';'>Click here to get Invitation</br></a>
+          <a href='${urllink}' style='text-decoration:'underline';'>Click here to RSVP</a>
+
           <p style="font-size:14px">Brought to you by SHIV</br>
           Please ensure you save this email address to receive further event details.
           </p>
+          <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30">
           </div>`,
+
 
           text: `Please Submit your RSVP for ${element.guest_name} in the attached PDF \n\n Thank You`,
           // attachments: [
@@ -212,6 +215,7 @@ module.exports.Wedding = async (req, res) => {
               );
             }
             console.log("Email sent successfully", counter);
+            
           }
         });
       }
@@ -260,13 +264,14 @@ module.exports.WeAreEngaged = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
+    
 
     // const element = array[index];
 
@@ -280,13 +285,14 @@ module.exports.WeAreEngaged = async (req, res) => {
     console.log("4");
     doc.addImage(buffer1, "PNG", 0, 0, 600, 401);
 
-    const query = `
+
+     const query = `
       SELECT bride_name,groom_name
       FROM marriage_details
       WHERE user_id = $1;
     `;
 
-    const couplename = await pool.query(query, [user_id]);
+     const couplename = await pool.query(query, [user_id]);
 
     //*********************get guests by group name for a userid  logic start **************** /
     console.log("5");
@@ -315,14 +321,12 @@ module.exports.WeAreEngaged = async (req, res) => {
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        // const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
+        // const urllink = `https://shiv-worldwide.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${element.id}`;
         // console.log(urllink);
         // doc.textWithLink("Click Here to Submit your RSVP!", 200, 280, {
         //   url: urllink,
         // });
-        doc.save(
-          `controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Engagement Announcement${counter}.pdf`
-        );
+        doc.save(`controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Engagement Announcement${counter}.pdf`);
 
         // const s3Params = {
         //   Bucket: 'shivapp',
@@ -345,8 +349,14 @@ module.exports.WeAreEngaged = async (req, res) => {
         let mailOptions = {
           from: "info@shiv-worldwide.com",
           to: element.email, // list of receivers
-          subject: `${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Engagement Announcement`,
-          html: `<div><p>We’re Engaged!!! Starting our new journey together, please view our Engagement card attached.</br></p><p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p></div>`,
+          subject: `${couplename.rows[0].bride_name} and ${couplename.rows[0].groom_name} Engagement Announcement`,
+          html: ` <div>
+          <p>We're Engaged!!! Starting our new journey together, please view our Engagement card attached.</br></br></br></p>
+          <p style="font-size:14px">Brought to you by SHIV </br></p>
+          <p style="font-size:14px">
+          Please ensure you save this email address to receive further event details.</p>
+          <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30">
+        </div>`,
           attachments: [
             {
               filename: `${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} Engagement Announcement${counter}.pdf`,
@@ -375,12 +385,12 @@ module.exports.WeAreEngaged = async (req, res) => {
       "UPDATE rsvp_attendance SET total_invitation_sent=$1 WHERE user_id=$2 AND event_id=$3;",
       [counter, user_id, event_id]
     );
-    await pool.query(
-      `UPDATE events
+      await pool.query(
+        `UPDATE events
       SET is_email_sent = $1, email_sent_timestamp = CURRENT_TIMESTAMP
       WHERE user_id = $2 AND id = $3;`,
-      [true, user_id, event_id]
-    );
+        [true, user_id, event_id]
+      );
     res.status(201).json({ msg: "files uploaded successfully" });
   } catch (error) {
     console.log(error);
@@ -390,9 +400,9 @@ module.exports.WeAreEngaged = async (req, res) => {
 
 module.exports.thankyou = async (req, res) => {
   const { user_id, event_id } = req.params;
-  console.log({ "params:": user_id, event_id });
+  console.log({"params:":user_id,event_id});
   const guest_id = req.body.guest_id;
-
+  
   // const ceremony_invited_for= req.body.ceremony_invited_for;
 
   console.log(req.body);
@@ -416,13 +426,15 @@ module.exports.thankyou = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
+    
+
 
     // const element = array[index];
 
@@ -471,14 +483,12 @@ module.exports.thankyou = async (req, res) => {
         console.log(newGroupName);
         console.log(element.email);
         console.log("8");
-        // const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${element.id}`;
+        // const urllink = `https://shiv-worldwide.com/shiv_app/${user_id}/${newGroupName}/${event_id}/${element.id}`;
         // console.log(urllink);
         // doc.textWithLink("Click Here to Submit your RSVP!", 200, 280, {
         //   url: urllink,
         // });
-        doc.save(
-          `controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} – Thank You${counter}.pdf`
-        );
+        doc.save(`controllers/newpdf/${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} – Thank You${counter}.pdf`);
 
         // const s3Params = {
         //   Bucket: 'shivapp',
@@ -502,7 +512,9 @@ module.exports.thankyou = async (req, res) => {
           from: "info@shiv-worldwide.com",
           to: element.email, // list of receivers
           subject: `${couplename.rows[0].bride_name} And ${couplename.rows[0].groom_name} – Thank You for attending`,
-          html: `<div><p>Thank you so much for attending our wedding and making it so special for us!</br></p><p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p></div>`,
+          html: `<div><p>Thank you so much for attending our wedding and making it so special for us!</br></p>
+          <p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p>
+          <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30"></div>`,
           attachments: [
             {
               filename: `${couplename.rows[0].bride_name} And  ${couplename.rows[0].groom_name} – Thank You${counter}.pdf`,
@@ -545,7 +557,7 @@ module.exports.thankyou = async (req, res) => {
 };
 
 module.exports.savethedate = async (req, res) => {
-  const { user_id, event_id } = req.params;
+  const { user_id ,event_id} = req.params;
 
   // const ceremony_invited_for= req.body.ceremony_invited_for;
 
@@ -570,13 +582,15 @@ module.exports.savethedate = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
+    
+
 
     // const element = array[index];
 
@@ -590,15 +604,15 @@ module.exports.savethedate = async (req, res) => {
     console.log("4");
     doc.addImage(buffer1, "PNG", 0, 0, 600, 401);
 
-    const query = `
+     const query = `
       SELECT bride_name,groom_name
       FROM marriage_details
       WHERE user_id = $1;
     `;
 
-    const couplename = await pool.query(query, [user_id]);
+     const couplename = await pool.query(query, [user_id]);
 
-    //  const urllink = `https://shivappdev.24livehost.com/guest/contact/form`;
+    //  const urllink = `https://shiv-worldwide.com/shiv_app/guest/contact/form`;
     //     console.log(urllink);
     //     doc.textWithLink("Click Here!", 200, 280, {
     //       url: urllink,
@@ -632,9 +646,7 @@ module.exports.savethedate = async (req, res) => {
         console.log(element.email);
         console.log("8");
 
-        doc.save(
-          `controllers/newpdf/${couplename.rows[0].bride_name} And ${couplename.rows[0].groom_name} Save the date${counter}.pdf`
-        );
+        doc.save(`controllers/newpdf/${couplename.rows[0].bride_name} And ${couplename.rows[0].groom_name} Save the date${counter}.pdf`);
 
         // const s3Params = {
         //   Bucket: 'shivapp',
@@ -658,8 +670,10 @@ module.exports.savethedate = async (req, res) => {
           from: "info@shiv-worldwide.com",
           to: element.email, // list of receivers
           subject: `${couplename.rows[0].bride_name} And ${couplename.rows[0].groom_name} Save the date`,
-          html: `<div><p>Add our date to your calendar: Our special day is on its way! 
-          More details to follow soon.</br></p><p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p></div>`,
+          html:`<div><p>Add our date to your calendar: Our special day is on its way! 
+          More details to follow soon.</br></p>
+          <p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p>
+          <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30"></div>`,
           attachments: [
             {
               filename: `${couplename.rows[0].bride_name} And ${couplename.rows[0].groom_name} Save the date${counter}.pdf`,
@@ -684,25 +698,25 @@ module.exports.savethedate = async (req, res) => {
       }
     }
     console.log(counter);
-    // await pool.query(
-    //   `UPDATE events
-    // SET is_email_sent = $1, email_sent_timestamp = CURRENT_TIMESTAMP
-    // WHERE user_id = $2 AND id = $3;`,
-    //   [true, user_id, event_id]
-    // );
-    await pool.query(
-      "UPDATE rsvp_attendance SET total_invitation_sent=$1 WHERE user_id=$2 AND event_id=$3;",
-      [counter, user_id, event_id]
-    );
-    await pool.query(
-      `UPDATE events
+      // await pool.query(
+      //   `UPDATE events
+      // SET is_email_sent = $1, email_sent_timestamp = CURRENT_TIMESTAMP
+      // WHERE user_id = $2 AND id = $3;`,
+      //   [true, user_id, event_id]
+      // );
+      await pool.query(
+        "UPDATE rsvp_attendance SET total_invitation_sent=$1 WHERE user_id=$2 AND event_id=$3;",
+        [counter, user_id, event_id]
+      );
+      await pool.query(
+        `UPDATE events
         SET is_email_sent = $1, email_sent_timestamp = CURRENT_TIMESTAMP
         WHERE user_id = $2 AND id = $3;`,
-      [true, user_id, event_id]
-    );
-
+        [true, user_id, event_id]
+      );
+    
     // await pool.query('UPDATE rsvp_attendance SET total_invitation_sent=$1 WHERE user_id=$2 AND event_id=$3;', [counter, user_id, event_id]);
-    res.status(201).json({ msg: "files uploaded successfully" });
+    res.status(201).json({ msg: "files uploaded successfully"});
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -728,13 +742,14 @@ module.exports.saveTheDateTestMail = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
+    
 
     const image1 = data.split(",");
     const template1 = image1[0] + "," + image1[1];
@@ -748,14 +763,12 @@ module.exports.saveTheDateTestMail = async (req, res) => {
     // console.log(user_id, groupname);
     console.log("groupname.length");
     let counter = 0;
-    doc.save(
-      `controllers/newpdf/${bride_name} And ${groom_name} Save the date (test).pdf`
-    );
+    doc.save(`controllers/newpdf/${bride_name} And ${groom_name} Save the date (test).pdf`);
     let mailOptions = {
       from: "info@shiv-worldwide.com",
       to: email, // list of re``ceivers
       subject: `${bride_name} And ${groom_name} Save the date (test)`,
-      html: `<div><p>
+      html:`<div><p>
           Add our date to your calendar: Our special day is on its way! 
           More details to follow soon.
           </br></p>
@@ -763,14 +776,12 @@ module.exports.saveTheDateTestMail = async (req, res) => {
           Brought to you by SHIV </br>
           Please ensure you save this email address to receive further event details.
           </p>
+          <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30">
           </div>`,
       attachments: [
         {
           filename: `${bride_name} And ${groom_name} Save the date (test).pdf`,
-          path: path.join(
-            __dirname,
-            `./newpdf/${bride_name} And ${groom_name} Save the date (test).pdf`
-          ), // <= Here
+          path: path.join(__dirname, `./newpdf/${bride_name} And ${groom_name} Save the date (test).pdf`), // <= Here
           contentType: "application/pdf",
         },
       ],
@@ -794,6 +805,7 @@ module.exports.saveTheDateTestMail = async (req, res) => {
   }
 };
 
+
 module.exports.thankyouTestMail = async (req, res) => {
   const email = req.body.email;
   const data = req.body.images;
@@ -813,13 +825,14 @@ module.exports.thankyouTestMail = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
+    
 
     const image1 = data.split(",");
     const template1 = image1[0] + "," + image1[1];
@@ -833,21 +846,18 @@ module.exports.thankyouTestMail = async (req, res) => {
     // console.log(user_id, groupname);
     console.log("groupname.length");
     let counter = 0;
-    doc.save(
-      `controllers/newpdf/${bride_name} And ${groom_name} Thank You (test).pdf`
-    );
+    doc.save(`controllers/newpdf/${bride_name} And ${groom_name} Thank You (test).pdf`);
     let mailOptions = {
       from: "info@shiv-worldwide.com",
       to: email, // list of re``ceivers
       subject: `${bride_name} And ${groom_name} Thank You (test)`,
-      html: `<div><p>Thank you so much for attending our wedding and making it so special for us!</br></p><p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p></div>`,
+      html: `<div><p>Thank you so much for attending our wedding and making it so special for us!</br></p>
+      <p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p>
+      <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30"></div>`,
       attachments: [
         {
           filename: `${bride_name} And ${groom_name} Thank You (test).pdf`,
-          path: path.join(
-            __dirname,
-            `./newpdf/${bride_name} And ${groom_name} Thank You (test).pdf`
-          ), // <= Here
+          path: path.join(__dirname, `./newpdf/${bride_name} And ${groom_name} Thank You (test).pdf`), // <= Here
           contentType: "application/pdf",
         },
       ],
@@ -890,14 +900,14 @@ module.exports.WeAreEngagedTestMail = async (req, res) => {
     //mail configuration
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
-
+    
     const image1 = data.split(",");
     const template1 = image1[0] + "," + image1[1];
     const base64String1 = template1.substring(template1.indexOf("base64,") + 7);
@@ -910,21 +920,18 @@ module.exports.WeAreEngagedTestMail = async (req, res) => {
     // console.log(user_id, groupname);
     console.log("groupname.length");
     let counter = 0;
-    doc.save(
-      `controllers/newpdf/${bride_name} And ${groom_name} Engagement Announcement (test).pdf`
-    );
+    doc.save(`controllers/newpdf/${bride_name} And ${groom_name} Engagement Announcement (test).pdf`);
     let mailOptions = {
       from: "info@shiv-worldwide.com",
       to: email, // list of receivers
       subject: `${bride_name} And  ${groom_name} Engagement Announcement`,
-      html: `<div><p>We’re Engaged!!! Starting our new journey together, please view our Engagement card attached.</br></p><p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p></div>`,
+          html: `<div><p>We’re Engaged!!! Starting our new journey together, please view our Engagement card attached.</br></p>
+          <p style="font-size:14px">Brought to you by SHIV </br>Please ensure you save this email address to receive further event details.</p>
+          <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30"></div>`,
       attachments: [
         {
           filename: `${bride_name} And ${groom_name} Engagement Announcement (test).pdf`,
-          path: path.join(
-            __dirname,
-            `./newpdf/${bride_name} And ${groom_name} Engagement Announcement (test).pdf`
-          ), // <= Here
+          path: path.join(__dirname, `./newpdf/${bride_name} And ${groom_name} Engagement Announcement (test).pdf`), // <= Here
           contentType: "application/pdf",
         },
       ],
@@ -958,6 +965,7 @@ module.exports.WeddingTestMail = async (req, res) => {
   const groom_name = req.body.groom_name;
   const bride_name = req.body.bride_name;
 
+
   try {
     //pdf configuration
     const doc = new jsPDF({
@@ -988,13 +996,15 @@ module.exports.WeddingTestMail = async (req, res) => {
     // });
     let transporter = nodemailer.createTransport({
       host: process.env.SERVER_EMAIL_HOST,
-      port: process.env.SERVER_PORT,
+      port:process.env.SERVER_PORT,
       secure: false,
       auth: {
         user: process.env.SERVER_EMAIL,
         pass: process.env.SERVER_EMAIL_PASS,
       },
     });
+    
+    
 
     const image1 = data.split(",");
     const template1 = image1[0] + "," + image1[1];
@@ -1027,17 +1037,15 @@ module.exports.WeddingTestMail = async (req, res) => {
     console.log("groupname.length");
     let counter = 0;
 
-    const urllink = `https://shivappdev.24livehost.com/${user_id}/${newGroupName}/${event_id}/${guest_id}`;
+    const urllink = `https://shiv-worldwide.com/${user_id}/${newGroupName}/${event_id}/${guest_id}`;
     console.log(urllink);
-    doc.textWithLink("Click Here to Submit your RSVP!", 200, 380, {
-      url: urllink,
-    });
+    // doc.textWithLink("Click Here to Submit your RSVP!", 200, 380, {
+    //   url: urllink,
+    // });
     //  doc.textWithLink("Check our wedding website", 200, 395, {
-    //    url: "https://shivappdev.24livehost.com/wedding_website/",
+    //    url: "https://shiv-worldwide.com/shiv_app/wedding_website/",
     //  });
-    doc.save(
-      `controllers/newpdf/${bride_name} And  ${groom_name} Wedding Invite & RSVP test.pdf`
-    );
+    doc.save(`controllers/newpdf/${bride_name} And  ${groom_name} Wedding Invite & RSVP test.pdf`);
 
     const pdfKey = `newpdf/${bride_name} And  ${groom_name} Wedding Invite & RSVP test.pdf`;
     const pdfBuffer = await fs.readFile(
@@ -1068,10 +1076,12 @@ module.exports.WeddingTestMail = async (req, res) => {
       It’s finally here! We are so excited to share our wedding invitation with you!</br>
       Please find our invitation attached and click on the RSVP link to let us know if you can attend within the next 4 weeks. </br>
       <p/>
-      <a href='https://shivappww.s3.amazonaws.com/${pdfKey}' style='text-decoration:'underline';'>Click here to get RSVP</a>
+      <a href='https://shivappww.s3.amazonaws.com/${pdfKey}' style='text-decoration:'underline';'>Click here to get Invitation</br></a>
+      <a href='${urllink}' style='text-decoration:'underline';'>Click here to RSVP</a>
       <p style="font-size:14px">Brought to you by SHIV<br/>
       Please ensure you save this email address to receive further event details.
       </p>
+      <img src="https://shivappww.s3.eu-west-2.amazonaws.com/Icons/email/SHIV_logo_fnl.jpg" alt="Shiv" width="50" height="30">
       </div>`,
       text: `Please Submit your RSVP in the attached PDF \n\n Thank You`,
       // attachments: [
@@ -1099,3 +1109,5 @@ module.exports.WeddingTestMail = async (req, res) => {
     res.send(error);
   }
 };
+
+

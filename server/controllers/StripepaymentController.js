@@ -1,14 +1,74 @@
 // This is your test secret API key.
 //const stripe = require('stripe')(process.env.STRIPE_SECRECT_KEY);
+require("dotenv").config();
 const stripe = require("stripe")(
-  "sk_test_51NfOR1FkQqbaeuTEFKNYaRF6cwKwsuf3HNUD0Y979JIZEVCuqbfJZeSUvHZDpeLRUw01tnRqrV5oMe8RMpBOdDIf005Xhdlxpq"
+  process.env.STRIPE_SECRECT_KEY
 );
 
 const pool = require("../database/connection").pool;
 
 const serverUrl = "https://shivappdev.24livehost.com:3004";
-const fEurl = "https://shivappdev.24livehost.com";
+const fEurl = "https://shiv-worldwide.com";
 const localUrl = "https://localhost:3004";
+
+const mode='live';
+var p1='';
+var p2='';
+var p3='';
+var p4='';
+var p5='';
+
+if(mode==='test'){
+ p1='price_1O7FT5FkQqbaeuTEqg1ic2Gg';
+ p2='price_1O7FUDFkQqbaeuTEyqylDWM6';
+ p3='price_1O7FVYFkQqbaeuTEutgGUkdN';
+ p4='price_1O7FODFkQqbaeuTEf2MpmRjW';
+ p5='price_1O7FQWFkQqbaeuTEnjStYttP';
+}
+else {
+  p1='price_1OEmrPFkQqbaeuTEaqdDdUqy';
+  p2='price_1OEmrXFkQqbaeuTE8aCA2PIc';
+  p3='price_1OEmreFkQqbaeuTEhJF7QCm2';
+  p4='price_1OEmroFkQqbaeuTEinonMXNa';
+  p5='price_1OEmruFkQqbaeuTE92xoAx49';
+}
+
+
+var a1='';
+var a2='';
+var a3='';
+var a4='';
+var a5='';
+var a6='';
+var a7='';
+var a8='';
+var a9='';
+var a10='';
+
+if(!mode==='test'){
+ a1='price_1OIkzyFkQqbaeuTE2SkhpKsW';
+ a2='price_1OIl0cFkQqbaeuTEGjYTS41S';
+ a3='price_1OIl0sFkQqbaeuTE0f9ThBXA';
+ a4='price_1OIl11FkQqbaeuTEEzUM0rOg';
+ a5='price_1OIl1cFkQqbaeuTEdf4GqstZ';
+ a6='price_1OIl1rFkQqbaeuTEYwhJlsre';
+ a7='price_1OIl25FkQqbaeuTEbyEoZIGc';
+ a8='price_1OIl2FFkQqbaeuTE3L4SvXZJ';
+ a9='price_1OIl2SFkQqbaeuTE289SJPZF';
+ a10='price_1OIl2jFkQqbaeuTEzdi918qn';
+}
+else {
+ a1='price_1O5nhqFkQqbaeuTEb78ildKk';
+ a2='price_1O5njhFkQqbaeuTEdBJ9DDiz';
+ a3='price_1O5nlGFkQqbaeuTEKVWPtQ44';
+ a4='price_1O5nmnFkQqbaeuTEOSJKV4nW';
+ a5='price_1O5nnPFkQqbaeuTECvkzYLES';
+ a6='price_1O5no4FkQqbaeuTE6Rh4Bd9s';
+ a7='price_1O6oIzFkQqbaeuTEj2k04orJ';
+ a8='price_1O6oW5FkQqbaeuTEhykSIEwI';
+ a9='price_1O6oWjFkQqbaeuTEj9XGzxzc';
+ a10='price_1O6oXPFkQqbaeuTERjJFynmr';
+}
 
 const getAllPaymentHistory = async (req, res) => {
   try {
@@ -63,35 +123,35 @@ const createPaymentLink = async (req, res) => {
   let default_guest = 0;
   switch (pkg) {
     case 1:
-      priceId = "price_1O7FT5FkQqbaeuTEqg1ic2Gg";
+      priceId = p1;
       packg = "pkg1";
       pname = "Bronze Package";
       default_guest = 100;
       //console.log("pkg1");
       break;
     case 2:
-      priceId = "price_1O7FUDFkQqbaeuTEyqylDWM6";
+      priceId = p2;
       packg = "pkg2";
       pname = "Sliver Package";
       default_guest = 150;
       //console.log("pkg2");
       break;
     case 3:
-      priceId = "price_1O7FVYFkQqbaeuTEutgGUkdN";
+      priceId = p3;
       packg = "pkg3";
       pname = "Gold Package";
       default_guest = 200;
       //console.log("pkg3");
       break;
     case 4:
-      priceId = "price_1O7FODFkQqbaeuTEf2MpmRjW";
+      priceId = p4;
       packg = "pkg4";
       pname = "Platinum Package";
       default_guest = 250;
       //console.log("pkg4");
       break;
     case 5:
-      priceId = "price_1O7FQWFkQqbaeuTEnjStYttP";
+      priceId = p5;
       packg = "pkg5";
       pname = "Diamond Package";
       default_guest = 300;
@@ -119,8 +179,8 @@ const createPaymentLink = async (req, res) => {
       ],
       mode: "payment",
       allow_promotion_codes: true,
-      success_url: `${serverUrl}/payment/success/user/${user_id}/${packg}/${eve}`, // Redirect URL after successful payment
-      cancel_url: `${serverUrl}/payment/cancel/user/${user_id}/${packg}/${eve}`,
+      success_url: `${serverUrl}/api/payment/success/user/${user_id}/${packg}/${eve}`, // Redirect URL after successful payment
+      cancel_url: `${serverUrl}/api/payment/cancel/user/${user_id}/${packg}/${eve}`,
     });
     ////console.log(session.id);
     await pool.query(
@@ -147,7 +207,7 @@ const success = async (req, res) => {
   try {
     // Retrieve the session ID from the database
     const { rows } = await pool.query(
-      "SELECT session_id,package FROM user_payment WHERE user_id = $1;",
+      "SELECT session_id,package FROM user_payment WHERE user_id = $1 order by id desc;",
       [user_id]
     );
 
@@ -188,10 +248,10 @@ const success = async (req, res) => {
       );
 
       if (eve === "template") {
-        res.redirect(`${fEurl}/guest/template`);
+        res.redirect(`${fEurl}/guests/template`);
       }
       if (eve === "questions") {
-        res.redirect(`${fEurl}/guest/questions`);
+        res.redirect(`${fEurl}/guestss/questions`);
       }
       if (eve === "Wedding") {
         res.redirect(`${fEurl}/eventList`);
@@ -205,7 +265,7 @@ const success = async (req, res) => {
       }
 
       // Redirect to a thank you page or show a success message
-      // res.redirect("https://shivappdev.24livehost.com/eventList");
+      // res.redirect("https://shivappdev.24livehost.com//eventList");
       //const user_id = req.params.user_id;
 
       const user_validation = await pool.query(
@@ -251,7 +311,7 @@ const cancel = async (req, res) => {
   try {
     // Insert data into PostgreSQL database for successful payment
     const { rows } = await pool.query(
-      "SELECT session_id FROM user_payment WHERE user_id = $1;",
+      "SELECT session_id FROM user_payment WHERE user_id = $1 order by id desc;",
       [user_id]
     );
     const session_id = rows[0].session_id;
@@ -264,7 +324,7 @@ const cancel = async (req, res) => {
 
       // Update the user_payment record
       await pool.query(
-        "UPDATE user_payment SET amount = $, status = $2, date = CURRENT_TIMESTAMP WHERE user_id = $3 AND package = $4",
+        "UPDATE user_payment SET amount = $1, status = $2, date = CURRENT_TIMESTAMP WHERE user_id = $3 AND package = $4",
         [amount, "Failed", user_id, pkg]
       );
 
@@ -307,52 +367,52 @@ const additionalGuests = async (req, res) => {
   let packg = "";
   switch (pkg) {
     case 1:
-      priceId = "price_1O5nhqFkQqbaeuTEb78ildKk";
+      priceId = a1;
       packg = "100guests";
       //console.log("100guests");
       break;
     case 2:
-      priceId = "price_1O5njhFkQqbaeuTEdBJ9DDiz";
+      priceId = a2;
       packg = "200guests";
       //console.log("200guests");
       break;
     case 3:
-      priceId = "price_1O5nlGFkQqbaeuTEKVWPtQ44";
+      priceId = a3;
       packg = "300guests";
       //console.log("300guests");
       break;
     case 4:
-      priceId = "price_1O5nmnFkQqbaeuTEOSJKV4nW";
+      priceId = a4;
       packg = "400guests";
       //console.log("400guests");
       break;
     case 5:
-      priceId = "price_1O5nnPFkQqbaeuTECvkzYLES";
+      priceId = a5;
       packg = "500guests";
       //console.log("500guests");
       break;
     case 6:
-      priceId = "price_1O5no4FkQqbaeuTE6Rh4Bd9s";
+      priceId = a6;
       packg = "600guests";
       //console.log("600guests");
       break;
     case 7:
-      priceId = "price_1O6oIzFkQqbaeuTEj2k04orJ";
+      priceId = a7;
       packg = "700guests";
       //console.log("700guests");
       break;
     case 8:
-      priceId = "price_1O6oW5FkQqbaeuTEhykSIEwI";
+      priceId = a8;
       packg = "800guests";
       //console.log("800guests");
       break;
     case 9:
-      priceId = "price_1O6oWjFkQqbaeuTEj9XGzxzc";
+      priceId = a9;
       packg = "900guests";
       //console.log("900guests");
       break;
     case 10:
-      priceId = "price_1O6oXPFkQqbaeuTERjJFynmr";
+      priceId = a10;
       packg = "1000guests";
       //console.log("1000guests");
       break;
@@ -376,8 +436,8 @@ const additionalGuests = async (req, res) => {
       allow_promotion_codes: true,
       // success_url: `${localUrl}/payment/successadditional/user/${user_id}/${packg}`, // Redirect URL after successful payment
       // cancel_url: `${localUrl}/payment/canceladditional/user/${user_id}/${packg}`, // Redirect URL if the user cancels
-      success_url: `https://shivappdev.24livehost.com:3004/payment/successadditional/user/${user_id}/${packg}`, // Redirect URL after successful payment
-      cancel_url: `https://shivappdev.24livehost.com:3004/payment/canceladditional/user/${user_id}/${packg}`, // Redirect URL if the user cancels
+      success_url: `https://shivappdev.24livehost.com:3004/api/payment/successadditional/user/${user_id}/${packg}`, // Redirect URL after successful payment
+      cancel_url: `https://shivappdev.24livehost.com:3004/api/payment/canceladditional/user/${user_id}/${packg}`, // Redirect URL if the user cancels
     });
     //console.log(session.id);
     // await pool.query(
@@ -409,10 +469,14 @@ const successadditional = async (req, res) => {
     "UPDATE user_additional_guests SET additional_guests = additional_guests+ $1 WHERE user_id =$2",
     [addguests, user_id]
   );
-  res.redirect("https://shivappdev.24livehost.com/add/group/ceremonies");
+  res.redirect(
+    `${fEurl}/add/group/ceremonies`
+  );
 };
 const canceladditional = async (req, res) => {
-  res.redirect("https://shivappdev.24livehost.com/add/group/ceremonies");
+  res.redirect(
+    `${fEurl}/add/group/ceremonies`
+  );
 };
 
 const getAdditionalGuestInfo = async (req, res) => {

@@ -12,7 +12,6 @@ router.get("/:id", guestController.validateGuest, guestController.getGuestById);
 router.put("/:guestId", guestController.validateGuest, guestController.updateGuest);
 router.delete(
   "/:id",
-  guestController.validateGuest,
   guestController.deleteGuest
 );
 router.post("/import/:user_id", upload.single("file"), importGuests);

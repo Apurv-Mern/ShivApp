@@ -25,7 +25,7 @@ module.exports.handleResponse = async (req, res) => {
     } = req.body;
 
     if (question_id.length != response.length) {
-      res
+     return res
         .status(400)
         .json({ Error: "No. of questions and responses does not match" });
     }
@@ -33,11 +33,12 @@ module.exports.handleResponse = async (req, res) => {
     for (let index = 0; index < question_id.length; index++) {
       const singleQuestion = question_id[index];
       const singleResponse = response[index];
-      const singleExtraDetails = extra_details[index];
+      //const singleExtraDetails = singleQuestion == extra_details[index].questionid ? extra_details[index].value : "";
       const existingResponse = await pool.query(
-        `SELECT * FROM responses WHERE user_id = $1 AND guest_id = $2 AND question_id=$3 `,
+        `SELECT * FROM responses WHERE user_id = $1 AND guest_id = $2 AND question_id=$3`,
         [user_id, guest_id, singleQuestion]
       );
+      console.log(existingResponse.rows);
       if (existingResponse.rowCount > 0) {
         res
           .status(400)
@@ -46,7 +47,7 @@ module.exports.handleResponse = async (req, res) => {
         return;
       }
       const query = `
-           INSERT INTO responses (user_id, guest_id, question_id, response, extra_details)
+           INSERT INTO responses (user_id, guest_id, question_id, response, event_id)
            VALUES ($1, $2, $3, $4, $5)
        `;
       await pool.query(query, [
@@ -54,7 +55,8 @@ module.exports.handleResponse = async (req, res) => {
         guest_id,
         singleQuestion,
         singleResponse,
-        singleExtraDetails,
+        // singleExtraDetails,
+        event_id
       ]);
     }
     await pool.query(

@@ -21,7 +21,6 @@ const getAllGroups = async (req, res) => {
   }
 };
 
-
 const createGroup = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -35,18 +34,24 @@ const createGroup = async (req, res) => {
       [groupname, user_id]
     );
 
-    if (valid_group.rows.length > 0) {
+    if (valid_group.rowCount > 0) {
       const result = await pool.query(
         'UPDATE groups SET groupname = $1,user_id=$2 WHERE groupname = $3 AND user_id = $4',
-        [groupname,user_id, groupname, user_id]
+        [groupname, user_id, groupname, user_id]
       );
       res.status(201).json(result.rows[0]);
     } else {
       const newGroup = await pool.query(
         'INSERT INTO groups (user_id, groupname) VALUES ($1, $2) RETURNING *',
         [user_id, groupname]
-      );
-      res.status(201).json(newGroup.rows[0]);
+        );
+        const invitationCode=parseInt(user_id.toString()+newGroup.rows[0].id);
+        const result = await pool.query(
+          'UPDATE groups SET invitation_code = $1 WHERE id = $2',
+          [invitationCode, newGroup.rows[0].id]
+        );
+        res.status(201).json(result.rows[0]);
+      // res.status(201).json(newGroup.rows[0]);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -87,8 +92,20 @@ const updateGroup = async (req, res) => {
 };
 
 const deleteGroup = async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
+  console.log(id);
   try {
+
+    const guestIdsQuery = `SELECT id as guest_id FROM guests WHERE group_id = $1`;
+    const guestIdsResult = await pool.query(guestIdsQuery, [id]);
+    const guestIds = guestIdsResult.rows.map(row => row.guest_id);
+
+    console.log("Line 99 guestIds: ", guestIds);
+    await pool.query(`DELETE FROM ceremony_attendance WHERE guest_id = ANY($1)`, [guestIds]);
+    await pool.query(`DELETE FROM wedding_reminder_list WHERE guest_id = ANY($1)`, [guestIds]);
+    await pool.query("DELETE FROM guests WHERE group_id = $1", [id]);
+    await pool.query("DELETE FROM ceremony_groups WHERE group_id = $1", [id]);
+    await pool.query("DELETE FROM ceremony_groups WHERE group_id = $1", [id]);
     await pool.query("DELETE FROM groups WHERE id = $1", [id]);
     res.json({ message: "Group deleted" });
   } catch (error) {
@@ -96,30 +113,29 @@ const deleteGroup = async (req, res) => {
   }
 };
 
-
 //group invitation type
 
-const insertOrUpdateGroupInvitationType = async (req,res) => {
-  const {user_id,group_data} = req.body;
+const insertOrUpdateGroupInvitationType = async (req, res) => {
+  const { user_id, group_data } = req.body;
   try {
 
     for (const group of group_data) {
 
       // Check if the record exists for the given user_id and group_id
-      const result= await pool.query(
+      const result = await pool.query(
         'SELECT  group_id FROM ceremony_groups WHERE group_id = $1 AND ceremony_id = $2',
-        [group.group_id,ceremony_id]
-    );
-    if(result.rows.length>0){
+        [group.group_id, ceremony_id]
+      );
+      if (result.rows.length > 0) {
         const singleGroup = group.invitation_type ? group.invitation_type : "you";
-      //  console.log(singleGroup);
+        //  console.log(singleGroup);
         await pool.query(
-            'UPDATE ceremony_groups SET selected = $1, invitation_type =$2 WHERE group_id = $3 AND ceremony_id = $4',
-            [group.selected,singleGroup,group.group_id,ceremony_id]
+          'UPDATE ceremony_groups SET selected = $1, invitation_type =$2 WHERE group_id = $3 AND ceremony_id = $4',
+          [group.selected, singleGroup, group.group_id, ceremony_id]
         );
+      }
     }
-    }
-  
+
 
     res.status(201).json('Success');
   } catch (error) {
@@ -128,11 +144,9 @@ const insertOrUpdateGroupInvitationType = async (req,res) => {
   }
 };
 
+const getGroupInvitationTypesByUserId = async (req, res) => {
 
-
-const getGroupInvitationTypesByUserId = async (req,res) => {
-
-  const {user_id}=req.params;
+  const { user_id } = req.params;
   console.log(req.params);
   try {
     // Retrieve the data based on user_id
@@ -150,14 +164,40 @@ const getGroupInvitationTypesByUserId = async (req,res) => {
       })),
     };
 
-    res.json( formattedData);
+    res.json(formattedData);
   } catch (error) {
     console.error('Error retrieving group_invitation_type:', error);
     throw error;
   }
 };
 
+const getGuestCeremonyByCode = async (req,res)=> {
+ const code = req.params.code;
+ console.log("code");
+ console.log(typeof code);
+ try {
+  if(!code) return res.status(400).json({"Msg":'no code was provided'});
+ const ceremonyData= await pool.query(`
+ select c.id,c.ceremony_name,c.ceremony_venue,c.ceremony_time
+ from ceremony_groups as cg
+ left join ceremony as c on c.id=cg.ceremony_id
+ where cg.group_id in (
+   select id from groups
+ where invitation_code=$1
+ );
+ `,[code]);
+ 
+ if (ceremonyData.rowCount<1) {
+  return res.status(400).json({"Msg":`No ceremonies for this code - ${code}`});
+ }
+ res.json(ceremonyData.rows);
+}
+  catch (error) {
+  console.log(error);
+  res.status(500).send("some issues")
+ }
 
+}
 
 
 module.exports = {
@@ -169,4 +209,5 @@ module.exports = {
   deleteGroup,
   insertOrUpdateGroupInvitationType,
   getGroupInvitationTypesByUserId,
+  getGuestCeremonyByCode,
 };

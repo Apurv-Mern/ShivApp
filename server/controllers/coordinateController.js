@@ -11,8 +11,8 @@ const handleCoordinates = async (req,res)=>{
             const page_number = pages[i];
             const x_coordinate = x_coordinates[i];
             const y_coordinate = y_coordinates[i];
-            const font_size=font_sizes[i];
-            const font_style=font_styles[i];
+            // const font_size=font_sizes[i];
+            // const font_style=font_styles[i];
 
             // Check if data already exists for the user, event, and page
             const existingData = await pool.query(
@@ -23,14 +23,14 @@ const handleCoordinates = async (req,res)=>{
             if (existingData.rows.length > 0) {
                 // Data exists, update it
                 await pool.query(
-                    'UPDATE box_coordinates SET x_coordinate = $1, y_coordinate = $2, font_size = $3, font_style = $4 WHERE user_id = $5 AND event_id = $6 AND page_number = $7',
-                    [x_coordinate, y_coordinate, font_size, font_style, user_id, event_id, page_number]
+                    'UPDATE box_coordinates SET x_coordinate = $1, y_coordinate = $2  WHERE user_id = $3 AND event_id = $4 AND page_number = $5',
+                    [x_coordinate, y_coordinate, user_id, event_id, page_number]
                 );
             } else {
                 // Data doesn't exist, insert new record
                 await pool.query(
-                    'INSERT INTO box_coordinates (user_id, event_id, page_number, x_coordinate, y_coordinate, font_size, font_style) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-                    [user_id, event_id, page_number, x_coordinate, y_coordinate, font_size, font_style]
+                    'INSERT INTO box_coordinates (user_id, event_id, page_number, x_coordinate, y_coordinate) VALUES ($1, $2, $3, $4, $5)',
+                    [user_id, event_id, page_number, x_coordinate, y_coordinate]
                 );
             }
         }

@@ -11,7 +11,7 @@ const EditUserDialog = ({ open, onClose, onSave, user }) => {
   console.log(user);
 
   useEffect(() => {
-    // Reset the edited data when the user prop changes
+    // *Reset the edited data when the user prop changes
     setEditedData(user);
   }, [user]);
 
@@ -53,7 +53,6 @@ const EditUserDialog = ({ open, onClose, onSave, user }) => {
             fullWidth
             margin="normal"
           />
-          {/* Add other fields as needed */}
         </form>
       </DialogContent>
       <DialogActions>

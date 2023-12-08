@@ -9,13 +9,13 @@ const pool = require("../database/connection").pool;
 
 const router = express.Router();
 
-const s3Client = new S3Client({
-  region: process.env.AWS_S3_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-  },
-});
+ const s3Client = new S3Client({
+      region: process.env.AWS_S3_REGION,
+      credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+      },
+    });
 
 // Multer Configuration for File Upload
 const storage = multer.memoryStorage();
@@ -40,7 +40,7 @@ router.post(
         await s3Client.send(
           new DeleteObjectCommand({
             Bucket: "shivappww",
-            Key: "user_profile/" + result.rows[0].profile_photo,
+            Key: "user_profile/"+result.rows[0].profile_photo,
           })
         );
       }
@@ -56,10 +56,10 @@ router.post(
       await s3Client.send(new PutObjectCommand(uploadParams));
 
       // Update the database with the S3 link
-      await pool.query("UPDATE users SET profile_photo = $1 WHERE id = $2", [
-        photoKey,
-        userId,
-      ]);
+      await pool.query(
+        "UPDATE users SET profile_photo = $1 WHERE id = $2",
+        [photoKey, userId]
+      );
 
       // Respond with the S3 link for the uploaded photo
       const photoURL = `https://shivappww.s3.amazonaws.com/user_profile/${photoKey}`;

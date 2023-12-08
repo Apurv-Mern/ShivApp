@@ -12,7 +12,7 @@ import { ExportToExcel } from "../../Utils/GenerateExcel";
 const FlightReport = () => {
   const dispatch = useDispatch();
   const { getFlightListReport } = useSelector((state) => state.reports);
-  const [guestListLoading, setGuestListLoading] = useState(true); // Initialize guestListLoading state
+  const [guestListLoading, setGuestListLoading] = useState(true);
 
   // ?here enter filename for your excel file
   const fileName = "Flight Report";
@@ -70,9 +70,9 @@ const FlightReport = () => {
                       <div className="sky-circle d-inline-block">105</div>
                     </div>
                     <TabPanel>
-                      {guestListLoading ? ( // Check if guestList is loading
-                        <h5>Loading guest list...</h5> // Display loading message
-                      ) : getFlightListReport.length > 0 ? ( // Check if guestList has data
+                      {guestListLoading ? (
+                        <h5>Loading guest list...</h5>
+                      ) : getFlightListReport.length > 0 ? (
                         <div className="table-responsive">
                           <table className="table table-striped">
                             <thead>
@@ -106,7 +106,6 @@ const FlightReport = () => {
                           </table>
                         </div>
                       ) : (
-                        // Display "No Data Found" message when guestList is empty
                         <h4 className="not-found">No Data Found</h4>
                       )}
                     </TabPanel>

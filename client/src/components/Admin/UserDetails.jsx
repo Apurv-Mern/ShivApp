@@ -33,7 +33,6 @@ const UserDetails = () => {
       })
       .catch((error) => {
         console.error("Error deleting user:", error);
-        // Handle the error, e.g., show a notification
       });
   };
 
@@ -62,7 +61,7 @@ const UserDetails = () => {
   };
 
   const handleSave = (editedData) => {
-    // Call your API to update the user details
+    // *Call your API to update the user details
     dispatch(adminEditUser({ editedData, id }))
       .then(() => {
         dispatch(getAdminUsersDetails());
@@ -71,7 +70,6 @@ const UserDetails = () => {
       })
       .catch((error) => {
         console.error("Error updating user details:", error);
-        // Handle the error, e.g., show a notification
       });
   };
 
