@@ -353,6 +353,42 @@ body {
   padding: 0px !important;
 }
 
+body .wedding-card-nav .navbar-nav {
+  margin: 0px auto !important;
+  float: inherit !important;
+}
+body .nav-panel.wedding-card-nav {
+  background: #5ce1e6 !important;
+  margin: 0px -12px !important;
+}
+
+body .middle-part.web-banner img {
+  border-radius: 0px !important;
+}
+
+body .wedding-card-nav .navbar-nav {
+  width: auto;
+}
+
+.carousel-wedd .carousel-inner {
+  border-radius: 0px !important;
+}
+.carousel-wedd .carousel-item.active,
+.carousel-wedd .carousel-item-next,
+.carousel-wedd .carousel-item-prev {
+  border-radius: 0px !important;
+}
+
+.home-nav-2 .navbar-toggler-icon-1 {
+  background: #000 !important;
+}
+.home-nav-2 button:focus:not(:focus-visible) {
+  color: #fff !important;
+}
+.web-header.header-new {
+  border-top: 0px solid #fff !important;
+}
+
 @media only screen and (max-width: 1024px) {
   .web-header .navbar-toggler-icon-1 {
     width: 35px;
@@ -364,6 +400,7 @@ body {
     color: rgba(0, 0, 0, 0.55);
     border-color: #fff;
     border: 0px;
+    margin-bottom: 0px;
   }
   .wedding-card-nav .navbar-nav .nav-link {
     color: #fff;
@@ -441,35 +478,33 @@ body {
   }
 }
 
-body .wedding-card-nav .navbar-nav {
-  margin: 0px auto !important;
-  float: inherit !important;
-}
-body .nav-panel.wedding-card-nav {
-  background: #5ce1e6 !important;
-  margin: 0px -12px !important;
+@media only screen and (min-width: 767px) and (max-width: 990px) {
+  .top-right-panel .right-btn {
+    padding: 5px 18px;
+    line-height: 30px;
+  }
 }
 
-body .middle-part.web-banner img {
-  border-radius: 0px !important;
-}
-
-body .wedding-card-nav .navbar-nav {
-  width: auto;
-}
-
-.carousel-wedd .carousel-inner {
-  border-radius: 0px !important;
-}
-.carousel-wedd .carousel-item.active,
-.carousel-wedd .carousel-item-next,
-.carousel-wedd .carousel-item-prev {
-  border-radius: 0px !important;
-}
-
-.home-nav-2 .navbar-toggler-icon-1 {
-  background: #000 !important;
-}
-.home-nav-2 button:focus:not(:focus-visible) {
-  color: #fff !important;
+@media only screen and (max-width: 990px) {
+  .add-new1 {
+    float: none;
+    padding-top: 15px;
+    margin: 0px auto;
+  }
+  .follow-nav {
+    list-style: none;
+    width: 100%;
+    margin: 0px auto;
+    float: left;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .follow-nav ul {
+    list-style: none;
+    float: none;
+    padding: 15px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    width: 220px;
+  }
 }
