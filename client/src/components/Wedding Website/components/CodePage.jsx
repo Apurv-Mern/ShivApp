@@ -36,6 +36,7 @@ const CodePage = () => {
           `/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`
         );
       }
+      localStorage.setItem("code", code);
     } else {
       toast.error("Enter your 6 digit code");
     }
