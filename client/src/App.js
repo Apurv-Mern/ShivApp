@@ -64,10 +64,7 @@ const TemplatePreview = React.lazy(() =>
 );
 const ResetPassword = React.lazy(() => import("./Pages/ResetPassword"));
 const Contacts = React.lazy(() => import("./components/Contacts"));
-const RSVPPages = React.lazy(() => import("./components/RSVP"));
-const RSVPPages2 = React.lazy(() => import("./components/Rsvp2"));
-const RSVPPages3 = React.lazy(() => import("./components/RSVP3"));
-const RSVPPages4 = React.lazy(() => import("./components/RSVP4"));
+
 const InvitationType = React.lazy(() => import("./components/InvitationType"));
 const Schedulers = React.lazy(() => import("./components/Schedulers"));
 const AddGroupInCeremonies = React.lazy(() =>

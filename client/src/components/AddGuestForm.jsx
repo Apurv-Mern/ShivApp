@@ -20,7 +20,6 @@ import {
   selectedDrinksForAUser,
   selectedFoodForAUser,
 } from "../redux/foodSlice";
-import AddGuest from "./AddGuestRSPV4";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
