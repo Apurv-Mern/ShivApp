@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageUpload from "./ImageUpload";
 import img1 from "../../../assets/wedding/images/love3.png";
 import imgL from "../../../assets/wedding/images/img1.png";
 import cal from "../../../assets/wedding/images/cal.png";
 import lo from "../../../assets/wedding/images/lo.png";
 import love from "../../../assets/wedding/images/love2.png";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { WeddingWebsiteCode } from "../../../redux/marriageSlice";
 
 const Calendar = () => {
-  const {
-    state: { weddingCeremonies },
-  } = useLocation();
+  const dispatch = useDispatch();
+  const code = localStorage.getItem("code");
+  const weddingCeremonies = useSelector(
+    (state) => state.marriage.weddingCeremonies
+  );
+
   console.log(weddingCeremonies);
 
   const formatDateTime = (dateTimeString) => {
@@ -28,6 +32,11 @@ const Calendar = () => {
 
     return formattedDate;
   };
+
+  useEffect(() => {
+    dispatch(WeddingWebsiteCode(code));
+  }, []);
+
   return (
     <div id="calendar">
       <section className="web-inner-page">
@@ -42,29 +51,27 @@ const Calendar = () => {
           </div>
           <div className="row top-wedding-panel">
             <div className="col-lg-6 col-md-12 web-content-box">
-              {weddingCeremonies?.map(
-                ({ ceremony_name, ceremony_time, ceremony_venue }) => (
-                  <>
-                    <div className="col-lg-6 col-md-12 web-img">
-                      <img src={imgL} className="main-image-1" alt="img" />
+              {weddingCeremonies?.map((item) => (
+                <>
+                  <div className="col-lg-6 col-md-12 web-img">
+                    <img src={imgL} className="main-image-1" alt="img" />
+                  </div>
+                  <div className="web-icon-3">
+                    <img src={img1} className="main-image-1" alt="img" />
+                  </div>
+                  <div className="web-icon-2">
+                    <div className="web-title-n1">{item.ceremony_name}</div>
+                    <div className="web-date-box">
+                      <img src={cal} className="main-cal-1" alt="img" />
+                      {formatDateTime(item.ceremony_time)}
                     </div>
-                    <div className="web-icon-3">
-                      <img src={img1} className="main-image-1" alt="img" />
+                    <div className="web-ad-box">
+                      <img src={lo} className="main-lo-1" alt="img" />
+                      {item.ceremony_venue}
                     </div>
-                    <div className="web-icon-2">
-                      <div className="web-title-n1">{ceremony_name}</div>
-                      <div className="web-date-box">
-                        <img src={cal} className="main-cal-1" alt="img" />
-                        {formatDateTime(ceremony_time)}
-                      </div>
-                      <div className="web-ad-box">
-                        <img src={lo} className="main-lo-1" alt="img" />
-                        {ceremony_venue}
-                      </div>
-                    </div>
-                  </>
-                )
-              )}
+                  </div>
+                </>
+              ))}
             </div>
           </div>
         </div>
