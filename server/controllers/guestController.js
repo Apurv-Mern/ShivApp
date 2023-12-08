@@ -1,3 +1,4 @@
+const { json } = require("express");
 const { body, validationResult } = require("express-validator");
 const pool = require('../database/connection.js').pool;
 const multer = require("multer");
@@ -163,6 +164,8 @@ const deleteGuest = async (req, res) => {
   } ``
   const { id } = req.params;
   try {
+
+    await pool.query('DELETE FROM wedding_reminder_list WHERE guest_id = $1', [id]);
     await pool.query('DELETE FROM guests WHERE id = $1', [id]);
     res.json({ message: 'Guest deleted' });
   } catch (error) {
@@ -179,18 +182,30 @@ const importGuests = async (req, res) => {
 
   const {user_id} = req.params;
  console.log("1",user_id);
-  try {
- 
-    if (!req.file) {
-      res.status(400).json({ message: "No file uploaded" });
-      return;
-    }
 
+ 
+ try {
+   
+   if (!req.file) {
+     res.status(400).json({ message: "No file provided" });
+     return;
+    }
+    
     const workbook = XLSX.read(req.file.buffer, { type: "buffer" });
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
     const data = XLSX.utils.sheet_to_json(worksheet);
-   console.log(2);
-   console.log(data);
+    
+    console.log(2);
+    console.log({"data.length: ":data.length});
+    
+    const response = await isUnderLimit(user_id,data.length);
+
+    console.log("response",response);
+
+    if (!response.allowed) {
+      return res.status(400).json({"Msg":"Guest limit exceeded the allowed limit","Data":response});
+    }
+    
     for (let row of data) {
       const {
         guest_name,
@@ -206,17 +221,17 @@ const importGuests = async (req, res) => {
         res.status(400).json({ message: "Invalid data format" });
         return;
       }
-     console.log(3);
+    //  console.log(3);
 
       const valid_group = await pool.query('SELECT groupname, id FROM groups WHERE groupname = $1 AND user_id=$2', [group,user_id])
-     console.log("212: ",valid_group.rowCount);
+    //  console.log("212: ",valid_group.rowCount);
       if (valid_group.rowCount >0) {
-       console.log(4);
+      //  console.log(4);
         const group_id = valid_group.rows[0].id;
         const groupname =group;
         // Validate each field as per your requirements here
-         console.log(groupname,group_id);
-       console.log(5);
+        //  console.log(groupname,group_id);
+      //  console.log(5);
 
         await pool.query(
           "INSERT INTO guests (guest_name, mobile_number, email, group_name,group_id,user_id) VALUES ($1, $2, $3, $4, $5, $6)",
@@ -225,12 +240,12 @@ const importGuests = async (req, res) => {
         //return res.status(201).json({msg:`group ${group} does not exits`,validgrp:valid_group.rows[0]});
       }
       if(!group){
-        console.log(6);
+        // console.log(6);
  
         const result = await pool.query("SELECT id FROM groups WHERE groupname = $1 AND user_id=$2", ["Unassigned",user_id]);
         const id = result.rows[0].id;
-        console.log(id);
-        console.log(7);
+        // console.log(id);
+        // console.log(7);
   
          await pool.query(
            "INSERT INTO guests (guest_name, mobile_number, email, group_name,group_id,user_id) VALUES ($1, $2, $3, $4, $5, $6)",
@@ -239,7 +254,7 @@ const importGuests = async (req, res) => {
       }
      if(valid_group.rowCount <1)
       {
-       console.log(8);
+      //  console.log(8);
 
         // create a new group 
         const newGroup = await pool.query(
@@ -253,19 +268,43 @@ const importGuests = async (req, res) => {
           [guest_name, mobile_number, email, groupname, group_id,user_id]
         );
           
-       console.log(9);
-       //  console.log(6);
+      //  console.log(9);
+      
         // Validate each field as per your requirements here
       }
 
     }
-    console.log(10);
+    // console.log(10);
 
     res.status(201).json({ message: "Guests imported successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+async function isUnderLimit(userid,listLength){
+  
+  const result=await pool.query(`
+  SELECT
+  uag.additional_guests as total_limit,
+  COUNT(wl.id) as current_guests,
+  (uag.additional_guests - COUNT(wl.id)) as allowed_guests
+FROM
+  user_additional_guests as uag
+LEFT JOIN
+guests as wl ON wl.user_id = uag.user_id
+WHERE
+  uag.user_id = $1
+GROUP BY
+  uag.additional_guests;`,[userid]);
+
+if (listLength>result.rows[0].allowed_guests) {
+  return {"allowed":false,"limit":result.rows[0]}
+} else {
+  return {"allowed":true,"limit":result.rows[0]}
+}
+
+}
 
 module.exports = {
   validateGuest, // Export the validation middleware
@@ -279,4 +318,3 @@ module.exports = {
   importGuests,
   upload,
 };
-

@@ -138,7 +138,9 @@ const getTotalCeremonyByText =async (req,res) =>{
     const { user_id } = req.params;
     try {
 
-        const foodData = await pool.query("SELECT response FROM responses WHERE user_id=$1 AND question_id=6;", [user_id]);
+
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=6;", [user_id]);
+        const foodData = await pool.query("SELECT response FROM responses WHERE user_id=$1 AND question_id=$2;", [user_id,questionId.rows[0].id]);
 
         if (foodData.rowCount < 1) {
             res.status(404).json({ msg: "no data found for this field" });
@@ -255,10 +257,11 @@ const getFoodCount = async (req, res) => {
 */
 
 const getFoodCountWithTextResponse = async (req, res) => {
-    const { user_id } = req.params;
+    const { user_id} = req.params;
     try {
 
-        const foodData = await pool.query("SELECT response FROM responses WHERE user_id=$1 AND question_id=7;", [user_id]);
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=7;", [user_id]);
+        const foodData = await pool.query("SELECT response FROM responses WHERE user_id=$1 AND question_id=$2;", [user_id,questionId.rows[0].id]);
 
         if (foodData.rowCount < 1) {
             res.status(404).json({ msg: "no data found for this field" });
@@ -310,11 +313,13 @@ const getAllergies = async (req, res) => {
 
     const user_id = req.params.id;
     try {
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=8;", [user_id]);
+      
         const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
         FROM responses
         WHERE user_id = $1
-          AND question_id = 8
-          AND response = 'yes';`, [user_id]);
+          AND question_id = $2
+          AND response = 'yes';`, [user_id,questionId.rows[0].id]);
         const rd = rawResult.rows[0];
 
         console.log(rd);
@@ -334,11 +339,14 @@ const getTotalPersonalAssistance = async (req, res) => {
 
     const user_id = req.params.id;
     try {
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=9;", [user_id]);
+
+     
         const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
         FROM responses
         WHERE user_id = $1
-          AND question_id = 9
-          AND response = 'yes';`, [user_id]);
+          AND question_id = $2
+          AND response = 'yes';`, [user_id ,questionId.rows[0].id]);
         const rd = rawResult.rows[0];
 
         console.log(rd);
@@ -382,11 +390,12 @@ const getTotalSareeAssistance = async (req, res) => {
 
     const user_id = req.params.id;
     try {
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=15;", [user_id]);
         const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
         FROM responses
         WHERE user_id = $1
-          AND question_id = 15
-          AND response = 'yes';`, [user_id]);
+          AND question_id = $2
+          AND response = 'yes';`, [user_id ,questionId.rows[0].id]);
         const rd = rawResult.rows[0];
 
         console.log(rd);
@@ -405,11 +414,12 @@ const getTotalTurbanAssistance = async (req, res) => {
 
     const user_id = req.params.id;
     try {
-        const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
-        FROM responses
-        WHERE user_id = $1
-          AND question_id = 16
-          AND response = 'yes';`, [user_id]);
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=16;", [user_id]);
+      const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
+      FROM responses
+      WHERE user_id = $1
+        AND question_id = $2
+        AND response = 'yes';`, [user_id ,questionId.rows[0].id]);
         const rd = rawResult.rows[0];
 
         console.log(rd);
@@ -428,11 +438,12 @@ const getTotalDhotiAssistance = async (req, res) => {
 
     const user_id = req.params.id;
     try {
-        const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
-        FROM responses
-        WHERE user_id = $1
-          AND question_id = 17
-          AND response = 'yes';`, [user_id]);
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=17;", [user_id]);
+      const rawResult = await pool.query(`SELECT COUNT(*) AS yes_count
+      FROM responses
+      WHERE user_id = $1
+        AND question_id = $2
+        AND response = 'yes';`, [user_id ,questionId.rows[0].id]);
         const rd = rawResult.rows[0];
 
         console.log(rd);
@@ -472,12 +483,13 @@ const getGuestListWithMembers = async (req, res) => {
         //get number of guests attending along with the guest 
 
         //console.log(getTotalGuestsOfGuest);
+        const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=29;", [user_id]);
 
         // console.log(parseInt(getTotalGuestsOfGuest.rows[0].response));
         for (let index = 0; index < distinctGuestIds.length; index++) {
             const element = distinctGuestIds[index];
 
-            const getTotalGuestsOfGuest = await pool.query(`SELECT response,guest_id,user_id FROM responses WHERE user_id=$1 AND guest_id=$2 AND question_id=29;`, [user_id, element]);
+            const getTotalGuestsOfGuest = await pool.query(`SELECT response,guest_id,user_id FROM responses WHERE user_id=$1 AND guest_id=$2 AND question_id=$3;`, [user_id, element,questionId.rows[0].id]);
             if (getTotalGuestsOfGuest.rowCount > 0) {
 
                 await pool.query(`UPDATE guests SET guests_of_guest =$1  WHERE user_id=$2 AND id=$3;`, [parseInt(getTotalGuestsOfGuest.rows[0].response), user_id, element]);
@@ -614,16 +626,26 @@ const getDrinkPreference = async (req, res) => {
         //     console.log(drinknameFromDb.rows[0].drink_name);
         // }
 
-        const query = `SELECT 
+        const query = `	select 
         r.guest_id,
-        gst.guest_name,
-        COALESCE(MAX(CASE WHEN r.question_id = 10 THEN d.drink_name ELSE '0' END), '0') as first_preference,
-        COALESCE(MAX(CASE WHEN r.question_id = 11 THEN d.drink_name ELSE '0' END), '0') as second_preference
+          gst.guest_name,
+      COALESCE(MAX(CASE WHEN r.question_id = 1557 THEN r.response ELSE '0' END), '0') as first_preference,
+          COALESCE(MAX(CASE WHEN r.question_id = 1558 THEN r.response ELSE '0' END), '0') as second_preference
     FROM responses as r
-    JOIN guests AS gst ON gst.id = r.guest_id
-    LEFT JOIN drinks as d ON D.drink_name = r.response
-    WHERE r.user_id = $1 AND (r.question_id = 10 OR r.question_id = 11)
-    GROUP BY r.guest_id, gst.guest_name`;
+      JOIN guests AS gst ON gst.id = r.guest_id
+    WHERE r.user_id = $1 AND (r.question_id = 1557 OR r.question_id = 1558)
+      GROUP BY r.guest_id, gst.guest_name;`;
+
+    //     const query = `SELECT 
+    //     r.guest_id,
+    //     gst.guest_name,
+    //     COALESCE(MAX(CASE WHEN r.question_id = 10 THEN d.drink_name ELSE '0' END), '0') as first_preference,
+    //     COALESCE(MAX(CASE WHEN r.question_id = 11 THEN d.drink_name ELSE '0' END), '0') as second_preference
+    // FROM responses as r
+    // JOIN guests AS gst ON gst.id = r.guest_id
+    // LEFT JOIN drinks as d ON D.drink_name = r.response
+    // WHERE r.user_id = $1 AND (r.question_id = 10 OR r.question_id = 11)
+    // GROUP BY r.guest_id, gst.guest_name`;
         const result = await pool.query(query, [user_id]);
 
         res.status(200).json(result.rows);
@@ -807,6 +829,8 @@ const getGuestId= async (req, res) => {
   };
 
 
+  // *************************reports **********************************
+
 const allEventAttendance=async(req,res)=>{
     const {event_id}=req.params;
     try {
@@ -856,6 +880,11 @@ const allEventAttendance=async(req,res)=>{
 const getTotalPersonalAssistanceCombined=async(req,res)=>{
     const {user_id}=req.params;
     try {
+      const questionId = await pool.query("SELECT id FROM user_question WHERE user_id=$1 AND question_number=9;", [user_id]);
+      const q=questionId.rows[0].id;
+      if (!q) {
+        return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+      }
         const result=await pool.query(`
         SELECT DISTINCT
     gog.gog_name AS gog_name,
@@ -865,8 +894,8 @@ const getTotalPersonalAssistanceCombined=async(req,res)=>{
     r.response,
     r.extra_details AS assistance,
     CASE
-        WHEN gogr.question_id = 9 AND gogr.response = 'yes' THEN  gog.gog_name
-        WHEN r.question_id = 9 AND r.response = 'yes' THEN g.guest_name
+        WHEN gogr.question_id = ${q} AND gogr.response = 'yes' THEN  gog.gog_name
+        WHEN r.question_id = ${q} AND r.response = 'yes' THEN g.guest_name
         ELSE 'No'
     END AS answered_by
 FROM
@@ -878,7 +907,7 @@ LEFT JOIN
 LEFT JOIN
     guest_of_guests_response_withohut_array AS gogr ON gogr.gog_id = gog.id
 WHERE
-    r.question_id = 9 AND r.user_id=$1;
+    r.question_id = ${q} AND r.user_id=$1;
         `,[user_id]);
         if (result.rowCount === 0) {
             res.status(404).json({ error: 'No event attendance found for this event.' });
@@ -928,43 +957,55 @@ const getTotalMUAList=async(req,res)=>{
 const getTotalEthinicWearlist=async(req,res)=>{
     const {user_id}=req.params;
     try {
+      const qu1= await pool.query(`
+      select id from user_question 
+      where question_number =15 and user_id=$1`,[user_id]);
+      const qu2= await pool.query(`
+      select id from user_question 
+      where question_number =16 and user_id=$1`,[user_id]);
+      const qu3= await pool.query(`
+      select id from user_question 
+      where question_number =17 and user_id=$1`,[user_id]);
+      const q1=qu1.rows[0].id;
+      const q2=qu2.rows[0].id;
+      const q3=qu3.rows[0].id;
+      if (!q1 || !q2 || !q3) {
+        return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+      }
         const result=await pool.query(`
-     
-
 SELECT 
 guests.guest_name,
 guests.group_name,
 guests.mobile_number::text,
-MAX(CASE WHEN r.question_id = 15 AND r.response = 'yes' THEN 'yes' ELSE null END) AS saree,
-MAX(CASE WHEN r.question_id = 16 AND r.response = 'yes' THEN 'yes' ELSE null END) AS turban,
-MAX(CASE WHEN r.question_id = 17 AND r.response = 'yes' THEN 'yes' ELSE null END) AS dhoti
+MAX(CASE WHEN r.question_id = ${q1} AND r.response = 'yes' THEN 'yes' ELSE null END) AS saree,
+MAX(CASE WHEN r.question_id = ${q2} AND r.response = 'yes' THEN 'yes' ELSE null END) AS turban,
+MAX(CASE WHEN r.question_id = ${q3} AND r.response = 'yes' THEN 'yes' ELSE null END) AS dhoti
 FROM
 responses AS r
 LEFT JOIN
 guests ON guests.id = r.guest_id
 WHERE
-r.question_id IN (15, 16, 17)
+r.question_id IN (${q1},${q2},${q3})
 AND r.response = 'yes'
 AND r.user_id = $1
 GROUP BY
 guests.guest_name,
 guests.group_name,
 guests.mobile_number
-
 UNION ALL
 SELECT 
 gog.gog_name,
 g.group_name,
 gog.mobile_number::text,
-MAX(CASE WHEN gogr.question_id = 15 AND gogr.response = 'yes' THEN 'yes' ELSE null END) AS saree,
-MAX(CASE WHEN gogr.question_id = 16 AND gogr.response = 'yes' THEN 'yes' ELSE null END) AS turban,
-MAX(CASE WHEN gogr.question_id = 17 AND gogr.response = 'yes' THEN 'yes' ELSE null END) AS dhoti
+MAX(CASE WHEN gogr.question_id = ${q1} AND gogr.response = 'yes' THEN 'yes' ELSE null END) AS saree,
+MAX(CASE WHEN gogr.question_id = ${q2} AND gogr.response = 'yes' THEN 'yes' ELSE null END) AS turban,
+MAX(CASE WHEN gogr.question_id = ${q3} AND gogr.response = 'yes' THEN 'yes' ELSE null END) AS dhoti
 FROM
 guest_of_guests_response_withohut_array as gogr
 LEFT JOIN guest_of_guests as gog ON gog.id =gogr.gog_id
 LEFT JOIN guests as g on g.id =gog.guest_id
 WHERE
-gogr.question_id IN (15, 16, 17)
+gogr.question_id IN (${q1},${q2},${q3})
 AND gogr.response = 'yes'
 AND gogr.user_id = $2
 GROUP BY
@@ -988,18 +1029,42 @@ gog.mobile_number;
 const getFlightListReport =async (req,res) =>{
 const { user_id } = req.params;
 try {
+  const qu1= await pool.query(`
+  select id from user_question 
+  where question_number =19 and user_id=$1`,[user_id]);
+  const qu2= await pool.query(`
+  select id from user_question 
+  where question_number =20 and user_id=$1`,[user_id]);
+  const qu3= await pool.query(`
+  select id from user_question 
+  where question_number =21 and user_id=$1`,[user_id]);
+  const qu4= await pool.query(`
+  select id from user_question 
+  where question_number =22 and user_id=$1`,[user_id]);
+  const qu5= await pool.query(`
+  select id from user_question 
+  where question_number =25 and user_id=$1`,[user_id]);
+  const q1=qu1.rows[0].id;
+  const q2=qu2.rows[0].id;
+  const q3=qu3.rows[0].id;
+  const q4=qu4.rows[0].id;
+  const q5=qu4.rows[0].id;
+
+  if (!q1 || !q2 || !q3 | !q4) {
+    return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+  }
   const result = await pool.query(
     `SELECT
     g.guest_name AS guest_name,
     g.mobile_number AS guest_mob,
     g.email AS guest_email,
-    MAX(CASE WHEN r.question_id = 19 THEN r.response END) AS flight_arrival_date,
-    MAX(CASE WHEN r.question_id = 20 THEN r.response END) AS flight_departure_date,
-    MAX(CASE WHEN r.question_id = 21 THEN r.response END) AS couple_hotel_stay,
-    MAX(CASE WHEN r.question_id = 22 THEN
+    MAX(CASE WHEN r.question_id = ${q1} THEN r.response END) AS flight_arrival_date,
+    MAX(CASE WHEN r.question_id = ${q2} THEN r.response END) AS flight_departure_date,
+    MAX(CASE WHEN r.question_id = ${q3} THEN r.response END) AS couple_hotel_stay,
+    MAX(CASE WHEN r.question_id = ${q4} THEN
         CASE WHEN r.response = 'yes' THEN r.extra_details ELSE 'no' END
     END) AS how_many_room_required,
-    MAX(CASE WHEN r.question_id = 25 THEN
+    MAX(CASE WHEN r.question_id = ${q5} THEN
         CASE WHEN r.response = 'yes' THEN r.extra_details ELSE 'no' END
     END) AS self_hotel_stay
 FROM
@@ -1008,7 +1073,7 @@ LEFT JOIN
     guests AS g ON g.id = r.guest_id
 WHERE
     r.user_id =$1
-    AND r.question_id IN (19, 20, 21, 22, 25)
+    AND r.question_id IN (${q1},${q2},${q3},${q4},${q5})
 GROUP BY
     g.guest_name,
     g.mobile_number,
@@ -1020,13 +1085,13 @@ SELECT
     gog.gog_name AS guest_name,
     gog.mobile_number AS guest_mob,
     gog.email AS guest_email,
-    MAX(CASE WHEN gogr.question_id = 19 THEN gogr.response END) AS flight_arrival_date,
-    MAX(CASE WHEN gogr.question_id = 20 THEN gogr.response END) AS flight_departure_date,
-    MAX(CASE WHEN gogr.question_id = 21 THEN gogr.response END) AS couple_hotel_stay,
-    MAX(CASE WHEN gogr.question_id = 22 THEN
+    MAX(CASE WHEN gogr.question_id = ${q1} THEN gogr.response END) AS flight_arrival_date,
+    MAX(CASE WHEN gogr.question_id = ${q2} THEN gogr.response END) AS flight_departure_date,
+    MAX(CASE WHEN gogr.question_id = ${q3} THEN gogr.response END) AS couple_hotel_stay,
+    MAX(CASE WHEN gogr.question_id = ${q4} THEN
         CASE WHEN gogr.response = 'yes' THEN gogr.extra_details ELSE 'no' END
     END) AS how_many_room_required,
-    MAX(CASE WHEN gogr.question_id = 25 THEN
+    MAX(CASE WHEN gogr.question_id = ${q5} THEN
         CASE WHEN gogr.response = 'yes' THEN gogr.extra_details ELSE 'no' END
     END) AS self_hotel_stay
 FROM
@@ -1035,7 +1100,7 @@ LEFT JOIN
     guest_of_guests AS gog ON gog.id = gogr.gog_id
 WHERE
     gogr.user_id = $2
-    AND gogr.question_id IN (19, 20, 21, 22, 25)
+    AND gogr.question_id IN  (${q1},${q2},${q3},${q4},${q5})
 GROUP BY
     gog.gog_name,
     gog.mobile_number,
@@ -1064,22 +1129,39 @@ GROUP BY
 const getFoodListReport = async (req, res) => {
   const { user_id } = req.params;
   try {
+
+    const qu1= await pool.query(`
+    select id from user_question 
+    where question_number =7 and user_id=$1`,[user_id]);
+    const qu2= await pool.query(`
+    select id from user_question 
+    where question_number =10 and user_id=$1`,[user_id]);
+    const qu3= await pool.query(`
+    select id from user_question 
+    where question_number =11 and user_id=$1`,[user_id]);
+    const q1=qu1.rows[0].id;
+    const q2=qu2.rows[0].id;
+    const q3=qu3.rows[0].id;
+
+    if (!q1 || !q2 || !q3) {
+      return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+    }
     const result = await pool.query(
       `
       SELECT
     
     MAX(g.guest_name) AS guest_name,
     MAX(g.mobile_number) AS mobile_number,
-    MAX(CASE WHEN r.question_id = 7 THEN r.response ELSE null END) AS food,
-    MAX(CASE WHEN r.question_id = 10 THEN r.response ELSE null END) AS first_preference,
-    MAX(CASE WHEN r.question_id = 11 THEN r.response ELSE null END) AS second_preference
+    MAX(CASE WHEN r.question_id = ${q1} THEN r.response ELSE null END) AS food,
+    MAX(CASE WHEN r.question_id = ${q2} THEN r.response ELSE null END) AS first_preference,
+    MAX(CASE WHEN r.question_id = ${q3} THEN r.response ELSE null END) AS second_preference
 FROM
     responses as r
 LEFT JOIN
     guests as g ON g.id = r.guest_id
 WHERE
     r.user_id = $1
-    AND r.question_id IN (7, 10, 11)
+    AND r.question_id IN (${q1},${q2},${q3})
 GROUP BY
     r.guest_id
 
@@ -1089,16 +1171,16 @@ SELECT
     
     MAX(gog.gog_name) AS guest_name,
     MAX(gog.mobile_number) AS mobile_number,
-    MAX(CASE WHEN gogr.question_id = 7 THEN gogr.response ELSE null END) AS food,
-    MAX(CASE WHEN gogr.question_id = 10 THEN gogr.response ELSE null END) AS first_preference,
-    MAX(CASE WHEN gogr.question_id = 11 THEN gogr.response ELSE null END) AS second_preference
+    MAX(CASE WHEN gogr.question_id = ${q1} THEN gogr.response ELSE null END) AS food,
+    MAX(CASE WHEN gogr.question_id = ${q2}  THEN gogr.response ELSE null END) AS first_preference,
+    MAX(CASE WHEN gogr.question_id = ${q3}  THEN gogr.response ELSE null END) AS second_preference
 FROM
     guest_of_guests_response_withohut_array AS gogr
 LEFT JOIN
     guest_of_guests AS gog ON gog.id = gogr.gog_id
 WHERE
     gogr.user_id = $2
-    AND gogr.question_id IN (7, 10, 11)
+    AND gogr.question_id IN (${q1},${q2},${q3})
 GROUP BY
     gog.id;
 
@@ -1160,6 +1242,22 @@ function formatFood1(foodList) {
 const getMehndiList = async (req, res) => {
   const { user_id } = req.params;
   try {
+
+    const qu1= await pool.query(`
+    select id from user_question 
+    where question_number =30 and user_id=$1`,[user_id]);
+    const qu2= await pool.query(`
+    select id from user_question 
+    where question_number =31 and user_id=$1`,[user_id]);
+    const qu3= await pool.query(`
+    select id from user_question 
+    where question_number =12 and user_id=$1`,[user_id]);
+    const q1=qu1.rows[0].id;
+    const q2=qu2.rows[0].id;
+    const q3=qu3.rows[0].id;
+    if (!q1 || !q2 || !q3) {
+      return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+    }
     const result = await pool.query(
       `
      WITH PrimaryGuest AS (
@@ -1179,14 +1277,14 @@ const getMehndiList = async (req, res) => {
         responses AS r30
     ON
         r12.guest_id = r30.guest_id
-        AND r30.question_id = 30
+        AND r30.question_id = ${q1}
     LEFT JOIN
         responses AS r31
     ON
         r12.guest_id = r31.guest_id
-        AND r31.question_id = 31
+        AND r31.question_id =  ${q2}
     WHERE
-        r12.question_id = 12
+        r12.question_id =  ${q3}
         AND r12.response = 'yes'
 	AND r12.user_id = $1
 ),
@@ -1207,12 +1305,12 @@ SecondaryGuest AS (
         guest_of_guests_response_withohut_array AS gog_response30
     ON
         gog.id = gog_response30.gog_id
-        AND gog_response30.question_id = 30
+        AND gog_response30.question_id =  ${q1}
     JOIN
         guest_of_guests_response_withohut_array AS gog_response31
     ON
         gog.id = gog_response31.gog_id
-        AND gog_response31.question_id = 31
+        AND gog_response31.question_id =  ${q2}
 	WHERE gog_response31.user_id = $2
 )
 SELECT
@@ -1407,7 +1505,25 @@ function formatFood(foodResponse) {
 */
 const getResponseData = async (req, res) => {
   const { user_id, word } = req.params;
+  if (!user_id || !word) {
+    return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+  }
   try {
+    const qu1= await pool.query(`
+    select id from user_question 
+    where question_number =7 and user_id=$1`,[user_id]);
+    const qu2= await pool.query(`
+    select id from user_question 
+    where question_number =10 and user_id=$1`,[user_id]);
+    const qu3= await pool.query(`
+    select id from user_question 
+    where question_number =11 and user_id=$1`,[user_id]);
+    if (qu1.rowCount<1 || qu2.rowCount<1 || qu3.rowCount<1) {
+      return res.status(400).json({"Msg": `No questions were found for this user_id ${user_id}`})
+    }
+    const q1=qu1.rows[0].id;
+    const q2=qu2.rows[0].id;
+    const q3=qu3.rows[0].id;
     const result = await pool.query(
       `
       SELECT
@@ -1421,7 +1537,7 @@ const getResponseData = async (req, res) => {
       LEFT JOIN guests as g ON g.id = r.guest_id
       WHERE
         r.user_id = $1
-        AND r.question_id IN (7, 10, 11)
+        AND r.question_id IN (${q1},${q2},${q3})
       UNION ALL
       SELECT
         gog.id as guest_id,
@@ -1434,7 +1550,7 @@ const getResponseData = async (req, res) => {
       LEFT JOIN guest_of_guests as gog ON gog.id = gogr.gog_id
       WHERE
         gogr.user_id = $2
-        AND gogr.question_id IN (7, 10, 11);
+        AND gogr.question_id IN (${q1},${q2},${q3});
       `,
       [user_id, user_id]
     );
@@ -1446,7 +1562,9 @@ const getResponseData = async (req, res) => {
     }
 
     // Process the response data into the desired object structure
-    const responseData = processResponseData(result.rows);
+    const responseData = processResponseData(result.rows,q1,q2,q3);
+    // console.log(result.rows);
+    // console.log({...responseData[0]});
     const matchingGuestIds = searchForWordInResponseData(responseData, word);
 
     res.json(matchingGuestIds);
@@ -1459,7 +1577,7 @@ const getResponseData = async (req, res) => {
 };
 
 // Function to process the response data
-function processResponseData(responseList) {
+function processResponseData(responseList,q1,q2,q3) {
   const responseData = [];
 
   for (let index = 0; index < responseList.length; index++) {
@@ -1471,7 +1589,7 @@ function processResponseData(responseList) {
 
     // Find the guest object in responseData or create a new one
     let guestObject = responseData.find((guest) => guest[guestId]);
-
+console.log(guestObject);
     if (!guestObject) {
       guestObject = {};
       guestObject[guestId] = {
@@ -1485,13 +1603,14 @@ function processResponseData(responseList) {
     }
 
     // Process the "food" response (question 7)
-    if (questionId === 7) {
+    if (questionId === q1) {
       const formattedFood = formatFood(response);
       guestObject[guestId].food.push(...formattedFood);
-    } else if (questionId === 10) {
+
+    } else if (questionId === q2) {
       // Process the first_preference response (question 10)
       guestObject[guestId].first_preference = response;
-    } else if (questionId === 11) {
+    } else if (questionId === q3) {
       // Process the second_preference response (question 11)
       guestObject[guestId].second_preference = response;
     }
@@ -1531,6 +1650,7 @@ function searchForWordInResponseData(responseData, word) {
 // Function to format the "food" response
 function formatFood(foodResponse) {
   if (foodResponse) {
+    console.log(foodResponse);
     // Remove leading and trailing double quotes and curly braces
     const trimmedString = foodResponse.replace(/^[{"]+|["}]+$/g, "");
     // Split the string by commas and trim each item

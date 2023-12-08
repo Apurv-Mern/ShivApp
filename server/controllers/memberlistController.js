@@ -6,7 +6,7 @@ module.exports.WeddingGuests = async (req, res) => {
     const result = await pool.query(
       `SELECT DISTINCT r.guest_id,  g.guest_name,g.email,g.group_name
 FROM responses as r
-LEFT JOIN guests as g ON g.id = r.guest_id
+LEFT JOIN guests as g ON g.id = r.guest_id 
 WHERE r.user_id = $1`,
       [user_id]
     );
@@ -17,16 +17,19 @@ WHERE r.user_id = $1`,
         [user_id, element.guest_id]
       );
 
-      if (existingResponse.rowCount === 0) {
+      if (existingResponse.rowCount < 1) {
         await pool.query(
           `INSERT INTO wedding_reminder_list (user_id,guest_id,guest_name,guest_email,guest_submitted_response) VALUES($1,$2,$3,$4,$5)`,
           [user_id, element.guest_id, element.guest_name, element.email, true]
         );
       }
+      // if (existingResponse.rowCount > 0){
+      //   await pool.query(`UPDATE wedding_reminder_list SET guest_submitted_response=true`);
+      // }
     }
     const resultAll = await pool.query(
       `SELECT id as guest_id, guest_name, email, group_name
-FROM guests
+  FROM guests
 WHERE user_id = $1
   AND NOT EXISTS (
     SELECT 1

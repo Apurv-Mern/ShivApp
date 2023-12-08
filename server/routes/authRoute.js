@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-// const CLIENT_URL = "http://localhost:3000/";
-const FE_CLIENT_URL = "https://shivappdev.24livehost.com/";
+// const CLIENT_URL = "http://localhost:3000/shiv_app/";
+const FE_CLIENT_URL = "https://shivappdev.24livehost.com/shiv_app/";
 
 router.get("/login/success", (req, res) => {
   if (req.user) {

@@ -59,6 +59,25 @@ module.exports.updatePassword = async (email, password) => {
   }
 };
 
+module.exports.updateUser = async (req,res) => {
+ const user_id= req.params.user_id;
+ const {username,email,number}= req.body;
+  try {
+    const isuserexist= await pool.query(`select username from users where id= $1`,[user_id]);
+    if (isuserexist.rowCount<1) {
+      return res.status(404).json({Error: `user with userId ${user_id} doesn't exists.`});
+    }
+    await pool.query(
+      "UPDATE users SET username = $1, email = $2, number = $3 WHERE id = $4",
+      [username, email,number,user_id]
+    );
+    res.status(201).json({"Msg": "profile updated successfully"})
+  } catch (err) {
+    res.status(500).json({"Msg": "Error while updating profile data"})
+    console.error(err);
+  } 
+};
+
 module.exports.findUserByNumber = async (number) => {
   const client = await pool.connect();
   try {
@@ -127,7 +146,28 @@ module.exports.InsertUserQuestions = async (req, res) => {
     console.log(error);
     res.status(500).json({ message: error });
   }
-};
+
+}
+
+  module.exports.updateAndGetUserQuestions = async (req,res)=>{
+    const user_id=req.params.user_id;
+    const {questions_data}= req.body;
+    try {
+      
+      for (let index = 0; index < questions_data.length; index++) {
+        const element = questions_data[index];
+        await pool.query("UPDATE user_question SET selected = $1 WHERE user_id = $2 AND question_id = $3", [element.selected, user_id, element.question_id]);
+      }
+      return res.status(200).json({ message: "User questions updated successfully" });
+    }   catch (error) {
+      console.log(error);
+      res.status(500).json({ message: error});
+
+    }
+
+  }
+
+
 
 module.exports.updateAndGetUserQuestions = async (req, res) => {
   const user_id = req.params.user_id;
@@ -146,18 +186,21 @@ module.exports.updateAndGetUserQuestions = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error });
+
   }
 };
 
 module.exports.getUserQuestions = async (req, res) => {
+  // console.log(Date.now());
   const user_id = req.params.user_id;
   try {
     const selected_foods = await pool.query(
       "SELECT food_name FROM selected_foods AS sf LEFT JOIN foods AS f ON f.id = sf.food_id WHERE user_id = $1",
       [user_id]
     );
+    // console.log(Date.now());
     const arrayOfValuesfood = selected_foods.rows.map((obj) => obj.food_name);
-
+    // console.log(Date.now());
     // console.log(typeof selected_foods.rows.food_name,"<-type ",selected_foods.rows.food_name);
     await pool.query(
       `UPDATE user_question
@@ -166,15 +209,17 @@ module.exports.getUserQuestions = async (req, res) => {
     `,
       [arrayOfValuesfood, user_id]
     );
+    // console.log(Date.now());
 
     const selected_drinks = await pool.query(
       "SELECT drink_name FROM selected_drinks AS sd LEFT JOIN drinks AS d ON d.id = sd.drink_id WHERE user_id = $1",
       [user_id]
     );
+    // console.log(Date.now());
     const arrayOfValuesdrinks = selected_drinks.rows.map(
       (obj) => obj.drink_name
     );
-
+    // console.log(Date.now());
     await pool.query(
       `UPDATE user_question
     SET question_value = $1
@@ -182,6 +227,7 @@ module.exports.getUserQuestions = async (req, res) => {
     `,
       [arrayOfValuesdrinks, user_id]
     );
+    // console.log(Date.now());
     await pool.query(
       `UPDATE user_question
     SET question_value = $1
@@ -189,12 +235,13 @@ module.exports.getUserQuestions = async (req, res) => {
     `,
       [arrayOfValuesdrinks, user_id]
     );
-
+    // console.log(Date.now());
     const selected_ceremony = await pool.query(
       `SELECT c.ceremony_name
-    FROM ceremony as c LEFT JOIN ceremony_icons as ci ON ci.id=c.icon WHERE  user_id= $1`,
+    FROM ceremony as c LEFT JOIN ceremony_icons as ci ON ci.id=c.icon WHERE  user_id= $1 AND c.selected=true;`,
       [user_id]
     );
+    // console.log(Date.now());
     const arrayOfValuesSC = selected_ceremony.rows.map(
       (obj) => obj.ceremony_name
     );
@@ -205,11 +252,12 @@ module.exports.getUserQuestions = async (req, res) => {
     `,
       [arrayOfValuesSC, user_id]
     );
-
+    // console.log(Date.now());
     const user_questions = await pool.query(
-      "SELECT id,questions, selected ,question_type,question_value FROM user_question WHERE user_id = $1 AND selected=true ORDER BY  (question_id) asc ",
+      "SELECT id,questions, selected ,question_type,question_value,question_number FROM user_question WHERE user_id = $1 AND selected=true ORDER BY  (question_id) asc ",
       [user_id]
     );
+    // console.log(Date.now());
     return res.status(200).json({
       message: "User questions retrieved successfully",
       user_questions: user_questions.rows,
@@ -219,3 +267,14 @@ module.exports.getUserQuestions = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
+
+module.exports.getGuestCeremony =async (req,res) =>{
+  const guest_id =req.params.guest_id;
+  if(!guest_id) return res.status(400).json({"Msg":"guest_id not provided"});
+  const ceremonyData= await pool.query(`select c.ceremony_name from guests as gst
+  left join ceremony_groups as cgu on cgu.group_id=gst.group_id
+  left join ceremony as c on c.id=cgu.ceremony_id
+  where gst.id=$1`,[guest_id]);
+  res.json({"data":ceremonyData.rows});
+}
+

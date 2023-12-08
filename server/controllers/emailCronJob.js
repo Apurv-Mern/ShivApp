@@ -43,6 +43,16 @@ const setcronjob = async (req, res) => {
           from: "info@shiv-worldwide.com",
           to: element.email,
           subject: "Reminder To Submit Your RSVP",
+          html: `<div>
+          <p>
+          It’s finally here! We are so excited to share our wedding invitation with you!</br>
+          Please find our invitation attached and click on the RSVP link to let us know if you can attend within the next 4 weeks. </br>
+          <p/>
+          <a href='${link.rows[0].rsvp_link}' style='text-decoration:'underline';'>Click here to get RSVP</a>
+          <p style="font-size:14px">Brought to you by SHIV</br>
+          Please ensure you save this email address to receive further event details.
+          </p>
+          </div>`,
           text: `Please Submit your RSVP by clicking on ${link.rows[0].rsvp_link}`,
         };
         console.log("7");
