@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   WeddingWebsiteCode,
   getMarriageDetailss,
@@ -28,7 +28,6 @@ const CodePage = () => {
   console.log(code);
 
   const handleSubmit = async () => {
-    dispatch(getMarriageDetailss());
     if (code) {
       const res = await dispatch(WeddingWebsiteCode(code));
       if (res.meta.requestStatus === "fulfilled") {
@@ -41,6 +40,9 @@ const CodePage = () => {
       toast.error("Enter your 6 digit code");
     }
   };
+  useEffect(() => {
+    dispatch(getMarriageDetailss());
+  }, []);
 
   return (
     <div>
