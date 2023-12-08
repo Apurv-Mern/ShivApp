@@ -10,7 +10,7 @@ import { ExportToExcel } from "../../Utils/GenerateExcel";
 const EthinicWearReport = () => {
   const dispatch = useDispatch();
   const { TotalEthinicWearlist } = useSelector((state) => state.reports);
-  const [guestListLoading, setGuestListLoading] = useState(true); // Initialize guestListLoading state
+  const [guestListLoading, setGuestListLoading] = useState(true);
 
   // ?here enter filename for your excel file
   const fileName = "Ethinic Wear Report";
@@ -50,7 +50,6 @@ const EthinicWearReport = () => {
                 excelData={excelData}
               />
               <div className="tabs-home">
-   
                 <Tabs>
                   <div className="gray-box mt-5  menu-tabing">
                     <div className="gray-box-inv">
@@ -58,9 +57,9 @@ const EthinicWearReport = () => {
                       <div className="sky-circle d-inline-block">105</div>
                     </div>
                     <TabPanel>
-                      {guestListLoading ? ( // Check if guestList is loading
-                        <h5>Loading guest list...</h5> // Display loading message
-                      ) : TotalEthinicWearlist.length > 0 ? ( // Check if guestList has data
+                      {guestListLoading ? ( // *Check if guestList is loading
+                        <h5>Loading guest list...</h5> // *Display loading message
+                      ) : TotalEthinicWearlist.length > 0 ? ( // *Check if guestList has data
                         <div className="table-responsive">
                           <table className="table table-striped">
                             <thead>
@@ -91,7 +90,7 @@ const EthinicWearReport = () => {
                           </table>
                         </div>
                       ) : (
-                        // Display "No Data Found" message when guestList is empty
+                        // *Display "No Data Found" message when guestList is empty
                         <h4 className="not-found">No Data Found</h4>
                       )}
                     </TabPanel>

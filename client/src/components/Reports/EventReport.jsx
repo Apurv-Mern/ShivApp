@@ -27,7 +27,7 @@ const EventReport = () => {
   const dispatch = useDispatch();
   const [selectedCeremonies, setSelectedCeremonies] = useState([]);
   const [guestList, setGuestList] = useState([]);
-  const [guestListLoading, setGuestListLoading] = useState(true); // Initialize guestListLoading state
+  const [guestListLoading, setGuestListLoading] = useState(true);
 
   // ?here enter filename for your excel file
   const fileName = "Event_Report";
@@ -35,16 +35,12 @@ const EventReport = () => {
   const handleTabClick = async (ceremonyId) => {
     dispatch(selectCeremonyId(ceremonyId));
     try {
-      setGuestListLoading(true); // Set guestListLoading state to true before the API call
+      setGuestListLoading(true); // *Set guestListLoading state to true before the API call
       const response = await dispatch(getTotalFilterCeremony(ceremonyId));
-      // console.log("line 289 response", response);
       const guestData = response?.payload?.Groups || [];
       console.log("guestData", guestData);
       if (guestData) {
         setGuestList(guestData);
-        // setExportData({
-        //   groupname: guestData.groupname,
-        // });
         toast.success("Data fetch successfully");
       } else {
         setGuestListLoading(false);
@@ -53,13 +49,12 @@ const EventReport = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setGuestListLoading(false); // Set guestListLoading state to false when API call is complete
+      setGuestListLoading(false);
     }
   };
   useEffect(() => {
     const handleCeremonies = async () => {
       const res = await dispatch(getAllCeremoniesByEventId());
-      // console.log(res);
       const selectedCeremonyNames = res.payload
         ?.filter((item) => item.selected === true)
         ?.map((item) => ({
@@ -124,9 +119,9 @@ const EventReport = () => {
                     </div>
 
                     <TabList>
-                      {guestListLoading ? ( // Check if guestList is loading
-                        <h5>Loading guest list...</h5> // Display loading message
-                      ) : guestList.length > 0 ? ( // Check if guestList has data
+                      {guestListLoading ? (
+                        <h5>Loading guest list...</h5>
+                      ) : guestList.length > 0 ? (
                         <div className="table-responsive">
                           <table className="table table-striped">
                             <thead>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllPaymentHistories } from "../../redux/paymentSlice";
 
 const PackagesDetails = () => {
@@ -9,7 +9,6 @@ const PackagesDetails = () => {
   useEffect(() => {
     const handlePayment = async () => {
       const res = await dispatch(getAllPaymentHistories());
-      // console.log(res);
       setPayment(res?.payload);
     };
 
@@ -35,7 +34,6 @@ const PackagesDetails = () => {
   console.log("paymentHistory", payment);
   return (
     <div className="col-md-12 package-details">
-      {/* {payment.length} */}
       <table class="table">
         <thead>
           <tr>

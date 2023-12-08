@@ -7,16 +7,16 @@ import { useEffect, useState } from "react";
 import "../../scss/Dashboard.css";
 
 const Navbar = () => {
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
-  const [activeLink, setActiveLink] = useState(""); // Initialize activeLink state
+  // *Initialize activeLink state
+  const [activeLink, setActiveLink] = useState("");
 
   useEffect(() => {
-    // Update activeLink based on the current URL path
+    // *Update activeLink based on the current URL path
     const path = location.pathname;
-    // console.log("path", path);
     setActiveLink(path);
-  }, [location.pathname]); // Re-run this effect when the pathname changes
+  }, [location.pathname]);
 
   return (
     <header className="web-header header-new">
