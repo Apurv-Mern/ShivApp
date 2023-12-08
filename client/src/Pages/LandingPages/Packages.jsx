@@ -60,7 +60,7 @@ const Packages = () => {
                       <div className="face front pack-in-1">
                         <div className="pack-title">BRONZE PACKAGE - £300</div>
                         <ul>
-                          <li>Invite 100 guests</li>
+                          <li>100 guests</li>
                           <li>Send Save the Date</li>
                           <li>Send up to 7 event invitations</li>
                           <li>
@@ -143,7 +143,7 @@ const Packages = () => {
                           SILVER PACKAGE <br></br> £450
                         </div>
                         <ul>
-                          <li>Invite 150 guests </li>
+                          <li>150 guests </li>
                           <li>Send Save the Date</li>
                           <li>Send up to 7 event invitations</li>
                           <li>
@@ -235,7 +235,7 @@ const Packages = () => {
                           GOLD PACKAGE <br></br> £575
                         </div>
                         <ul>
-                          <li>Invite 200 guests</li>
+                          <li>200 guests</li>
                           <li>Send Save the Date</li>
 
                           <li>Send up to 7 event invitations</li>
@@ -350,7 +350,7 @@ const Packages = () => {
                           PLATINUM PACKAGE <br></br>£675
                         </div>
                         <ul>
-                          <li> Invite 250 guests</li>
+                          <li> 250 guests</li>
                           <li> Send Save the Date</li>
                           <li> Send Thank you e-card</li>
                           <li> Send up to 7 event invitations</li>
@@ -491,7 +491,7 @@ const Packages = () => {
                           DIAMOND PACKAGE <br></br> £775
                         </div>
                         <ul>
-                          <li>Invite 300 guests</li>
+                          <li>300 guests</li>
                           <li>Send Save the Date</li>
                           <li>Send Thank you e-card</li>
                           <li>Send up to 7 event invitations</li>

@@ -117,13 +117,23 @@ const Sidebar = () => {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to={`/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`}
+                to={`/wedding_website/otp`}
                 target="_blank"
               >
                 <img className="nav-con-1" src={Coming} alt="Dashboard" />
                 <div className="link-text">Wedding Website</div>
               </Link>
             </li>
+            {/* <li className="nav-item">
+              <Link
+                className="nav-link"
+                to={`/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`}
+                target="_blank"
+              >
+                <img className="nav-con-1" src={Coming} alt="Dashboard" />
+                <div className="link-text">Wedding Website</div>
+              </Link>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link" to={"/guest/reports"}>
                 <img className="nav-con-1" src={des7} alt="Dashboard" />

@@ -64,7 +64,7 @@ const PersonalAssistance = () => {
                   <div className="gray-box mt-5  menu-tabing">
                     <div className="gray-box-inv">
                       Attendance{" "}
-                      <div className="sky-circle d-inline-block">105</div>
+                      {/* <div className="sky-circle d-inline-block">105</div> */}
                     </div>
                     <TabPanel>
                       {guestListLoading ? ( // Check if guestList is loading

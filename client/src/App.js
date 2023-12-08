@@ -26,6 +26,7 @@ import EventsDetails from "./components/EventsDetails.jsx";
 import TermsOfSale from "./Pages/LandingPages/TermsOfSale.jsx";
 import RSVP4 from "./components/RSVP4";
 import WeddingWebsite from "./components/Wedding Website/components/Main.jsx";
+import CodePage from "./components/Wedding Website/components/CodePage.jsx";
 
 //PAGES
 const Home = React.lazy(() => import("./Pages/Home"));
@@ -161,6 +162,12 @@ function App() {
             path="/:user_id/:group_name/:event_id/:id"
             name="MyInvPage2"
             element={<NewRsvpForm />}
+          />{" "}
+          <Route
+            exact
+            path="/wedding_website/otp"
+            name="OTP"
+            element={<CodePage />}
           />{" "}
           <Route
             exact

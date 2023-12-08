@@ -78,7 +78,7 @@ const Events = () => {
     const time = isEmailSent?.email_sent_timestamp;
     dispatch(setSchedularEventTime(time));
     setMail(emailSent);
-    console.log("data", isEmailSent?.is_email_sent);
+    // console.log("data", isEmailSent?.is_email_sent);
 
     dispatch(setEventId(id));
     localStorage.setItem("eventName", JSON.stringify(name));

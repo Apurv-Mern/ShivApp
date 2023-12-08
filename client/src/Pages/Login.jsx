@@ -10,7 +10,7 @@ import logoShiv from "../assets/7.gif";
 import GoogleLogins from "../components/GoogleLogins";
 
 import "../scss/Login.css";
-import FacebookLogin from "../components/FacebookLogin";
+import FacebookLogins from "../components/FacebookLogin";
 import { Helmet } from "react-helmet-async";
 
 const initialValues = {
@@ -31,7 +31,7 @@ const Login = () => {
     setLoading(true);
     try {
       const res = await dispatch(loginUser(data));
-      console.log({ res });
+      // console.log({ res });
       if (res.meta.requestStatus === "fulfilled") {
         setLoading(false);
         localStorage.setItem(
@@ -48,7 +48,6 @@ const Login = () => {
       const ress = await dispatch(getEventUserById());
       const event_id = ress.payload[1]?.id;
       localStorage.setItem("dashboardId", JSON.stringify(event_id));
-      console.log(event_id);
     } catch (error) {
       console.log(error);
     }
@@ -117,7 +116,7 @@ const Login = () => {
                         </a>
                       </div>
                     </div>
-                    {/* <FacebookLogin /> */}
+                    {/* <FacebookLogins /> */}
                     <GoogleLogins />
 
                     <div className="or my-3">

@@ -21,7 +21,6 @@ const EditorSS = () => {
   );
 
   const handleTemplateForInvitationType = (value) => {
-    console.log(value);
     dispatch(setinvitationType(value));
   };
   const modules = {
@@ -33,8 +32,6 @@ const EditorSS = () => {
       ["clean"],
     ],
   };
-
-  console.log("setinvitationTypeStyling", setinvitationTypeStyling);
 
   return (
     <div>

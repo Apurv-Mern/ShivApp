@@ -9,7 +9,12 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setinvitationType, temp3Ceremony } from "../redux/templateSlice";
+import {
+  getCoordinatesForTemplates,
+  setCoordinatesForTemplates,
+  setinvitationType,
+  temp3Ceremony,
+} from "../redux/templateSlice";
 import "../scss/Dashboard.css";
 import Navbar from "./Navbar";
 import Draggable from "react-draggable";
@@ -44,6 +49,7 @@ import { getMarriageDetailss } from "../redux/marriageSlice";
 const SendSS = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [model, setModel] = useState(false);
   const [hide1, setHide1] = useState(false);
   const [hide2, setHide2] = useState(false);
@@ -54,7 +60,13 @@ const SendSS = () => {
     (state) => state.marriage.marriageDetails
   );
   const [text1Coordinates, setText1Coordinates] = useState({ x: 0, y: 0 });
-  const allGroupNames = useSelector((state) => state.groups.groups);
+  const [text2Coordinates, setText2Coordinates] = useState({ x: 0, y: 0 });
+  const [text3Coordinates, setText3Coordinates] = useState({ x: 0, y: 0 });
+  const [invitationTypeCoordinates, setInvitationTypeCoordinates] = useState({
+    x: 0,
+    y: 0,
+  });
+  const allGroupNames = useSelector((state) => state.groups.groupWithId);
   const eventName = JSON.parse(localStorage.getItem("eventName"));
   const selectedImage = useSelector((state) => state.image.selectedTemplate);
   const text1 = useSelector((state) => state.image.tempText1);
@@ -84,7 +96,9 @@ const SendSS = () => {
   const setinvitationTypeofgroup = useSelector(
     (state) => state.image.invitationType
   );
-  const user_id = useSelector((state) => state.auth.user);
+  // const user_id = useSelector((state) => state.auth.user);
+  const user_id = JSON.parse(localStorage.getItem("user"));
+
   const event_id = useSelector((state) => state.event.event_id);
   const template = localStorage.getItem("template");
 
@@ -100,9 +114,14 @@ const SendSS = () => {
   };
   const [email, setEmail] = useState(""); // Initialize email state
 
-  const filteredGroupNames = allGroupNames.filter(
-    (item) => item !== "Unassigned"
+  const AllGroupsNamesWithId = allGroupNames.filter(
+    (item) => item.groupname !== "Unassigned"
   );
+
+  const filteredGroupNames = AllGroupsNamesWithId.map((item) => item.groupname);
+
+  // console.log(filteredGroupNames);
+
   let invitationTypeString = ""; // Initialize an empty string to store the invitation type
 
   const generateText1Content = () => {
@@ -194,6 +213,7 @@ const SendSS = () => {
 
   // ?const text3content = generateText3Content();
   const text3content = generateText1Content();
+
   useEffect(() => {
     dispatch(temp3Ceremony(text3content));
   }, [text3content, dispatch]);
@@ -312,12 +332,13 @@ const SendSS = () => {
       setTestMail(false);
       setModel(false);
     }
+
     if (eventName === "We're Engaged") {
       html2canvas(template1).then((canvas) => {
         const data = canvas.toDataURL("image/png");
         singleScreenshotsArray.push(data);
 
-        // console.log("screen shot data", screenshotsArray);
+        console.log("screen shot data", filteredGroupNames);
         testMail
           ? dispatch(
               testMailForWeEngaged({
@@ -440,469 +461,575 @@ const SendSS = () => {
     }
   };
 
-  // console.log(email);
+  // console.log(text1Coordinates);
+
+  // *SET COORDINATE
+  const handleCoordinates = () => {
+    const data = {
+      user_id,
+      event_id,
+      pages: [1, 2, 3, 4],
+      x_coordinates: [
+        invitationTypeCoordinates.x,
+        text1Coordinates.x,
+        text2Coordinates.x,
+        text3Coordinates.x,
+      ],
+      y_coordinates: [
+        invitationTypeCoordinates.y,
+        text1Coordinates.y,
+        text2Coordinates.y,
+        text3Coordinates.y,
+      ],
+    };
+
+    // console.log(data);
+    dispatch(setCoordinatesForTemplates(data))
+      .then(() => toast.success("Saved"))
+      .catch(() => toast.error("Please try again"));
+  };
+
+  // *GET COORDINATE
+  // ... (your existing code)
+
+  // *GET COORDINATE
+  useEffect(() => {
+    setLoading(true);
+    const getCoordinates = async () => {
+      const data = {
+        user_id,
+        event_id,
+      };
+      const res = await dispatch(getCoordinatesForTemplates(data));
+
+      if (res?.meta?.requestStatus === "fulfilled") {
+        // *Assuming the response payload is an array
+        const coordinates = res.payload;
+
+        // *Set the initial coordinates for text elements
+        setInvitationTypeCoordinates({
+          x: coordinates[0]?.x_coordinate || 0,
+          y: coordinates[0]?.y_coordinate || 0,
+        });
+        setText1Coordinates({
+          x: coordinates[1]?.x_coordinate || 0,
+          y: coordinates[1]?.y_coordinate || 0,
+        });
+        setText2Coordinates({
+          x: coordinates[2]?.x_coordinate || 0,
+          y: coordinates[2]?.y_coordinate || 0,
+        });
+        setText3Coordinates({
+          x: coordinates[3]?.x_coordinate || 0,
+          y: coordinates[3]?.y_coordinate || 0,
+        });
+      }
+      setLoading(false);
+    };
+
+    getCoordinates();
+  }, [user_id, event_id, dispatch]);
+
   return (
     <>
       <Navbar />
-      <div className="crl"></div>
-      <div className="container card-b-1">
-        <div className="row">
-          <h6 className="col-md-12 welcome-text">
-            <h4 className="heading"> Template Preview </h4>
-            Click on the Edit button to fill in your details and add any text
-            you wish. You can also make amendments such as font size, colour,
-            bold, italic, etc.
-            <br></br> <br></br>
-            Once amended click Preview to also have the choice to move the text
-            on the invitation before sending the e-card to your guests.
-            <br></br> <br></br>
-            <div className="refer">
-              Please refer to our downloadable Welcome Pack and Guide in the
-              Dashboard for more assistance.
-            </div>
-            <br></br>
-          </h6>
-        </div>
 
-        <div className="crl"></div>
-      </div>
-      <div className="crl"></div>
-      <div className="main-container">
-        <div className="container bg-w">
-          <div className="btn-box ">
-            <Link
-              className="flot-left-btn"
-              to={eventName === "Wedding" ? "/sendInvitation" : "/couples"}
-            >
-              <svg
-                width={20}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-                />
-              </svg>{" "}
-              Back
-            </Link>
-            <span data-tooltip="Please note you must send ALL your guest invitations at the same time.">
-              <img className="tool-tip" src={tool} alt="tool" />
-            </span>
+      {loading ? (
+        <h1></h1>
+      ) : (
+        <>
+          <div className="crl"></div>
+          <div className="container card-b-1">
+            <div className="row">
+              <h6 className="col-md-12 welcome-text">
+                <h4 className="heading"> Template Preview </h4>
+                Click on the Edit button to fill in your details and add any
+                text you wish. You can also make amendments such as font size,
+                colour, bold, italic, etc.
+                <br></br> <br></br>
+                Once amended click Preview to also have the choice to move the
+                text on the invitation before sending the e-card to your guests.
+                <br></br> <br></br>
+                <div className="refer">
+                  Please refer to our downloadable Welcome Pack and Guide in the
+                  Dashboard for more assistance.
+                </div>
+                <br></br>
+              </h6>
+            </div>
+
             <div className="crl"></div>
           </div>
-
-          <div className=" mt-10 h-fit"></div>
-          <div className="flex flex-col items-center justify-center w-full">
-            {/* // ? WAY 2 TODO : IMPROVEMENT  */}
-            <div className="crl"></div>
-            {/* Render tabs for each group name */}
-            {eventName === "Wedding" && (
-              <div className="tabs tabsprv">
-                <span
-                  className="test-m1 test-m3"
-                  data-tooltip="To preview the Invitation Type for your group simply click on the Contact Group name and you will see the Invitation Type they will receive. "
+          <div className="crl"></div>
+          <div className="main-container">
+            <div className="container bg-w">
+              <div className="btn-box ">
+                <Link
+                  className="flot-left-btn"
+                  to={eventName === "Wedding" ? "/sendInvitation" : "/couples"}
                 >
+                  <svg
+                    width={20}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+                    />
+                  </svg>{" "}
+                  Back
+                </Link>
+                <span data-tooltip="Please note you must send ALL your guest invitations at the same time.">
                   <img className="tool-tip" src={tool} alt="tool" />
                 </span>
+                <div className="crl"></div>
+              </div>
 
-                {newSelectedGroupNames.map((groupName) => (
-                  <>
-                    <button
-                      key={groupName}
-                      className={`tab ${
-                        activeTab === groupName ? "active" : ""
-                      }`}
-                      onClick={() => handleTabClick(groupName)}
+              <div className=" mt-10 h-fit"></div>
+              <div className="flex flex-col items-center justify-center w-full">
+                {/* // ? WAY 2 TODO : IMPROVEMENT  */}
+                <div className="crl"></div>
+                {/* Render tabs for each group name */}
+                {eventName === "Wedding" && (
+                  <div className="tabs tabsprv">
+                    <span
+                      className="test-m1 test-m3"
+                      data-tooltip="To preview the Invitation Type for your group simply click on the Contact Group name and you will see the Invitation Type they will receive. "
                     >
-                      {groupName}
-                    </button>
-                  </>
-                ))}
-              </div>
-            )}
+                      <img className="tool-tip" src={tool} alt="tool" />
+                    </span>
 
-            {eventName === "Wedding" && (
-              <div className="relative cart-prv">
-                {/* // ? TEMPLATE 1 */}
-                {selectedImage || template ? (
-                  <div
-                    className="cart-prv-in temp1"
-                    id="DownloadPdf"
-                    style={{ width: "100%", height: "100%" }}
-                  >
-                    <img
-                      className="w-full h-full"
-                      src={selectedImage || template}
-                      alt="Please select the template"
-                    />
-                    {model || testMail ? (
-                      ""
-                    ) : (
-                      <button className="edit-btn" onClick={handleEditor1}>
-                        {toggle1 ? "PREVIEW" : "EDIT"}
-                      </button>
-                    )}
-
-                    {hide1 ? (
-                      <div className="absolute-editor1   ">
-                        <div className="absolute-editor-in">
-                          <EditorSS />
-                        </div>
-                        <div className="absolute-editor">
-                          <div className="absolute-editor-in">
-                            <Editor4 />
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <Draggable
-                          onDrag={(e, ui) => {
-                            setText1Coordinates({ x: ui.x, y: ui.y });
-                          }}
+                    {newSelectedGroupNames.map((groupName) => (
+                      <>
+                        <button
+                          key={groupName}
+                          className={`tab ${
+                            activeTab === groupName ? "active" : ""
+                          }`}
+                          onClick={() => handleTabClick(groupName)}
                         >
-                          <div
-                            className="absolute-text absolute-text-2"
-                            dangerouslySetInnerHTML={{
-                              __html: setinvitationTypeofgroup,
-                            }}
-                          ></div>
-                        </Draggable>
-
-                        <Draggable
-                          onDrag={(e, ui) => {
-                            // Update the coordinates in the state
-                            setText1Coordinates({ x: ui.x, y: ui.y });
-                          }}
-                        >
-                          <div
-                            className="absolute-text"
-                            dangerouslySetInnerHTML={{
-                              __html: sstext1,
-                            }}
-                          ></div>
-                        </Draggable>
-                      </div>
-                    )}
+                          {groupName}
+                        </button>
+                      </>
+                    ))}
                   </div>
-                ) : (
-                  <h4 className="temp-text">
-                    Please select the template first
-                  </h4>
                 )}
 
-                {/* // ? TEMPLATE 2 */}
-                {selectedImage || template ? (
-                  <div
-                    className="cart-prv-in temp2"
-                    style={{ width: "100%", height: "100%" }}
-                  >
-                    <img
-                      className="w-full h-full"
-                      src={selectedImage || template}
-                      alt="Please select the template"
-                    />
-                    {model || testMail ? (
-                      ""
-                    ) : (
-                      <button className="edit-btn" onClick={handleEditor2}>
-                        {toggle2 ? "PREVIEW" : "EDIT"}
-                      </button>
-                    )}
+                {eventName === "Wedding" && (
+                  <div className="relative cart-prv">
+                    {/* // ? TEMPLATE 1 */}
+                    {selectedImage || template ? (
+                      <div
+                        className="cart-prv-in temp1"
+                        id="DownloadPdf"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          className="w-full h-full"
+                          src={selectedImage || template}
+                          alt="Please select the template"
+                        />
+                        {model || testMail ? (
+                          ""
+                        ) : (
+                          <button className="edit-btn" onClick={handleEditor1}>
+                            {toggle1 ? "PREVIEW" : "EDIT"}
+                          </button>
+                        )}
 
-                    {hide2 ? (
-                      <>
-                        <div className="absolute-editor">
-                          <div className="absolute-editor-in">
-                            {" "}
-                            <Editor1 />{" "}
+                        {hide1 ? (
+                          <div className="absolute-editor1   ">
+                            <div className="absolute-editor-in">
+                              <EditorSS />
+                            </div>
+                            <div className="absolute-editor">
+                              <div className="absolute-editor-in">
+                                <Editor4 />
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        <div className="footereditor">
-                          <div className="absolute-editor-in">
-                            {" "}
-                            <FooterEditor />{" "}
+                        ) : (
+                          <div>
+                            <Draggable
+                              defaultPosition={{
+                                x: invitationTypeCoordinates.x,
+                                y: invitationTypeCoordinates.y,
+                              }}
+                              onDrag={(e, ui) => {
+                                console.log(ui, e);
+                                setInvitationTypeCoordinates({
+                                  x: ui.x,
+                                  y: ui.y,
+                                });
+                              }}
+                            >
+                              <div
+                                className="absolute-text absolute-text-2"
+                                dangerouslySetInnerHTML={{
+                                  __html: setinvitationTypeofgroup,
+                                }}
+                              ></div>
+                            </Draggable>
+
+                            <Draggable
+                              defaultPosition={{
+                                x: text1Coordinates.x,
+                                y: text1Coordinates.y,
+                              }}
+                              onDrag={(e, ui) => {
+                                setText1Coordinates({ x: ui.x, y: ui.y });
+                              }}
+                            >
+                              <div
+                                className="absolute-text"
+                                dangerouslySetInnerHTML={{
+                                  __html: sstext1,
+                                }}
+                              ></div>
+                            </Draggable>
                           </div>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <Draggable>
-                          <div
-                            className="absolutetext-2xl"
-                            dangerouslySetInnerHTML={{ __html: text2 }}
-                          ></div>
-                        </Draggable>
-                        <div
-                          className="absolute-m1 mob-font"
-                          dangerouslySetInnerHTML={{ __html: footerText }}
-                        ></div>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  ""
-                )}
-
-                {/* // ? TEMPLATE 3 */}
-                {selectedImage || template ? (
-                  <div
-                    className="cart-prv-in temp3"
-                    style={{ width: "100%", height: "100%" }}
-                  >
-                    <img
-                      className="w-full h-full"
-                      src={selectedImage || template}
-                      alt="Please select the template"
-                    />
-                    {model || testMail ? (
-                      ""
-                    ) : (
-                      <button className="edit-btn" onClick={handleEditor2}>
-                        {toggle2 ? "PREVIEW" : "EDIT"}
-                      </button>
-                    )}
-
-                    {hide2 ? (
-                      <>
-                        <div className="absolute-editor">
-                          <div className="absolute-editor-in">
-                            {" "}
-                            <Editor2 />{" "}
-                          </div>
-                        </div>
-                        <div className="footereditor ">
-                          <div className="absolute-editor-in">
-                            {" "}
-                            <FooterEditor />
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <Draggable>
-                          <div
-                            className="absolute-text text-xl"
-                            dangerouslySetInnerHTML={{
-                              __html: selectedCeremonies,
-                            }}
-                          ></div>
-                        </Draggable>
-                        <div
-                          className="absolute-bottom mob-font"
-                          dangerouslySetInnerHTML={{ __html: footerText }}
-                        ></div>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-            )}
-
-            {eventName === "We're Engaged" && (
-              <div className="relative cart-prv">
-                {/* // ? TEMPLATE 1 */}
-                {selectedImage || template ? (
-                  <div
-                    className="cart-prv-in temp1"
-                    id="DownloadPdf"
-                    style={{ width: "100%", height: "100%" }}
-                  >
-                    <img
-                      className="w-full h-full"
-                      src={selectedImage || template}
-                      alt="Please select the template"
-                    />
-                    {model || testMail ? (
-                      ""
-                    ) : (
-                      <button className="edit-btn" onClick={handleEditor1}>
-                        {toggle1 ? "PREVIEW" : "EDIT"}
-                      </button>
-                    )}
-
-                    {hide1 ? (
-                      <div className="absolute-editor">
-                        <div className="absolute-editor-in">
-                          {" "}
-                          <Editor3 />{" "}
-                        </div>
+                        )}
                       </div>
                     ) : (
-                      <Draggable>
-                        <div
-                          className="absolute-text"
-                          dangerouslySetInnerHTML={{ __html: event2text }}
-                        ></div>
-                      </Draggable>
+                      <h4 className="temp-text">
+                        Please select the template first
+                      </h4>
                     )}
-                  </div>
-                ) : (
-                  <h4 className="temp-text">
-                    Please select the template first
-                  </h4>
-                )}
-              </div>
-            )}
 
-            {eventName === "Thank You" && (
-              <div className="relative cart-prv">
-                {/* // ? TEMPLATE 1 */}
-                {selectedImage || template ? (
-                  <div
-                    className="cart-prv-in temp1"
-                    id="DownloadPdf"
-                    style={{ width: "100%", height: "100%" }}
-                  >
-                    <img
-                      className="w-full h-full"
-                      src={selectedImage || template}
-                      alt="Please select the template"
-                    />
-                    {model || testMail ? (
-                      ""
-                    ) : (
-                      <button className="edit-btn" onClick={handleEditor1}>
-                        {toggle1 ? "PREVIEW" : "EDIT"}
-                      </button>
-                    )}
-                    {hide1 ? (
-                      <div className="absolute-editor">
-                        <div className="absolute-editor-in">
-                          {" "}
-                          <ThankuEditor />{" "}
-                        </div>
+                    {/* // ? TEMPLATE 2 */}
+                    {selectedImage || template ? (
+                      <div
+                        className="cart-prv-in temp2"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          className="w-full h-full"
+                          src={selectedImage || template}
+                          alt="Please select the template"
+                        />
+                        {model || testMail ? (
+                          ""
+                        ) : (
+                          <button className="edit-btn" onClick={handleEditor2}>
+                            {toggle2 ? "PREVIEW" : "EDIT"}
+                          </button>
+                        )}
+
+                        {hide2 ? (
+                          <>
+                            <div className="absolute-editor">
+                              <div className="absolute-editor-in">
+                                {" "}
+                                <Editor1 />{" "}
+                              </div>
+                            </div>
+                            <div className="footereditor">
+                              <div className="absolute-editor-in">
+                                {" "}
+                                <FooterEditor />{" "}
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <Draggable
+                              defaultPosition={{
+                                x: text2Coordinates.x,
+                                y: text2Coordinates.y,
+                              }}
+                              onDrag={(e, ui) => {
+                                console.log(ui, e);
+                                setText2Coordinates({ x: ui.x, y: ui.y });
+                              }}
+                            >
+                              <div
+                                className="absolutetext-2xl"
+                                dangerouslySetInnerHTML={{ __html: text2 }}
+                              ></div>
+                            </Draggable>
+                            {/* <div
+                              className="absolute-m1 mob-font"
+                              dangerouslySetInnerHTML={{ __html: footerText }}
+                            ></div> */}
+                          </>
+                        )}
                       </div>
                     ) : (
-                      <Draggable>
-                        <div
-                          className="absolute-text"
-                          dangerouslySetInnerHTML={{ __html: thankYou }}
-                        ></div>
-                      </Draggable>
-                    )}
-                  </div>
-                ) : (
-                  <h4 className="temp-text">
-                    Please select the template first
-                  </h4>
-                )}
-              </div>
-            )}
-
-            {eventName === "Save The Date" && (
-              <div className="relative cart-prv">
-                {/* // ? TEMPLATE 1 */}
-                {selectedImage || template ? (
-                  <div
-                    className="cart-prv-in temp1"
-                    id="DownloadPdf"
-                    style={{ width: "100%", height: "100%" }}
-                  >
-                    <img
-                      className="w-full h-full"
-                      src={selectedImage || template}
-                      alt="Please select the template"
-                    />
-                    {model || testMail ? (
                       ""
-                    ) : (
-                      <button className="edit-btn" onClick={handleEditor1}>
-                        {toggle1 ? "PREVIEW" : "EDIT"}
-                      </button>
                     )}
 
-                    {hide1 ? (
-                      <div className="absolute-editor">
-                        <div className="absolute-editor-in">
-                          {" "}
-                          <SaveTheDateEditor />{" "}
-                        </div>
+                    {/* // ? TEMPLATE 3 */}
+                    {selectedImage || template ? (
+                      <div
+                        className="cart-prv-in temp3"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          className="w-full h-full"
+                          src={selectedImage || template}
+                          alt="Please select the template"
+                        />
+                        {model || testMail ? (
+                          ""
+                        ) : (
+                          <button className="edit-btn" onClick={handleEditor2}>
+                            {toggle2 ? "PREVIEW" : "EDIT"}
+                          </button>
+                        )}
+
+                        {hide2 ? (
+                          <>
+                            <div className="absolute-editor">
+                              <div className="absolute-editor-in">
+                                {" "}
+                                <Editor2 />{" "}
+                              </div>
+                            </div>
+                            <div className="footereditor ">
+                              <div className="absolute-editor-in">
+                                {" "}
+                                <FooterEditor />
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <Draggable
+                              defaultPosition={{
+                                x: text3Coordinates.x,
+                                y: text3Coordinates.y,
+                              }}
+                              onDrag={(e, ui) => {
+                                console.log(ui, e);
+                                setText3Coordinates({ x: ui.x, y: ui.y });
+                              }}
+                            >
+                              <div
+                                className="absolute-text text-xl"
+                                dangerouslySetInnerHTML={{
+                                  __html: selectedCeremonies,
+                                }}
+                              ></div>
+                            </Draggable>
+                            {/* <div
+                              className="absolute-bottom mob-font"
+                              dangerouslySetInnerHTML={{ __html: footerText }}
+                            ></div> */}
+                          </>
+                        )}
                       </div>
                     ) : (
-                      <Draggable>
-                        <div
-                          className="absolute-text"
-                          dangerouslySetInnerHTML={{ __html: saveTheDate }}
-                        ></div>
-                      </Draggable>
+                      ""
                     )}
-                    {/* <PopupContent /> */}
                   </div>
-                ) : (
-                  <h4 className="temp-text">
-                    Please select the template first
-                  </h4>
                 )}
+
+                {eventName === "We're Engaged" && (
+                  <div className="relative cart-prv">
+                    {/* // ? TEMPLATE 1 */}
+                    {selectedImage || template ? (
+                      <div
+                        className="cart-prv-in temp1"
+                        id="DownloadPdf"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          className="w-full h-full"
+                          src={selectedImage || template}
+                          alt="Please select the template"
+                        />
+                        {model || testMail ? (
+                          ""
+                        ) : (
+                          <button className="edit-btn" onClick={handleEditor1}>
+                            {toggle1 ? "PREVIEW" : "EDIT"}
+                          </button>
+                        )}
+
+                        {hide1 ? (
+                          <div className="absolute-editor">
+                            <div className="absolute-editor-in">
+                              {" "}
+                              <Editor3 />{" "}
+                            </div>
+                          </div>
+                        ) : (
+                          <Draggable>
+                            <div
+                              className="absolute-text"
+                              dangerouslySetInnerHTML={{ __html: event2text }}
+                            ></div>
+                          </Draggable>
+                        )}
+                      </div>
+                    ) : (
+                      <h4 className="temp-text">
+                        Please select the template first
+                      </h4>
+                    )}
+                  </div>
+                )}
+
+                {eventName === "Thank You" && (
+                  <div className="relative cart-prv">
+                    {/* // ? TEMPLATE 1 */}
+                    {selectedImage || template ? (
+                      <div
+                        className="cart-prv-in temp1"
+                        id="DownloadPdf"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          className="w-full h-full"
+                          src={selectedImage || template}
+                          alt="Please select the template"
+                        />
+                        {model || testMail ? (
+                          ""
+                        ) : (
+                          <button className="edit-btn" onClick={handleEditor1}>
+                            {toggle1 ? "PREVIEW" : "EDIT"}
+                          </button>
+                        )}
+                        {hide1 ? (
+                          <div className="absolute-editor">
+                            <div className="absolute-editor-in">
+                              {" "}
+                              <ThankuEditor />{" "}
+                            </div>
+                          </div>
+                        ) : (
+                          <Draggable>
+                            <div
+                              className="absolute-text"
+                              dangerouslySetInnerHTML={{ __html: thankYou }}
+                            ></div>
+                          </Draggable>
+                        )}
+                      </div>
+                    ) : (
+                      <h4 className="temp-text">
+                        Please select the template first
+                      </h4>
+                    )}
+                  </div>
+                )}
+
+                {eventName === "Save The Date" && (
+                  <div className="relative cart-prv">
+                    {/* // ? TEMPLATE 1 */}
+                    {selectedImage || template ? (
+                      <div
+                        className="cart-prv-in temp1"
+                        id="DownloadPdf"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          className="w-full h-full"
+                          src={selectedImage || template}
+                          alt="Please select the template"
+                        />
+                        {model || testMail ? (
+                          ""
+                        ) : (
+                          <button className="edit-btn" onClick={handleEditor1}>
+                            {toggle1 ? "PREVIEW" : "EDIT"}
+                          </button>
+                        )}
+
+                        {hide1 ? (
+                          <div className="absolute-editor">
+                            <div className="absolute-editor-in">
+                              {" "}
+                              <SaveTheDateEditor />{" "}
+                            </div>
+                          </div>
+                        ) : (
+                          <Draggable>
+                            <div
+                              className="absolute-text"
+                              dangerouslySetInnerHTML={{ __html: saveTheDate }}
+                            ></div>
+                          </Draggable>
+                        )}
+                        {/* <PopupContent /> */}
+                      </div>
+                    ) : (
+                      <h4 className="temp-text">
+                        Please select the template first
+                      </h4>
+                    )}
+                  </div>
+                )}
+                <div className="crl"></div>
+
+                <div className="two-btn-box w-full">
+                  <span
+                    className="test-m1 test-m2"
+                    data-tooltip="Please note editing the invitation will take you back to select a new design template."
+                  >
+                    <img className="tool-tip" src={tool} alt="tool" />
+                  </span>
+
+                  <Link to={"/template"} className="btn btn-2">
+                    Edit Invitation
+                  </Link>
+                  <button
+                    className="btn btn-1 "
+                    style={{ marginRight: "10px" }}
+                    onClick={handelModel}
+                  >
+                    Send
+                  </button>
+                  <Button variant="outlined" onClick={handleTestMail}>
+                    Test Emailing
+                  </Button>
+
+                  <Button variant="outlined" onClick={handleCoordinates}>
+                    Save
+                  </Button>
+
+                  <span
+                    className="test-m1"
+                    data-tooltip="Once you click send your invites will automatically be emailed to your guest groups. Please note that this may take some time. Please do NOT click send again or move off this page until we confirm your emails have been sent. "
+                  >
+                    <img className="tool-tip" src={tool} alt="tool" />
+                  </span>
+
+                  <Dialog open={testMail} onClose={handleTestMail}>
+                    <DialogTitle>Test Email</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        Send yourself a test PDF of your invite to ensure you
+                        are happy with it before sending to your guests.
+                      </DialogContentText>
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                        variant="standard"
+                        value={email} // Bind the 'email' state to the input value
+                        onChange={handleEmailChange} // Handle input changes
+                      />
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleTestMail}>Cancel</Button>
+                      <Button onClick={takeScreenshotAndSend}>Send Mail</Button>
+                    </DialogActions>
+                  </Dialog>
+                </div>
               </div>
-            )}
-            <div className="crl"></div>
-
-            <div className="two-btn-box w-full">
-              <span
-                className="test-m1 test-m2"
-                data-tooltip="Please note editing the invitation will take you back to select a new design template."
-              >
-                <img className="tool-tip" src={tool} alt="tool" />
-              </span>
-
-              <Link to={"/template"} className="btn btn-2">
-                Edit Invitation
-              </Link>
-              <button
-                className="btn btn-1 "
-                style={{ marginRight: "10px" }}
-                onClick={handelModel}
-              >
-                Send
-              </button>
-              <Button variant="outlined" onClick={handleTestMail}>
-                Test Emailing
-              </Button>
-
-              <span
-                className="test-m1"
-                data-tooltip="Once you click send your invites will automatically be emailed to your guest groups. Please note that this may take some time. Please do NOT click send again or move off this page until we confirm your emails have been sent. "
-              >
-                <img className="tool-tip" src={tool} alt="tool" />
-              </span>
-
-              <Dialog open={testMail} onClose={handleTestMail}>
-                <DialogTitle>Test Email</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Send yourself a test PDF of your invite to ensure you are
-                    happy with it before sending to your guests.
-                  </DialogContentText>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                    value={email} // Bind the 'email' state to the input value
-                    onChange={handleEmailChange} // Handle input changes
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleTestMail}>Cancel</Button>
-                  <Button onClick={takeScreenshotAndSend}>Send Mail</Button>
-                </DialogActions>
-              </Dialog>
-            </div>
-          </div>
-          {/* Confirmation Dialog */}
-          {/* {confirmDialog && (
+              {/* Confirmation Dialog */}
+              {/* {confirmDialog && (
             <div className="confirm-dialog">
               <div className="confirm-dialog-content">
                 <p>Are you sure you want to send this?</p>
@@ -911,55 +1038,59 @@ const SendSS = () => {
               </div>
             </div>
           )} */}
-          {paymentId === "Success" ? (
-            model && (
-              <>
-                <div>
-                  <Dialog
-                    open={model}
-                    keepMounted
-                    onClose={handelModel}
-                    aria-describedby="alert-dialog-slide-description"
-                  >
-                    <DialogTitle>{"Send Invitations"}</DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id="alert-dialog-slide-description">
-                        Are you sure you want to send this?
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={takeScreenshotAndSend}>Send Now </Button>
-                      <Button onClick={handleBuyLater}>Send Later</Button>
-                    </DialogActions>
-                  </Dialog>
-                </div>
-              </>
-            )
-          ) : (
-            <>
-              <div>
-                <Dialog
-                  open={model}
-                  keepMounted
-                  onClose={handelModel}
-                  aria-describedby="alert-dialog-slide-description"
-                >
-                  <DialogTitle>{"Buy Packages"}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
-                      Are you sure you want to send this?
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    {/* <Button onClick={handleBuyNow}>Buy Now </Button> */}
-                    <PackagesPopupTemplate />
-                  </DialogActions>
-                </Dialog>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+              {paymentId === "Success" ? (
+                model && (
+                  <>
+                    <div>
+                      <Dialog
+                        open={model}
+                        keepMounted
+                        onClose={handelModel}
+                        aria-describedby="alert-dialog-slide-description"
+                      >
+                        <DialogTitle>{"Send Invitations"}</DialogTitle>
+                        <DialogContent>
+                          <DialogContentText id="alert-dialog-slide-description">
+                            Are you sure you want to send this?
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={takeScreenshotAndSend}>
+                            Send Now{" "}
+                          </Button>
+                          <Button onClick={handleBuyLater}>Send Later</Button>
+                        </DialogActions>
+                      </Dialog>
+                    </div>
+                  </>
+                )
+              ) : (
+                <>
+                  <div>
+                    <Dialog
+                      open={model}
+                      keepMounted
+                      onClose={handelModel}
+                      aria-describedby="alert-dialog-slide-description"
+                    >
+                      <DialogTitle>{"Buy Packages"}</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-slide-description">
+                          Are you sure you want to send this?
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        {/* <Button onClick={handleBuyNow}>Buy Now </Button> */}
+                        <PackagesPopupTemplate />
+                      </DialogActions>
+                    </Dialog>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

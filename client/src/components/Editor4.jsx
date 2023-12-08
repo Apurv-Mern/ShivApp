@@ -9,7 +9,7 @@ const Editor4 = () => {
   const sstext1 = useSelector((state) => state.image.ssTempText1);
 
   const handleTemplateText1 = (value) => {
-    // console.log(value);
+    console.log(value);
     dispatch(updatessTempText1(value));
   };
 

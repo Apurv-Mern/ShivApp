@@ -4,11 +4,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addAGroups,
-  deleteAGroups,
-  getGroupsByUserId,
-} from "../redux/GroupSlice";
+import { deleteAGroups, getGroupsByUserId } from "../redux/GroupSlice";
 import EditRowDialog from "./EditRowData";
 import AddGroupDialog from "./AddGroupData";
 import AddContactForm from "./AddGuestData";
@@ -18,14 +14,10 @@ import {
   getAllGuestForAUser,
   getGuestForAGroup,
   setGuestId,
-  uploadGuestDetails,
 } from "../redux/guestSlice";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {
-  ExportToExcelForEvent,
-  ExportToExcelForTemplate,
-} from "../Utils/GenerateExcel";
+import { ExportToExcelForTemplate } from "../Utils/GenerateExcel";
 import { toast } from "react-toastify";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -118,7 +110,6 @@ const Contacts = () => {
     setEditOpen(true);
     // console.log(rowData);
   };
-  console.log("", guestId);
   const handleDelete = (guestId) => {
     console.log(guestId);
     dispatch(deleteGuestByGuesrId(guestId))
@@ -174,7 +165,7 @@ const Contacts = () => {
       width: 250,
       renderCell: (params) => {
         dispatch(setGuestId(params.row?.guest_id));
-        console.log(params.row?.guest_id);
+        // console.log(params.row?.guest_id);
         return (
           <button onClick={() => handleDelete(params.row?.guest_id)}>
             Delete
@@ -240,8 +231,8 @@ const Contacts = () => {
           // Display a success message
           toast.success("Contact upload successfully");
         } catch (error) {
-          toast.error("File upload error:", error);
-          console.error("File upload error:", error);
+          toast.error("Guest limit exceeded the allowed limit", error);
+          console.error("Guest limit exceeded the allowed limit", error);
         }
       };
 

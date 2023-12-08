@@ -2887,6 +2887,46 @@ body #signInDiv iframe {
   float: right;
 }
 
+.otp-number {
+  max-width: 310px;
+  margin: 0px auto;
+  padding: 100px 0px;
+}
+.otp-number-logo {
+  width: 100%;
+  text-align: center;
+}
+
+.otp-number-logo img {
+  width: 250px;
+}
+.otp-input span {
+  color: #5ce1e6;
+}
+.otp-top-box {
+  background: #5ce1e6;
+  padding: 50px 20px;
+  width: 100%;
+  margin-top: 15px;
+  text-align: center;
+  border-radius: 15px;
+}
+.otp-input input {
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+  border: 0px !important;
+}
+.otp-input {
+  width: 244px;
+  padding-bottom: 20px;
+  margin: 0px auto;
+}
+
 @media screen and (max-width: 1200px) {
   .tabs-home .react-tabs__tab {
     width: 33.33%;
