@@ -1,5 +1,5 @@
 import React, { useState, Component, Suspense } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Success from "./components/Success";
@@ -81,6 +81,9 @@ const loading = (
 );
 
 function App() {
+  const location = useLocation();
+
+  console.log(location);
   const isAuthenticated = useSelector((state) => state.auth.user);
   const ProtectedRoute = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
@@ -173,7 +176,13 @@ function App() {
             exact
             path="/wedding_website/site/:bride/weds/:groom"
             name="Wedding website "
-            element={<WeddingWebsite />}
+            element={
+              location?.state ? (
+                <WeddingWebsite />
+              ) : (
+                <Navigate to="/wedding_website/otp" />
+              )
+            }
           />{" "}
           {/* PROTECTED ROUTES STARTS FROM HERE */}
           <Route

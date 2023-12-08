@@ -29,13 +29,16 @@ const CodePage = () => {
 
   const handleSubmit = async () => {
     dispatch(getMarriageDetailss());
-
-    const res = await dispatch(WeddingWebsiteCode(code));
-    if (res.meta.requestStatus === "fulfilled") {
-      navigate(
-        `/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`,
-        { state: { weddingCeremonies } }
-      );
+    if (code) {
+      const res = await dispatch(WeddingWebsiteCode(code));
+      if (res.meta.requestStatus === "fulfilled") {
+        navigate(
+          `/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`,
+          { state: { weddingCeremonies } }
+        );
+      }
+    } else {
+      toast.error("Enter your 6 digit code");
     }
   };
 
