@@ -29,6 +29,10 @@ body {
   margin: 0px;
 }
 
+.web-inner-page .container {
+  max-width: 1320px !important;
+}
+
 .coming-s {
   text-align: center;
   font-size: 26px;
@@ -62,17 +66,16 @@ body {
 
 .web-date {
   background: #2881af;
-}
-
-.web-date {
-  background: #2881af;
   width: 250px;
   text-align: center;
   padding: 5px;
   margin: 0px auto 15px;
-  color: #fff;
+  color: #000;
   background: #5ce1e6;
   border-radius: 30px;
+}
+.wedding-card-nav ul li a {
+  font-weight: 600;
 }
 
 .wedding-card-nav .navbar-nav {
@@ -287,7 +290,7 @@ body {
   border-color: #000;
 }
 .contact-content h2 {
-  background: #fff;
+  background: #85fbff;
   padding: 15px;
   border-radius: 15px;
   font-size: 22px;
@@ -296,6 +299,10 @@ body {
 }
 .custom-modal-dialog {
   max-width: 60%;
+}
+button:focus:not(:focus-visible) {
+  outline: 0;
+  color: #5ce1e6;
 }
 
 .modal-content {
@@ -387,6 +394,36 @@ body .wedding-card-nav .navbar-nav {
 }
 .web-header.header-new {
   border-top: 0px solid #fff !important;
+}
+
+.row.top-wedding-panel:nth-child(2),
+.row.top-wedding-panel:nth-child(4),
+.row.top-wedding-panel:nth-child(6),
+.row.top-wedding-panel:nth-child(8),
+.row.top-wedding-panel:nth-child(10),
+.row.top-wedding-panel:nth-child(12),
+.row.top-wedding-panel:nth-child(14),
+.row.top-wedding-panel:nth-child(16),
+.row.top-wedding-panel:nth-child(18),
+.row.top-wedding-panel:nth-child(20) {
+  display: revert;
+}
+
+.top-wedding-panel:nth-child(2) .web-img,
+.top-wedding-panel:nth-child(4) .web-img,
+.top-wedding-panel:nth-child(6) .web-img,
+.top-wedding-panel:nth-child(8) .web-img,
+.top-wedding-panel:nth-child(10) .web-img,
+.top-wedding-panel:nth-child(12) .web-img,
+.top-wedding-panel:nth-child(14) .web-img,
+.top-wedding-panel:nth-child(16) .web-img,
+.top-wedding-panel:nth-child(18) .web-img,
+.top-wedding-panel:nth-child(20) .web-img {
+  float: right;
+}
+
+.web-header .navbar-toggler {
+  margin-top: 5px;
 }
 
 @media only screen and (max-width: 1024px) {

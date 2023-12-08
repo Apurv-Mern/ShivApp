@@ -49,31 +49,38 @@ const Calendar = () => {
               <div className="web-top-title"> Wedding Calendar </div>
             </div>
           </div>
-          <div className="row top-wedding-panel">
-            <div className="col-lg-6 col-md-12 web-content-box">
-              {weddingCeremonies?.map((item) => (
-                <>
-                  <div className="col-lg-6 col-md-12 web-img">
-                    <img src={imgL} className="main-image-1" alt="img" />
+
+          {weddingCeremonies?.map((item) => (
+            <div className="row top-wedding-panel">
+              <div className="col-lg-6 col-md-12 web-img">
+                <img src={imgL} className="main-image-1" alt="img" />
+                <div className="crl"></div>
+              </div>
+
+              <div className="col-lg-6 col-md-12 web-content-box">
+                <div className="web-icon-3">
+                  <img src={img1} className="main-image-1" alt="img" />
+                </div>
+                <div className="web-icon-2">
+                  <div className="web-title-n1">{item.ceremony_name}</div>
+                  <div className="web-date-box">
+                    <img src={cal} className="main-cal-1" alt="img" />
+                    {formatDateTime(item.ceremony_time)}
                   </div>
-                  <div className="web-icon-3">
-                    <img src={img1} className="main-image-1" alt="img" />
+                  <div className="web-ad-box">
+                    <img src={lo} className="main-lo-1" alt="img" />
+                    {item.ceremony_venue}
                   </div>
-                  <div className="web-icon-2">
-                    <div className="web-title-n1">{item.ceremony_name}</div>
-                    <div className="web-date-box">
-                      <img src={cal} className="main-cal-1" alt="img" />
-                      {formatDateTime(item.ceremony_time)}
-                    </div>
-                    <div className="web-ad-box">
-                      <img src={lo} className="main-lo-1" alt="img" />
-                      {item.ceremony_venue}
-                    </div>
-                  </div>
-                </>
-              ))}
+                  <div className="crl"></div>
+                </div>
+                <div className="web-icon-3">
+                  <img src={img1} className="main-image-1" alt="img" />
+                </div>
+                <div className="crl"></div>
+              </div>
+              <div className="crl"></div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>
