@@ -6,10 +6,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet-async";
 const Purchase = () => {
   const dispatch = useDispatch();
+
   const paymentStatus = useSelector((state) => state.payment.paymentStatus);
   useEffect(() => {
     dispatch(getPaymentStatus());
   }, []);
+
+  const formatDateTime = (dateTimeString) => {
+    if (!dateTimeString) return "";
+
+    const formattedDate = new Date(dateTimeString).toLocaleString("en-US", {
+      weekday: "long",
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    return formattedDate;
+  };
 
   const paymentHandling = paymentStatus["payment status: "];
   return (
@@ -35,9 +52,11 @@ const Purchase = () => {
               <h6>Here you can view the details of your package.</h6>
             </h6>
             <div className="payment-0">
-              <div className="payment-1">{paymentHandling?.package}</div>
+              <div className="payment-1">{paymentHandling?.package_name}</div>
               <div className="payment-2">{paymentHandling?.amount}</div>
-              <div className="payment-3">{paymentHandling?.date}</div>
+              <div className="payment-3">
+                {formatDateTime(paymentHandling?.date)}
+              </div>
             </div>
           </div>
         </div>

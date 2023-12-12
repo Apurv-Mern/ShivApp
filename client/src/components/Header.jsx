@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/authSlice";
 
@@ -21,6 +21,8 @@ import { getMarriageDetailss } from "../redux/marriageSlice";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const { user_id } = useParams();
+
   const dispatch = useDispatch();
   const marriageDetails = useSelector(
     (state) => state.marriage.marriageDetails
@@ -117,7 +119,7 @@ const Sidebar = () => {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to={`/wedding_website/otp`}
+                to={`/123/wedding_website/otp`}
                 target="_blank"
               >
                 <img className="nav-con-1" src={Coming} alt="Dashboard" />

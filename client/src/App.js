@@ -162,7 +162,7 @@ function App() {
           />{" "}
           <Route
             exact
-            path="/wedding_website/otp"
+            path="/:user_id/wedding_website/otp"
             name="OTP"
             element={<CodePage />}
           />{" "}

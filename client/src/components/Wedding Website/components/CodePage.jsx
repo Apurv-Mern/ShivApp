@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
   WeddingWebsiteCode,
-  getMarriageDetailss,
+  getMarriageDetailss2,
 } from "../../../redux/marriageSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import OtpInput from "react-otp-input";
 import img1 from "../../../assets/images/7.gif";
 
 const CodePage = () => {
   const dispatch = useDispatch();
+  const { user_id } = useParams();
   const navigate = useNavigate();
   const marriageDetails = useSelector(
     (state) => state.marriage.marriageDetails
@@ -41,7 +42,7 @@ const CodePage = () => {
   };
 
   useEffect(() => {
-    dispatch(getMarriageDetailss());
+    dispatch(getMarriageDetailss2(user_id));
   }, []);
 
   return (
