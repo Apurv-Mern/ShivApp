@@ -65,14 +65,15 @@ const marriageSlice = createSlice({
       })
 
       //  ? OTP FOR WEDDING WEBSITE
-      .addCase(WeddingWebsiteCode.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+
       .addCase(WeddingWebsiteCode.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.weddingCeremonies = action.payload;
+      })
+      .addCase(WeddingWebsiteCode.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       })
       .addCase(WeddingWebsiteCode.rejected, (state, action) => {
         state.loading = false;

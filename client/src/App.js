@@ -169,7 +169,7 @@ function App() {
           <Route
             exact
             path="/wedding_website/site/:bride/weds/:groom"
-            name="Wedding website "
+            name="Wedding website"
             element={
               code ? <WeddingWebsite /> : <Navigate to="/wedding_website/otp" />
             }

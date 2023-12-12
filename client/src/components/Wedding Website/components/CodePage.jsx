@@ -20,20 +20,26 @@ const CodePage = () => {
   );
   const [code, setCode] = useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (code) {
-      localStorage.setItem("code", code);
-      const res = await dispatch(WeddingWebsiteCode(code));
-      if (res.meta.requestStatus === "fulfilled") {
-        navigate(
-          `/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`
-        );
-      }
-      localStorage.setItem("code", code);
+      dispatch(WeddingWebsiteCode(code))
+        .then((res) => {
+          if (res.meta.requestStatus === "fulfilled") {
+            navigate(
+              `/wedding_website/site/${marriageDetails[0]?.bride_name}/weds/${marriageDetails[0]?.groom_name}`
+            );
+          }
+          localStorage.setItem("code", code);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Please enter valid code");
+        });
     } else {
-      toast.error("Enter your 6 digit code");
+      toast.error("Enter your 6-digit code");
     }
   };
+
   useEffect(() => {
     dispatch(getMarriageDetailss());
   }, []);
@@ -46,6 +52,7 @@ const CodePage = () => {
 
       <div className="otp-top-box">
         <div className="otp-input">
+          <h4>Please enter your 6 digit code</h4>
           <OtpInput
             value={code}
             onChange={setCode}
